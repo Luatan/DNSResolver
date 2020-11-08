@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 public class Requests {
     private String hostname;
     private String IP;
+    private String[] ANY;
     private String[] A;
     private String[] AAAA;
     private String[] MX;
@@ -28,21 +29,22 @@ public class Requests {
             IP = inetHost.getHostAddress();
 
         } catch(UnknownHostException ex) {
+            hostname = "Unrecognized host";
             System.out.println("Unrecognized host");
-            System.exit(1);
         }
     }
 
     private void setRecords(String host, String record) throws NamingException, UnknownHostException {
         typeSet = record;
-        InetAddress inetAddress = InetAddress.getByName(host);
-        InitialDirContext iDirC = new InitialDirContext();
 
+        InitialDirContext iDirC = new InitialDirContext();
         // get all the DNS records for inetAddress
-        Attributes attributes = iDirC.getAttributes("dns:/" + inetAddress.getHostName(), new String[] {"*"});
+        Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
         if(record.matches("[*]")) {
-            System.out.println("This Feature is not yet implemented");
-            System.exit(1);
+            typeSet = "*";
+            ANY = new String[1];
+            ANY[0] = "This Feature is not implemented yet";
+
         } else {
             try {
                 String in = attributes.get(record).toString();
@@ -91,7 +93,7 @@ public class Requests {
         String type = typeSet;
         switch (type) {
             case "*":
-                break;
+                return ANY;
             case "A":
                 return A;
             case "AAAA":

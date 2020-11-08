@@ -48,9 +48,16 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException {
+        Requests mySearch;
+
         if (!txtDomain.getText().isEmpty()) {
             txtFieldRecords.clear();
-            Requests mySearch = new Requests(txtDomain.getText(), (String)typeBox.getValue());
+            if (typeBox.getValue().equals("Any")) {
+                mySearch = new Requests(txtDomain.getText(), "*");
+
+            } else {
+                mySearch = new Requests(txtDomain.getText(), (String)typeBox.getValue());
+            }
             txtFieldHost.setText(mySearch.getHostname());
             txtFieldIP.setText(mySearch.getIP());
 

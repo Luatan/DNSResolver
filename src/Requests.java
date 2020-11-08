@@ -80,11 +80,13 @@ public class Requests {
                         SRV = listRecords;
                         break;
                     default:
-                        System.out.println("Type was not found");
+                        System.out.println("No Records found");
+
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Type was not found");
+                System.out.println("No Records found");
+
             }
         }
     }

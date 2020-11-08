@@ -77,7 +77,7 @@
             </graphic>
          </Label>
          <Separator layoutY="119.0" prefHeight="25.0" prefWidth="673.0" />
-         <TextArea fx:id="txtFieldRecords" layoutX="10.0" layoutY="144.0" prefHeight="200.0" prefWidth="647.0" />
+         <TextArea fx:id="txtFieldRecords" editable="false" layoutX="10.0" layoutY="144.0" prefHeight="200.0" prefWidth="647.0" />
           <Separator layoutY="52.0" prefHeight="25.0" prefWidth="673.0" />
       </children>
    </AnchorPane>

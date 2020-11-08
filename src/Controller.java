@@ -57,9 +57,15 @@ public class Controller implements Initializable {
             txtFieldHost.setText(querry.getHostname());
             txtFieldIP.setText(querry.getIP());
 
-            for (int i = 0; i<querry.getRecords().length; i++) {
-                txtFieldRecords.appendText(querry.getRecords()[i] + "\n");
+            try {
+                for (int i = 0; i<querry.getRecords().length; i++) {
+                    txtFieldRecords.appendText(querry.getRecords()[i] + "\n");
+                }
+            } catch (NullPointerException e) {
+                System.out.println("For loop not possible - Controller:65");
+                txtFieldRecords.appendText("No Records found, sry... \n try to search for a different domain or type");
             }
+
         }
     }
 

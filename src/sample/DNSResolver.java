@@ -1,3 +1,5 @@
+package sample;
+
 import javax.naming.NamingException;
 import java.net.UnknownHostException;
 import java.util.Scanner;

@@ -1,5 +1,5 @@
-package sample;
-
+import javafx.animation.FillTransition;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,17 +9,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import javax.naming.NamingException;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    public Button cpyRecords;
     @FXML
     TextField txtDomain;
+
+    @FXML
+    Button cpyRecords;
 
     @FXML
     TextField txtFieldIP;
@@ -51,6 +58,25 @@ public class Controller implements Initializable {
                 txtFieldRecords.insertText(i, mySearch.getRecords()[i] + "\n");
             }
         }
+    }
+
+    @FXML
+    private void copyRecords(ActionEvent event) {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        StringSelection strSel = new StringSelection(txtFieldRecords.getText());
+        clipboard.setContents(strSel, null);
+
+        FillTransition ft = new FillTransition();
+        ft.setShape(cpyRecords.getShape());
+        ft.setDuration(new Duration(2000));
+        ft.setToValue(Color.GREEN);
+        ft.setCycleCount(Timeline.INDEFINITE);
+        ft.setAutoReverse(true);
+        ft.play();
+
+
+        System.out.println("Records copied!");
     }
 
     private void handleTypeBox(ActionEvent event) {

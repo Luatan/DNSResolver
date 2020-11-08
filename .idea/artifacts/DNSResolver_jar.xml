@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="DNSResolver:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DNSResolver_jar</output-path>
+    <root id="root">
+      <element id="archive" name="DNSResolver.jar">
+        <element id="module-output" name="DNSResolver" />
+      </element>
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>

@@ -3,6 +3,7 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 public class Requests {
     private String hostname;
@@ -17,9 +18,9 @@ public class Requests {
     private String[] SOA;
     private String typeSet;
 
-    Requests(String value, String records) throws UnknownHostException, NamingException {
+    Requests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value);
-        setRecords(value, records);
+        setRecords(type);
     }
 
     private void setHost(String host) {
@@ -34,7 +35,19 @@ public class Requests {
         }
     }
 
-    private void setRecords(String host, String record) throws NamingException, UnknownHostException {
+    private void setAllRecords(String hostname) throws NamingException, UnknownHostException {
+        setRecords("A");
+        setRecords("AAAA");
+        setRecords("MX");
+        setRecords("NS");
+        setRecords("TXT");
+        setRecords("SRV");
+        setRecords("SOA");
+
+        System.out.println(Arrays.toString(MX));
+    }
+
+    private void setRecords(String record) throws NamingException, UnknownHostException {
         typeSet = record;
 
         InitialDirContext iDirC = new InitialDirContext();
@@ -43,56 +56,59 @@ public class Requests {
 
         if(record.matches("[*]")) {
             typeSet = "*";
-            ANY = new String[1];
-            ANY[0] = "This Feature is not implemented yet";
+            setAllRecords(hostname);
 
         } else {
             try {
-                String in = attributes.get(record).toString();
                 //Get Type
-                String type = in.split(":",2)[0];
+                String type = attributes.get(record).toString().split(":",2)[0];
                 //Get the Records
-                String[] listRecords = in.split("(,)( )");
+                String[] listRecords = attributes.get(record).toString().split("(,)( )");
                 String[] tempRecords = listRecords[0].split(": ");
+                //Replace first char with the actual value instead of the type
                 listRecords[0] = tempRecords[1];
-                switch (type) {
-                    case "*":
 
-                        break;
-                    case "A":
-                        A = listRecords;
-                        break;
-                    case "AAAA":
-                        AAAA = listRecords;
-                        break;
-                    case "MX":
-                        MX = listRecords;
-                    case "TXT":
-                        TXT = listRecords;
-                        break;
-                    case "SOA":
-                        SOA = listRecords;
-                        break;
-                    case "NS":
-                        NS = listRecords;
-                        break;
-                    case "SRV":
-                        SRV = listRecords;
-                        break;
-                    default:
-                        System.out.println("No Records found");
+                populateRecords(listRecords);
 
-                        break;
-                }
             } catch (Exception e) {
                 System.out.println("No Records found");
-
             }
         }
     }
 
-    public String[] getRecords() {
+    private void populateRecords(String[] listRecords) {
         String type = typeSet;
+        switch (type) {
+            case "*":
+                break;
+            case "A":
+                A = listRecords;
+                break;
+            case "AAAA":
+                AAAA = listRecords;
+                break;
+            case "MX":
+                MX = listRecords;
+            case "TXT":
+                TXT = listRecords;
+                break;
+            case "SOA":
+                SOA = listRecords;
+                break;
+            case "NS":
+                NS = listRecords;
+                break;
+            case "SRV":
+                SRV = listRecords;
+                break;
+            default:
+                System.out.println("type not found");
+
+                break;
+        }
+    }
+
+    public String[] getRecords(String type) {
         switch (type) {
             case "*":
                 return ANY;
@@ -118,7 +134,5 @@ public class Requests {
     }
 
     public String getHostname() { return hostname; }
-    public String getIP(){
-        return IP;
-    }
+    public String getIP(){ return IP; }
 }

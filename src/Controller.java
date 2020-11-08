@@ -44,29 +44,42 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException {
-        Requests querry;
+        Requests query;
 
         if (!txtDomain.getText().isEmpty()) {
             txtFieldRecords.clear();
             if (typeBox.getValue().equals("Any")) {
-                querry = new Requests(txtDomain.getText(), "*");
+                query = new Requests(txtDomain.getText(), "*");
+
+                recordPutter(query.getRecords("A"), "A");
+                recordPutter(query.getRecords("AAAA"), "AAAA");
+                recordPutter(query.getRecords("MX"), "MX");
+                recordPutter(query.getRecords("NS"), "NS");
+                recordPutter(query.getRecords("TXT"), "TXT");
+                recordPutter(query.getRecords("SRV"), "SRV");
+                recordPutter(query.getRecords("SOA"), "SOA");
 
             } else {
-                querry = new Requests(txtDomain.getText(), (String)typeBox.getValue());
-            }
-            txtFieldHost.setText(querry.getHostname());
-            txtFieldIP.setText(querry.getIP());
+                query = new Requests(txtDomain.getText(), (String)typeBox.getValue());
 
-            try {
-                for (int i = 0; i<querry.getRecords().length; i++) {
-                    txtFieldRecords.appendText(querry.getRecords()[i] + "\n");
-                }
-            } catch (NullPointerException e) {
-                System.out.println("For loop not possible - Controller:65");
-                txtFieldRecords.appendText("No Records found, sry... \n try to search for a different domain or type");
+                recordPutter(query.getRecords((String)typeBox.getValue()), (String)typeBox.getValue());
             }
-
+            txtFieldHost.setText(query.getHostname());
+            txtFieldIP.setText(query.getIP());
         }
+    }
+
+    private void recordPutter(String[] list, String type) {
+        txtFieldRecords.appendText(type + ": \n");
+        try {
+            for (String rec: list) {
+                txtFieldRecords.appendText(rec + "\n");
+            }
+            txtFieldRecords.appendText("\n");
+        } catch (NullPointerException e) {
+            txtFieldRecords.appendText("No Records found\n\n");
+        }
+
     }
 
     @FXML
@@ -85,6 +98,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
+        typeBox.setValue("Any");
     }
 
 }

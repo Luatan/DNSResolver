@@ -3,7 +3,6 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 
 public class Requests {
     private String hostname;
@@ -21,6 +20,7 @@ public class Requests {
     Requests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value);
         setRecords(type);
+        setRecords("NS");
     }
 
     private void setHost(String host) {
@@ -39,31 +39,26 @@ public class Requests {
         setRecords("A");
         setRecords("AAAA");
         setRecords("MX");
-        setRecords("NS");
         setRecords("TXT");
         setRecords("SRV");
         setRecords("SOA");
-
-        System.out.println(Arrays.toString(MX));
     }
 
-    private void setRecords(String record) throws NamingException, UnknownHostException {
-        typeSet = record;
+    private void setRecords(String type) throws NamingException, UnknownHostException {
+        typeSet = type;
 
         InitialDirContext iDirC = new InitialDirContext();
         // get all the DNS records for hostname
         Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
 
-        if(record.matches("[*]")) {
+        if(type.matches("[*]")) {
             typeSet = "*";
             setAllRecords(hostname);
 
         } else {
             try {
-                //Get Type
-                String type = attributes.get(record).toString().split(":",2)[0];
                 //Get the Records
-                String[] listRecords = attributes.get(record).toString().split("(,)( )");
+                String[] listRecords = attributes.get(type).toString().split("(,)( )");
                 String[] tempRecords = listRecords[0].split(": ");
                 //Replace first char with the actual value instead of the type
                 listRecords[0] = tempRecords[1];
@@ -71,7 +66,7 @@ public class Requests {
                 populateRecords(listRecords);
 
             } catch (Exception e) {
-                System.out.println("No Records found");
+                //System.out.println("No Records found");
             }
         }
     }

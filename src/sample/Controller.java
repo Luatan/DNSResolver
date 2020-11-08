@@ -20,7 +20,12 @@ public class Controller implements Initializable {
     public Button cpyRecords;
     @FXML
     TextField txtDomain;
-    //TextField txtFieldRecords;
+
+    @FXML
+    TextField txtFieldIP;
+
+    @FXML
+    TextField txtFieldHost;
 
     @FXML
     Button btnStart;
@@ -39,9 +44,8 @@ public class Controller implements Initializable {
         if (!txtDomain.getText().isEmpty()) {
             txtFieldRecords.clear();
             Requests mySearch = new Requests(txtDomain.getText(), (String)typeBox.getValue());
-            System.out.println(mySearch.getHostname());
-            System.out.println(mySearch.getIP());
-            System.out.println();
+            txtFieldHost.setText(mySearch.getHostname());
+            txtFieldIP.setText(mySearch.getIP());
 
             for (int i = 0; i<mySearch.getRecords().length; i++) {
                 txtFieldRecords.insertText(i, mySearch.getRecords()[i] + "\n");

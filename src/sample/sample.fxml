@@ -7,59 +7,78 @@
 <?import javafx.scene.text.*?>
 
 <VBox prefHeight="538.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <GridPane layoutX="8.0" layoutY="14.0" prefHeight="44.0" prefWidth="666.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0" />
-            <ColumnConstraints />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-        <Label prefHeight="25.0" prefWidth="83.0" text="Enter Domain">
-            <GridPane.margin>
-                <Insets left="5.0" />
-            </GridPane.margin>
-        </Label>
-        <TextField fx:id="txtDomain" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1" />
-        <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+   <AnchorPane prefHeight="548.0" prefWidth="673.0">
+      <children>
+          <GridPane prefHeight="44.0" prefWidth="666.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0" />
+                  <ColumnConstraints />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+              <Label prefHeight="25.0" prefWidth="83.0" text="Enter Domain">
+                  <GridPane.margin>
+                      <Insets left="5.0" />
+                  </GridPane.margin>
+              </Label>
+              <TextField fx:id="txtDomain" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1" />
+              <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+                  <opaqueInsets>
+                      <Insets />
+                  </opaqueInsets>
+                  <GridPane.margin>
+                      <Insets left="10.0" />
+                  </GridPane.margin>
+              </Button>
+              <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="74.0" promptText="type" GridPane.columnIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+            </ComboBox>
+              <Button fx:id="cpyRecords" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Copy All Records" GridPane.columnIndex="4" />
+          </GridPane>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="14.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="Hostname:" textAlignment="CENTER">
             <opaqueInsets>
-                <Insets />
+               <Insets />
             </opaqueInsets>
-            <GridPane.margin>
-                <Insets left="10.0" />
-            </GridPane.margin>
-        </Button>
-        <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="74.0" promptText="type" GridPane.columnIndex="2">
-         <GridPane.margin>
-            <Insets left="5.0" />
-         </GridPane.margin></ComboBox>
-        <Button fx:id="cpyRecords" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Copy All Records" GridPane.columnIndex="4" />
-    </GridPane>
-    <Separator layoutX="2.0" layoutY="58.0" prefHeight="25.0" prefWidth="640.0" />
-   <TextArea fx:id="txtFieldRecords" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="656.0">
-      <font>
-         <Font name="Roboto Light" size="14.0" />
-      </font>
-      <VBox.margin>
-         <Insets left="5.0" />
-      </VBox.margin></TextArea>
-    <Label alignment="CENTER" layoutX="14.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Type of Record" textAlignment="CENTER">
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <font>
-         <Font name="Roboto Light" size="14.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="DEFAULT" />
-      </cursor>
-      <padding>
-         <Insets left="5.0" />
-      </padding></Label>
-   <TextArea prefHeight="200.0" prefWidth="200.0" />
-   <Label text="Label" />
+            <font>
+               <Font name="Roboto Light" size="14.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            <padding>
+               <Insets left="5.0" />
+            </padding>
+            <graphic>
+               <TextField fx:id="txtFieldHost" editable="false" prefHeight="27.0" prefWidth="251.0" style="-fx-background-color: transparent; -fx-cursor: none;" />
+            </graphic>
+         </Label>
+         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="16.0" layoutY="92.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="IP-Adress:" textAlignment="CENTER">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <font>
+               <Font name="Roboto Light" size="14.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+            <padding>
+               <Insets left="5.0" />
+            </padding>
+            <graphic>
+               <TextField fx:id="txtFieldIP" editable="false" prefHeight="27.0" prefWidth="253.0" style="-fx-background-color: transparent; -fx-cursor: none;" />
+            </graphic>
+         </Label>
+         <Separator layoutY="119.0" prefHeight="25.0" prefWidth="673.0" />
+         <TextArea fx:id="txtFieldRecords" layoutX="10.0" layoutY="144.0" prefHeight="200.0" prefWidth="647.0" />
+          <Separator layoutY="52.0" prefHeight="25.0" prefWidth="673.0" />
+      </children>
+   </AnchorPane>
 </VBox>

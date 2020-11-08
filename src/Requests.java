@@ -38,8 +38,9 @@ public class Requests {
         typeSet = record;
 
         InitialDirContext iDirC = new InitialDirContext();
-        // get all the DNS records for inetAddress
+        // get all the DNS records for hostname
         Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
+
         if(record.matches("[*]")) {
             typeSet = "*";
             ANY = new String[1];
@@ -48,9 +49,8 @@ public class Requests {
         } else {
             try {
                 String in = attributes.get(record).toString();
-                //Get the Type
-                String[] rec = in.split(":",2);
-                String type = rec[0];
+                //Get Type
+                String type = in.split(":",2)[0];
                 //Get the Records
                 String[] listRecords = in.split("(,)( )");
                 String[] tempRecords = listRecords[0].split(": ");

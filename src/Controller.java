@@ -1,5 +1,3 @@
-import javafx.animation.FillTransition;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 import javax.naming.NamingException;
 import java.awt.*;
@@ -48,21 +44,21 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException {
-        Requests mySearch;
+        Requests querry;
 
         if (!txtDomain.getText().isEmpty()) {
             txtFieldRecords.clear();
             if (typeBox.getValue().equals("Any")) {
-                mySearch = new Requests(txtDomain.getText(), "*");
+                querry = new Requests(txtDomain.getText(), "*");
 
             } else {
-                mySearch = new Requests(txtDomain.getText(), (String)typeBox.getValue());
+                querry = new Requests(txtDomain.getText(), (String)typeBox.getValue());
             }
-            txtFieldHost.setText(mySearch.getHostname());
-            txtFieldIP.setText(mySearch.getIP());
+            txtFieldHost.setText(querry.getHostname());
+            txtFieldIP.setText(querry.getIP());
 
-            for (int i = 0; i<mySearch.getRecords().length; i++) {
-                txtFieldRecords.insertText(i, mySearch.getRecords()[i] + "\n");
+            for (int i = 0; i<querry.getRecords().length; i++) {
+                txtFieldRecords.appendText(querry.getRecords()[i] + "\n");
             }
         }
     }
@@ -73,16 +69,6 @@ public class Controller implements Initializable {
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(txtFieldRecords.getText());
         clipboard.setContents(strSel, null);
-
-        FillTransition ft = new FillTransition();
-        ft.setShape(cpyRecords.getShape());
-        ft.setDuration(new Duration(2000));
-        ft.setToValue(Color.GREEN);
-        ft.setCycleCount(Timeline.INDEFINITE);
-        ft.setAutoReverse(true);
-        ft.play();
-
-
         System.out.println("Records copied!");
     }
 
@@ -93,14 +79,6 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
-    }
-
-    public ObservableList<String> getTypes() {
-        return types;
-    }
-
-    private void setTypes(ObservableList<String> types) {
-        this.types = types;
     }
 
 }

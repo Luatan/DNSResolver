@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 
 import javax.naming.NamingException;
 import java.awt.*;
@@ -39,6 +40,8 @@ public class Controller implements Initializable {
     @FXML
     Button btnStart;
     @FXML
+    Button scollButton;
+    @FXML
     TextArea txtAreaRecords;
     @FXML
     ComboBox typeBox;
@@ -49,6 +52,23 @@ public class Controller implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         DNSOutput(txtDomain.getText(), (String)typeBox.getValue());
+        txtAreaRecords.setScrollTop(0);
+
+    }
+
+    @FXML
+    private void scrolUPButtonVisibility(ScrollEvent event){
+        if (txtAreaRecords.getScrollTop() > 1) {
+            scollButton.setVisible(true);
+        } else {
+            scollButton.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void scrolUPButton(ActionEvent event){
+        txtAreaRecords.setScrollTop(0);
+        scollButton.setVisible(false);
     }
 
     @FXML
@@ -124,6 +144,7 @@ public class Controller implements Initializable {
                 recordPutter(query.getRecords("TXT"), "TXT");
                 recordPutter(query.getRecords("SRV"), "SRV");
                 recordPutter(query.getRecords("SOA"), "SOA");
+                txtAreaRecords.setScrollTop(0);
 
             } else {
                 query = new DNSRequests(host, type);
@@ -136,6 +157,7 @@ public class Controller implements Initializable {
             txtFieldHost.setText(query.getHostname());
             txtFieldIP.setText(query.getIP());
         }
+        txtAreaRecords.setScrollTop(0);
     }
 
     @Override

@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 public class Requests {
     private String hostname;
     private String IP;
-    private String[] ANY;
     private String[] A;
     private String[] AAAA;
     private String[] MX;
@@ -33,7 +32,7 @@ public class Requests {
 
         } catch(UnknownHostException ex) {
             hostname = "Unrecognized host";
-            System.out.println("Unrecognized host");
+            System.err.println("Unrecognized host");
         }
     }
 
@@ -54,7 +53,6 @@ public class Requests {
         Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
 
         if(type.matches("[*]")) {
-            typeSet = "*";
             setAllRecords(hostname);
 
         } else {
@@ -76,8 +74,6 @@ public class Requests {
     private void populateRecords(String[] listRecords) {
         String type = typeSet;
         switch (type) {
-            case "*":
-                break;
             case "A":
                 A = listRecords;
                 break;
@@ -99,16 +95,13 @@ public class Requests {
                 SRV = listRecords;
                 break;
             default:
-                System.out.println("type not found");
-
+                System.err.println("type not found");
                 break;
         }
     }
 
     public String[] getRecords(String type) {
         switch (type) {
-            case "*":
-                return ANY;
             case "A":
                 return A;
             case "AAAA":
@@ -124,7 +117,7 @@ public class Requests {
             case "SRV":
                 return SRV;
             default:
-                System.out.println("Type was not found");
+                System.err.println("Type was not found");
                 break;
         }
         return null;

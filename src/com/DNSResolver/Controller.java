@@ -19,7 +19,6 @@ import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
     @FXML
     TextField txtNS1;
     @FXML
@@ -43,18 +42,17 @@ public class Controller implements Initializable {
     @FXML
     ComboBox typeBox;
 
-    String currentType;
-
+    //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "MX", "TXT", "NS", "SOA", "SRV");
 
     @FXML
-    private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException {
+    private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         Requests query;
         if (!txtDomain.getText().isEmpty()) {
             txtAreaRecords.clear();
             if (typeBox.getValue().equals("Any")) {
                 query = new Requests(txtDomain.getText(), "*");
-
+                //Set Records
                 recordPutter(query.getRecords("A"), "A");
                 recordPutter(query.getRecords("AAAA"), "AAAA");
                 recordPutter(query.getRecords("MX"), "MX");
@@ -87,20 +85,24 @@ public class Controller implements Initializable {
             txtNS3.setText(records[2]);
             txtNS4.setText(records[3]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            //Skip
+            System.err.println("Out of bounds - Try catch NameServerDisplay");
         } catch (NullPointerException e) {
-            //ignore
+            System.err.println("NullPointerException - Try catch NameServerDisplay");
         }
     }
 
     private void recordPutter(String[] list, String type) {
         txtAreaRecords.appendText(type + ": \n");
-        try {
-            for (String rec: list) {
-                txtAreaRecords.appendText(rec + "\n");
+        if (list != null) {
+            try {
+                for (String rec: list) {
+                    txtAreaRecords.appendText(rec + "\n");
+                }
+                txtAreaRecords.appendText("\n");
+            } catch (NullPointerException e) {
+                System.err.println("No list found - recordPutter Try Catch");
             }
-            txtAreaRecords.appendText("\n");
-        } catch (NullPointerException e) {
+        } else {
             txtAreaRecords.appendText("No Records found\n\n");
         }
     }
@@ -112,10 +114,6 @@ public class Controller implements Initializable {
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
         System.out.println("Records copied!");
-    }
-
-    private void handleTypeBox(ActionEvent event) {
-        currentType = (String)typeBox.getValue();
     }
 
     @Override

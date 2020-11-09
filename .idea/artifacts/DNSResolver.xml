@@ -10,7 +10,6 @@
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">
           <JavaFxApplicationIcons>
-            <option name="linuxIcon" value="$PROJECT_DIR$/src/com/dns/resources/Icon.png" />
             <option name="windowsIcon" value="$PROJECT_DIR$/src/com/dns/resources/Icon.ico" />
           </JavaFxApplicationIcons>
         </option>

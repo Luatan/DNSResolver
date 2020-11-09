@@ -56,6 +56,7 @@ public class Controller implements Initializable {
 
     }
 
+
     @FXML
     private void scrolUPButtonVisibility(ScrollEvent event){
         if (txtAreaRecords.getScrollTop() > 1) {
@@ -63,6 +64,7 @@ public class Controller implements Initializable {
         } else {
             scollButton.setVisible(false);
         }
+
     }
 
     @FXML
@@ -149,6 +151,7 @@ public class Controller implements Initializable {
             } else {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
+                txtAreaRecords.setScrollTop(0);
             }
 
             nameServerDisplay(query.getRecords("NS"));

@@ -68,7 +68,7 @@
                <Insets left="5.0" />
             </padding>
             <graphic>
-               <TextField fx:id="txtFieldHost" editable="false" prefHeight="27.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-cursor: none;">
+               <TextField fx:id="txtFieldHost" editable="false" onMouseClicked="#useTextHostnameField" prefHeight="27.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-cursor: none;">
                   <font>
                      <Font name="Roboto Light" size="13.0" />
                   </font></TextField>
@@ -88,7 +88,7 @@
                <Insets left="5.0" />
             </padding>
             <graphic>
-               <TextField fx:id="txtFieldIP" editable="false" prefHeight="27.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
+               <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#useTextIPField" prefHeight="27.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
                   <font>
                      <Font name="Roboto Light" size="13.0" />
                   </font></TextField>

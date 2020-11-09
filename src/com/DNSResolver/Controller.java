@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import javax.naming.NamingException;
 import java.awt.*;
@@ -73,21 +74,42 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void copyRecords(ActionEvent event) {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+        StringSelection strSel = new StringSelection(txtAreaRecords.getText());
+        clipboard.setContents(strSel, null);
+        System.out.println("Records copied!");
+    }
+
+    @FXML
+    private void useTextIPField(MouseEvent event) {
+        txtDomain.setText(txtFieldIP.getText());
+    }
+
+    @FXML
+    private void useTextHostnameField(MouseEvent event){
+        txtDomain.setText(txtFieldHost.getText());
+    }
+
     private void nameServerDisplay(String[] records){
         txtNS1.clear();
         txtNS2.clear();
         txtNS3.clear();
         txtNS4.clear();
 
-        try {
-            txtNS1.setText(records[0]);
-            txtNS2.setText(records[1]);
-            txtNS3.setText(records[2]);
-            txtNS4.setText(records[3]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.err.println("Out of bounds - Try catch NameServerDisplay");
-        } catch (NullPointerException e) {
-            System.err.println("NullPointerException - Try catch NameServerDisplay");
+        if (records != null) {
+            try {
+                txtNS1.setText(records[0]);
+                txtNS2.setText(records[1]);
+                txtNS3.setText(records[2]);
+                txtNS4.setText(records[3]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.err.println("Out of bounds - Try catch NameServerDisplay");
+            } catch (NullPointerException e) {
+                System.err.println("NullPointerException - Try catch NameServerDisplay");
+            }
         }
     }
 
@@ -105,15 +127,6 @@ public class Controller implements Initializable {
         } else {
             txtAreaRecords.appendText("No Records found\n\n");
         }
-    }
-
-    @FXML
-    private void copyRecords(ActionEvent event) {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        StringSelection strSel = new StringSelection(txtAreaRecords.getText());
-        clipboard.setContents(strSel, null);
-        System.out.println("Records copied!");
     }
 
     @Override

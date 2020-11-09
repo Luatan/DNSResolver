@@ -5,7 +5,6 @@
       <element id="archive" name="DNSResolver.jar">
         <element id="module-output" name="DNSResolver" />
       </element>
-      <element id="library" level="project" name="lib" />
     </root>
   </artifact>
 </component>

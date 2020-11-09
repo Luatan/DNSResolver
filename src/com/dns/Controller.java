@@ -1,4 +1,4 @@
-package com.DNSResolver;
+package com.dns;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,7 +67,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
-        Requests subdomainQuery = new Requests();
+        DNSRequests subdomainQuery = new DNSRequests();
         if(subdomainQuery.isSubdomain(txtDomain.getText())) {
             String[] partDomain = txtDomain.getText().split("[.]");
             DNSOutput(partDomain[partDomain.length-2] + "." + partDomain[partDomain.length-1], (String) typeBox.getValue());
@@ -112,11 +112,11 @@ public class Controller implements Initializable {
     }
 
     private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
-        Requests query;
+        DNSRequests query;
         if (!txtDomain.getText().isEmpty()) {
             txtAreaRecords.clear();
             if (type.equals("Any")) {
-                query = new Requests(host, "*");
+                query = new DNSRequests(host, "*");
                 //Set Records
                 recordPutter(query.getRecords("A"), "A");
                 recordPutter(query.getRecords("AAAA"), "AAAA");
@@ -126,7 +126,7 @@ public class Controller implements Initializable {
                 recordPutter(query.getRecords("SOA"), "SOA");
 
             } else {
-                query = new Requests(host, type);
+                query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
             }
 

@@ -1,4 +1,4 @@
-package com.DNSResolver;
+package com.dns;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

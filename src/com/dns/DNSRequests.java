@@ -1,4 +1,4 @@
-package com.DNSResolver;
+package com.dns;
 
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
@@ -6,7 +6,7 @@ import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Requests {
+public class DNSRequests {
     private String hostname;
     private String IP;
     private String[] A;
@@ -18,13 +18,13 @@ public class Requests {
     private String[] SOA;
     private String typeSet;
 
-    Requests(String value, String type) throws UnknownHostException, NamingException {
+    DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value);
         setRecords(type);
         setRecords("NS");
     }
 
-    Requests(){
+    DNSRequests(){
 
     }
 

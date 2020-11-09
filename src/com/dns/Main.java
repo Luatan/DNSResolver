@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("dnsGUI.fxml"));
         primaryStage.setTitle("DNS Resolver");
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/Icon.png")));
         primaryStage.setScene(new Scene(root, 670, 560));

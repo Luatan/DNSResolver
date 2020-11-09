@@ -24,6 +24,18 @@ public class Requests {
         setRecords("NS");
     }
 
+    Requests(){
+
+    }
+
+    public boolean isSubdomain(String host) {
+        String[] hostSplit = host.split("[.]", 3);
+        if (hostSplit.length > 2) {
+            return true;
+        }
+        return false;
+    }
+
     private void setHost(String host) {
         try {
             InetAddress inetHost = InetAddress.getByName(host);
@@ -51,6 +63,7 @@ public class Requests {
         InitialDirContext iDirC = new InitialDirContext();
         // get all the DNS records for hostname
         Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
+
 
         if(type.matches("[*]")) {
             setAllRecords(hostname);

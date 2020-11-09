@@ -48,30 +48,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
-        Requests query;
-        if (!txtDomain.getText().isEmpty()) {
-            txtAreaRecords.clear();
-            if (typeBox.getValue().equals("Any")) {
-                query = new Requests(txtDomain.getText(), "*");
-                //Set Records
-                recordPutter(query.getRecords("A"), "A");
-                recordPutter(query.getRecords("AAAA"), "AAAA");
-                recordPutter(query.getRecords("MX"), "MX");
-                recordPutter(query.getRecords("TXT"), "TXT");
-                recordPutter(query.getRecords("SRV"), "SRV");
-                recordPutter(query.getRecords("SOA"), "SOA");
-
-            } else {
-                query = new Requests(txtDomain.getText(), (String)typeBox.getValue());
-                recordPutter(query.getRecords((String)typeBox.getValue()), (String)typeBox.getValue());
-            }
-
-            nameServerDisplay(query.getRecords("NS"));
-            txtFieldHost.clear();
-            txtFieldIP.clear();
-            txtFieldHost.setText(query.getHostname());
-            txtFieldIP.setText(query.getIP());
-        }
+        DNSOutput(txtDomain.getText(), (String)typeBox.getValue());
     }
 
     @FXML
@@ -89,8 +66,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void useTextHostnameField(MouseEvent event){
-        txtDomain.setText(txtFieldHost.getText());
+    private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
+        Requests subdomainQuery = new Requests();
+        if(subdomainQuery.isSubdomain(txtDomain.getText())) {
+            String[] partDomain = txtDomain.getText().split("[.]");
+            DNSOutput(partDomain[partDomain.length-2] + "." + partDomain[partDomain.length-1], (String) typeBox.getValue());
+            txtDomain.setText(partDomain[partDomain.length-2] + "." + partDomain[partDomain.length-1]);
+        }
     }
 
     private void nameServerDisplay(String[] records){
@@ -126,6 +108,33 @@ public class Controller implements Initializable {
             }
         } else {
             txtAreaRecords.appendText("No Records found\n\n");
+        }
+    }
+
+    private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
+        Requests query;
+        if (!txtDomain.getText().isEmpty()) {
+            txtAreaRecords.clear();
+            if (type.equals("Any")) {
+                query = new Requests(host, "*");
+                //Set Records
+                recordPutter(query.getRecords("A"), "A");
+                recordPutter(query.getRecords("AAAA"), "AAAA");
+                recordPutter(query.getRecords("MX"), "MX");
+                recordPutter(query.getRecords("TXT"), "TXT");
+                recordPutter(query.getRecords("SRV"), "SRV");
+                recordPutter(query.getRecords("SOA"), "SOA");
+
+            } else {
+                query = new Requests(host, type);
+                recordPutter(query.getRecords(type), type);
+            }
+
+            nameServerDisplay(query.getRecords("NS"));
+            txtFieldHost.clear();
+            txtFieldIP.clear();
+            txtFieldHost.setText(query.getHostname());
+            txtFieldIP.setText(query.getIP());
         }
     }
 

@@ -11,6 +11,7 @@ public class DNSRequests {
     private String IP;
     private String[] A;
     private String[] AAAA;
+    private String[] CNAME;
     private String[] MX;
     private String[] NS;
     private String[] TXT;
@@ -51,6 +52,7 @@ public class DNSRequests {
     private void setAllRecords(String hostname) throws NamingException, UnknownHostException {
         setRecords("A");
         setRecords("AAAA");
+        setRecords("CNAME");
         setRecords("MX");
         setRecords("TXT");
         setRecords("SRV");
@@ -93,6 +95,8 @@ public class DNSRequests {
             case "AAAA":
                 AAAA = listRecords;
                 break;
+            case "CNAME":
+                CNAME = listRecords;
             case "MX":
                 MX = listRecords;
             case "TXT":
@@ -119,6 +123,8 @@ public class DNSRequests {
                 return A;
             case "AAAA":
                 return AAAA;
+            case "CNAME":
+                return CNAME;
             case "MX":
                 return MX;
             case "TXT":

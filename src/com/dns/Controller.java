@@ -47,7 +47,7 @@ public class Controller implements Initializable {
     ComboBox typeBox;
 
     //List of Records
-    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "MX", "TXT", "NS", "SOA", "SRV");
+    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "TXT", "NS", "SOA", "SRV");
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
@@ -142,6 +142,7 @@ public class Controller implements Initializable {
                 //Set Records
                 recordPutter(query.getRecords("A"), "A");
                 recordPutter(query.getRecords("AAAA"), "AAAA");
+                recordPutter(query.getRecords("CNAME"), "CNAME");
                 recordPutter(query.getRecords("MX"), "MX");
                 recordPutter(query.getRecords("TXT"), "TXT");
                 recordPutter(query.getRecords("SRV"), "SRV");

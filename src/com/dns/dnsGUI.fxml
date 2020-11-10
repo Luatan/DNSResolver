@@ -177,11 +177,11 @@
             </graphic>
          </Label>
          <Separator layoutX="1.0" layoutY="88.0" prefHeight="25.0" prefWidth="673.0" />
-         <TextArea fx:id="txtAreaRecords" editable="false" layoutX="11.0" layoutY="105.0" onScroll="#scrolUPButtonVisibility" onScrollFinished="#scrolUPButtonVisibility" onScrollStarted="#scrolUPButtonVisibility" pickOnBounds="false" prefHeight="398.0" prefWidth="652.0" wrapText="true">
+         <TextArea fx:id="txtAreaRecords" editable="false" layoutX="11.0" layoutY="105.0" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" prefHeight="398.0" prefWidth="652.0" wrapText="true">
             <font>
                <Font name="Roboto Light" size="13.0" />
             </font></TextArea>
-         <Button fx:id="scollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false" onAction="#scrolUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top" visible="false">
+         <Button fx:id="scollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top" visible="false">
             <font>
                <Font name="Roboto Light" size="13.0" />
             </font>

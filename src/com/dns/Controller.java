@@ -64,13 +64,14 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
+        closeWebView(event);
         DNSOutput(txtDomain.getText(), (String)typeBox.getValue());
         txtAreaRecords.setScrollTop(0);
 
     }
 
     @FXML
-    private void scrolUPButtonVisibility(ScrollEvent event){
+    private void scrollUPButtonVisibility(ScrollEvent event){
         if (txtAreaRecords.getScrollTop() > 1) {
             scollButton.setVisible(true);
         } else {
@@ -79,7 +80,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void scrolUPButton(ActionEvent event){
+    private void scrollUPButton(ActionEvent event){
         txtAreaRecords.setScrollTop(0);
         scollButton.setVisible(false);
     }
@@ -195,8 +196,14 @@ public class Controller implements Initializable {
         }
         txtAreaRecords.setScrollTop(0);
 
-        query = new DNSRequests();
-        if(query.getExtension(txtFieldHost.getText()).equals("com")) {
+        domainCheckerLink(host);
+    }
+
+    private void domainCheckerLink(String host) {
+        DNSRequests query = new DNSRequests();
+
+        //Filter for .com Domains
+        if(query.getExtension(host).equals("com")) {
             hyperLbl.setVisible(true);
             registryLink.setText("www.whois.com/whois/" + txtFieldHost.getText());
         }

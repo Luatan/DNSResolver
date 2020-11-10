@@ -37,6 +37,13 @@ public class DNSRequests {
         return false;
     }
 
+    public String getextension() {
+        String[] host = hostname.split("[.]");
+        return host[host.length-1];
+    }
+
+
+
     private void setHost(String host) {
         try {
             InetAddress inetHost = InetAddress.getByName(host);

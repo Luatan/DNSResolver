@@ -37,12 +37,10 @@ public class DNSRequests {
         return false;
     }
 
-    public String getextension() {
+    public String getExtension(String hostname) {
         String[] host = hostname.split("[.]");
         return host[host.length-1];
     }
-
-
 
     private void setHost(String host) {
         try {
@@ -72,7 +70,6 @@ public class DNSRequests {
         InitialDirContext iDirC = new InitialDirContext();
         // get all the DNS records for hostname
         Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
-
 
         if(type.matches("[*]")) {
             setAllRecords(hostname);

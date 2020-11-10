@@ -6,11 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 import javax.naming.NamingException;
 import java.awt.*;
@@ -45,6 +48,16 @@ public class Controller implements Initializable {
     TextArea txtAreaRecords;
     @FXML
     ComboBox typeBox;
+    @FXML
+    Hyperlink registryLink;
+    @FXML
+    Button btnWeb;
+    @FXML
+    WebView web;
+    @FXML
+    Label hyperLbl;
+
+
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "TXT", "NS", "SOA", "SRV");
@@ -56,7 +69,6 @@ public class Controller implements Initializable {
 
     }
 
-
     @FXML
     private void scrolUPButtonVisibility(ScrollEvent event){
         if (txtAreaRecords.getScrollTop() > 1) {
@@ -64,7 +76,6 @@ public class Controller implements Initializable {
         } else {
             scollButton.setVisible(false);
         }
-
     }
 
     @FXML
@@ -80,6 +91,27 @@ public class Controller implements Initializable {
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
         System.out.println("Records copied!");
+    }
+
+    @FXML
+    private void openWebView(ActionEvent event) {
+        displayWebView(registryLink.getText());
+    }
+
+    @FXML
+    private void closeWebView(ActionEvent event){
+        final WebEngine webEngine = web.getEngine();
+        web.setVisible(false);
+        hyperLbl.setVisible(false);
+        btnWeb.setVisible(false);
+        webEngine.load(null);
+    }
+
+    private void displayWebView(String host){
+        final WebEngine webEngine = web.getEngine();
+        webEngine.load("http://" + host);
+        btnWeb.setVisible(true);
+        web.setVisible(true);
     }
 
     @FXML
@@ -162,12 +194,20 @@ public class Controller implements Initializable {
             txtFieldIP.setText(query.getIP());
         }
         txtAreaRecords.setScrollTop(0);
+
+        query = new DNSRequests();
+        if(query.getExtension(txtFieldHost.getText()).equals("com")) {
+            hyperLbl.setVisible(true);
+            registryLink.setText("www.whois.com/whois/" + txtFieldHost.getText());
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
         typeBox.setValue("Any");
+
+
     }
 
 }

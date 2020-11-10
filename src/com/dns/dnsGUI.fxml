@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 
 <VBox prefHeight="538.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dns.Controller">
    <AnchorPane prefHeight="548.0" prefWidth="673.0">
@@ -185,7 +186,7 @@
                <Font name="Roboto Light" size="13.0" />
             </font>
          </Button>
-         <Label contentDisplay="RIGHT" layoutX="10.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="207.0" text="Domain Check:" textAlignment="CENTER">
+         <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="10.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="604.0" text="Domain Check:" textAlignment="CENTER" visible="false">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
@@ -199,7 +200,7 @@
                <Insets left="5.0" />
             </padding>
             <graphic>
-               <Hyperlink text="This is a link">
+               <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="501.0" text="http://google.com">
                   <font>
                      <Font name="Roboto Light" size="14.0" />
                   </font>
@@ -209,6 +210,11 @@
                </Hyperlink>
             </graphic>
          </Label>
+         <Button fx:id="btnWeb" layoutX="581.0" layoutY="505.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
+            <font>
+               <Font name="Roboto Light" size="13.0" />
+            </font></Button>
+         <WebView fx:id="web" layoutX="14.0" layoutY="105.0" prefHeight="398.0" prefWidth="652.0" visible="false" />
       </children>
    </AnchorPane>
 </VBox>

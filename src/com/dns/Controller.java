@@ -179,7 +179,7 @@ public class Controller implements Initializable {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
             }
-            txtAreaRecords.setScrollTop(0);
+            txtAreaRecords.setScrollTop(0.0);
 
             nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.clear();
@@ -187,18 +187,31 @@ public class Controller implements Initializable {
             txtFieldHost.setText(query.getHostname());
             txtFieldIP.setText(query.getIP());
         }
-        txtAreaRecords.setScrollTop(0);
+        txtAreaRecords.setScrollTop(0.0);
 
         domainCheckerLink(host);
     }
 
     private void domainCheckerLink(String host) {
         DNSRequests query = new DNSRequests();
-
-        //Filter for .com Domains
-        if (query.getExtension(host).equals("com")) {
-            hyperLbl.setVisible(true);
-            registryLink.setText("www.whois.com/whois/" + txtFieldHost.getText());
+        switch (query.getExtension(host)){
+            case "com":
+                hyperLbl.setVisible(true);
+                registryLink.setText("whois.com/whois/" + host);
+                break;
+            case "ch":
+                break;
+            case "fr":
+                break;
+            case "it":
+                break;
+            case "net":
+                break;
+            case "li":
+                break;
+            default:
+                hyperLbl.setVisible(false);
+                break;
         }
     }
 

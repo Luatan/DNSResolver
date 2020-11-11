@@ -1,5 +1,6 @@
 package com.dns;
 
+import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
@@ -62,28 +63,31 @@ public class DNSRequests {
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
         typeSet = type;
+        try {
+            InitialDirContext iDirC = new InitialDirContext();
+            // get all the DNS records for hostname
+            Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
 
-        InitialDirContext iDirC = new InitialDirContext();
-        // get all the DNS records for hostname
-        Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{"*"});
+            if (type.matches("[*]")) {
+                setAllRecords(hostname);
+            } else {
+                try {
+                    //Get the Records
+                    String[] listRecords = attributes.get(type).toString().split("(,)( )");
+                    String[] tempRecords = listRecords[0].split(": ", 2);
+                    //Replace first char with the actual value instead of the type
+                    listRecords[0] = tempRecords[1];
 
-        if (type.matches("[*]")) {
-            setAllRecords(hostname);
+                    populateRecords(listRecords);
 
-        } else {
-            try {
-                //Get the Records
-                String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                String[] tempRecords = listRecords[0].split(": ");
-                //Replace first char with the actual value instead of the type
-                listRecords[0] = tempRecords[1];
-
-                populateRecords(listRecords);
-
-            } catch (Exception e) {
-                //System.out.println("No Records found");
+                } catch (Exception e) {
+                    //System.out.println("No Records found");
+                }
             }
+        } catch (NameNotFoundException e) {
+            System.err.println("No DNS Found - DNSRequests (SetRecords)");
         }
+
     }
 
     private void populateRecords(String[] listRecords) {

@@ -25,16 +25,12 @@ public class DNSRequests {
         setRecords("NS");
     }
 
-    DNSRequests(){
+    DNSRequests() {
 
     }
 
     public boolean isSubdomain(String host) {
-        String[] hostSplit = host.split("[.]", 3);
-        if (hostSplit.length > 2) {
-            return true;
-        }
-        return false;
+        return host.split("[.]", 3).length > 2;
     }
 
     public String getExtension(String hostname) {
@@ -48,7 +44,7 @@ public class DNSRequests {
             hostname = inetHost.getHostName();
             IP = inetHost.getHostAddress();
 
-        } catch(UnknownHostException ex) {
+        } catch (UnknownHostException ex) {
             hostname = "Unrecognized host";
             System.err.println("Unrecognized host");
         }
@@ -69,9 +65,9 @@ public class DNSRequests {
 
         InitialDirContext iDirC = new InitialDirContext();
         // get all the DNS records for hostname
-        Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[] {"*"});
+        Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{"*"});
 
-        if(type.matches("[*]")) {
+        if (type.matches("[*]")) {
             setAllRecords(hostname);
 
         } else {
@@ -146,6 +142,11 @@ public class DNSRequests {
         return null;
     }
 
-    public String getHostname() { return hostname; }
-    public String getIP(){ return IP; }
+    public String getHostname() {
+        return hostname;
+    }
+
+    public String getIP() {
+        return IP;
+    }
 }

@@ -58,29 +58,23 @@ public class Controller implements Initializable {
     Label hyperLbl;
 
 
-
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "TXT", "NS", "SOA", "SRV");
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
-        DNSOutput(txtDomain.getText(), (String)typeBox.getValue());
+        DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
         txtAreaRecords.setScrollTop(0);
-
     }
 
     @FXML
-    private void scrollUPButtonVisibility(ScrollEvent event){
-        if (txtAreaRecords.getScrollTop() > 1) {
-            scollButton.setVisible(true);
-        } else {
-            scollButton.setVisible(false);
-        }
+    private void scrollUPButtonVisibility(ScrollEvent event) {
+        scollButton.setVisible(txtAreaRecords.getScrollTop() > 1);
     }
 
     @FXML
-    private void scrollUPButton(ActionEvent event){
+    private void scrollUPButton(ActionEvent event) {
         txtAreaRecords.setScrollTop(0);
         scollButton.setVisible(false);
     }
@@ -100,7 +94,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void closeWebView(ActionEvent event){
+    private void closeWebView(ActionEvent event) {
         final WebEngine webEngine = web.getEngine();
         web.setVisible(false);
         hyperLbl.setVisible(false);
@@ -108,7 +102,7 @@ public class Controller implements Initializable {
         webEngine.load(null);
     }
 
-    private void displayWebView(String host){
+    private void displayWebView(String host) {
         final WebEngine webEngine = web.getEngine();
         webEngine.load("http://" + host);
         btnWeb.setVisible(true);
@@ -123,14 +117,14 @@ public class Controller implements Initializable {
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
         DNSRequests subdomainQuery = new DNSRequests();
-        if(subdomainQuery.isSubdomain(txtDomain.getText())) {
+        if (subdomainQuery.isSubdomain(txtDomain.getText())) {
             String[] partDomain = txtDomain.getText().split("[.]");
-            DNSOutput(partDomain[partDomain.length-2] + "." + partDomain[partDomain.length-1], (String) typeBox.getValue());
-            txtDomain.setText(partDomain[partDomain.length-2] + "." + partDomain[partDomain.length-1]);
+            DNSOutput(partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1], (String) typeBox.getValue());
+            txtDomain.setText(partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1]);
         }
     }
 
-    private void nameServerDisplay(String[] records){
+    private void nameServerDisplay(String[] records) {
         txtNS1.clear();
         txtNS2.clear();
         txtNS3.clear();
@@ -154,7 +148,7 @@ public class Controller implements Initializable {
         txtAreaRecords.appendText(type + ": \n");
         if (list != null) {
             try {
-                for (String rec: list) {
+                for (String rec : list) {
                     txtAreaRecords.appendText(rec + "\n");
                 }
                 txtAreaRecords.appendText("\n");
@@ -180,13 +174,12 @@ public class Controller implements Initializable {
                 recordPutter(query.getRecords("TXT"), "TXT");
                 recordPutter(query.getRecords("SRV"), "SRV");
                 recordPutter(query.getRecords("SOA"), "SOA");
-                txtAreaRecords.setScrollTop(0);
 
             } else {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
-                txtAreaRecords.setScrollTop(0);
             }
+            txtAreaRecords.setScrollTop(0);
 
             nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.clear();
@@ -203,7 +196,7 @@ public class Controller implements Initializable {
         DNSRequests query = new DNSRequests();
 
         //Filter for .com Domains
-        if(query.getExtension(host).equals("com")) {
+        if (query.getExtension(host).equals("com")) {
             hyperLbl.setVisible(true);
             registryLink.setText("www.whois.com/whois/" + txtFieldHost.getText());
         }
@@ -213,8 +206,5 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
         typeBox.setValue("Any");
-
-
     }
-
 }

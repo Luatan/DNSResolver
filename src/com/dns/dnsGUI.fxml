@@ -1,220 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
-
-<VBox prefHeight="538.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dns.Controller">
-   <AnchorPane prefHeight="548.0" prefWidth="673.0">
-      <children>
-          <GridPane layoutX="10.0" prefHeight="44.0" prefWidth="666.0">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0" />
-                  <ColumnConstraints />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-              <Label prefHeight="25.0" prefWidth="83.0" text="Enter Domain">
-                  <GridPane.margin>
-                      <Insets left="5.0" />
-                  </GridPane.margin>
-               <font>
-                  <Font name="Roboto Light" size="13.0" />
-               </font>
-              </Label>
-              <TextField fx:id="txtDomain" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Roboto Light" size="12.0" />
-               </font></TextField>
-              <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
-                  <opaqueInsets>
-                      <Insets />
-                  </opaqueInsets>
-                  <GridPane.margin>
-                      <Insets left="10.0" />
-                  </GridPane.margin>
-               <font>
-                  <Font name="Roboto Light" size="12.0" />
-               </font>
-              </Button>
-              <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="74.0" promptText="type" GridPane.columnIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
-            </ComboBox>
-              <Button fx:id="cpyRecords" mnemonicParsing="false" onAction="#copyRecords" prefHeight="25.0" prefWidth="123.0" text="Copy All Records" GridPane.columnIndex="4">
-               <font>
-                  <Font name="Roboto Light" size="12.0" />
-               </font></Button>
-          </GridPane>
-          <Separator layoutX="2.0" layoutY="34.0" prefHeight="25.0" prefWidth="673.0" />
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="17.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="27.0" prefWidth="293.0" text="Hostname:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtFieldHost" editable="false" onMouseClicked="#useTextHostnameField" prefHeight="27.0" prefWidth="215.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="19.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="IP-Adress:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#useTextIPField" prefHeight="27.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS1:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtNS1" editable="false" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS2:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtNS2" editable="false" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS3:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtNS3" editable="false" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS4:" textAlignment="CENTER">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <TextField fx:id="txtNS4" editable="false" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent; -fx-cursor: none;">
-                  <font>
-                     <Font name="Roboto Light" size="13.0" />
-                  </font></TextField>
-            </graphic>
-         </Label>
-         <Separator layoutX="1.0" layoutY="88.0" prefHeight="25.0" prefWidth="673.0" />
-         <TextArea fx:id="txtAreaRecords" editable="false" layoutX="11.0" layoutY="105.0" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" prefHeight="398.0" prefWidth="652.0" wrapText="true">
-            <font>
-               <Font name="Roboto Light" size="13.0" />
-            </font></TextArea>
-         <Button fx:id="scollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top" visible="false">
-            <font>
-               <Font name="Roboto Light" size="13.0" />
-            </font>
-         </Button>
-         <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="10.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="604.0" text="Domain Check:" textAlignment="CENTER" visible="false">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <font>
-               <Font name="Roboto Light" size="14.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="DEFAULT" />
-            </cursor>
-            <padding>
-               <Insets left="5.0" />
-            </padding>
-            <graphic>
-               <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="501.0" text="http://google.com">
-                  <font>
-                     <Font name="Roboto Light" size="14.0" />
-                  </font>
-                  <cursor>
-                     <Cursor fx:constant="DEFAULT" />
-                  </cursor>
-               </Hyperlink>
-            </graphic>
-         </Label>
-         <Button fx:id="btnWeb" layoutX="581.0" layoutY="505.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
-            <font>
-               <Font name="Roboto Light" size="13.0" />
-            </font></Button>
-         <WebView fx:id="web" layoutX="14.0" layoutY="105.0" prefHeight="398.0" prefWidth="652.0" visible="false" />
-      </children>
-   </AnchorPane>
+<?import javafx.scene.web.WebView?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="538.0" prefWidth="666.0"
+      xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="com.dns.Controller">
+    <AnchorPane prefHeight="548.0" prefWidth="673.0">
+        <children>
+            <GridPane layoutX="10.0" prefHeight="44.0" prefWidth="666.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0"/>
+                    <ColumnConstraints/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <Label prefHeight="25.0" prefWidth="83.0" text="Enter Domain">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Roboto Light" size="13.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="txtDomain" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Roboto Light" size="12.0"/>
+                    </font>
+                </TextField>
+                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction"
+                        prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets left="10.0"/>
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Roboto Light" size="12.0"/>
+                    </font>
+                </Button>
+                <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="74.0" promptText="type" GridPane.columnIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </ComboBox>
+                <Button fx:id="cpyRecords" mnemonicParsing="false" onAction="#copyRecords" prefHeight="25.0"
+                        prefWidth="123.0" text="Copy All Records" GridPane.columnIndex="4">
+                    <font>
+                        <Font name="Roboto Light" size="12.0"/>
+                    </font>
+                </Button>
+            </GridPane>
+            <Separator layoutX="2.0" layoutY="34.0" prefHeight="25.0" prefWidth="673.0"/>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="17.0" layoutY="50.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+                   prefHeight="27.0" prefWidth="293.0" text="Hostname:" textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtFieldHost" editable="false" onMouseClicked="#useTextHostnameField"
+                               prefHeight="27.0" prefWidth="215.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="19.0" layoutY="73.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="IP-Adress:"
+                   textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#useTextIPField" prefHeight="27.0"
+                               prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="52.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS1:"
+                   textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtNS1" editable="false" prefHeight="27.0" prefWidth="134.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="73.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS2:"
+                   textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtNS2" editable="false" prefHeight="27.0" prefWidth="134.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="50.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS3:"
+                   textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtNS3" editable="false" prefHeight="27.0" prefWidth="134.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="73.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS4:"
+                   textAlignment="CENTER">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <TextField fx:id="txtNS4" editable="false" prefHeight="27.0" prefWidth="134.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                        <font>
+                            <Font name="Roboto Light" size="13.0"/>
+                        </font>
+                    </TextField>
+                </graphic>
+            </Label>
+            <Separator layoutX="1.0" layoutY="88.0" prefHeight="25.0" prefWidth="673.0"/>
+            <TextArea fx:id="txtAreaRecords" editable="false" layoutX="11.0" layoutY="105.0"
+                      onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility"
+                      onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" prefHeight="398.0"
+                      prefWidth="652.0" wrapText="true">
+                <font>
+                    <Font name="Roboto Light" size="13.0"/>
+                </font>
+            </TextArea>
+            <Button fx:id="scollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false"
+                    onAction="#scrollUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top"
+                    visible="false">
+                <font>
+                    <Font name="Roboto Light" size="13.0"/>
+                </font>
+            </Button>
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="10.0" layoutY="507.0" maxHeight="-Infinity"
+                   maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="604.0"
+                   text="Domain Check:" textAlignment="CENTER" visible="false">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <font>
+                    <Font name="Roboto Light" size="14.0"/>
+                </font>
+                <cursor>
+                    <Cursor fx:constant="DEFAULT"/>
+                </cursor>
+                <padding>
+                    <Insets left="5.0"/>
+                </padding>
+                <graphic>
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0"
+                               prefWidth="501.0" text="http://google.com">
+                        <font>
+                            <Font name="Roboto Light" size="14.0"/>
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="DEFAULT"/>
+                        </cursor>
+                    </Hyperlink>
+                </graphic>
+            </Label>
+            <Button fx:id="btnWeb" layoutX="581.0" layoutY="505.0" mnemonicParsing="false" onAction="#closeWebView"
+                    prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
+                <font>
+                    <Font name="Roboto Light" size="13.0"/>
+                </font>
+            </Button>
+            <WebView fx:id="web" layoutX="14.0" layoutY="105.0" prefHeight="398.0" prefWidth="652.0" visible="false"/>
+        </children>
+    </AnchorPane>
 </VBox>

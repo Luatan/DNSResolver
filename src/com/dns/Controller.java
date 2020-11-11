@@ -110,8 +110,11 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void useTextIPField(MouseEvent event) {
-        txtDomain.setText(txtFieldIP.getText());
+    private void useTextIPField(MouseEvent event) throws NamingException, UnknownHostException {
+        if (!txtFieldIP.getText().isEmpty()) {
+            DNSOutput(txtFieldIP.getText(), (String) typeBox.getValue());
+            txtDomain.setText(txtFieldIP.getText());
+        }
     }
 
     @FXML
@@ -196,18 +199,14 @@ public class Controller implements Initializable {
         DNSRequests query = new DNSRequests();
         switch (query.getExtension(host)){
             case "com":
+            case "net":
+            case "fr":
+            case "es":
+            case "ru":
+            case "eu":
+            case "org":
                 hyperLbl.setVisible(true);
                 registryLink.setText("whois.com/whois/" + host);
-                break;
-            case "ch":
-                break;
-            case "fr":
-                break;
-            case "it":
-                break;
-            case "net":
-                break;
-            case "li":
                 break;
             default:
                 hyperLbl.setVisible(false);

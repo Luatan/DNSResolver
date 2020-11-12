@@ -205,6 +205,7 @@ public class Controller implements Initializable {
             case "ru":
             case "eu":
             case "org":
+            case "ca":
                 hyperLbl.setVisible(true);
                 registryLink.setText("whois.com/whois/" + host);
                 break;

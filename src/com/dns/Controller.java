@@ -65,7 +65,6 @@ public class Controller implements Initializable {
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
-        txtAreaRecords.setScrollTop(0);
     }
 
     @FXML
@@ -182,16 +181,12 @@ public class Controller implements Initializable {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
             }
-            txtAreaRecords.setScrollTop(0.0);
-
-            nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.clear();
             txtFieldIP.clear();
+            nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.setText(query.getHostname());
             txtFieldIP.setText(query.getIP());
         }
-        txtAreaRecords.setScrollTop(0.0);
-
         domainCheckerLink(host);
     }
 

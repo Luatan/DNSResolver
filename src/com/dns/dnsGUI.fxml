@@ -30,7 +30,7 @@
                         <Font name="Roboto Light" size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtDomain" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
+                <TextField fx:id="txtDomain" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
                     <font>
                         <Font name="Roboto Light" size="12.0" />
                     </font>

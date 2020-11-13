@@ -23,7 +23,16 @@ public class DNSRequests {
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value);
         setRecords(type);
-        setRecords("NS");
+
+        if(isSubdomain(hostname)) {
+            String origHost = hostname;
+            String[] parts = origHost.split("[.]");
+            this.hostname = parts[parts.length-2] + "." + parts[parts.length-1];
+            setRecords("NS");
+            this.hostname = origHost;
+        } else {
+            setRecords("NS");
+        }
     }
 
     DNSRequests() {

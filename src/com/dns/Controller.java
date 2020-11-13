@@ -157,9 +157,11 @@ public class Controller implements Initializable {
             } catch (NullPointerException e) {
                 System.err.println("No list found - recordPutter Try Catch");
             }
+            txtAreaRecords.home();
         } else {
             txtAreaRecords.appendText("No Records found\n\n");
         }
+        txtAreaRecords.home();
     }
 
     private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
@@ -192,7 +194,7 @@ public class Controller implements Initializable {
 
     private void domainCheckerLink(String host) {
         DNSRequests query = new DNSRequests();
-        switch (query.getExtension(host)){
+        switch (query.getExtension(host)) {
             case "com":
             case "net":
             case "fr":

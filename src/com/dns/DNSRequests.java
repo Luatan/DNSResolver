@@ -24,10 +24,10 @@ public class DNSRequests {
         setHost(value);
         setRecords(type);
 
-        if(isSubdomain(hostname)) {
+        if (isSubdomain(hostname)) {
             String origHost = hostname;
             String[] parts = origHost.split("[.]");
-            this.hostname = parts[parts.length-2] + "." + parts[parts.length-1];
+            this.hostname = parts[parts.length - 2] + "." + parts[parts.length - 1];
             setRecords("NS");
             this.hostname = origHost;
         } else {
@@ -45,7 +45,7 @@ public class DNSRequests {
 
     public String getExtension(String hostname) {
         String[] host = hostname.split("[.]");
-        return host[host.length-1];
+        return host[host.length - 1];
     }
 
     private void setHost(String host) {
@@ -60,7 +60,7 @@ public class DNSRequests {
         }
     }
 
-    private void setAllRecords(String hostname) throws NamingException, UnknownHostException {
+    private void setAllRecords() throws NamingException, UnknownHostException {
         setRecords("A");
         setRecords("AAAA");
         setRecords("CNAME");
@@ -78,7 +78,7 @@ public class DNSRequests {
             Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
 
             if (type.matches("[*]")) {
-                setAllRecords(hostname);
+                setAllRecords();
             } else {
                 try {
                     //Get the Records

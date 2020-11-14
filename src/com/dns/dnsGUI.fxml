@@ -7,9 +7,10 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox prefHeight="538.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dns.Controller">
-    <AnchorPane prefHeight="548.0" prefWidth="673.0">
+<VBox prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dns.Controller">
+    <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
+         <Separator layoutX="508.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="32.0" />
             <GridPane layoutX="10.0" prefHeight="44.0" prefWidth="666.0">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0" />
@@ -57,8 +58,8 @@
                     </font>
                 </Button>
             </GridPane>
-            <Separator layoutX="2.0" layoutY="34.0" prefHeight="25.0" prefWidth="673.0" />
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="19.0" layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="25.0" prefWidth="293.0" text="Hostname:" textAlignment="CENTER">
+            <Separator layoutY="51.0" prefHeight="25.0" prefWidth="676.0" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="25.0" prefWidth="293.0" text="Hostname:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -79,7 +80,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="19.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="293.0" text="IP-Adress:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="293.0" text="IP-Adress:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -100,7 +101,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS1:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS1:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -121,7 +122,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS2:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="310.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS2:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -142,7 +143,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS3:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS3:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -163,7 +164,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS4:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="483.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" text="NS4:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -184,8 +185,8 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Separator layoutX="1.0" layoutY="88.0" prefHeight="25.0" prefWidth="673.0" />
-            <TextArea fx:id="txtAreaRecords" editable="false" layoutX="11.0" layoutY="105.0" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" prefHeight="398.0" prefWidth="652.0" wrapText="true">
+            <Separator layoutY="103.0" prefHeight="25.0" prefWidth="676.0" />
+            <TextArea fx:id="txtAreaRecords" editable="false" layoutX="6.0" layoutY="122.0" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" prefHeight="394.0" prefWidth="666.0" wrapText="true">
                 <font>
                     <Font name="Roboto Light" size="13.0" />
                 </font>
@@ -195,12 +196,12 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="10.0" layoutY="507.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="604.0" text="Domain Check:" textAlignment="CENTER" visible="false">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="456.0" text="Domain Check:" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
                 <font>
-                    <Font name="Roboto Light" size="14.0" />
+                    <Font name="Roboto Light" size="13.0" />
                 </font>
                 <cursor>
                     <Cursor fx:constant="DEFAULT" />
@@ -209,9 +210,9 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="501.0" text="http://google.com">
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="361.0" text="No URL Found">
                         <font>
-                            <Font name="Roboto Light" size="14.0" />
+                            <Font name="Roboto Light" size="13.0" />
                         </font>
                         <cursor>
                             <Cursor fx:constant="DEFAULT" />
@@ -219,12 +220,17 @@
                     </Hyperlink>
                 </graphic>
             </Label>
-            <Button fx:id="btnWeb" layoutX="581.0" layoutY="505.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" layoutX="583.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="72.0" text="Close Web" visible="false">
                 <font>
-                    <Font name="Roboto Light" size="13.0" />
+                    <Font name="Roboto Light" size="12.0" />
                 </font>
             </Button>
-            <WebView fx:id="web" layoutX="7.0" layoutY="105.0" prefHeight="398.0" prefWidth="660.0" visible="false" />
+            <WebView fx:id="web" layoutX="5.0" layoutY="122.0" minHeight="-1.0" minWidth="-1.0" prefHeight="396.0" prefWidth="666.0" visible="false" AnchorPane.bottomAnchor="41.0" />
+         <CheckBox fx:id="chckBox" alignment="CENTER" layoutX="352.0" layoutY="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="156.0" text="Show Empty Records">
+            <font>
+               <Font name="Roboto Light" size="12.0" />
+            </font>
+         </CheckBox>
         </children>
     </AnchorPane>
 </VBox>

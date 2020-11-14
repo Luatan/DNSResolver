@@ -10,13 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import javax.naming.NamingException;
-import java.awt.*;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
@@ -56,6 +57,8 @@ public class Controller implements Initializable {
     WebView web;
     @FXML
     Label hyperLbl;
+    @FXML
+    CheckBox chckBox;
 
 
     //List of Records
@@ -147,18 +150,19 @@ public class Controller implements Initializable {
     }
 
     private void recordPutter(String[] list, String type) {
-        txtAreaRecords.appendText(type + ": \n");
         if (list != null) {
             try {
+                txtAreaRecords.appendText(type + ": \n");
                 for (String rec : list) {
-                    txtAreaRecords.appendText(rec + "\n");
+                    txtAreaRecords.appendText("\t" + rec + "\n");
                 }
                 txtAreaRecords.appendText("\n");
             } catch (NullPointerException e) {
                 System.err.println("No list found - recordPutter Try Catch");
             }
             txtAreaRecords.home();
-        } else {
+        } else if (chckBox.isSelected()){
+            txtAreaRecords.appendText(type + ": \n");
             txtAreaRecords.appendText("No Records found\n\n");
         }
         txtAreaRecords.home();

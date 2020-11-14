@@ -20,7 +20,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("dnsGUI.fxml"));
         primaryStage.setTitle("DNS Resolver");
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/Icon.png")));
-        primaryStage.setScene(new Scene(root, 670, 540));
+        primaryStage.setScene(new Scene(root, 670, 555));
         primaryStage.show();
     }
 }

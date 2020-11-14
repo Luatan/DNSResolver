@@ -196,7 +196,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="456.0" text="Domain Check:" textAlignment="CENTER">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="476.0" text="Domain Check:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -210,7 +210,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="361.0" text="No URL Found">
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="366.0" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -220,7 +220,7 @@
                     </Hyperlink>
                 </graphic>
             </Label>
-            <Button fx:id="btnWeb" layoutX="583.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="72.0" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
                 <font>
                     <Font name="Roboto Light" size="12.0" />
                 </font>

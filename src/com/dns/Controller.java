@@ -99,7 +99,6 @@ public class Controller implements Initializable {
     private void closeWebView(ActionEvent event) {
         final WebEngine webEngine = web.getEngine();
         web.setVisible(false);
-        hyperLbl.setVisible(false);
         btnWeb.setVisible(false);
         webEngine.load(null);
     }
@@ -163,7 +162,7 @@ public class Controller implements Initializable {
             txtAreaRecords.home();
         } else if (chckBox.isSelected()){
             txtAreaRecords.appendText(type + ": \n");
-            txtAreaRecords.appendText("No Records found\n\n");
+            txtAreaRecords.appendText("\t" +"No Records found\n\n");
         }
         txtAreaRecords.home();
     }

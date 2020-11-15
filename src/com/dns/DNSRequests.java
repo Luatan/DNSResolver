@@ -18,25 +18,14 @@ public class DNSRequests {
     private String[] TXT;
     private String[] SRV;
     private String[] SOA;
-    private String typeSet;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
-        setHost(value);
+        setHost(value.toLowerCase());
         setRecords(type);
-
-        if (isSubdomain(hostname)) {
-            String origHost = hostname;
-            String[] parts = origHost.split("[.]");
-            this.hostname = parts[parts.length - 2] + "." + parts[parts.length - 1];
-            setRecords("NS");
-            this.hostname = origHost;
-        } else {
-            setRecords("NS");
-        }
+        setNameServer();
     }
 
     DNSRequests() {
-
     }
 
     public boolean isSubdomain(String host) {
@@ -60,18 +49,26 @@ public class DNSRequests {
         }
     }
 
+    private void setNameServer() throws UnknownHostException, NamingException {
+        if (isSubdomain(hostname)) {
+            String origHost = hostname;
+            String[] parts = origHost.split("[.]");
+            this.hostname = parts[parts.length - 2] + "." + parts[parts.length - 1];
+            setRecords("NS");
+            this.hostname = origHost;
+        } else {
+            setRecords("NS");
+        }
+    }
+
     private void setAllRecords() throws NamingException, UnknownHostException {
-        setRecords("A");
-        setRecords("AAAA");
-        setRecords("CNAME");
-        setRecords("MX");
-        setRecords("TXT");
-        setRecords("SRV");
-        setRecords("SOA");
+        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
+        for (String record: recordsToUse) {
+            setRecords(record);
+        }
     }
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
-        typeSet = type;
         if (!hostname.equals("Unrecognized host")) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
@@ -83,11 +80,9 @@ public class DNSRequests {
                     try {
                         //Get the Records
                         String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                        String[] tempRecords = listRecords[0].split(": ", 2);
                         //Replace first char with the actual value instead of the type
-                        listRecords[0] = tempRecords[1];
-
-                        populateRecords(listRecords);
+                        listRecords[0] = listRecords[0].split(": ", 2)[1];
+                        populateRecords(listRecords, type);
                     } catch (Exception e) {
                         System.err.println("No Records for " + type + " in " + hostname + " found!");
                     }
@@ -98,30 +93,29 @@ public class DNSRequests {
         }
     }
 
-    private void populateRecords(String[] listRecords) {
-        String type = typeSet;
+    private void populateRecords(String[] RecordList, String type) {
         switch (type) {
             case "A":
-                A = listRecords;
+                A = RecordList;
                 break;
             case "AAAA":
-                AAAA = listRecords;
+                AAAA = RecordList;
                 break;
             case "CNAME":
-                CNAME = listRecords;
+                CNAME = RecordList;
             case "MX":
-                MX = listRecords;
+                MX = RecordList;
             case "TXT":
-                TXT = listRecords;
+                TXT = RecordList;
                 break;
             case "SOA":
-                SOA = listRecords;
+                SOA = RecordList;
                 break;
             case "NS":
-                NS = listRecords;
+                NS = RecordList;
                 break;
             case "SRV":
-                SRV = listRecords;
+                SRV = RecordList;
                 break;
             default:
                 System.err.println("type not found");

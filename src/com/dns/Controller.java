@@ -88,6 +88,7 @@ public class Controller implements Initializable {
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
         System.out.println("Records copied!");
+        // Add animtaion to Acknowledge Copy
     }
 
     @FXML

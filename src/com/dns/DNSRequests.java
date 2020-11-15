@@ -56,7 +56,7 @@ public class DNSRequests {
 
         } catch (UnknownHostException ex) {
             hostname = "Unrecognized host";
-            System.err.println("Unrecognized host");
+            System.err.println("Unrecognized host " + host + " at DNSRequests.java - (SetHost)");
         }
     }
 
@@ -72,31 +72,30 @@ public class DNSRequests {
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
         typeSet = type;
-        try {
-            InitialDirContext iDirC = new InitialDirContext();
-            // get all the DNS records for hostname
-            Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
+        if (!hostname.equals("Unrecognized host")) {
+            try {
+                InitialDirContext iDirC = new InitialDirContext();
+                // get all the DNS records for hostname
+                Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
+                if (type.matches("[*]")) {
+                    setAllRecords();
+                } else {
+                    try {
+                        //Get the Records
+                        String[] listRecords = attributes.get(type).toString().split("(,)( )");
+                        String[] tempRecords = listRecords[0].split(": ", 2);
+                        //Replace first char with the actual value instead of the type
+                        listRecords[0] = tempRecords[1];
 
-            if (type.matches("[*]")) {
-                setAllRecords();
-            } else {
-                try {
-                    //Get the Records
-                    String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                    String[] tempRecords = listRecords[0].split(": ", 2);
-                    //Replace first char with the actual value instead of the type
-                    listRecords[0] = tempRecords[1];
-
-                    populateRecords(listRecords);
-
-                } catch (Exception e) {
-                    //System.out.println("No Records found");
+                        populateRecords(listRecords);
+                    } catch (Exception e) {
+                        System.err.println("No Records for " + type + " in " + hostname + " found!");
+                    }
                 }
+            } catch (NameNotFoundException e) {
+                System.err.println("No DNS-Records Found in " + hostname + " at DNSRequests.java (SetRecords)");
             }
-        } catch (NameNotFoundException e) {
-            System.err.println("No DNS Found - DNSRequests (SetRecords)");
         }
-
     }
 
     private void populateRecords(String[] listRecords) {

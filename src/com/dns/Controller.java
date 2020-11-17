@@ -62,7 +62,7 @@ public class Controller implements Initializable {
 
 
     //List of Records
-    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "TXT", "NS", "SOA", "SRV");
+    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
@@ -142,7 +142,7 @@ public class Controller implements Initializable {
                 txtNS3.setText(records[2]);
                 txtNS4.setText(records[3]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.err.println("Out of bounds - Try catch NameServerDisplay");
+                System.err.println("Out of bounds - Try catch NameServerDisplay -> Less than 1 NS found\"");
             } catch (NullPointerException e) {
                 System.err.println("NullPointerException - Try catch NameServerDisplay");
             }

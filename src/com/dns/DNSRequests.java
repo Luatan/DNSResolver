@@ -62,7 +62,7 @@ public class DNSRequests {
     }
 
     private void setAllRecords() throws NamingException, UnknownHostException {
-        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
+        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SOA", "SRV", "TXT"};
         for (String record: recordsToUse) {
             setRecords(record);
         }

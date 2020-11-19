@@ -10,14 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
-import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import javax.naming.NamingException;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
@@ -58,8 +59,9 @@ public class Controller implements Initializable {
     @FXML
     Label hyperLbl;
     @FXML
+    Circle reachable;
+    @FXML
     CheckBox chckBox;
-
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
@@ -129,6 +131,14 @@ public class Controller implements Initializable {
         }
     }
 
+    private void setReachableCircle(boolean reachable) {
+        if (reachable) {
+            this.reachable.setFill(Paint.valueOf("#16dd16"));
+        } else {
+            this.reachable.setFill(Paint.valueOf("#ff0909"));
+        }
+    }
+
     private void nameServerDisplay(String[] records) {
         txtNS1.clear();
         txtNS2.clear();
@@ -142,7 +152,7 @@ public class Controller implements Initializable {
                 txtNS3.setText(records[2]);
                 txtNS4.setText(records[3]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.err.println("Out of bounds - Try catch NameServerDisplay -> Less than 1 NS found\"");
+
             } catch (NullPointerException e) {
                 System.err.println("NullPointerException - Try catch NameServerDisplay");
             }
@@ -168,6 +178,7 @@ public class Controller implements Initializable {
         txtAreaRecords.home();
     }
 
+
     private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
         DNSRequests query;
         if (!txtDomain.getText().isEmpty()) {
@@ -182,10 +193,11 @@ public class Controller implements Initializable {
                 recordPutter(query.getRecords("TXT"), "TXT");
                 recordPutter(query.getRecords("SRV"), "SRV");
                 recordPutter(query.getRecords("SOA"), "SOA");
-
+                setReachableCircle(query.getReachable());
             } else {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
+                setReachableCircle(query.getReachable());
             }
             txtFieldHost.clear();
             txtFieldIP.clear();
@@ -221,4 +233,6 @@ public class Controller implements Initializable {
         typeBox.setItems(types);
         typeBox.setValue("Any");
     }
+
+
 }

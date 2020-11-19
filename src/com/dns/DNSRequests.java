@@ -4,6 +4,7 @@ import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -18,11 +19,11 @@ public class DNSRequests {
     private String[] TXT;
     private String[] SRV;
     private String[] SOA;
+    private boolean reachable;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
-        setHost(value.toLowerCase());
+        setHost(value.toLowerCase().replace(" ", ""));
         setRecords(type);
-        setNameServer();
     }
 
     DNSRequests() {
@@ -37,16 +38,20 @@ public class DNSRequests {
         return host[host.length - 1];
     }
 
-    private void setHost(String host) {
+    private void setHost(String host) throws NamingException, UnknownHostException {
         try {
             InetAddress inetHost = InetAddress.getByName(host);
             hostname = inetHost.getHostName();
             IP = inetHost.getHostAddress();
+            reachable = inetHost.isReachable(400);
 
         } catch (UnknownHostException ex) {
-            hostname = "Unrecognized host";
-            System.err.println("Unrecognized host " + host + " at DNSRequests.java - (SetHost)");
+            hostname = host;
+            System.err.println("This host: " + host + " has no IP Address");
+        } catch (IOException e) {
+            System.out.println("Timeout");
         }
+        setNameServer();
     }
 
     private void setNameServer() throws UnknownHostException, NamingException {
@@ -84,7 +89,7 @@ public class DNSRequests {
                         listRecords[0] = listRecords[0].split(": ", 2)[1];
                         populateRecords(listRecords, type);
                     } catch (Exception e) {
-                        System.err.println("No Records for " + type + " in " + hostname + " found!");
+                        //System.err.println("No Records for " + type + " in " + hostname + " found!");
                     }
                 }
             } catch (NameNotFoundException e) {
@@ -105,14 +110,14 @@ public class DNSRequests {
                 CNAME = RecordList;
             case "MX":
                 MX = RecordList;
-            case "TXT":
-                TXT = RecordList;
-                break;
             case "SOA":
                 SOA = RecordList;
                 break;
             case "NS":
                 NS = RecordList;
+                break;
+            case "TXT":
+                TXT = RecordList;
                 break;
             case "SRV":
                 SRV = RecordList;
@@ -133,14 +138,14 @@ public class DNSRequests {
                 return CNAME;
             case "MX":
                 return MX;
-            case "TXT":
-                return TXT;
             case "SOA":
                 return SOA;
             case "NS":
                 return NS;
             case "SRV":
                 return SRV;
+            case "TXT":
+                return TXT;
             default:
                 System.err.println("Type was not found");
                 break;
@@ -154,5 +159,9 @@ public class DNSRequests {
 
     public String getIP() {
         return IP;
+    }
+
+    public boolean getReachable() {
+        return reachable;
     }
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.WebView?>
-<VBox prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.dns.Controller">
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>

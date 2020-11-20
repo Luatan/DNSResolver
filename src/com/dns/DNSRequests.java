@@ -4,7 +4,6 @@ import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -43,13 +42,11 @@ public class DNSRequests {
             InetAddress inetHost = InetAddress.getByName(host);
             hostname = inetHost.getHostName();
             IP = inetHost.getHostAddress();
-            reachable = inetHost.isReachable(400);
+            //reachable = inetHost.isReachable(800);
 
         } catch (UnknownHostException ex) {
             hostname = host;
             System.err.println("This host: " + host + " has no IP Address");
-        } catch (IOException e) {
-            System.out.println("Timeout");
         }
         setNameServer();
     }

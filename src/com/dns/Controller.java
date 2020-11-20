@@ -193,11 +193,11 @@ public class Controller implements Initializable {
                 recordPutter(query.getRecords("TXT"), "TXT");
                 recordPutter(query.getRecords("SRV"), "SRV");
                 recordPutter(query.getRecords("SOA"), "SOA");
-                setReachableCircle(query.getReachable());
+                //setReachableCircle(query.getReachable());
             } else {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
-                setReachableCircle(query.getReachable());
+                //setReachableCircle(query.getReachable());
             }
             txtFieldHost.clear();
             txtFieldIP.clear();

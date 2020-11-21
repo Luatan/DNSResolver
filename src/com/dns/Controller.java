@@ -190,9 +190,9 @@ public class Controller implements Initializable {
                 System.err.println("No list found - recordPutter Try Catch");
             }
             txtAreaRecords.home();
-        } else if (chckBox.isSelected()){
+        } else if (chckBox.isSelected()) {
             txtAreaRecords.appendText(type + ": \n");
-            txtAreaRecords.appendText("\t" +"No Records found\n\n");
+            txtAreaRecords.appendText("\t" + "No Records found\n\n");
         }
         txtAreaRecords.home();
     }
@@ -247,7 +247,7 @@ public class Controller implements Initializable {
                 break;
             case "ch":
             case "li":
-                domainCheck = new Whois().getWhois(host, "whois.nic.ch", 4343);
+                domainCheck = new Whois().getWhois(host, "whois.nic.ch");
                 registryLink.setText("Click here for a Domain Check");
                 hyperLbl.setVisible(true);
                 break;
@@ -257,7 +257,7 @@ public class Controller implements Initializable {
                 hyperLbl.setVisible(true);
                 break;
             case "de":
-                domainCheck = new Whois().getWhois("-T dn " + host, "whois.denic.de", 43);
+                domainCheck = new Whois().getWhois("-T dn " + host, "whois.denic.de");
                 registryLink.setText("Click here for a Domain Check");
                 hyperLbl.setVisible(true);
                 break;

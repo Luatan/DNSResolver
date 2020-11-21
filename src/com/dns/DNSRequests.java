@@ -37,6 +37,11 @@ public class DNSRequests {
         return host[host.length - 1];
     }
 
+    public String getMainDomain(String host) {
+        String[] partDomain = host.split("[.]");
+        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1];
+    }
+
     private void setHost(String host) throws NamingException, UnknownHostException {
         try {
             InetAddress inetHost = InetAddress.getByName(host);

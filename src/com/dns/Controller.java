@@ -65,10 +65,14 @@ public class Controller implements Initializable {
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
+    String domainCheck = "";
+    String originalRecords = "";
+
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
+        domainCheck = "";
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
     }
 
@@ -100,17 +104,32 @@ public class Controller implements Initializable {
 
     @FXML
     private void closeWebView(ActionEvent event) {
-        final WebEngine webEngine = web.getEngine();
-        web.setVisible(false);
-        btnWeb.setVisible(false);
-        webEngine.load(null);
+        if (domainCheck.equals("")) {
+            final WebEngine webEngine = web.getEngine();
+            web.setVisible(false);
+            btnWeb.setVisible(false);
+            webEngine.load(null);
+        } else {
+            txtAreaRecords.setText(originalRecords);
+            btnWeb.setVisible(false);
+            hyperLbl.setVisible(true);
+            btnWeb.setText("Close Web");
+        }
     }
 
     private void displayWebView(String host) {
-        final WebEngine webEngine = web.getEngine();
-        webEngine.load("http://" + host);
-        btnWeb.setVisible(true);
-        web.setVisible(true);
+        if (domainCheck.equals("")) {
+            final WebEngine webEngine = web.getEngine();
+            webEngine.load("http://" + host);
+            btnWeb.setVisible(true);
+            web.setVisible(true);
+        } else {
+            originalRecords = txtAreaRecords.getText();
+            txtAreaRecords.setText(domainCheck);
+            btnWeb.setVisible(true);
+            hyperLbl.setVisible(false);
+            btnWeb.setText("Back");
+        }
     }
 
     @FXML
@@ -124,10 +143,10 @@ public class Controller implements Initializable {
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
         DNSRequests subdomainQuery = new DNSRequests();
-        if (subdomainQuery.isSubdomain(txtDomain.getText())) {
-            String[] partDomain = txtDomain.getText().split("[.]");
-            DNSOutput(partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1], (String) typeBox.getValue());
-            txtDomain.setText(partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1]);
+        String host = txtDomain.getText();
+        if (subdomainQuery.isSubdomain(host)) {
+            DNSOutput(subdomainQuery.getMainDomain(host), (String) typeBox.getValue());
+            txtDomain.setText(subdomainQuery.getMainDomain(host));
         }
     }
 
@@ -210,6 +229,10 @@ public class Controller implements Initializable {
 
     private void domainCheckerLink(String host) {
         DNSRequests query = new DNSRequests();
+
+        if (query.isSubdomain(host)) {
+            host = query.getMainDomain(host);
+        }
         switch (query.getExtension(host)) {
             case "com":
             case "net":
@@ -221,6 +244,17 @@ public class Controller implements Initializable {
             case "ca":
                 hyperLbl.setVisible(true);
                 registryLink.setText("whois.com/whois/" + host);
+                break;
+            case "ch":
+            case "li":
+                domainCheck = new Whois().getWhois(host, "whois.nic.ch", 4343);
+                registryLink.setText("Click here for a Domain Check");
+                hyperLbl.setVisible(true);
+                break;
+            case "swiss":
+                domainCheck = new Whois().getWhois(host, "whois.nic.swiss");
+                registryLink.setText("Click here for a Domain Check");
+                hyperLbl.setVisible(true);
                 break;
             default:
                 hyperLbl.setVisible(false);

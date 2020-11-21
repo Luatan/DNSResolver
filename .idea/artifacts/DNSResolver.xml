@@ -25,6 +25,7 @@
     <root id="root">
       <element id="archive" name="DNSResolver.jar">
         <element id="module-output" name="DNSResolver" />
+        <element id="library" level="project" name="apache-commons-net" />
       </element>
     </root>
   </artifact>

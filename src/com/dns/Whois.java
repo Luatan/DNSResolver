@@ -3,13 +3,12 @@ package com.dns;
 import org.apache.commons.net.WhoisClient;
 
 import java.io.IOException;
-import java.net.SocketException;
 
 public class Whois {
 
     public String getWhois(String domainName, String whoisServer, int port) {
 
-        StringBuilder result = new StringBuilder("");
+        StringBuilder result = new StringBuilder();
 
         WhoisClient whois = new WhoisClient();
         try {
@@ -20,8 +19,6 @@ public class Whois {
             result.append(whoisData1);
             whois.disconnect();
 
-        } catch (SocketException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +29,7 @@ public class Whois {
 
     public String getWhois(String domainName, String whoisServer) {
 
-        StringBuilder result = new StringBuilder("");
+        StringBuilder result = new StringBuilder();
 
         WhoisClient whois = new WhoisClient();
         try {
@@ -43,8 +40,6 @@ public class Whois {
             result.append(whoisData1);
             whois.disconnect();
 
-        } catch (SocketException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

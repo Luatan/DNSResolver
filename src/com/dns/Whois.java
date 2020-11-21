@@ -26,7 +26,7 @@ public class Whois {
             e.printStackTrace();
         }
 
-        return "\nDomain Check\n" + result.toString();
+        return "\nDomain Check: \n" + result.toString();
 
     }
 
@@ -49,7 +49,7 @@ public class Whois {
             e.printStackTrace();
         }
 
-        return result.toString();
+        return "\nDomain Check: \n" + result.toString();
 
     }
 

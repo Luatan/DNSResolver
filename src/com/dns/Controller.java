@@ -256,6 +256,11 @@ public class Controller implements Initializable {
                 registryLink.setText("Click here for a Domain Check");
                 hyperLbl.setVisible(true);
                 break;
+            case "de":
+                domainCheck = new Whois().getWhois("-T dn " + host, "whois.denic.de", 43);
+                registryLink.setText("Click here for a Domain Check");
+                hyperLbl.setVisible(true);
+                break;
             default:
                 hyperLbl.setVisible(false);
                 break;

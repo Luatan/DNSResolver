@@ -18,7 +18,7 @@ public class DNSRequests {
     private String[] TXT;
     private String[] SRV;
     private String[] SOA;
-    private boolean reachable;
+    //private boolean reachable;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value.toLowerCase().replace(" ", ""));
@@ -70,7 +70,7 @@ public class DNSRequests {
 
     private void setAllRecords() throws NamingException, UnknownHostException {
         String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SOA", "SRV", "TXT"};
-        for (String record: recordsToUse) {
+        for (String record : recordsToUse) {
             setRecords(record);
         }
     }
@@ -161,9 +161,5 @@ public class DNSRequests {
 
     public String getIP() {
         return IP;
-    }
-
-    public boolean getReachable() {
-        return reachable;
     }
 }

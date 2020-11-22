@@ -23,7 +23,7 @@ public class Whois {
             e.printStackTrace();
         }
 
-        return "\nDomain Check: \n" + result.toString();
+        return "Domain Check: \n" + result.toString();
 
     }
 
@@ -34,6 +34,7 @@ public class Whois {
         WhoisClient whois = new WhoisClient();
         try {
 
+            //Port 43
             whois.connect(whoisServer, whois.getDefaultPort());
             String whoisData1 = whois.query(domainName);
 

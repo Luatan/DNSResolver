@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.lang.annotation.Native;
-
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -20,7 +18,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("dnsGUI.fxml"));
         primaryStage.setTitle("DNS Resolver");
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/Icon.png")));
-        primaryStage.setScene(new Scene(root, 670, 555));
+        primaryStage.setScene(new Scene(root, 678, 555));
         primaryStage.show();
     }
 }

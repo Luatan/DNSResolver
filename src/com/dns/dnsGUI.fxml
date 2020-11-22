@@ -95,9 +95,10 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#useTextIPField" prefHeight="20.0" prefWidth="221.0" style="-fx-cursor: hand; -fx-background-color: transparent;">
+                    <TextField fx:id="txtFieldIP" editable="false" prefHeight="20.0" prefWidth="221.0"
+                               style="-fx-background-color: transparent; -fx-cursor: none;">
                         <font>
-                            <Font name="Roboto Light" size="13.0" />
+                            <Font name="Roboto Light" size="13.0"/>
                         </font>
                     </TextField>
                 </graphic>

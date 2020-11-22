@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="DNSResolver">
+  <artifact type="javafx" build-on-make="true" name="DNSResolver">
     <output-path>$PROJECT_DIR$/out/artifacts/DNSResolver</output-path>
     <properties id="javafx-properties">
       <options>
@@ -24,8 +24,8 @@
     </properties>
     <root id="root">
       <element id="archive" name="DNSResolver.jar">
-        <element id="module-output" name="DNSResolver" />
         <element id="library" level="project" name="apache-commons-net" />
+        <element id="module-output" name="DNSResolver" />
       </element>
     </root>
   </artifact>

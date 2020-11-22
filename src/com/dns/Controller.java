@@ -65,14 +65,14 @@ public class Controller implements Initializable {
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
-    String domainCheck = "";
+    String domainCheckResult = "";
     String originalRecords = "";
 
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
-        domainCheck = "";
+        domainCheckResult = "";
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
     }
 
@@ -104,7 +104,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void closeWebView(ActionEvent event) {
-        if (domainCheck.equals("")) {
+        if (domainCheckResult.equals("")) {
             final WebEngine webEngine = web.getEngine();
             web.setVisible(false);
             btnWeb.setVisible(false);
@@ -118,30 +118,24 @@ public class Controller implements Initializable {
     }
 
     private void displayWebView(String host) {
-        if (domainCheck.equals("")) {
+        if (domainCheckResult.equals("")) {
             final WebEngine webEngine = web.getEngine();
             webEngine.load("http://" + host);
             btnWeb.setVisible(true);
             web.setVisible(true);
         } else {
             originalRecords = txtAreaRecords.getText();
-            txtAreaRecords.setText(domainCheck);
+            txtAreaRecords.setText(domainCheckResult);
             btnWeb.setVisible(true);
             hyperLbl.setVisible(false);
             btnWeb.setText("Back");
         }
     }
 
-    @FXML
-    private void useTextIPField(MouseEvent event) throws NamingException, UnknownHostException {
-        if (!txtFieldIP.getText().isEmpty()) {
-            DNSOutput(txtFieldIP.getText(), (String) typeBox.getValue());
-            txtDomain.setText(txtFieldIP.getText());
-        }
-    }
 
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
+        btnWeb.setVisible(false);
         DNSRequests subdomainQuery = new DNSRequests();
         String host = txtDomain.getText();
         if (subdomainQuery.isSubdomain(host)) {
@@ -224,10 +218,10 @@ public class Controller implements Initializable {
             txtFieldHost.setText(query.getHostname());
             txtFieldIP.setText(query.getIP());
         }
-        domainCheckerLink(host);
+        getRegistrar(host);
     }
 
-    private void domainCheckerLink(String host) {
+    private void getRegistrar(String host) {
         DNSRequests query = new DNSRequests();
 
         if (query.isSubdomain(host)) {
@@ -236,35 +230,38 @@ public class Controller implements Initializable {
         switch (query.getExtension(host)) {
             case "com":
             case "net":
-            case "fr":
-            case "es":
             case "ru":
-            case "eu":
             case "org":
             case "ca":
                 hyperLbl.setVisible(true);
                 registryLink.setText("whois.com/whois/" + host);
                 break;
+            case "eu":
+                domainCheckResult = setDomainCheckResult(host, "whois.eu");
+                break;
+            case "fr":
+                domainCheckResult = setDomainCheckResult(host, "whois.afnic.fr");
+                break;
             case "ch":
             case "li":
-                domainCheck = new Whois().getWhois(host, "whois.nic.ch");
-                registryLink.setText("Click here for a Domain Check");
-                hyperLbl.setVisible(true);
+                domainCheckResult = setDomainCheckResult(host, "whois.nic.ch");
                 break;
             case "swiss":
-                domainCheck = new Whois().getWhois(host, "whois.nic.swiss");
-                registryLink.setText("Click here for a Domain Check");
-                hyperLbl.setVisible(true);
+                domainCheckResult = setDomainCheckResult(host, "whois.nic.swiss");
                 break;
             case "de":
-                domainCheck = new Whois().getWhois("-T dn " + host, "whois.denic.de");
-                registryLink.setText("Click here for a Domain Check");
-                hyperLbl.setVisible(true);
+                domainCheckResult = setDomainCheckResult("-T dn " + host, "whois.denic.de");
                 break;
             default:
                 hyperLbl.setVisible(false);
                 break;
         }
+    }
+
+    private String setDomainCheckResult(String host, String whoisServer) {
+        registryLink.setText("Click here for a Domain Check");
+        hyperLbl.setVisible(true);
+        return new Whois().getWhois(host, whoisServer);
     }
 
     @Override

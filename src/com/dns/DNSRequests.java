@@ -18,7 +18,6 @@ public class DNSRequests {
     private String[] TXT;
     private String[] SRV;
     private String[] SOA;
-    //private boolean reachable;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(value.toLowerCase().replace(" ", ""));
@@ -28,26 +27,11 @@ public class DNSRequests {
     DNSRequests() {
     }
 
-    public boolean isSubdomain(String host) {
-        return host.split("[.]", 3).length > 2;
-    }
-
-    public String getExtension(String hostname) {
-        String[] host = hostname.split("[.]");
-        return host[host.length - 1];
-    }
-
-    public String getMainDomain(String host) {
-        String[] partDomain = host.split("[.]");
-        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1];
-    }
-
     private void setHost(String host) throws NamingException, UnknownHostException {
         try {
             InetAddress inetHost = InetAddress.getByName(host);
             hostname = inetHost.getHostName();
             IP = inetHost.getHostAddress();
-            //reachable = inetHost.isReachable(800);
 
         } catch (UnknownHostException ex) {
             hostname = host;
@@ -59,8 +43,7 @@ public class DNSRequests {
     private void setNameServer() throws UnknownHostException, NamingException {
         if (isSubdomain(hostname)) {
             String origHost = hostname;
-            String[] parts = origHost.split("[.]");
-            this.hostname = parts[parts.length - 2] + "." + parts[parts.length - 1];
+            this.hostname = getMainDomain(hostname);
             setRecords("NS");
             this.hostname = origHost;
         } else {
@@ -110,8 +93,10 @@ public class DNSRequests {
                 break;
             case "CNAME":
                 CNAME = RecordList;
+                break;
             case "MX":
                 MX = RecordList;
+                break;
             case "SOA":
                 SOA = RecordList;
                 break;
@@ -153,6 +138,20 @@ public class DNSRequests {
                 break;
         }
         return null;
+    }
+
+    public boolean isSubdomain(String host) {
+        return host.split("[.]", 3).length > 2;
+    }
+
+    public String getExtension(String hostname) {
+        String[] host = hostname.split("[.]");
+        return host[host.length - 1];
+    }
+
+    public String getMainDomain(String host) {
+        String[] partDomain = host.split("[.]");
+        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1];
     }
 
     public String getHostname() {

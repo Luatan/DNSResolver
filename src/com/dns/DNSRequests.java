@@ -150,7 +150,7 @@ public class DNSRequests {
     }
 
     public String getMainDomain(String host) {
-        String[] partDomain = host.split("[.]");
+        String[] partDomain = host.replace(" ", "").split("[.]");
         return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1];
     }
 

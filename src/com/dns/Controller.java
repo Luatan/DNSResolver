@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -27,33 +26,17 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    TextField txtNS1;
+    TextField txtNS1, txtNS2, txtNS3, txtNS4;
     @FXML
-    TextField txtNS2;
+    TextField txtDomain, txtFieldIP, txtFieldHost;
     @FXML
-    TextField txtNS3;
-    @FXML
-    TextField txtNS4;
-    @FXML
-    TextField txtDomain;
-    @FXML
-    Button cpyRecords;
-    @FXML
-    TextField txtFieldIP;
-    @FXML
-    TextField txtFieldHost;
-    @FXML
-    Button btnStart;
-    @FXML
-    Button scollButton;
+    Button cpyRecords, btnStart, scollButton, btnWeb;
     @FXML
     TextArea txtAreaRecords;
     @FXML
     ComboBox typeBox;
     @FXML
     Hyperlink registryLink;
-    @FXML
-    Button btnWeb;
     @FXML
     WebView web;
     @FXML
@@ -65,14 +48,20 @@ public class Controller implements Initializable {
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
+    //initialize Variables for Domain Check
     String domainCheckResult = "";
+    //To undo
     String originalRecords = "";
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        typeBox.setItems(types);
+        typeBox.setValue("Any");
+    }
 
     @FXML
-    private void handleButtonAction(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
+    private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
-        domainCheckResult = "";
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
     }
 
@@ -94,7 +83,7 @@ public class Controller implements Initializable {
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
         System.out.println("Records copied!");
-        // Add animtaion to Acknowledge Copy
+        // Add animtaion to Acknowledge Copy... maybe
     }
 
     @FXML
@@ -132,7 +121,6 @@ public class Controller implements Initializable {
         }
     }
 
-
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
         btnWeb.setVisible(false);
@@ -141,14 +129,6 @@ public class Controller implements Initializable {
         if (subdomainQuery.isSubdomain(host)) {
             DNSOutput(subdomainQuery.getMainDomain(host), (String) typeBox.getValue());
             txtDomain.setText(subdomainQuery.getMainDomain(host));
-        }
-    }
-
-    private void setReachableCircle(boolean reachable) {
-        if (reachable) {
-            this.reachable.setFill(Paint.valueOf("#16dd16"));
-        } else {
-            this.reachable.setFill(Paint.valueOf("#ff0909"));
         }
     }
 
@@ -191,7 +171,6 @@ public class Controller implements Initializable {
         txtAreaRecords.home();
     }
 
-
     private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
         DNSRequests query;
         if (!txtDomain.getText().isEmpty()) {
@@ -199,14 +178,10 @@ public class Controller implements Initializable {
             if (type.equals("Any")) {
                 query = new DNSRequests(host, "*");
                 //Set Records
-                recordPutter(query.getRecords("A"), "A");
-                recordPutter(query.getRecords("AAAA"), "AAAA");
-                recordPutter(query.getRecords("CNAME"), "CNAME");
-                recordPutter(query.getRecords("MX"), "MX");
-                recordPutter(query.getRecords("TXT"), "TXT");
-                recordPutter(query.getRecords("SRV"), "SRV");
-                recordPutter(query.getRecords("SOA"), "SOA");
-                //setReachableCircle(query.getReachable());
+                String[] requests = {"A", "AAAA", "CNAME", "MX", "SOA", "SRV", "TXT"};
+                for (String request : requests) {
+                    recordPutter(query.getRecords(request), request);
+                }
             } else {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords(type), type);
@@ -253,7 +228,9 @@ public class Controller implements Initializable {
                 domainCheckResult = setDomainCheckResult("-T dn " + host, "whois.denic.de");
                 break;
             default:
+                domainCheckResult = "";
                 hyperLbl.setVisible(false);
+                btnWeb.setVisible(false);
                 break;
         }
     }
@@ -263,12 +240,4 @@ public class Controller implements Initializable {
         hyperLbl.setVisible(true);
         return new Whois().getWhois(host, whoisServer);
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        typeBox.setItems(types);
-        typeBox.setValue("Any");
-    }
-
-
 }

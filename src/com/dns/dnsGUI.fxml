@@ -32,20 +32,22 @@
                         <Font name="Roboto Light" size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtDomain" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
+                <TextField fx:id="txtDomain" onAction="#startSearchButton" prefHeight="25.0" prefWidth="179.0"
+                           GridPane.columnIndex="1">
                     <font>
-                        <Font name="Roboto Light" size="12.0" />
+                        <Font name="Roboto Light" size="12.0"/>
                     </font>
                 </TextField>
-                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton"
+                        prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                     <GridPane.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </GridPane.margin>
                     <font>
-                        <Font name="Roboto Light" size="12.0" />
+                        <Font name="Roboto Light" size="12.0"/>
                     </font>
                 </Button>
                 <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="84.0" promptText="type" GridPane.columnIndex="2">

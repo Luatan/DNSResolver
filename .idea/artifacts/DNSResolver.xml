@@ -6,7 +6,6 @@
         <option name="alias" value="DNSResolver" />
         <option name="appClass" value="com.dns.Main" />
         <option name="description" value="DNS Lookup Tool&#13;&#10;&#13;&#10;Icon by Icons8 - https://icons8.com" />
-        <option name="enabledSigning" value="true" />
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">
           <JavaFxApplicationIcons>

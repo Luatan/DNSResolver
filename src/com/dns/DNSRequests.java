@@ -6,6 +6,7 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 public class DNSRequests {
     private String hostname;
@@ -126,7 +127,16 @@ public class DNSRequests {
             case "MX":
                 return MX;
             case "SOA":
-                return SOA;
+                //Format:
+                String[] temp = SOA[0].split(" ");
+
+                temp[2] += "\t\t\t serialnumber";
+                temp[3] += "\t\t\t\t refresh (" + getTimeFromSeconds(Integer.valueOf(temp[3])) + ")";
+                temp[4] += "\t\t\t\t retry (" + getTimeFromSeconds(Integer.valueOf(temp[4])) + ")";
+                temp[5] += "\t\t\t expire (" + getTimeFromSeconds(Integer.valueOf(temp[5])) + ")";
+                temp[6] += "\t\t\t minimum (" + getTimeFromSeconds(Integer.valueOf(temp[6])) + ")";
+                System.out.println(Arrays.toString(temp));
+                return temp;
             case "NS":
                 return NS;
             case "SRV":
@@ -138,6 +148,14 @@ public class DNSRequests {
                 break;
         }
         return null;
+    }
+
+    private String getTimeFromSeconds(int time){
+        time = time/3600;
+        if (time > 1) {
+            return time + " hours";
+        }
+        return time + " hour";
     }
 
     public boolean isSubdomain(String host) {

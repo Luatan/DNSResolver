@@ -47,7 +47,7 @@ public class Controller implements Initializable {
     CheckBox chckBox;
 
     //List of Records
-    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "SOA", "SRV", "TXT");
+    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA");
     //initialize Variables for Domain Check
     String domainCheckResult = "";
     //To undo
@@ -178,7 +178,7 @@ public class Controller implements Initializable {
             if (type.equals("Any")) {
                 query = new DNSRequests(host, "*");
                 //Set Records
-                String[] requests = {"A", "AAAA", "CNAME", "MX", "SOA", "SRV", "TXT"};
+                String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
                 for (String request : requests) {
                     recordPutter(query.getRecords(request), request);
                 }

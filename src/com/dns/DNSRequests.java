@@ -129,13 +129,11 @@ public class DNSRequests {
             case "SOA":
                 //Format:
                 String[] temp = SOA[0].split(" ");
-
                 temp[2] += "\t\t\t serialnumber";
                 temp[3] += "\t\t\t\t refresh (" + getTimeFromSeconds(Integer.valueOf(temp[3])) + ")";
                 temp[4] += "\t\t\t\t retry (" + getTimeFromSeconds(Integer.valueOf(temp[4])) + ")";
                 temp[5] += "\t\t\t expire (" + getTimeFromSeconds(Integer.valueOf(temp[5])) + ")";
                 temp[6] += "\t\t\t minimum (" + getTimeFromSeconds(Integer.valueOf(temp[6])) + ")";
-                System.out.println(Arrays.toString(temp));
                 return temp;
             case "NS":
                 return NS;
@@ -151,11 +149,9 @@ public class DNSRequests {
     }
 
     private String getTimeFromSeconds(int time){
-        time = time/3600;
-        if (time > 1) {
-            return time + " hours";
-        }
-        return time + " hour";
+        int hours = time/3600;
+        int mins = time/60%60;
+        return ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins": "");
     }
 
     public boolean isSubdomain(String host) {

@@ -127,8 +127,8 @@ public class Controller implements Initializable {
         DNSRequests subdomainQuery = new DNSRequests();
         String host = txtDomain.getText();
         if (subdomainQuery.isSubdomain(host)) {
-            DNSOutput(subdomainQuery.getMainDomain(host), (String) typeBox.getValue());
             txtDomain.setText(subdomainQuery.getMainDomain(host));
+            DNSOutput(subdomainQuery.getMainDomain(host), (String)typeBox.getValue());
         }
     }
 

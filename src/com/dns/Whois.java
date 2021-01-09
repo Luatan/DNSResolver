@@ -49,4 +49,13 @@ public class Whois {
 
     }
 
+    // TODO: 09.01.2021 Read JSON from nic.ch for Whois
+    public void RDAPWhois(String domainName, String RDAPServer) {
+
+        //Get Json Document
+
+
+        // Only Output the Options we need
+    }
+
 }

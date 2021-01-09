@@ -53,7 +53,7 @@ public class DNSRequests {
     }
 
     private void setAllRecords() throws NamingException, UnknownHostException {
-        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SOA", "SRV", "TXT"};
+        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
         for (String record : recordsToUse) {
             setRecords(record);
         }
@@ -127,14 +127,7 @@ public class DNSRequests {
             case "MX":
                 return MX;
             case "SOA":
-                //Format:
-                String[] temp = SOA[0].split(" ");
-                temp[2] += "\t\t\t serialnumber";
-                temp[3] += "\t\t\t\t refresh (" + getTimeFromSeconds(Integer.valueOf(temp[3])) + ")";
-                temp[4] += "\t\t\t\t retry (" + getTimeFromSeconds(Integer.valueOf(temp[4])) + ")";
-                temp[5] += "\t\t\t expire (" + getTimeFromSeconds(Integer.valueOf(temp[5])) + ")";
-                temp[6] += "\t\t\t minimum (" + getTimeFromSeconds(Integer.valueOf(temp[6])) + ")";
-                return temp;
+                return (SOA == null) ? SOA : formatSOA(SOA);
             case "NS":
                 return NS;
             case "SRV":
@@ -146,6 +139,16 @@ public class DNSRequests {
                 break;
         }
         return null;
+    }
+
+    private String[] formatSOA(String[] list){
+        String[] new_list = list[0].split(" ");
+        new_list[2] += "\t\t serialnumber";
+        new_list[3] += "\t\t\t\t refresh (" + getTimeFromSeconds(Integer.parseInt(new_list[3])) + ")";
+        new_list[4] += "\t\t\t\t retry (" + getTimeFromSeconds(Integer.parseInt(new_list[4])) + ")";
+        new_list[5] += "\t\t\t expire (" + getTimeFromSeconds(Integer.parseInt(new_list[5])) + ")";
+        new_list[6] += "\t\t\t minimum (" + getTimeFromSeconds(Integer.parseInt(new_list[6])) + ")";
+        return new_list;
     }
 
     private String getTimeFromSeconds(int time){

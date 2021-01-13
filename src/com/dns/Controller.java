@@ -30,7 +30,7 @@ public class Controller implements Initializable {
     @FXML
     TextField txtDomain, txtFieldIP, txtFieldHost;
     @FXML
-    Button cpyRecords, btnStart, scollButton, btnWeb;
+    Button cpyRecords, btnStart, scrollButton, btnWeb;
     @FXML
     TextArea txtAreaRecords;
     @FXML
@@ -67,13 +67,13 @@ public class Controller implements Initializable {
 
     @FXML
     private void scrollUPButtonVisibility(ScrollEvent event) {
-        scollButton.setVisible(txtAreaRecords.getScrollTop() > 1);
+        scrollButton.setVisible(txtAreaRecords.getScrollTop() > 1);
     }
 
     @FXML
     private void scrollUPButton(ActionEvent event) {
         txtAreaRecords.setScrollTop(0);
-        scollButton.setVisible(false);
+        scrollButton.setVisible(false);
     }
 
     @FXML
@@ -219,7 +219,8 @@ public class Controller implements Initializable {
                 break;
             case "ch":
             case "li":
-                domainCheckResult = setDomainCheckResult(host, "whois.nic.ch");
+                //domainCheckResult = setDomainCheckResult(host, "whois.nic.ch");
+                hyperLbl.setVisible(false);
                 break;
             case "swiss":
                 domainCheckResult = setDomainCheckResult(host, "whois.nic.swiss");

@@ -195,7 +195,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </TextArea>
-            <Button fx:id="scollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top" visible="false">
+            <Button fx:id="scrollButton" cache="true" layoutX="601.0" layoutY="469.0" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" prefHeight="25.0" prefWidth="43.0" text="Top" visible="false">
                 <font>
                     <Font name="Roboto Light" size="13.0" />
                 </font>

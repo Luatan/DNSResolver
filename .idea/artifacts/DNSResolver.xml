@@ -14,6 +14,7 @@
         </option>
         <option name="keypass" value="RGF5b3JuaWdodDI=" />
         <option name="keystore" value="C:\Users\Simon Schmid\DNSResolver.keystore" />
+        <option name="nativeBundle" value="all" />
         <option name="selfSigning" value="false" />
         <option name="storepass" value="RGF5b3JuaWdodDI=" />
         <option name="title" value="DNSResolver" />

@@ -6,7 +6,6 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
 
 public class DNSRequests {
     private String hostname;
@@ -37,6 +36,7 @@ public class DNSRequests {
         } catch (UnknownHostException ex) {
             hostname = host;
             System.err.println("This host: " + host + " has no IP Address");
+            System.out.println(getIP());
         }
         setNameServer();
     }
@@ -60,7 +60,7 @@ public class DNSRequests {
     }
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
-        if (!hostname.equals("Unrecognized host")) {
+        if (!hostname.equals("Unrecognized host") && getIP() != null) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
                 // get all the DNS records for hostname

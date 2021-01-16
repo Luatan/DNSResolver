@@ -156,8 +156,7 @@ public class DNSRequests {
             case "TXT":
                 return TXT;
             case "PTR":
-                String[] PTR = {getPTRRecord(hostname)};
-                return PTR;
+                return new String[]{getPTRRecord(hostname)};
             default:
                 System.err.println("Type was not found - getRecords");
                 break;

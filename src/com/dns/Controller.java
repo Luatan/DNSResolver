@@ -144,7 +144,7 @@ public class Controller implements Initializable {
                 txtNS2.setText(records[1]);
                 txtNS3.setText(records[2]);
                 txtNS4.setText(records[3]);
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException ignored) {
 
             } catch (NullPointerException e) {
                 System.err.println("NullPointerException - Try catch NameServerDisplay");

@@ -6,6 +6,8 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DNSRequests {
     private String hostname;
@@ -32,11 +34,9 @@ public class DNSRequests {
             InetAddress inetHost = InetAddress.getByName(host);
             hostname = inetHost.getHostName();
             IP = inetHost.getHostAddress();
-
         } catch (UnknownHostException ex) {
             hostname = host;
             System.err.println("This host: " + host + " has no IP Address");
-            System.out.println(getIP());
         }
         setNameServer();
     }
@@ -47,7 +47,7 @@ public class DNSRequests {
             this.hostname = getMainDomain(hostname);
             setRecords("NS");
             this.hostname = origHost;
-        } else {
+        } else if (!isIPAdress(hostname)){
             setRecords("NS");
         }
     }
@@ -60,7 +60,9 @@ public class DNSRequests {
     }
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
-        if (!hostname.equals("Unrecognized host") && getIP() != null) {
+        if (type.matches("PTR")) {
+            //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
+        } else if (!hostname.equals("Unrecognized host") && getIP() != null) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
                 // get all the DNS records for hostname
@@ -68,20 +70,39 @@ public class DNSRequests {
                 if (type.matches("[*]")) {
                     setAllRecords();
                 } else {
-                    try {
-                        //Get the Records
-                        String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                        //Replace first char with the actual value instead of the type
-                        listRecords[0] = listRecords[0].split(": ", 2)[1];
-                        populateRecords(listRecords, type);
-                    } catch (Exception e) {
-                        //System.err.println("No Records for " + type + " in " + hostname + " found!");
+                        try {
+                            //Get the Records
+                            String[] listRecords = attributes.get(type).toString().split("(,)( )");
+                            //Replace first char with the actual value instead of the type
+                            listRecords[0] = listRecords[0].split(": ", 2)[1];
+                            populateRecords(listRecords, type);
+                        } catch (Exception e) {
+                            //System.err.println("No Records for " + type + " in " + hostname + " found!");
+                        }
                     }
-                }
             } catch (NameNotFoundException e) {
                 System.err.println("No DNS-Records Found in " + hostname + " at DNSRequests.java (SetRecords)");
             }
         }
+    }
+
+    private String getPTRRecord(String host){
+        try {
+            InetAddress inetHost = InetAddress.getByName(host);
+            if (isIPAdress(inetHost.getCanonicalHostName())) {
+                return "No PTR Record found!";
+            } else {
+                return inetHost.getCanonicalHostName();
+            }
+        } catch (UnknownHostException e) {
+            System.out.println("No PTR Record found");
+        }
+        return null;
+    }
+
+    private boolean isIPAdress(String host){
+        Matcher m = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(host);
+        return m.find();
     }
 
     private void populateRecords(String[] RecordList, String type) {
@@ -111,7 +132,7 @@ public class DNSRequests {
                 SRV = RecordList;
                 break;
             default:
-                System.err.println("type not found");
+                System.err.println("type not found - PopulateRecords");
                 break;
         }
     }
@@ -127,15 +148,18 @@ public class DNSRequests {
             case "MX":
                 return MX;
             case "SOA":
-                return (SOA == null) ? SOA : formatSOA(SOA);
+                return (SOA == null) ? null : formatSOA(SOA);
             case "NS":
                 return NS;
             case "SRV":
                 return SRV;
             case "TXT":
                 return TXT;
+            case "PTR":
+                String[] PTR = {getPTRRecord(hostname)};
+                return PTR;
             default:
-                System.err.println("Type was not found");
+                System.err.println("Type was not found - getRecords");
                 break;
         }
         return null;
@@ -158,7 +182,7 @@ public class DNSRequests {
     }
 
     public boolean isSubdomain(String host) {
-        return host.split("[.]", 3).length > 2;
+        return host.split("[.]", 3).length > 2 && !isIPAdress(host);
     }
 
     public String getExtension(String hostname) {

@@ -47,7 +47,7 @@ public class Controller implements Initializable {
     CheckBox chckBox;
 
     //List of Records
-    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA");
+    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Domain Check
     String domainCheckResult = "";
     //To undo

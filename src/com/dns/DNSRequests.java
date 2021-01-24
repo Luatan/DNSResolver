@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class DNSRequests {
     private String hostname;
     private String IP;
+    private String[] Messages;
     private String[] A;
     private String[] AAAA;
     private String[] CNAME;
@@ -62,7 +63,7 @@ public class DNSRequests {
     private void setRecords(String type) throws NamingException, UnknownHostException {
         if (type.matches("PTR")) {
             //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
-        } else if (!hostname.equals("Unrecognized host") && getIP() != null) {
+        } else if (!hostname.equals("Unrecognized host")) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
                 // get all the DNS records for hostname
@@ -82,6 +83,8 @@ public class DNSRequests {
                     }
             } catch (NameNotFoundException e) {
                 System.err.println("No DNS-Records Found in " + hostname + " at DNSRequests.java (SetRecords)");
+                String[] MessageList = {"No DNS-Records Found for " + hostname};
+                populateRecords(MessageList, "Messages");
             }
         }
     }
@@ -131,8 +134,11 @@ public class DNSRequests {
             case "SRV":
                 SRV = RecordList;
                 break;
+            case "Messages":
+                Messages = RecordList;
+                break;
             default:
-                System.err.println("type not found - PopulateRecords");
+                System.err.println("type was not found - PopulateRecords");
                 break;
         }
     }
@@ -157,6 +163,8 @@ public class DNSRequests {
                 return TXT;
             case "PTR":
                 return new String[]{getPTRRecord(hostname)};
+            case "Messages":
+                return Messages;
             default:
                 System.err.println("Type was not found - getRecords");
                 break;

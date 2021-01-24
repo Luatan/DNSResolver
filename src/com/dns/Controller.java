@@ -153,7 +153,11 @@ public class Controller implements Initializable {
     }
 
     private void recordPutter(String[] list, String type) {
-        if (list != null) {
+        if (list != null && type.equals("Messages")) {
+            for (String rec : list) {
+                txtAreaRecords.appendText("\t" + rec + "\n");
+            }
+        }else if (list != null) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
                 for (String rec : list) {
@@ -179,11 +183,13 @@ public class Controller implements Initializable {
                 query = new DNSRequests(host, "*");
                 //Set Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
+                recordPutter(query.getRecords("Messages"), "Messages");
                 for (String request : requests) {
                     recordPutter(query.getRecords(request), request);
                 }
             } else {
                 query = new DNSRequests(host, type);
+                recordPutter(query.getRecords("Messages"), "Messages");
                 recordPutter(query.getRecords(type), type);
                 //setReachableCircle(query.getReachable());
             }

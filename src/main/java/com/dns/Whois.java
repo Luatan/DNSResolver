@@ -1,6 +1,7 @@
 package com.dns;
 
-import org.apache.commons.net.WhoisClient;
+
+import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;
 
@@ -47,15 +48,6 @@ public class Whois {
 
         return "\nDomain Check: \n" + result.toString();
 
-    }
-
-    // TODO: 09.01.2021 Read JSON from nic.ch for Whois
-    public void RDAPWhois(String domainName, String RDAPServer) {
-
-        //Get Json Document
-
-
-        // Only Output the Options we need
     }
 
 }

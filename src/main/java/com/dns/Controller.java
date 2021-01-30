@@ -20,6 +20,7 @@ import javax.naming.NamingException;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
@@ -225,8 +226,16 @@ public class Controller implements Initializable {
                 break;
             case "ch":
             case "li":
-                //domainCheckResult = setDomainCheckResult(host, "whois.nic.ch");
-                hyperLbl.setVisible(false);
+                registryLink.setText("Click here for a Domain Check");
+                hyperLbl.setVisible(true);
+                API api = null;
+                try {
+                    api = new API("https://rdap.nic.ch/domain/", host);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                domainCheckResult = api.buildString();
+
                 break;
             case "swiss":
                 domainCheckResult = setDomainCheckResult(host, "whois.nic.swiss");

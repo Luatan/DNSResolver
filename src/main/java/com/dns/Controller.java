@@ -205,6 +205,7 @@ public class Controller implements Initializable {
 
     private void getRegistrar(String host) {
         DNSRequests query = new DNSRequests();
+        domainCheckResult = "";
 
         if (query.isSubdomain(host)) {
             host = query.getMainDomain(host);
@@ -226,16 +227,7 @@ public class Controller implements Initializable {
                 break;
             case "ch":
             case "li":
-                registryLink.setText("Click here for a Domain Check");
-                hyperLbl.setVisible(true);
-                API api = null;
-                try {
-                    api = new API("https://rdap.nic.ch/domain/", host);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                domainCheckResult = api.buildString();
-
+                domainCheckResult = setDomainCheckResultAPI("https://rdap.nic.ch/domain/", host);
                 break;
             case "swiss":
                 domainCheckResult = setDomainCheckResult(host, "whois.nic.swiss");
@@ -255,5 +247,24 @@ public class Controller implements Initializable {
         registryLink.setText("Click here for a Domain Check");
         hyperLbl.setVisible(true);
         return new Whois().getWhois(host, whoisServer);
+    }
+
+    private String setDomainCheckResultAPI(String URL, String domain){
+        API api = null;
+        try {
+            api = new API(URL, domain);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert api != null;
+        if (api.domainExists()) {
+            registryLink.setText("Click here for a Domain Check");
+            hyperLbl.setVisible(true);
+            return api.getNicchValues();
+        } else {
+            registryLink.setText("");
+            hyperLbl.setVisible(false);
+        }
+        return "";
     }
 }

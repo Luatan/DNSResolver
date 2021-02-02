@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.web.WebView?>
-<VBox prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.251" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.dns.Controller">
+<?import javafx.scene.web.*?>
+
+<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dns.Controller">
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
-            <Separator layoutX="508.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="32.0"/>
+            <Separator layoutX="508.0" orientation="VERTICAL" prefHeight="63.0" prefWidth="25.0" />
             <GridPane layoutX="10.0" prefHeight="44.0" prefWidth="666.0">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0"/>
-                    <ColumnConstraints/>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="87.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="245.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="90.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="89.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="134.0" />
+                    <ColumnConstraints />
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
@@ -32,22 +33,20 @@
                         <Font name="Roboto Light" size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtDomain" onAction="#startSearchButton" prefHeight="25.0" prefWidth="179.0"
-                           GridPane.columnIndex="1">
+                <TextField id="input" fx:id="txtDomain" onAction="#startSearchButton" prefHeight="25.0" prefWidth="179.0" GridPane.columnIndex="1">
                     <font>
-                        <Font name="Roboto Light" size="12.0"/>
+                        <Font name="Roboto Light" size="12.0" />
                     </font>
                 </TextField>
-                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton"
-                        prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton" prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
                     <opaqueInsets>
-                        <Insets/>
+                        <Insets />
                     </opaqueInsets>
                     <GridPane.margin>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </GridPane.margin>
                     <font>
-                        <Font name="Roboto Light" size="12.0"/>
+                        <Font name="Roboto Light" size="12.0" />
                     </font>
                 </Button>
                 <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="84.0" promptText="type" GridPane.columnIndex="2">
@@ -97,10 +96,9 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <TextField fx:id="txtFieldIP" editable="false" prefHeight="20.0" prefWidth="221.0"
-                               style="-fx-background-color: transparent; -fx-cursor: none;">
+                    <TextField fx:id="txtFieldIP" editable="false" prefHeight="20.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
                         <font>
-                            <Font name="Roboto Light" size="13.0"/>
+                            <Font name="Roboto Light" size="13.0" />
                         </font>
                     </TextField>
                 </graphic>
@@ -219,33 +217,35 @@
                             <Font name="Roboto Light" size="13.0" />
                         </font>
                         <cursor>
-                            <Cursor fx:constant="DEFAULT"/>
+                            <Cursor fx:constant="DEFAULT" />
                         </cursor>
                     </Hyperlink>
                 </graphic>
             </Label>
-            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView"
-                    prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
                 <font>
-                    <Font name="Roboto Light" size="12.0"/>
+                    <Font name="Roboto Light" size="12.0" />
                 </font>
             </Button>
-            <WebView fx:id="web" layoutX="5.0" layoutY="122.0" minHeight="-1.0" minWidth="-1.0" prefHeight="396.0"
-                     prefWidth="666.0" visible="false" AnchorPane.bottomAnchor="41.0"/>
-            <CheckBox fx:id="chckBox" alignment="CENTER" layoutX="352.0" layoutY="40.0" mnemonicParsing="false"
-                      nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="156.0" text="Show Empty Records">
+            <WebView fx:id="web" layoutX="5.0" layoutY="122.0" minHeight="-1.0" minWidth="-1.0" prefHeight="396.0" prefWidth="666.0" visible="false" AnchorPane.bottomAnchor="41.0" />
+            <CheckBox fx:id="chckBox" alignment="CENTER" layoutX="352.0" layoutY="40.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="156.0" text="Show Empty Records">
                 <font>
-                    <Font name="Roboto Light" size="12.0"/>
+                    <Font name="Roboto Light" size="12.0" />
                 </font>
             </CheckBox>
             <Label contentDisplay="RIGHT" layoutX="15.0" layoutY="42.0" text="Server reachable (A): " visible="false">
                 <graphic>
-                    <Circle fx:id="reachable" fill="#ff0a0a00" radius="5.0" stroke="#a69d9d00" strokeType="INSIDE"/>
+                    <Circle fx:id="reachable" fill="#ff0a0a00" radius="5.0" stroke="#a69d9d00" strokeType="INSIDE" />
                 </graphic>
                 <font>
-                    <Font name="Roboto Light" size="12.0"/>
+                    <Font name="Roboto Light" size="12.0" />
                 </font>
             </Label>
+         <ImageView fx:id="moon" fitHeight="25.0" fitWidth="25.0" layoutX="632.0" layoutY="36.0" onMouseClicked="#changeTheme" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@moon_light.png" />
+            </image>
+         </ImageView>
         </children>
     </AnchorPane>
 </VBox>

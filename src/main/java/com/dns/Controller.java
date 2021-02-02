@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.shape.Circle;
@@ -47,6 +48,8 @@ public class Controller implements Initializable {
     Circle reachable;
     @FXML
     CheckBox chckBox;
+    @FXML
+    ImageView moon;
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
@@ -65,6 +68,11 @@ public class Controller implements Initializable {
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
+    }
+
+    @FXML
+    private void changeTheme(MouseEvent event){
+        Main.changeTheme();
     }
 
     @FXML

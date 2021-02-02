@@ -1,0 +1,72 @@
+.button {
+    -fx-background-color : #393E41;
+    -fx-text-fill : white;
+}
+
+.root {
+    -fx-background-color : #1E2019;
+}
+
+.label {
+    -fx-text-fill : white;
+}
+
+.separator .line {
+  -fx-border-color: #393E41 ;
+}
+
+.text-area {
+    -fx-text-fill: white;
+    -fx-background-color: #1E2019;
+}
+
+.text-area .content{
+  -fx-background-color: #1E2019;
+
+}
+
+.text-field {
+    -fx-text-fill: #393E41;
+    -fx-text-fill: white;
+}
+
+.combo-box {
+    -fx-background-color: #393E41;
+
+}
+.combo-box .cell{
+    -fx-background-color: #393E41;
+    -fx-text-fill: white;
+}
+#input {
+    -fx-background-color: #393E41;
+    -fx-border-color: black;
+    -fx-text-fill: white;
+}
+
+.check-box {
+    -fx-text-fill: white;
+}
+
+.check-box .box {
+-fx-border-radius:3px;
+-fx-background-color: #393E41;
+-fx-border-color:black;
+
+}
+
+.check-box .content {
+    -fx-text-fill: white;
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: #393E41;
+
+}
+
+.check-box:selected .box {
+
+-fx-background-color: #28a3f4;
+}

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -250,17 +251,13 @@ public class Controller implements Initializable {
     }
 
     private String setDomainCheckResultAPI(String URL, String domain){
-        API api = null;
-        try {
-            api = new API(URL, domain);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert api != null;
+        API api = new API(URL, domain);
+
         if (api.domainExists()) {
             registryLink.setText("Click here for a Domain Check");
             hyperLbl.setVisible(true);
-            return api.getNicchValues();
+            return api.getNicValues();
+
         } else {
             registryLink.setText("");
             hyperLbl.setVisible(false);

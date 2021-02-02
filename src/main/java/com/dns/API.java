@@ -17,20 +17,20 @@ public class API {
     private String resDomain;
     private String resRegistrar;
     private String[] resAddress;
-    private String response;
+    private final String response;
     private int responseCode;
     private String resStatus;
     private String resRegistrationDate;
     private String [] resNSdomain;
     private String [] resNSIP;
 
-    API(String URL, String domain) throws IOException {
+    API(String URL, String domain) {
         setURL(URL);
         setDomain(domain);
         response = GETReq();
     }
 
-    public String GETReq() throws IOException{
+    public String GETReq() {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(URL + domain).build();
         try (Response response = client.newCall(request).execute()) {
@@ -43,14 +43,17 @@ public class API {
                 exists = false;
                 return null;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     public boolean domainExists(){
         return exists;
     }
 
-    public String getNicchValues(){
+    public String getNicValues(){
         //Get Whole Object which icludes all Arrays
         if (response != null && responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
             JSONObject jsonObj = new JSONObject(response);
@@ -59,22 +62,26 @@ public class API {
             resDomain = jsonObj.getString("ldhName");
 
             //get into VcardArray -> vcard
-            JSONArray vcard = jsonObj.getJSONArray("entities").getJSONObject(0).getJSONArray("vcardArray").getJSONArray(1);
+            JSONArray checkVcard = jsonObj.getJSONArray("entities");
+            if (checkVcard.length() > 0) {
+                JSONArray vcard = jsonObj.getJSONArray("entities").getJSONObject(0).getJSONArray("vcardArray").getJSONArray(1);
 
-            //get registrar
-            resRegistrar = (String) vcard.getJSONArray(1).get(3);
+                //get registrar
+                resRegistrar = (String) vcard.getJSONArray(1).get(3);
 
-            //get Adress add loop
-            JSONArray adr = vcard.getJSONArray(2).getJSONArray(3);
-            String[] address = new String[adr.length()-2];
-            int y = -1;
-            for (int i = 0; i < vcard.getJSONArray(2).getJSONArray(3).length(); i++) {
-                if (!adr.get(i).equals("")) {
-                    y++;
-                    address[y] = (String) adr.get(i);
+
+                //get Adress add loop
+                JSONArray adr = vcard.getJSONArray(2).getJSONArray(3);
+                String[] address = new String[adr.length()-2];
+                int y = -1;
+                for (int i = 0; i < vcard.getJSONArray(2).getJSONArray(3).length(); i++) {
+                    if (!adr.get(i).equals("")) {
+                        y++;
+                        address[y] = (String) adr.get(i);
+                    }
                 }
+                resAddress = address;
             }
-            resAddress = address;
 
             JSONArray status = jsonObj.getJSONArray("status");
             resStatus = status.toString().replaceAll("[^\\w]", "");
@@ -122,13 +129,21 @@ public class API {
 
     private String convertResultNic(){
         //Address
-        String addressString = "Adresse: \n" + resAddress[0] + "\n" + resAddress[3] + "-" + resAddress[2] + " " + resAddress[1];
+        String addressString;
+        if (resAddress != null) {
+            addressString = "Address: \n" + resAddress[0] + "\n" + resAddress[3] + "-" + resAddress[2] + " " + resAddress[1];
+        } else {
+            addressString = "No Address found";
+        }
+
 
         //Nameservers
-        StringBuilder nsString = new StringBuilder("\nNameserver: \n");
+        StringBuilder nsString = new StringBuilder("\nNameservers: \n");
         for (int i = 0; i<resNSdomain.length; i++) {
-            nsString.append("NS ").append(i + 1).append(": ");
-            nsString.append(resNSdomain[i]).append("\t");
+            if (resNSdomain[i] != null) {
+                nsString.append("NS ").append(i + 1).append(": ");
+                nsString.append(resNSdomain[i]).append("\t");
+            }
             if (resNSIP[i] != null) {
                 nsString.append("IP: ");
                 nsString.append(resNSIP[i]).append("\n");

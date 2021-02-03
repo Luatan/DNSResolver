@@ -43,7 +43,6 @@ public class SettingsHandler {
 
     private void readJSONSettings(){
         File file = new File(path);
-        System.out.println(path);
         String content = "";
         try {
             content = FileUtils.readFileToString(file, "utf-8");
@@ -53,6 +52,38 @@ public class SettingsHandler {
         JSONObject readObj = new JSONObject(content);
         darkmode = readObj.getBoolean("darkmode");
         emptyRecords = readObj.getBoolean("ShowEmptyRecords");
+    }
+
+    private void changeJSONFile(JSONObject object) {
+        object.put("darkmode", darkmode);
+        object.put("ShowEmptyRecords", emptyRecords);
+        try {
+            FileWriter newfile = new FileWriter(path);
+            newfile.write(object.toString(4));
+            newfile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void changeValueJSON(String key, boolean value){
+        File file = new File(path);
+        String content = "";
+        try {
+            content = FileUtils.readFileToString(file, "utf-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject object = new JSONObject(content);
+        object.put(key, value);
+
+        try {
+            FileWriter newfile = new FileWriter(path);
+            newfile.write(object.toString(4));
+            newfile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean getDarkmode() {

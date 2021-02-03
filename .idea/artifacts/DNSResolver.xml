@@ -33,6 +33,7 @@
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.0" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" />
           <element id="library" level="project" name="Maven: org.json:json:20201115" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.8.0" />
         </element>
       </element>
     </root>

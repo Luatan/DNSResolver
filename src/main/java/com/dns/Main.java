@@ -1,7 +1,6 @@
 package com.dns;
 
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,13 +12,15 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public static boolean ThemeDark = true;
+    private static boolean ThemeDark = true;
+    private static boolean emptyRecordSetting = false;
     private static Parent root = null;
     private static Scene scene = null;
     private static Stage stage = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        loadSettings();
         root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
@@ -30,6 +31,12 @@ public class Main extends Application {
         }
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void loadSettings() {
+        SettingsHandler settings = new SettingsHandler();
+        ThemeDark = settings.getDarkmode();
+        emptyRecordSetting = settings.getEmptyRecords();
     }
 
     public static void changeTheme(){

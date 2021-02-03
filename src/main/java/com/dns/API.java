@@ -11,23 +11,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class API {
-    private String URL;
-    private String domain;
+    private final String RESPONSE;
     private boolean exists;
+    private int responseCode;
+    private String domain;
     private String resDomain;
     private String resRegistrar;
-    private String[] resAddress;
-    private final String response;
-    private int responseCode;
-    private String resStatus;
     private String resRegistrationDate;
-    private String [] resNSdomain;
+    private String resStatus;
+    private String URL;
+    private String[] resAddress;
+    private String [] resNSDomain;
     private String [] resNSIP;
 
     API(String URL, String domain) {
         setURL(URL);
         setDomain(domain);
-        response = GETReq();
+        RESPONSE = GETReq();
     }
 
     public String GETReq() {
@@ -55,8 +55,8 @@ public class API {
 
     public String getNicValues(){
         //Get Whole Object which icludes all Arrays
-        if (response != null && responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
-            JSONObject jsonObj = new JSONObject(response);
+        if (RESPONSE != null && responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
+            JSONObject jsonObj = new JSONObject(RESPONSE);
 
             //get Domain name
             resDomain = jsonObj.getString("ldhName");
@@ -96,11 +96,11 @@ public class API {
             }
 
             JSONArray nameservers = jsonObj.getJSONArray("nameservers");
-            resNSdomain = new String[nameservers.length()];
+            resNSDomain = new String[nameservers.length()];
             resNSIP = new String[nameservers.length()];
             for (int i = 0; i<nameservers.length(); i++) {
                 JSONObject ns = nameservers.getJSONObject(i);
-                resNSdomain[i] = ns.getString("ldhName");
+                resNSDomain[i] = ns.getString("ldhName");
                 if (ns.getJSONObject("ipAddresses").length() > 0) {
                     resNSIP[i] = ns.getJSONObject("ipAddresses").getString("v4");
                 }
@@ -139,10 +139,10 @@ public class API {
 
         //Nameservers
         StringBuilder nsString = new StringBuilder("\nNameservers: \n");
-        for (int i = 0; i<resNSdomain.length; i++) {
-            if (resNSdomain[i] != null) {
+        for (int i = 0; i< resNSDomain.length; i++) {
+            if (resNSDomain[i] != null) {
                 nsString.append("NS ").append(i + 1).append(": ");
-                nsString.append(resNSdomain[i]).append("\t");
+                nsString.append(resNSDomain[i]).append("\t");
             }
             if (resNSIP[i] != null) {
                 nsString.append("IP: ");

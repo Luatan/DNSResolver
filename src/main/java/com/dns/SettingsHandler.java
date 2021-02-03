@@ -14,42 +14,27 @@ public class SettingsHandler {
 
     SettingsHandler() {
         if (!checkExistingFiles()) {
-            writeJSONSettingsFile();
+            writeDefaultSettings();
         }
         readJSONSettings();
     }
 
-    private boolean checkExistingFiles(){
-        File file = new File(path);
-        return file.exists();
-    }
-
-    private void writeJSONSettingsFile() {
+    private void writeDefaultSettings() {
         //Create Json Object
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("darkmode", false);
         jsonObj.put("language", "eng");
         jsonObj.put("ShowEmptyRecords", false);
 
-        try {
-            FileWriter file = new FileWriter(path);
-            file.write(jsonObj.toString(4));
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        write(jsonObj);
         //System.out.println("JSON file created: " + jsonObj);
     }
 
     private void readJSONSettings(){
-        File file = new File(path);
-        String content = "";
-        try {
-            content = FileUtils.readFileToString(file, "utf-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String content = read();
+
         JSONObject readObj = new JSONObject(content);
+
         darkmode = readObj.getBoolean("darkmode");
         emptyRecords = readObj.getBoolean("ShowEmptyRecords");
     }
@@ -57,6 +42,20 @@ public class SettingsHandler {
     private void changeJSONFile(JSONObject object) {
         object.put("darkmode", darkmode);
         object.put("ShowEmptyRecords", emptyRecords);
+        write(object);
+    }
+
+    public void changeValueJSON(String key, boolean value){
+        String content = read();
+
+        JSONObject object = new JSONObject(content);
+        object.put(key, value);
+        //Write File
+        write(object);
+
+    }
+
+    private void write(JSONObject object){
         try {
             FileWriter newfile = new FileWriter(path);
             newfile.write(object.toString(4));
@@ -65,25 +64,21 @@ public class SettingsHandler {
             e.printStackTrace();
         }
     }
-    public void changeValueJSON(String key, boolean value){
+
+    private String read(){
         File file = new File(path);
-        String content = "";
         try {
-            content = FileUtils.readFileToString(file, "utf-8");
+            return FileUtils.readFileToString(file, "utf-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
+    }
 
-        JSONObject object = new JSONObject(content);
-        object.put(key, value);
 
-        try {
-            FileWriter newfile = new FileWriter(path);
-            newfile.write(object.toString(4));
-            newfile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private boolean checkExistingFiles(){
+        File file = new File(path);
+        return file.exists();
     }
 
     public boolean getDarkmode() {

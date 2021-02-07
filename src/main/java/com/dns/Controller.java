@@ -48,6 +48,7 @@ public class Controller implements Initializable {
     Circle reachable;
     @FXML
     CheckBox chckBox;
+    boolean checkBoxSetting = false;
     @FXML
     ImageView moon;
 
@@ -62,12 +63,18 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
         typeBox.setValue("Any");
+        chckBox.setSelected(Main.emptyRecordSetting);
     }
 
     @FXML
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
+    }
+
+    @FXML
+    private void changeEmptyRecordsSetting(MouseEvent event){
+        Main.setEmptyRecordSetting();
     }
 
     @FXML

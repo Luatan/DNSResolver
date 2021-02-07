@@ -18,16 +18,15 @@ public class Main extends Application {
         launch(args);
     }
     private static boolean ThemeDark = true;
-    private static boolean emptyRecordSetting = false;
-    private static Parent root = null;
+    public static boolean emptyRecordSetting = false;
     private static Scene scene = null;
     private static Stage stage = null;
-    private static SettingsHandler settings = new SettingsHandler();
+    private static final SettingsHandler settings = new SettingsHandler();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         loadSettings();
-        root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("/Icon.png")));
@@ -62,5 +61,14 @@ public class Main extends Application {
         settings.changeValueJSON("darkmode", ThemeDark);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void setEmptyRecordSetting(){
+        if (emptyRecordSetting) {
+            settings.changeValueJSON("ShowEmptyRecords", false);
+        } else {
+            settings.changeValueJSON("ShowEmptyRecords", true);
+        }
+
     }
 }

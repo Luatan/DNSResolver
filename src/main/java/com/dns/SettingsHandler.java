@@ -10,7 +10,7 @@ import java.io.IOException;
 public class SettingsHandler {
     private boolean emptyRecords;
     private boolean darkmode;
-    private String path = System.getProperty("user.dir") + "/settings.json";
+    private final String SETTINGSPATH = System.getProperty("user.dir") + "/settings.json";
 
     SettingsHandler() {
         if (!checkExistingFiles()) {
@@ -27,7 +27,6 @@ public class SettingsHandler {
         jsonObj.put("ShowEmptyRecords", false);
 
         write(jsonObj);
-        //System.out.println("JSON file created: " + jsonObj);
     }
 
     private void readJSONSettings(){
@@ -57,7 +56,7 @@ public class SettingsHandler {
 
     private void write(JSONObject object){
         try {
-            FileWriter newfile = new FileWriter(path);
+            FileWriter newfile = new FileWriter(SETTINGSPATH);
             newfile.write(object.toString(4));
             newfile.close();
         } catch (IOException e) {
@@ -66,7 +65,7 @@ public class SettingsHandler {
     }
 
     private String read(){
-        File file = new File(path);
+        File file = new File(SETTINGSPATH);
         try {
             return FileUtils.readFileToString(file, "utf-8");
         } catch (IOException e) {
@@ -77,7 +76,7 @@ public class SettingsHandler {
 
 
     private boolean checkExistingFiles(){
-        File file = new File(path);
+        File file = new File(SETTINGSPATH);
         return file.exists();
     }
 

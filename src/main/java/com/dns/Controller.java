@@ -71,8 +71,6 @@ public class Controller implements Initializable {
         addHistory();
     }
 
-
-
     @FXML
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);

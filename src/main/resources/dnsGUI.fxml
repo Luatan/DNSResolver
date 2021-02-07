@@ -33,18 +33,21 @@
                         <Font name="Roboto Light" size="13.0" />
                     </font>
                 </Label>
-                <TextField id="input" fx:id="txtDomain" onAction="#startSearchButton" prefHeight="25.0" prefWidth="251.0" GridPane.columnIndex="1">
+                <TextField id="input" fx:id="txtDomain" onAction="#startSearchButton" prefHeight="2.0" prefWidth="234.0" GridPane.columnIndex="1">
                     <font>
                         <Font name="Roboto Light" size="12.0" />
                     </font>
                <GridPane.margin>
-                  <Insets right="33.0" />
+                  <Insets right="30.0" />
                </GridPane.margin>
                 </TextField>
-            <MenuButton fx:id="historyButton" alignment="TOP_LEFT" graphicTextGap="1.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="21.0" prefWidth="27.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <MenuButton fx:id="historyButton" alignment="TOP_LEFT" graphicTextGap="1.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="6.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <GridPane.margin>
                   <Insets left="230.0" />
                </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </MenuButton>
                 <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton" prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
                     <opaqueInsets>

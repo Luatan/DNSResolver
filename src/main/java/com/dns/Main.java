@@ -1,16 +1,11 @@
 package com.dns;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.util.function.ToDoubleBiFunction;
 
 public class Main extends Application {
 
@@ -42,8 +37,8 @@ public class Main extends Application {
     }
 
     private void loadSettings() {
-        ThemeDark = settings.getDarkmode();
-        emptyRecordSetting = settings.getEmptyRecords();
+        ThemeDark = settings.getJSONValue("darkmode", "settings.json");
+        emptyRecordSetting = settings.getJSONValue("ShowEmptyRecords", "settings.json");
     }
 
     public static void changeTheme(){
@@ -58,16 +53,16 @@ public class Main extends Application {
         } else {
             scene.getStylesheets().remove("/style.css");
         }
-        settings.changeValueJSON("darkmode", ThemeDark);
+        settings.editSettingsJSON("darkmode", ThemeDark);
         stage.setScene(scene);
         stage.show();
     }
 
     public static void setEmptyRecordSetting(){
         if (emptyRecordSetting) {
-            settings.changeValueJSON("ShowEmptyRecords", false);
+            settings.editSettingsJSON("ShowEmptyRecords", false);
         } else {
-            settings.changeValueJSON("ShowEmptyRecords", true);
+            settings.editSettingsJSON("ShowEmptyRecords", true);
         }
 
     }

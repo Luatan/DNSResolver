@@ -3,11 +3,12 @@ package com.dns;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
@@ -22,7 +23,6 @@ import javax.naming.NamingException;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
@@ -51,6 +51,9 @@ public class Controller implements Initializable {
     boolean checkBoxSetting = false;
     @FXML
     ImageView moon;
+    @FXML
+    MenuButton historyButton;
+    SettingsHandler history = new SettingsHandler();
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
@@ -64,12 +67,45 @@ public class Controller implements Initializable {
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.emptyRecordSetting);
+
+        addHistory();
     }
+
+
 
     @FXML
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
+        //add Domain to history
+        history.addDomainToHistory(txtDomain.getText());
+        //add item to JSON
+        addItemsToHistoryMenu(txtDomain.getText());
+    }
+
+    private void addItemsToHistoryMenu(String domain){
+        MenuItem item = new MenuItem(domain);
+        historyButton.getItems().add(item);
+
+        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e)
+            {
+                txtDomain.setText(((MenuItem)e.getSource()).getText());
+            }
+        };
+        item.setOnAction(event1);
+
+        if (historyButton.getItems().size() >= 10) {
+            historyButton.getItems().clear();
+            history.writeDefaultHistory();
+            addHistory();
+        }
+    }
+    private void addHistory() {
+        String[] historyList = history.readHistory();
+        for (int i=0; i<historyList.length;i++) {
+            addItemsToHistoryMenu(historyList[i]);
+        }
     }
 
     @FXML

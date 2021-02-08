@@ -12,6 +12,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     private static boolean ThemeDark = true;
     public static boolean emptyRecordSetting = false;
     private static Scene scene = null;
@@ -41,13 +42,9 @@ public class Main extends Application {
         emptyRecordSetting = settings.getJSONValue("ShowEmptyRecords", "settings.json");
     }
 
-    public static void changeTheme(){
-        if (ThemeDark){
-            ThemeDark = false;
-        } else {
-            ThemeDark = true;
-        }
-        
+    public static void changeTheme() {
+        ThemeDark = !ThemeDark;
+
         if (ThemeDark) {
             scene.getStylesheets().add("/style.css");
         } else {
@@ -58,12 +55,8 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void setEmptyRecordSetting(){
-        if (emptyRecordSetting) {
-            settings.editSettingsJSON("ShowEmptyRecords", false);
-        } else {
-            settings.editSettingsJSON("ShowEmptyRecords", true);
-        }
+    public static void setEmptyRecordSetting() {
+        settings.editSettingsJSON("ShowEmptyRecords", !emptyRecordSetting);
 
     }
 }

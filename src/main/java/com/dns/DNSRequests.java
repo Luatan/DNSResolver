@@ -48,7 +48,7 @@ public class DNSRequests {
             this.hostname = getMainDomain(hostname);
             setRecords("NS");
             this.hostname = origHost;
-        } else if (!isIPAdress(hostname)){
+        } else if (!isIPAdress(hostname)) {
             setRecords("NS");
         }
     }
@@ -71,16 +71,16 @@ public class DNSRequests {
                 if (type.matches("[*]")) {
                     setAllRecords();
                 } else {
-                        try {
-                            //Get the Records
-                            String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                            //Replace first char with the actual value instead of the type
-                            listRecords[0] = listRecords[0].split(": ", 2)[1];
-                            populateRecords(listRecords, type);
-                        } catch (Exception e) {
-                            //System.err.println("No Records for " + type + " in " + hostname + " found!");
-                        }
+                    try {
+                        //Get the Records
+                        String[] listRecords = attributes.get(type).toString().split("(,)( )");
+                        //Replace first char with the actual value instead of the type
+                        listRecords[0] = listRecords[0].split(": ", 2)[1];
+                        populateRecords(listRecords, type);
+                    } catch (Exception e) {
+                        //System.err.println("No Records for " + type + " in " + hostname + " found!");
                     }
+                }
             } catch (NameNotFoundException e) {
                 System.err.println("No DNS-Records Found in " + hostname + " at DNSRequests.java (SetRecords)");
                 String[] MessageList = {"No DNS-Records Found for " + hostname};
@@ -89,7 +89,7 @@ public class DNSRequests {
         }
     }
 
-    private String getPTRRecord(String host){
+    private String getPTRRecord(String host) {
         try {
             InetAddress inetHost = InetAddress.getByName(host);
             if (isIPAdress(inetHost.getCanonicalHostName())) {
@@ -103,7 +103,7 @@ public class DNSRequests {
         return null;
     }
 
-    private boolean isIPAdress(String host){
+    private boolean isIPAdress(String host) {
         Matcher m = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(host);
         return m.find();
     }
@@ -172,7 +172,7 @@ public class DNSRequests {
         return null;
     }
 
-    private String[] formatSOA(String[] list){
+    private String[] formatSOA(String[] list) {
         String[] new_list = list[0].split(" ");
         new_list[2] += "\t\t serialnumber";
         new_list[3] += "\t\t\t\t refresh (" + getTimeFromSeconds(Integer.parseInt(new_list[3])) + ")";
@@ -182,10 +182,10 @@ public class DNSRequests {
         return new_list;
     }
 
-    private String getTimeFromSeconds(int time){
-        int hours = time/3600;
-        int mins = time/60%60;
-        return ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins": "");
+    private String getTimeFromSeconds(int time) {
+        int hours = time / 3600;
+        int mins = time / 60 % 60;
+        return ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins" : "");
     }
 
     public boolean isSubdomain(String host) {

@@ -81,14 +81,13 @@ public class Controller implements Initializable {
         addItemsToHistoryMenu(txtDomain.getText());
     }
 
-    private void addItemsToHistoryMenu(String domain){
+    private void addItemsToHistoryMenu(String domain) {
         MenuItem item = new MenuItem(domain);
         historyButton.getItems().add(item);
 
         EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e)
-            {
-                txtDomain.setText(((MenuItem)e.getSource()).getText());
+            public void handle(ActionEvent e) {
+                txtDomain.setText(((MenuItem) e.getSource()).getText());
             }
         };
         item.setOnAction(event1);
@@ -99,20 +98,21 @@ public class Controller implements Initializable {
             addHistory();
         }
     }
+
     private void addHistory() {
         String[] historyList = history.readHistory();
-        for (int i=historyList.length-1; i>=0;i--) {
+        for (int i = historyList.length - 1; i >= 0; i--) {
             addItemsToHistoryMenu(historyList[i]);
         }
     }
 
     @FXML
-    private void changeEmptyRecordsSetting(MouseEvent event){
+    private void changeEmptyRecordsSetting(MouseEvent event) {
         Main.setEmptyRecordSetting();
     }
 
     @FXML
-    private void changeTheme(MouseEvent event){
+    private void changeTheme(MouseEvent event) {
         Main.changeTheme();
     }
 
@@ -179,7 +179,7 @@ public class Controller implements Initializable {
         String host = txtDomain.getText();
         if (subdomainQuery.isSubdomain(host)) {
             txtDomain.setText(subdomainQuery.getMainDomain(host));
-            DNSOutput(subdomainQuery.getMainDomain(host), (String)typeBox.getValue());
+            DNSOutput(subdomainQuery.getMainDomain(host), (String) typeBox.getValue());
         }
     }
 
@@ -208,7 +208,7 @@ public class Controller implements Initializable {
             for (String rec : list) {
                 txtAreaRecords.appendText("\t" + rec + "\n");
             }
-        }else if (list != null) {
+        } else if (list != null) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
                 for (String rec : list) {
@@ -299,7 +299,7 @@ public class Controller implements Initializable {
         return new Whois().getWhois(host, whoisServer);
     }
 
-    private String setDomainCheckResultAPI(String URL, String domain){
+    private String setDomainCheckResultAPI(String URL, String domain) {
         API api = new API(URL, domain);
 
         if (api.domainExists()) {

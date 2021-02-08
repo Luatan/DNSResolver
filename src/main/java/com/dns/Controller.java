@@ -95,13 +95,13 @@ public class Controller implements Initializable {
 
         if (historyButton.getItems().size() >= 10) {
             historyButton.getItems().clear();
-            history.writeDefaultHistory();
+            history.removeHistoryIndex(0);
             addHistory();
         }
     }
     private void addHistory() {
         String[] historyList = history.readHistory();
-        for (int i=0; i<historyList.length;i++) {
+        for (int i=historyList.length-1; i>=0;i--) {
             addItemsToHistoryMenu(historyList[i]);
         }
     }

@@ -257,6 +257,7 @@
                <Image url="@moon_light.png" />
             </image>
          </ImageView>
+         <Label fx:id="templbl" layoutX="15.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" text="Label" visible="false" />
         </children>
     </AnchorPane>
 </VBox>

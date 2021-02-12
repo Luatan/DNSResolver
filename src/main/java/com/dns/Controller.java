@@ -54,10 +54,11 @@ public class Controller implements Initializable {
     @FXML
     MenuButton historyButton;
     SettingsHandler history = new SettingsHandler();
-
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Domain Check
+    @FXML
+    Label templbl;
     String domainCheckResult = "";
     //To undo
     String originalRecords = "";
@@ -139,6 +140,11 @@ public class Controller implements Initializable {
 
     @FXML
     private void openWebView(ActionEvent event) {
+        if (templbl.getText() == null) {
+            domainCheckResult = "";
+        } else {
+            domainCheckResult = templbl.getText();
+        }
         displayWebView(registryLink.getText());
     }
 
@@ -254,63 +260,13 @@ public class Controller implements Initializable {
     }
 
     private void getRegistrar(String host) {
-        DNSRequests query = new DNSRequests();
-        domainCheckResult = "";
-
-        if (query.isSubdomain(host)) {
-            host = query.getMainDomain(host);
-        }
-        switch (query.getExtension(host)) {
-            case "com":
-            case "net":
-            case "ru":
-            case "org":
-            case "ca":
-                hyperLbl.setVisible(true);
-                registryLink.setText("whois.com/whois/" + host);
-                break;
-            case "eu":
-                domainCheckResult = setDomainCheckResult(host, "whois.eu");
-                break;
-            case "fr":
-                domainCheckResult = setDomainCheckResult(host, "whois.afnic.fr");
-                break;
-            case "ch":
-            case "li":
-                domainCheckResult = setDomainCheckResultAPI("https://rdap.nic.ch/domain/", host);
-                break;
-            case "swiss":
-                domainCheckResult = setDomainCheckResult(host, "whois.nic.swiss");
-                break;
-            case "de":
-                domainCheckResult = setDomainCheckResult("-T dn " + host, "whois.denic.de");
-                break;
-            default:
-                domainCheckResult = "";
-                hyperLbl.setVisible(false);
-                btnWeb.setVisible(false);
-                break;
-        }
-    }
-
-    private String setDomainCheckResult(String host, String whoisServer) {
-        registryLink.setText("Click here for a Domain Check");
+        GetRegistrarTask task = new GetRegistrarTask(host);
+        registryLink.textProperty().bind(task.messageProperty());
+        templbl.textProperty().bind(task.valueProperty());
+        hyperLbl.disableProperty().bind(task.runningProperty());
         hyperLbl.setVisible(true);
-        return new Whois().getWhois(host, whoisServer);
+        new Thread(task).start();
     }
 
-    private String setDomainCheckResultAPI(String URL, String domain) {
-        API api = new API(URL, domain);
-
-        if (api.domainExists()) {
-            registryLink.setText("Click here for a Domain Check");
-            hyperLbl.setVisible(true);
-            return api.getNicValues();
-
-        } else {
-            registryLink.setText("");
-            hyperLbl.setVisible(false);
-        }
-        return "";
-    }
 }
+

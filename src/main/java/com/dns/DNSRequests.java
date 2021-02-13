@@ -23,11 +23,17 @@ public class DNSRequests {
     private String[] SOA;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
-        setHost(value.toLowerCase().replace(" ", ""));
+        setHost(setupDomainName(value));
         setRecords(type);
     }
 
     DNSRequests() {
+
+    }
+
+    private String setupDomainName(String domain){
+        domain = domain.toLowerCase().replace(" ", "");
+        return java.net.IDN.toASCII(domain);
     }
 
     private void setHost(String host) throws NamingException, UnknownHostException {

@@ -1,6 +1,3 @@
-package com.dns;
-
-
 import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;

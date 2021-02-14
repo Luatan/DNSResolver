@@ -1,5 +1,3 @@
-package com.dns;
-
 import javafx.concurrent.Task;
 
 public class GetRegistrarTask extends Task<String> {

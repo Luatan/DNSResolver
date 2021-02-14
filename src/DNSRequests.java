@@ -1,5 +1,3 @@
-package com.dns;
-
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.naming.directory.Attributes;

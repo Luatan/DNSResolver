@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class DNSRequestsTest {
+public class DNSRequestsTest {
     DNSRequests requests = new DNSRequests();
 
     @Test

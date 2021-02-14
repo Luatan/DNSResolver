@@ -1,10 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" build-on-make="true" name="DNSResolver">
+  <artifact type="javafx" name="DNSResolver">
     <output-path>$PROJECT_DIR$/out/artifacts/DNSResolver</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="alias" value="DNSResolver" />
-        <option name="appClass" value="com.dns.Main" />
+        <option name="appClass" value="Main" />
+        <option name="convertCss2Bin" value="true" />
         <option name="description" value="DNS Lookup Tool&#13;&#10;&#13;&#10;Icon by Icons8 - https://icons8.com" />
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">

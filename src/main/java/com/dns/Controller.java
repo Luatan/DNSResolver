@@ -68,18 +68,19 @@ public class Controller implements Initializable {
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.emptyRecordSetting);
-
         addHistory();
     }
 
     @FXML
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
+        long startSearchTime = System.currentTimeMillis();
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
         //add Domain to history
         history.addDomainToHistory(txtDomain.getText());
         //add item to JSON
         addItemsToHistoryMenu(txtDomain.getText());
+        System.out.println("Request took " + (System.currentTimeMillis() - startSearchTime) + "ms");
     }
 
     private void addItemsToHistoryMenu(String domain) {

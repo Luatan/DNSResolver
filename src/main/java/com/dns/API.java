@@ -86,8 +86,6 @@ public class API {
             JSONArray status = jsonObj.getJSONArray("status");
             resStatus = status.toString().replaceAll("[^\\w]", "");
 
-
-            System.out.println();
             if (jsonObj.getJSONArray("events").length() > 0) {
                 JSONObject events = jsonObj.getJSONArray("events").getJSONObject(0);
                 resRegistrationDate = events.getString("eventDate");

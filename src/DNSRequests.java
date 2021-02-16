@@ -198,16 +198,16 @@ public class DNSRequests {
 
     public String getExtension(String hostname) {
         String[] host = hostname.split("[.]");
-        return host[host.length - 1];
+        return host[host.length - 1].toLowerCase();
     }
 
     public String getMainDomain(String host) {
         String[] partDomain = host.replace(" ", "").split("[.]");
-        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1];
+        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1].toLowerCase();
     }
 
     public String getHostname() {
-        return hostname;
+        return hostname.toLowerCase();
     }
 
     public String getIP() {

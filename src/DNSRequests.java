@@ -1,5 +1,9 @@
+import com.sun.corba.se.spi.orb.Operation;
+
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
+import javax.naming.OperationNotSupportedException;
+import javax.naming.ServiceUnavailableException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
@@ -86,11 +90,19 @@ public class DNSRequests {
                     }
                 }
             } catch (NameNotFoundException e) {
-                System.err.println("No DNS-Records Found in " + hostname + " at DNSRequests.java (SetRecords)");
-                String[] MessageList = {"No DNS-Records Found for " + hostname};
-                populateRecords(MessageList, "Messages");
+                addMessage("No DNS-Records Found for " + hostname);
+            } catch (ServiceUnavailableException e) {
+                addMessage("Service unavailable for " + hostname);
+            }
+            catch (OperationNotSupportedException e) {
+                addMessage("could not resolve " + hostname);
             }
         }
+    }
+
+    private void addMessage(String message){
+        System.err.println(message);
+        populateRecords(new String[] {message}, "Messages");
     }
 
     private String getPTRRecord(String host) {

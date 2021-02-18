@@ -41,7 +41,7 @@
                   <Insets right="30.0" />
                </GridPane.margin>
                 </TextField>
-            <MenuButton fx:id="historyButton" alignment="TOP_LEFT" graphicTextGap="1.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="33.0" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <MenuButton fx:id="historyButton" alignment="TOP_LEFT" graphicTextGap="1.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="0.0" prefWidth="33.0" style="-fx-cursor: hand;" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <GridPane.margin>
                   <Insets left="230.0" />
                </GridPane.margin>
@@ -49,7 +49,7 @@
                   <Insets />
                </opaqueInsets>
             </MenuButton>
-                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton" prefHeight="25.0" prefWidth="53.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
+                <Button fx:id="btnStart" alignment="CENTER" mnemonicParsing="false" onAction="#startSearchButton" prefHeight="25.0" prefWidth="53.0" style="-fx-cursor: hand;" text="Start" textAlignment="CENTER" GridPane.columnIndex="3">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -60,12 +60,12 @@
                         <Font name="Roboto Light" size="12.0" />
                     </font>
                 </Button>
-                <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="84.0" promptText="type" GridPane.columnIndex="2">
+                <ComboBox fx:id="typeBox" prefHeight="25.0" prefWidth="84.0" promptText="type" style="-fx-cursor: hand;" GridPane.columnIndex="2">
                     <GridPane.margin>
                         <Insets left="5.0" />
                     </GridPane.margin>
                 </ComboBox>
-                <Button fx:id="cpyRecords" mnemonicParsing="false" onAction="#copyRecords" prefHeight="25.0" prefWidth="92.0" text="Copy Records" GridPane.columnIndex="4">
+                <Button fx:id="cpyRecords" mnemonicParsing="false" onAction="#copyRecords" prefHeight="25.0" prefWidth="92.0" style="-fx-cursor: hand;" text="Copy Records" GridPane.columnIndex="4">
                     <font>
                         <Font name="Roboto Light" size="12.0" />
                     </font>
@@ -217,7 +217,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="476.0" text="Domain Check:" textAlignment="CENTER" visible="false">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" text="Domain Check:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -231,7 +231,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="366.0" text="No URL Found">
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="366.0" style="-fx-cursor: hand;" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -241,7 +241,7 @@
                     </Hyperlink>
                 </graphic>
             </Label>
-            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Close Web" visible="false">
                 <font>
                     <Font name="Roboto Light" size="12.0" />
                 </font>

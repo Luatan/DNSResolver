@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
             <Separator layoutX="517.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="25.0" />
@@ -217,7 +217,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="403.0" text="Domain Check:" textAlignment="CENTER" visible="false">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="403.0" text="Whois:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -231,7 +231,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="294.0" style="-fx-cursor: hand;" text="No URL Found">
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="310.0" style="-fx-cursor: hand;" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>

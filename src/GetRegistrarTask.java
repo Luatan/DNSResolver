@@ -40,7 +40,7 @@ public class GetRegistrarTask extends Task<String> {
                 updateValue(setDomainCheckResult("-T dn " + host, "whois.denic.de"));
                 break;
             default:
-                updateMessage("Click here for a Domain Check");
+                updateMessage("show Whois for " + host);
                 //hyperLbl = true;
                 updateValue("This TLD is not compatible");
                 break;
@@ -49,14 +49,14 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String setDomainCheckResult(String host, String whoisServer) {
-        updateMessage("Click here for a Domain Check");
+        updateMessage("show Whois for " + this.host);
         //hyperLbl = true;
         return new Whois().getWhois(host, whoisServer);
     }
 
     private String setDomainCheckResultAPI(String URL, String domain) {
         API api = new API(URL, domain);
-        updateMessage("Click here for a Domain Check");
+        updateMessage("show Whois for " + this.host);
         //hyperLbl = true;
         return api.getNicValues();
     }

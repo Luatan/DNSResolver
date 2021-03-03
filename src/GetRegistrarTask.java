@@ -4,7 +4,7 @@ public class GetRegistrarTask extends Task<String> {
     private String host;
 
     GetRegistrarTask(String host) {
-        this.host = host;
+        this.host = setupDomainName(host);
     }
 
     @Override
@@ -46,6 +46,11 @@ public class GetRegistrarTask extends Task<String> {
                 break;
         }
         return String.valueOf(valueProperty());
+    }
+
+    private String setupDomainName(String domain){
+        domain = domain.toLowerCase().replace(" ", "");
+        return java.net.IDN.toASCII(domain);
     }
 
     private String setDomainCheckResult(String host, String whoisServer) {

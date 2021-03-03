@@ -97,6 +97,9 @@ public class DNSRequests {
             catch (OperationNotSupportedException e) {
                 addMessage("could not resolve " + hostname);
             }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -119,6 +119,7 @@ public class DNSRequests {
         } catch (UnknownHostException e) {
             System.out.println("No PTR Record found");
         }
+
         return null;
     }
 

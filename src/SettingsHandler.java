@@ -95,13 +95,16 @@ public class SettingsHandler {
     }
 
     public void addDomainToHistory(String domainName) {
-        String content = read(HISTORYPATH);
+        if (!domainName.equals("")) {
+            System.out.println(domainName);
+            String content = read(HISTORYPATH);
 
-        JSONObject object = new JSONObject(content);
-        JSONArray domainList = object.getJSONArray("domains");
-        domainList.put(domainName);
+            JSONObject object = new JSONObject(content);
+            JSONArray domainList = object.getJSONArray("domains");
+            domainList.put(domainName);
 
-        //Write File
-        write(object, HISTORYPATH);
+            //Write File
+            write(object, HISTORYPATH);
+        }
     }
 }

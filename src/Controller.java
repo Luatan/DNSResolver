@@ -75,9 +75,11 @@ public class Controller implements Initializable {
         closeWebView(event);
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
         //add Domain to history
-        history.addDomainToHistory(txtDomain.getText());
-        //add item to JSON
-        addItemsToHistoryMenu(txtDomain.getText());
+        if (!txtDomain.getText().equals("")) {
+            history.addDomainToHistory(txtDomain.getText());
+            //add item to JSON
+            addItemsToHistoryMenu(txtDomain.getText());
+        }
         System.out.println("Request took " + (System.currentTimeMillis() - startSearchTime) + "ms");
     }
 

@@ -203,9 +203,15 @@ public class DNSRequests {
     }
 
     private String getTimeFromSeconds(int time) {
-        int hours = time / 3600;
-        int mins = time / 60 % 60;
-        return ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins" : "");
+        int days = 0, hours = 0, mins = 0;
+
+        mins = (time - time%60)/60;
+        hours = (mins - mins%60)/60;
+        mins -= mins - mins%60;
+        days = (hours - hours%24)/24;
+        hours -= hours - hours%24;
+
+        return ((days > 0) ? days + " days" : "") + ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins" : "");
     }
 
     public boolean isSubdomain(String host) {

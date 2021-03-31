@@ -88,7 +88,7 @@ public class SettingsHandler {
     }
 
     public void removeHistoryIndex(int index) {
-        JSONObject obj = new JSONObject(read("history.json"));
+        JSONObject obj = new JSONObject(Objects.requireNonNull(read("history.json")));
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.remove(index);
         write(obj, "history.json");

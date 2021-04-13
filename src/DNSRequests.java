@@ -27,6 +27,7 @@ public class DNSRequests {
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(setupDomainName(value));
         setRecords(type);
+
     }
 
     DNSRequests() {

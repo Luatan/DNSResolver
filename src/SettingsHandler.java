@@ -96,7 +96,6 @@ public class SettingsHandler {
 
     public void addDomainToHistory(String domainName) {
         if (!domainName.equals("")) {
-            System.out.println(domainName);
             String content = read(HISTORYPATH);
 
             JSONObject object = new JSONObject(content);

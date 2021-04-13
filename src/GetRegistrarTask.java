@@ -60,7 +60,7 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String setDomainCheckResultAPI(String URL, String domain) {
-        API api = new API(URL, domain);
+        Whois_NIC api = new Whois_NIC(URL, domain);
         updateMessage("show Whois for " + this.host);
         //hyperLbl = true;
         return api.getNicValues();

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
             <Separator layoutX="517.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="25.0" />
@@ -115,7 +115,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <TextField fx:id="txtFieldIP" editable="false" prefHeight="20.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: none;">
+                    <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#openIP" prefHeight="20.0" prefWidth="221.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>

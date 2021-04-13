@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class API {
+public class Whois_NIC {
     private final String RESPONSE;
     private boolean exists;
     private int responseCode;
@@ -22,7 +22,7 @@ public class API {
     private String[] resNSDomain;
     private String[] resNSIP;
 
-    API(String URL, String domain) {
+    Whois_NIC(String URL, String domain) {
         setURL(URL);
         setDomain(domain);
         RESPONSE = GETReq();

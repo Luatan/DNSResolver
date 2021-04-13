@@ -58,8 +58,10 @@ public class Controller implements Initializable {
     @FXML
     Label templbl;
     String domainCheckResult = "";
+    String IPinfos = null;
     //To undo
     String originalRecords = "";
+    String curIP = "";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,6 +75,7 @@ public class Controller implements Initializable {
     private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
         long startSearchTime = System.currentTimeMillis();
         closeWebView(event);
+        resetTempValues();
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
         //add Domain to history
         if (!txtDomain.getText().equals("")) {
@@ -81,6 +84,13 @@ public class Controller implements Initializable {
             addItemsToHistoryMenu(txtDomain.getText());
         }
         System.out.println("Request took " + (System.currentTimeMillis() - startSearchTime) + "ms");
+    }
+
+    private void resetTempValues() {
+        domainCheckResult = "";
+        IPinfos = null;
+        originalRecords = "";
+        curIP = "";
     }
 
     private void addItemsToHistoryMenu(String domain) {
@@ -157,11 +167,15 @@ public class Controller implements Initializable {
             btnWeb.setVisible(false);
             webEngine.load(null);
         } else {
-            txtAreaRecords.setText(originalRecords);
+            if (!originalRecords.equals("")) {
+                txtAreaRecords.setText(originalRecords);
+            }
             btnWeb.setVisible(false);
             hyperLbl.setVisible(true);
             btnWeb.setText("Close Web");
+            txtFieldIP.setDisable(false);
         }
+
     }
 
     private void displayWebView(String host) {
@@ -170,13 +184,38 @@ public class Controller implements Initializable {
             webEngine.load("http://" + host);
             btnWeb.setVisible(true);
             web.setVisible(true);
+
         } else {
+            closeWebView(null);
             originalRecords = txtAreaRecords.getText();
             txtAreaRecords.setText(domainCheckResult);
             btnWeb.setVisible(true);
             hyperLbl.setVisible(false);
             btnWeb.setText("Back");
         }
+    }
+
+    @FXML
+    private void openIP(MouseEvent event) {
+        closeWebView(null);
+        displayIPInfo();
+    }
+
+    private void displayIPInfo() {
+        domainCheckResult = "ip";
+        originalRecords = txtAreaRecords.getText();
+        //txtFieldIP.setDisable(true);
+        if (!curIP.equals("")) {
+            if (IPinfos == null) {
+                IP_Info info = new IP_Info(curIP);
+                IPinfos = info.getInfo();
+            }
+            txtAreaRecords.setText(IPinfos);
+        } else {
+            txtAreaRecords.setText("No IP Address found");
+        }
+        btnWeb.setVisible(true);
+        btnWeb.setText("Back");
     }
 
     @FXML
@@ -255,7 +294,9 @@ public class Controller implements Initializable {
             txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.setText(query.getHostname());
-            txtFieldIP.setText(query.getIP());
+            String ip = query.getIP();
+            curIP = ip;
+            txtFieldIP.setText(ip);
         }
         getRegistrar(host);
     }

@@ -1,54 +1,28 @@
 import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Objects;
 
-public class IP_Info {
+public class IP_Info extends API {
     private final String PATH = System.getProperty("user.dir") + "/IP_API_req.json";
+    private final String FILE = "IP_API_req.json";
+    private final String URL = "http://ip-api.com/json/";
+    private int minRL= 10;
     private String info = "";
-    private String URL = "http://ip-api.com/json/";
     private String IP = "";
-    //private String fields = "?fields=53769";
-    private int responseCode = 500;
+    //private String fields = "53769";
+    private JSONHandler JSON = new JSONHandler(FILE);
 
     IP_Info(String IP) {
         this.IP = IP;
-        if (checkTrackerJSON()) {
-            info = request();
-        } else if (info.equals("")){
-            info = new JSONObject().put("message", "The Service is currently not available.").toString();
+        if (checkTracker()) {
+            info = super.request(buildURL(this.IP));
+            writeTracker(responseHeaders);
+        } else if (info.equals("")) {
+            info = JSON.message("The Service is currently not available.");
         }
-
-    }
-
-    private String request() {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder().url(URL + IP).build();
-        try (Response response = client.newCall(request).execute()) {
-            String res = response.body().string();
-            writeTrackerJSON(response.headers());
-
-            responseCode = response.code();
-            //System.out.println(responseCode);
-            if (!res.equals("")) {
-                return res;
-            } else {
-
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "Query failed";
     }
 
     public String getInfo() {
@@ -80,64 +54,51 @@ public class IP_Info {
         return null;
     }
 
-    private String mapsLink(double x, double y) {
-        return "https://www.google.com/maps/search/?api=1&query=" + x + "," + y;
-    }
-
-    private void writeTrackerJSON(Headers header) {
+    private void writeTracker(Headers header) {
         int rl = Integer.parseInt(header.value(5));
 
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("lastrequest", System.currentTimeMillis());
         jsonObj.put("rl", rl);
-
-        try {
-            FileWriter newfile = new FileWriter(PATH);
-            newfile.write(jsonObj.toString(4));
-            newfile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JSON.write(jsonObj);
     }
 
-    private boolean checkTrackerJSON() {
+    private JSONObject readTracker() {
+        return new JSONObject(Objects.requireNonNull(JSON.readFile()));
+    }
+
+    private boolean checkTracker() {
         File file = new File(PATH);
         if (file.exists()) {
-            JSONObject obj = readTrackerJSON();
+            JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
             long time = obj.getLong("lastrequest");
-            long pastTime = (System.currentTimeMillis() - time)/1000;
+            long pastTime = (System.currentTimeMillis() - time) / 1000;
 
             if (pastTime > 60) {
                 return true;
             } else {
-                if (rl <= 10) {
+                if (rl <= minRL) {
                     String message = "The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!";
-                    info = mesageJSON(message);
+                    info = JSON.message(message);
                     return false;
                 } else {
                     return true;
                 }
             }
-
         }
         return true;
     }
 
-    private JSONObject readTrackerJSON() {
-        File file = new File(PATH);
-        try {
-            String content = FileUtils.readFileToString(file, "utf-8");
-            return new JSONObject(Objects.requireNonNull(content));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new JSONObject().put("message", "No JSON File Found");
+    private String buildURL(String IP) {
+        return URL + IP;
     }
 
-    private String mesageJSON(String message) {
-        JSONObject obj = new JSONObject();
-        obj.put("message", message);
-        return obj.toString();
+    private String buildURL(String IP, String fields) {
+        return URL + IP + "?fields=" + fields;
+    }
+
+    private String mapsLink(double x, double y) {
+        return "https://www.google.com/maps/search/?api=1&query=" + x + "," + y;
     }
 }

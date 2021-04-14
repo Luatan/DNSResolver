@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Whois_NIC {
+public class Whois_NIC extends API{
     private final String RESPONSE;
     private boolean exists;
-    private int responseCode;
     private String domain;
     private String resDomain;
     private String resRegistrar;
@@ -23,37 +22,14 @@ public class Whois_NIC {
     private String[] resNSIP;
 
     Whois_NIC(String URL, String domain) {
-        setURL(URL);
+        this.URL = URL;
         setDomain(domain);
-        RESPONSE = GETReq();
-    }
-
-    public String GETReq() {
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(URL + domain).build();
-        try (Response response = client.newCall(request).execute()) {
-            String res = response.body().string();
-            responseCode = response.code();
-            if (!res.equals("")) {
-                exists = responseCode == 200;
-                return res;
-            } else {
-                exists = false;
-                return null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public boolean domainExists() {
-        return exists;
+        RESPONSE = super.request(URL + domain);
     }
 
     public String getNicValues() {
         //Get Whole Object which icludes all Arrays
-        if (RESPONSE != null && responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
+        if (RESPONSE != null && super.responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
 
             //get Domain name
@@ -66,7 +42,6 @@ public class Whois_NIC {
 
                 //get registrar
                 resRegistrar = (String) vcard.getJSONArray(1).get(3);
-
 
                 //get Adress add loop
                 JSONArray adr = vcard.getJSONArray(2).getJSONArray(3);
@@ -102,25 +77,10 @@ public class Whois_NIC {
                 }
             }
             return convertResultNic();
-        } else if (responseCode != 200) {
-            return checkResponseCode();
+        } else if (super.responseCode != 200) {
+            return super.checkResponseCode();
         }
         return null;
-    }
-
-    private String checkResponseCode() {
-        switch (responseCode) {
-            case 200:
-                return "200 - OK";
-            case 404:
-                return "404 - Not Found";
-            case 400:
-                return "400 - Bad Request";
-            case 429:
-                return "429 - Too Many Requests";
-            default:
-                return "Invalid Statuscode";
-        }
     }
 
     private String convertResultNic() {
@@ -131,7 +91,6 @@ public class Whois_NIC {
         } else {
             addressString = "No Address found";
         }
-
 
         //Nameservers
         StringBuilder nsString = new StringBuilder("\nNameservers: \n");
@@ -150,10 +109,6 @@ public class Whois_NIC {
         return "Domain: " + resDomain + "\n" +
                 "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
                 + "\nFirst Registration: " + resRegistrationDate + "\n" + nsString;
-    }
-
-    private void setURL(String URL) {
-        this.URL = URL;
     }
 
     private void setDomain(String domain) {

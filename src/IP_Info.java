@@ -9,11 +9,11 @@ public class IP_Info extends API {
     private final String PATH = System.getProperty("user.dir") + "/IP_API_req.json";
     private final String FILE = "IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
-    private int minRL= 10;
+    private final JSONHandler JSON = new JSONHandler(FILE);
+    private final int minRL= 10;
     private String info = "";
     private String IP = "";
     //private String fields = "53769";
-    private JSONHandler JSON = new JSONHandler(FILE);
 
     IP_Info(String IP) {
         this.IP = IP;

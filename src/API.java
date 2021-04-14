@@ -27,4 +27,19 @@ public class API {
         }
         return "Query failed";
     }
+
+    String checkResponseCode() {
+        switch (responseCode) {
+            case 200:
+                return "200 - OK";
+            case 404:
+                return "404 - Not Found";
+            case 400:
+                return "400 - Bad Request";
+            case 429:
+                return "429 - Too Many Requests";
+            default:
+                return "Invalid Statuscode";
+        }
+    }
 }

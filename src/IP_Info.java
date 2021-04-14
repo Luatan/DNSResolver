@@ -2,11 +2,9 @@ import okhttp3.Headers;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.Objects;
 
 public class IP_Info extends API {
-    private final String PATH = System.getProperty("user.dir") + "/IP_API_req.json";
     private final String FILE = "IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
     private final JSONHandler JSON = new JSONHandler(FILE);
@@ -68,8 +66,7 @@ public class IP_Info extends API {
     }
 
     private boolean checkTracker() {
-        File file = new File(PATH);
-        if (file.exists()) {
+        if (JSON.fileExists()) {
             JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
             long time = obj.getLong("lastrequest");

@@ -15,6 +15,11 @@ public class JSONHandler {
         this.filename = filename;
     }
 
+    boolean fileExists() {
+        File file = new File(BASEPATH + filename);
+        return file.exists();
+    }
+
     public String readFile() {
         File file = new File(BASEPATH + filename);
         try {

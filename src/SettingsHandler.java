@@ -2,62 +2,26 @@ import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Objects;
-
 public class SettingsHandler {
-    private final String BASEPATH = System.getProperty("user.dir") + "/";
-    private final String SETTINGSPATH = "settings.json";
-    private final String HISTORYPATH = "history.json";
+    private final JSONHandler SETTINGS = new JSONHandler("settings.json");
+    private final JSONHandler HISTORY = new JSONHandler("history.json");
 
     SettingsHandler() {
-        if (!checkExistingFiles(SETTINGSPATH)) {
+        if (!SETTINGS.fileExists()) {
             writeDefaultSettings();
         }
-        if (!checkExistingFiles(HISTORYPATH)) {
+        if (!HISTORY.fileExists()) {
             writeDefaultHistory();
         }
     }
 
-    private String read(String fileName) {
-        File file = new File(BASEPATH + fileName);
-        try {
-            return FileUtils.readFileToString(file, "utf-8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    private void write(JSONObject object, String fileName) {
-        try {
-            FileWriter newfile = new FileWriter(BASEPATH + fileName);
-            newfile.write(object.toString(4));
-            newfile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean checkExistingFiles(String fileName) {
-        File file = new File(BASEPATH + fileName);
-        return file.exists();
-    }
-
-    public boolean getJSONValue(String key, String fileName) {
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(read(fileName)));
-        return readObj.getBoolean(key);
-    }
-
     public void editSettingsJSON(String key, boolean value) {
-        String content = read(SETTINGSPATH);
+        String content = SETTINGS.readFile();
 
         JSONObject object = new JSONObject(content);
         object.put(key, value);
         //Write File
-        write(object, SETTINGSPATH);
+        SETTINGS.write(object);
     }
 
     private void writeDefaultSettings() {
@@ -67,17 +31,17 @@ public class SettingsHandler {
         jsonObj.put("language", "eng");
         jsonObj.put("ShowEmptyRecords", false);
 
-        write(jsonObj, "settings.json");
+        SETTINGS.write(jsonObj);
     }
 
     private void writeDefaultHistory() {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("domains", new String[]{});
-        write(jsonObj, "history.json");
+        HISTORY.write(jsonObj);
     }
 
     public String[] readHistory() {
-        JSONObject obj = new JSONObject(Objects.requireNonNull(read("history.json")));
+        JSONObject obj = new JSONObject(HISTORY.readFile());
 
         JSONArray domainList = obj.getJSONArray("domains");
         String[] history = new String[domainList.length()];
@@ -88,22 +52,22 @@ public class SettingsHandler {
     }
 
     public void removeHistoryIndex(int index) {
-        JSONObject obj = new JSONObject(Objects.requireNonNull(read("history.json")));
+        JSONObject obj = new JSONObject(HISTORY.readFile());
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.remove(index);
-        write(obj, "history.json");
+        HISTORY.write(obj);
     }
 
     public void addDomainToHistory(String domainName) {
         if (!domainName.equals("")) {
-            String content = read(HISTORYPATH);
+            String content = HISTORY.readFile();
 
             JSONObject object = new JSONObject(content);
             JSONArray domainList = object.getJSONArray("domains");
             domainList.put(domainName);
 
             //Write File
-            write(object, HISTORYPATH);
+            HISTORY.write(object);
         }
     }
 }

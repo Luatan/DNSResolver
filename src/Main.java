@@ -36,8 +36,9 @@ public class Main extends Application {
     }
 
     private void loadSettings() {
-        ThemeDark = settings.getJSONValue("darkmode", "settings.json");
-        emptyRecordSetting = settings.getJSONValue("ShowEmptyRecords", "settings.json");
+        JSONHandler JSON = new JSONHandler("settings.json");
+        ThemeDark = JSON.getBoolValue("darkmode");
+        emptyRecordSetting = JSON.getBoolValue("ShowEmptyRecords");
     }
 
     public static void changeTheme() {

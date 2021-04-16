@@ -25,7 +25,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class GUI implements Initializable {
     @FXML
     TextField txtNS1, txtNS2, txtNS3, txtNS4;
     @FXML
@@ -58,10 +58,9 @@ public class Controller implements Initializable {
     @FXML
     Label templbl;
     String domainCheckResult = "";
-    String IPinfos = null;
+    String ip_data = null;
     //To undo
     String originalRecords = "";
-    String curIP = "";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,9 +87,8 @@ public class Controller implements Initializable {
 
     private void resetTempValues() {
         domainCheckResult = "";
-        IPinfos = null;
+        ip_data = null;
         originalRecords = "";
-        curIP = "";
     }
 
     private void addItemsToHistoryMenu(String domain) {
@@ -198,19 +196,18 @@ public class Controller implements Initializable {
     @FXML
     private void openIP(MouseEvent event) {
         closeWebView(null);
-        displayIPInfo();
+        displayIPInfo(txtFieldIP.getText());
     }
 
-    private void displayIPInfo() {
+    private void displayIPInfo(String ip) {
         domainCheckResult = "ip";
         originalRecords = txtAreaRecords.getText();
-        //txtFieldIP.setDisable(true);
-        if (!curIP.equals("")) {
-            if (IPinfos == null) {
-                IP_Info info = new IP_Info(curIP);
-                IPinfos = info.getInfo();
+        if (!ip.equals("")) {
+            if (ip_data == null) {
+                IP_Info info = new IP_Info(ip);
+                ip_data = info.getInfo();
             }
-            txtAreaRecords.setText(IPinfos);
+            txtAreaRecords.setText(ip_data);
         } else {
             txtAreaRecords.setText("No IP Address found");
         }
@@ -294,9 +291,7 @@ public class Controller implements Initializable {
             txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
             txtFieldHost.setText(query.getHostname());
-            String ip = query.getIP();
-            curIP = ip;
-            txtFieldIP.setText(ip);
+            txtFieldIP.setText(query.getIP());
         }
         getRegistrar(host);
     }

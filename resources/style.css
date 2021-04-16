@@ -1,18 +1,18 @@
 .button {
-    -fx-background-color : #393E41;
-    -fx-text-fill : white;
+    -fx-background-color: #393E41;
+    -fx-text-fill: white;
 }
 
 .root {
-    -fx-background-color : #1E2019;
+    -fx-background-color: #1E2019;
 }
 
 .label {
-    -fx-text-fill : white;
+    -fx-text-fill: white;
 }
 
 .separator .line {
-  -fx-border-color: #393E41 ;
+    -fx-border-color: #393E41;
 }
 
 .text-area {
@@ -20,9 +20,8 @@
     -fx-background-color: #1E2019;
 }
 
-.text-area .content{
-  -fx-background-color: #1E2019;
-
+.text-area .content {
+    -fx-background-color: #1E2019;
 }
 
 .text-field {
@@ -32,12 +31,13 @@
 
 .combo-box {
     -fx-background-color: #393E41;
-
 }
-.combo-box .cell{
+
+.combo-box .cell {
     -fx-background-color: #393E41;
     -fx-text-fill: white;
 }
+
 #input {
     -fx-background-color: #393E41;
     -fx-border-color: black;
@@ -49,9 +49,9 @@
 }
 
 .check-box .box {
-    -fx-border-radius:3px;
+    -fx-border-radius: 3px;
     -fx-background-color: #393E41;
-    -fx-border-color:black;
+    -fx-border-color: black;
 }
 
 .check-box .content {
@@ -60,7 +60,6 @@
 
 .check-box:selected .mark {
     -fx-background-color: #393E41;
-
 }
 
 .check-box:selected .box {
@@ -71,21 +70,24 @@
     -fx-background-color: #393E41;
     -fx-border-color: black;
 }
+
 .menu-button:focused {
     -fx-border-color: black;
     -fx-background-color: #393E41;
 }
-.menu-item .menu-button{
+
+.menu-item .menu-button {
     -fx-text-fill: white;
 }
 
 .menu-item:focused {
-     -fx-background-color: #393E41;
+    -fx-background-color: #393E41;
 }
 
 .menu-item:focused .label {
     -fx-background-color: #494c4f;
 }
+
 .context-menu {
     -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
     -fx-background-color: #393E41;
@@ -93,6 +95,7 @@
     -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
     -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em;
 }
+
 .hyperlink:visited {
     -fx-text-fill: #0c95af;
 }

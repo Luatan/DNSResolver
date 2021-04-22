@@ -46,7 +46,6 @@ public class GUI implements Initializable {
     Circle reachable;
     @FXML
     CheckBox chckBox;
-    boolean checkBoxSetting = false;
     @FXML
     ImageView moon;
     @FXML
@@ -95,11 +94,7 @@ public class GUI implements Initializable {
         MenuItem item = new MenuItem(domain);
         historyButton.getItems().add(item);
 
-        EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                txtDomain.setText(((MenuItem) e.getSource()).getText());
-            }
-        };
+        EventHandler<ActionEvent> event1 = e -> txtDomain.setText(((MenuItem) e.getSource()).getText());
         item.setOnAction(event1);
 
         if (historyButton.getItems().size() >= 10) {

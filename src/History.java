@@ -88,7 +88,7 @@ public class History {
             } else {
                 JSONObject object = new JSONObject(handler.readFile());
                 JSONArray domainList = object.getJSONArray("domains");
-                domainList.put(domain);
+                domainList.put(domain.toLowerCase());
                 //Write File
                 handler.write(object);
             }

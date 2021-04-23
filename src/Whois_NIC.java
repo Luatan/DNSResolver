@@ -1,14 +1,10 @@
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Whois_NIC extends API{
+public class Whois_NIC extends API {
     private final String RESPONSE;
     private boolean exists;
     private String domain;

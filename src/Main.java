@@ -15,7 +15,7 @@ public class Main extends Application {
     public static boolean emptyRecordSetting = false;
     private static Scene scene = null;
     private static Stage stage = null;
-    private static final SettingsHandler settings = new SettingsHandler();
+    private static final Settings settings = new Settings();
 
     @Override
     public void start(Stage primaryStage) throws Exception {

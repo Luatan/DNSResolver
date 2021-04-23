@@ -1,9 +1,9 @@
 import org.json.JSONObject;
 
-public class SettingsHandler {
+public class Settings {
     private final JSONHandler SETTINGS = new JSONHandler("settings.json");
 
-    SettingsHandler() {
+    Settings() {
         if (!SETTINGS.fileExists()) {
             writeDefaultSettings();
         }

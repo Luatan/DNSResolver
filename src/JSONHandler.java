@@ -1,8 +1,8 @@
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -11,7 +11,7 @@ public class JSONHandler {
     private final String BASEPATH = System.getProperty("user.dir") + "/";
     private String filename = "";
 
-    JSONHandler (String filename) {
+    JSONHandler(String filename) {
         this.filename = filename;
     }
 
@@ -32,9 +32,9 @@ public class JSONHandler {
 
     public void write(JSONObject object) {
         try {
-            FileWriter newfile = new FileWriter(BASEPATH + filename);
-            newfile.write(object.toString(4));
-            newfile.close();
+            FileWriterWithEncoding file = new FileWriterWithEncoding(BASEPATH + filename, "utf-8");
+            file.write(object.toString(4));
+            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

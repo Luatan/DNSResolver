@@ -1,21 +1,17 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class History{
-    private final String PATH = "history.json";
+public class History {
+    private final String HISTORYFILE = "history.json";
     private JSONHandler handler;
-    private String[] history;
-
 
     History() {
-        handler = new JSONHandler(PATH);
+        handler = new JSONHandler(HISTORYFILE);
         init();
-        addDomain("test4");
     }
 
     private boolean init() {
         if (handler.fileExists()) {
-
             return true;
         }
         writeDefaultHistory();
@@ -37,21 +33,20 @@ public class History{
         return history;
     }
 
-    public void removeIndex(int index) {
+    private void removeIndex(int index) {
         JSONObject obj = new JSONObject(handler.readFile());
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.remove(index);
         handler.write(obj);
     }
 
-    public void toTheEnd(int start_pos) {
+    private void toTheEnd(int start_pos) {
         String domain = getDomain(start_pos);
         removeIndex(start_pos);
         JSONObject obj = new JSONObject(handler.readFile());
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.put(domain);
         handler.write(obj);
-
     }
 
     private int getIndex(String domain) {
@@ -67,11 +62,10 @@ public class History{
 
     private JSONArray getArray() {
         JSONObject object = new JSONObject(handler.readFile());
-        JSONArray domainList = object.getJSONArray("domains");
-        return domainList;
+        return object.getJSONArray("domains");
     }
 
-    private boolean domainExists(String domain){
+    private boolean domainExists(String domain) {
         JSONArray domainList = getArray();
         for (int i = 0; i < domainList.length(); i++) {
             if (domainList.getString(i).toLowerCase().equals(domain)) {
@@ -92,20 +86,19 @@ public class History{
             if (domainExists(domain)) {
                 toTheEnd(getIndex(domain));
             } else {
-                String content = handler.readFile();
-                JSONObject object = new JSONObject(content);
+                JSONObject object = new JSONObject(handler.readFile());
                 JSONArray domainList = object.getJSONArray("domains");
                 domainList.put(domain);
                 //Write File
                 handler.write(object);
             }
-
+            if (readHistory().length > 10) {
+                removeIndex(0);
+            }
         }
     }
 
-
-
-    public String[] getHistory(){
+    public String[] getHistory() {
         return readHistory();
     }
 }

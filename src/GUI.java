@@ -50,7 +50,7 @@ public class GUI implements Initializable {
     ImageView moon;
     @FXML
     MenuButton historyButton;
-    SettingsHandler history = new SettingsHandler();
+    History history = new History();
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Domain Check
@@ -67,6 +67,9 @@ public class GUI implements Initializable {
         typeBox.setValue("Any");
         chckBox.setSelected(Main.emptyRecordSetting);
         addHistory();
+
+
+//        History hist = new History();
     }
 
     @FXML
@@ -77,7 +80,7 @@ public class GUI implements Initializable {
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
         //add Domain to history
         if (!txtDomain.getText().equals("")) {
-            history.addDomainToHistory(txtDomain.getText());
+            history.addDomain(txtDomain.getText());
             //add item to JSON
             addItemsToHistoryMenu(txtDomain.getText());
         }
@@ -97,15 +100,14 @@ public class GUI implements Initializable {
         EventHandler<ActionEvent> event1 = e -> txtDomain.setText(((MenuItem) e.getSource()).getText());
         item.setOnAction(event1);
 
-        if (historyButton.getItems().size() >= 10) {
+        if (historyButton.getItems().size() > 10) {
             historyButton.getItems().clear();
-            history.removeHistoryIndex(0);
             addHistory();
         }
     }
 
     private void addHistory() {
-        String[] historyList = history.readHistory();
+        String[] historyList = history.getHistory();
         for (int i = historyList.length - 1; i >= 0; i--) {
             addItemsToHistoryMenu(historyList[i]);
         }

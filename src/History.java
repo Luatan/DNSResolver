@@ -19,9 +19,9 @@ public class History {
     }
 
     private void writeDefaultHistory() {
-        JSONObject jsonObj = new JSONObject();
-        jsonObj.put("domains", new String[]{});
-        handler.write(jsonObj);
+        JSONObject obj = new JSONObject();
+        obj.put("domains", new String[]{});
+        handler.write(obj);
     }
 
     private String[] readHistory() {

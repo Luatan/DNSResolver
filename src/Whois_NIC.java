@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 public class Whois_NIC extends API {
     private final String RESPONSE;
-    private boolean exists;
     private String domain;
     private String resDomain;
     private String resRegistrar;

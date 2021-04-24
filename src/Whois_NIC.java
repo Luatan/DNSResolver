@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 
 public class Whois_NIC extends API {
     private final String RESPONSE;
+    private final String URL;
     private String domain;
     private String resDomain;
     private String resRegistrar;
     private String resRegistrationDate;
     private String resStatus;
-    private String URL;
     private String[] resAddress;
     private String[] resNSDomain;
     private String[] resNSIP;

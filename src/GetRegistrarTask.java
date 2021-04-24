@@ -31,7 +31,7 @@ public class GetRegistrarTask extends Task<String> {
                 break;
             case "ch":
             case "li":
-                updateValue(setDomainCheckResultAPI("https://rdap.nic.ch/domain/", host));
+                updateValue(getWHOIS_NIC(host));
                 break;
             case "swiss":
                 updateValue(setDomainCheckResult(host, "whois.nic.swiss"));
@@ -48,7 +48,7 @@ public class GetRegistrarTask extends Task<String> {
         return String.valueOf(valueProperty());
     }
 
-    private String setupDomainName(String domain){
+    private String setupDomainName(String domain) {
         domain = domain.toLowerCase().replace(" ", "");
         return java.net.IDN.toASCII(domain);
     }
@@ -59,8 +59,8 @@ public class GetRegistrarTask extends Task<String> {
         return new Whois().getWhois(host, whoisServer);
     }
 
-    private String setDomainCheckResultAPI(String URL, String domain) {
-        Whois_NIC api = new Whois_NIC(URL, domain);
+    private String getWHOIS_NIC(String domain) {
+        Whois_NIC api = new Whois_NIC(domain);
         updateMessage("show Whois for " + this.host);
         //hyperLbl = true;
         return api.getNicValues();

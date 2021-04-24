@@ -185,8 +185,14 @@ public class GUI implements Initializable {
 
     @FXML
     private void openIP(MouseEvent event) {
-        closeWebView(null);
-        displayIPInfo(txtFieldIP.getText());
+        try {
+            if (!txtFieldIP.getText().equals("")) {
+                closeWebView(null);
+                displayIPInfo(txtFieldIP.getText());
+            }
+        } catch (NullPointerException e) {
+            System.err.println("null Pointer - GUI Line 194");
+        }
     }
 
     private void displayIPInfo(String ip) {
@@ -287,12 +293,17 @@ public class GUI implements Initializable {
     }
 
     private void getRegistrar(String host) {
-        GetRegistrarTask task = new GetRegistrarTask(host);
-        registryLink.textProperty().bind(task.messageProperty());
-        templbl.textProperty().bind(task.valueProperty());
-        hyperLbl.disableProperty().bind(task.runningProperty());
-        hyperLbl.setVisible(true);
-        new Thread(task).start();
+        if (!host.equals("")) {
+            GetRegistrarTask task = new GetRegistrarTask(host);
+            registryLink.textProperty().bind(task.messageProperty());
+            templbl.textProperty().bind(task.valueProperty());
+            hyperLbl.disableProperty().bind(task.runningProperty());
+            hyperLbl.setVisible(true);
+            new Thread(task).start();
+        } else {
+            hyperLbl.setVisible(false);
+        }
+
     }
 
 }

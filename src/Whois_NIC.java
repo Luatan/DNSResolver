@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Whois_NIC extends API {
     private final String RESPONSE;
-    private final String URL;
+    private final String API_URL = "https://rdap.nic.ch/domain/";;
     private String domain;
     private String resDomain;
     private String resRegistrar;
@@ -16,15 +16,14 @@ public class Whois_NIC extends API {
     private String[] resNSDomain;
     private String[] resNSIP;
 
-    Whois_NIC(String URL, String domain) {
-        this.URL = URL;
+    Whois_NIC(String domain) {
         setDomain(domain);
-        RESPONSE = super.request(URL + domain);
+        RESPONSE = super.request(API_URL + domain);
     }
 
     public String getNicValues() {
         //Get Whole Object which icludes all Arrays
-        if (RESPONSE != null && super.responseCode == 200 && (this.URL + this.domain).equals("https://rdap.nic.ch/domain/" + this.domain)) {
+        if (RESPONSE != null && super.responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
 
             //get Domain name

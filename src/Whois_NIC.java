@@ -1,4 +1,5 @@
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.regex.Matcher;
@@ -25,9 +26,10 @@ public class Whois_NIC extends API {
         //Get Whole Object which icludes all Arrays
         if (RESPONSE != null && super.responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
-
+            //System.out.println(jsonObj.toString(4));
             //get Domain name
             resDomain = jsonObj.getString("ldhName");
+
 
             //get into VcardArray -> vcard
             JSONArray checkVcard = jsonObj.getJSONArray("entities");
@@ -59,17 +61,27 @@ public class Whois_NIC extends API {
             } else {
                 resRegistrationDate = "before 01 January 1996";
             }
-
             JSONArray nameservers = jsonObj.getJSONArray("nameservers");
             resNSDomain = new String[nameservers.length()];
             resNSIP = new String[nameservers.length()];
             for (int i = 0; i < nameservers.length(); i++) {
                 JSONObject ns = nameservers.getJSONObject(i);
                 resNSDomain[i] = ns.getString("ldhName");
-                if (ns.getJSONObject("ipAddresses").length() > 0) {
-                    resNSIP[i] = ns.getJSONObject("ipAddresses").getString("v4");
+                JSONObject ips = ns.getJSONObject("ipAddresses");
+                if (ips.length() > 0) {
+                    try {
+                        if (ips.getJSONArray("v4").length() > 0) {
+                            resNSIP[i] = ips.getJSONArray("v4").getString(0);
+                        } else if (ips.getJSONArray("v6").length() > 0) {
+                            resNSIP[i] = ips.getJSONArray("v6").getString(0);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
+
             return convertResultNic();
         } else if (super.responseCode != 200) {
             return super.checkResponseCode();

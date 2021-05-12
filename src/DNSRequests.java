@@ -1,5 +1,3 @@
-import com.sun.corba.se.spi.orb.Operation;
-
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.naming.OperationNotSupportedException;
@@ -13,16 +11,16 @@ import java.util.regex.Pattern;
 
 public class DNSRequests {
     private String hostname;
-    private String IP;
-    private String[] Messages;
-    private String[] A;
-    private String[] AAAA;
-    private String[] CNAME;
-    private String[] MX;
-    private String[] NS;
-    private String[] TXT;
-    private String[] SRV;
-    private String[] SOA;
+    private String ip;
+    private String[] messages;
+    private String[] a;
+    private String[] aaaa;
+    private String[] cname;
+    private String[] mx;
+    private String[] ns;
+    private String[] txt;
+    private String[] srv;
+    private String[] soa;
 
     DNSRequests(String value, String type) throws UnknownHostException, NamingException {
         setHost(setupDomainName(value));
@@ -43,7 +41,7 @@ public class DNSRequests {
         try {
             InetAddress inetHost = InetAddress.getByName(host);
             hostname = inetHost.getHostName();
-            IP = inetHost.getHostAddress();
+            ip = inetHost.getHostAddress();
         } catch (UnknownHostException ex) {
             hostname = host;
             System.err.println("This host: " + host + " has no IP Address");
@@ -129,34 +127,34 @@ public class DNSRequests {
         return m.find();
     }
 
-    private void populateRecords(String[] RecordList, String type) {
+    private void populateRecords(String[] recordList, String type) {
         switch (type) {
             case "A":
-                A = RecordList;
+                a = recordList;
                 break;
             case "AAAA":
-                AAAA = RecordList;
+                aaaa = recordList;
                 break;
             case "CNAME":
-                CNAME = RecordList;
+                cname = recordList;
                 break;
             case "MX":
-                MX = RecordList;
+                mx = recordList;
                 break;
             case "SOA":
-                SOA = RecordList;
+                soa = recordList;
                 break;
             case "NS":
-                NS = RecordList;
+                ns = recordList;
                 break;
             case "TXT":
-                TXT = RecordList;
+                txt = recordList;
                 break;
             case "SRV":
-                SRV = RecordList;
+                srv = recordList;
                 break;
             case "Messages":
-                Messages = RecordList;
+                messages = recordList;
                 break;
             default:
                 System.err.println("type was not found - PopulateRecords");
@@ -167,25 +165,25 @@ public class DNSRequests {
     public String[] getRecords(String type) {
         switch (type) {
             case "A":
-                return A;
+                return a;
             case "AAAA":
-                return AAAA;
+                return aaaa;
             case "CNAME":
-                return CNAME;
+                return cname;
             case "MX":
-                return MX;
+                return mx;
             case "SOA":
-                return (SOA == null) ? null : formatSOA(SOA);
+                return (soa == null) ? null : formatSOA(soa);
             case "NS":
-                return NS;
+                return ns;
             case "SRV":
-                return SRV;
+                return srv;
             case "TXT":
-                return TXT;
+                return txt;
             case "PTR":
                 return new String[]{getPTRRecord(hostname)};
             case "Messages":
-                return Messages;
+                return messages;
             default:
                 System.err.println("Type was not found - getRecords");
                 break;
@@ -204,7 +202,7 @@ public class DNSRequests {
     }
 
     private String getTimeFromSeconds(int time) {
-        int days = 0, hours = 0, mins = 0;
+        int days, hours, mins;
 
         mins = (time - time%60)/60;
         hours = (mins - mins%60)/60;
@@ -234,6 +232,6 @@ public class DNSRequests {
     }
 
     public String getIP() {
-        return IP;
+        return ip;
     }
 }

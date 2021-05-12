@@ -8,15 +8,15 @@ public class IP_Info extends API {
     private final String FILE = "IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
     private final JSONHandler JSON = new JSONHandler(FILE);
-    private final int minRL= 10;
+    private final int MINRL = 10;
     private String info = "";
-    private String IP = "";
+    private String ip = "";
     //private String fields = "53769";
 
-    IP_Info(String IP) {
-        this.IP = IP;
+    IP_Info(String ip) {
+        this.ip = ip;
         if (checkTracker()) {
-            info = super.request(buildURL(this.IP));
+            info = super.request(buildURL(this.ip));
             writeTracker(responseHeaders);
         } else if (info.equals("")) {
             info = JSON.message("The Service is currently not available.");
@@ -75,7 +75,7 @@ public class IP_Info extends API {
             if (pastTime > 60) {
                 return true;
             } else {
-                if (rl <= minRL) {
+                if (rl <= MINRL) {
                     String message = "The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!";
                     info = JSON.message(message);
                     return false;
@@ -87,12 +87,12 @@ public class IP_Info extends API {
         return true;
     }
 
-    private String buildURL(String IP) {
-        return URL + IP;
+    private String buildURL(String ip) {
+        return URL + ip;
     }
 
-    private String buildURL(String IP, String fields) {
-        return URL + IP + "?fields=" + fields;
+    private String buildURL(String ip, String fields) {
+        return URL + ip + "?fields=" + fields;
     }
 
     private String mapsLink(double x, double y) {

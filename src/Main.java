@@ -25,12 +25,9 @@ public class Main extends Application {
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("/icons/Icon.png")));
-
-        // TODO: 03.02.2021 remove Windows default Title....https://stackoverflow.com/questions/9861178/javafx-primarystage-remove-windows-borders/9864496#9864496
-        // TODO: 29.05.2021 Cleanup Light mode 
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
-        scene = new Scene(root, 678, 555);
+        scene = new Scene(root, 678, 585);
 
 
         if (ThemeDark) {

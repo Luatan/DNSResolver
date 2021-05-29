@@ -14,7 +14,7 @@
      <items>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@Icon.png" />
+               <Image url="@icons/Icon.png" />
             </image>
             <viewport>
                <Rectangle2D />
@@ -26,7 +26,7 @@
                <Rectangle id="close_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="19.0" onMouseClicked="#onClose" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
                <ImageView id="close" fitHeight="15.0" fitWidth="15.0" layoutX="11.0" layoutY="2.5" mouseTransparent="true" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@close_icon.png" />
+                     <Image url="@icons/close_icon.png" />
                   </image>
                   <viewport>
                      <Rectangle2D />
@@ -39,7 +39,7 @@
                <Rectangle id="minimize_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="19.0" onMouseClicked="#onMinimize" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
                <ImageView id="minimize" fitHeight="15.0" fitWidth="15.0" layoutX="11.0" layoutY="2.5" mouseTransparent="true" onMouseClicked="#onMinimize" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@minimize_icon.png" />
+                     <Image url="@icons/minimize_icon.png" />
                   </image>
                   <viewport>
                      <Rectangle2D />
@@ -111,7 +111,7 @@
                 </Button>
             <ImageView fx:id="moon" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#changeTheme" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                <image>
-                  <Image url="@moon_light.png" />
+                  <Image url="@icons/moon_light.png" />
                </image>
                <GridPane.margin>
                   <Insets left="88.0" />

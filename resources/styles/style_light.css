@@ -1,0 +1,7 @@
+#close_rect:hover {
+    -fx-fill: red;
+}
+
+#minimize_rect:hover {
+    -fx-fill: lightgray;
+}

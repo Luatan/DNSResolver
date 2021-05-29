@@ -9,7 +9,46 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
+<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
+   <ToolBar id="toolbar" fx:id="toolbar" onMouseDragged="#moveWindow" onMousePressed="#getOffset" prefHeight="40.0" prefWidth="200.0">
+     <items>
+         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@Icon.png" />
+            </image>
+            <viewport>
+               <Rectangle2D />
+            </viewport>
+         </ImageView>
+         <Label text="DNS Resolver" translateX="5.0" />
+         <Group translateX="525.0">
+            <children>
+               <Rectangle id="close_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="19.0" onMouseClicked="#onClose" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+               <ImageView id="close" fitHeight="15.0" fitWidth="15.0" layoutX="11.0" layoutY="2.5" mouseTransparent="true" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@close_icon.png" />
+                  </image>
+                  <viewport>
+                     <Rectangle2D />
+                  </viewport>
+               </ImageView>
+            </children>
+         </Group>
+         <Group layoutX="129.0" layoutY="11.0" translateX="420.0">
+            <children>
+               <Rectangle id="minimize_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="19.0" onMouseClicked="#onMinimize" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+               <ImageView id="minimize" fitHeight="15.0" fitWidth="15.0" layoutX="11.0" layoutY="2.5" mouseTransparent="true" onMouseClicked="#onMinimize" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@minimize_icon.png" />
+                  </image>
+                  <viewport>
+                     <Rectangle2D />
+                  </viewport>
+               </ImageView>
+            </children>
+         </Group>
+     </items>
+   </ToolBar>
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
             <Separator layoutX="517.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="25.0" />
@@ -263,4 +302,5 @@
          <Label fx:id="templbl" layoutX="15.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" text="Label" visible="false" />
         </children>
     </AnchorPane>
+   <DialogPane />
 </VBox>

@@ -99,3 +99,15 @@
 .hyperlink:visited {
     -fx-text-fill: #0c95af;
 }
+
+#toolbar {
+    -fx-background-color: #393E41;
+}
+
+#close_rect:hover {
+    -fx-fill: red;
+}
+
+#minimize_rect:hover {
+    -fx-fill: #494c4f;
+}

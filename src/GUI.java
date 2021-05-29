@@ -26,6 +26,12 @@ import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class GUI implements Initializable {
+    // used for calaculating the offset to move the Window
+    private double offsetX;
+    private double offsetY;
+
+    @FXML
+    ToolBar toolbar;
     @FXML
     TextField txtNS1, txtNS2, txtNS3, txtNS4;
     @FXML
@@ -67,6 +73,29 @@ public class GUI implements Initializable {
         typeBox.setValue("Any");
         chckBox.setSelected(Main.emptyRecordSetting);
         updateHistoryDisplay(); // Update history at startup
+    }
+
+    @FXML
+    private void onClose(MouseEvent e) {
+        Main.stage.close();
+    }
+
+    @FXML
+    private void onMinimize(MouseEvent e) {
+        Main.stage.setIconified(true);
+    }
+
+    @FXML
+    private void getOffset(MouseEvent event) { //gets the current X and Y for the scene to be used as offset
+        offsetX = event.getSceneX();
+        offsetY = event.getSceneY();
+    }
+
+    @FXML
+    private void moveWindow(MouseEvent event) { // If Toolbar is dragged the scene gets moved
+        Main.stage.setX(event.getScreenX() - offsetX);
+        Main.stage.setY(event.getScreenY() - offsetY);
+
     }
 
     @FXML

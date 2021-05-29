@@ -10,7 +10,8 @@
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">
           <JavaFxApplicationIcons>
-            <option name="windowsIcon" value="$PROJECT_DIR$/resources/Icon.ico" />
+            <option name="linuxIcon" value="$PROJECT_DIR$/resources/icons/Icon.png" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/resources/icons/Icon.ico" />
           </JavaFxApplicationIcons>
         </option>
         <option name="keypass" value="RGF5b3JuaWdodDI=" />

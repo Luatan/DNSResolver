@@ -1,0 +1,43 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="DNSResolver">
+    <output-path>$PROJECT_DIR$/out/artifacts/DNSResolver</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="alias" value="DNSResolver" />
+        <option name="appClass" value="Main" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="DNS Lookup Tool&#13;&#10;&#13;&#10;Icon by Icons8 - https://icons8.com" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/resources/icons/Icon.png" />
+            <option name="windowsIcon" value="$PROJECT_DIR$/resources/icons/Icon.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="keypass" value="RGF5b3JuaWdodDI=" />
+        <option name="keystore" value="C:\Users\Simon Schmid\DNSResolver.keystore" />
+        <option name="nativeBundle" value="all" />
+        <option name="selfSigning" value="false" />
+        <option name="storepass" value="RGF5b3JuaWdodDI=" />
+        <option name="title" value="DNSResolver" />
+        <option name="vendor" value="Simon Schmid" />
+        <option name="version" value="1.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="DNSResolver.jar">
+        <element id="module-output" name="DNSResolver" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:4.9.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okio:okio:2.8.0" />
+          <element id="library" level="project" name="Maven: commons-net:commons-net:3.7.2" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.0" />
+          <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" />
+          <element id="library" level="project" name="Maven: org.json:json:20201115" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.8.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
+<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
    <ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#getOffset" prefHeight="27.0" prefWidth="200.0">
      <items>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -20,8 +20,16 @@
                <Rectangle2D />
             </viewport>
          </ImageView>
-         <Label text="DNS Resolver" translateX="5.0" />
-         <Group translateX="533.0" translateY="-1.0">
+         <Label prefHeight="19.0" prefWidth="83.0" text="DNS Resolver" translateX="5.0">
+            <font>
+               <Font name="Roboto Light" size="13.0" />
+            </font></Label>
+         <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" layoutX="34.0" layoutY="9.0" prefHeight="17.0" prefWidth="363.0" text="by Simon Schmid">
+            <font>
+               <Font name="Roboto Light" size="10.0" />
+            </font>
+         </Label>
+         <Group translateX="156.0" translateY="-1.0">
             <children>
                <Rectangle id="close_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="25.0" onMouseClicked="#onClose" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
                <ImageView id="close" fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="5.0" mouseTransparent="true" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
@@ -34,7 +42,7 @@
                </ImageView>
             </children>
          </Group>
-         <Group layoutX="129.0" layoutY="11.0" translateX="450.0" translateY="-1.0">
+         <Group layoutX="129.0" layoutY="11.0" translateX="73.0" translateY="-1.0">
             <children>
                <Rectangle id="minimize_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="25.0" onMouseClicked="#onMinimize" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
                <ImageView id="minimize" fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="5.0" mouseTransparent="true" onMouseClicked="#onMinimize" pickOnBounds="true" preserveRatio="true">

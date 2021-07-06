@@ -26,24 +26,19 @@ public class Whois {
     }
 
     public String getWhois(String domainName, String whoisServer) {
-
-        StringBuilder result = new StringBuilder();
-
         WhoisClient whois = new WhoisClient();
+        String whoisData = "";
         try {
-
             //Port 43
             whois.connect(whoisServer, whois.getDefaultPort());
-            String whoisData1 = whois.query(domainName);
-
-            result.append(whoisData1);
+            whoisData = whois.query(domainName);
             whois.disconnect();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return result.toString();
+        return whoisData.replaceAll("(%.*)", "").trim();
 
     }
 

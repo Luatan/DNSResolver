@@ -220,7 +220,7 @@ public class GUI implements Initializable {
                 displayIPInfo(txtFieldIP.getText());
             }
         } catch (NullPointerException e) {
-            System.err.println("null Pointer - GUI Line 194");
+            System.err.println("null Pointer - GUI openIP Function");
         }
     }
 
@@ -243,11 +243,10 @@ public class GUI implements Initializable {
     @FXML
     private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
         btnWeb.setVisible(false);
-        DNSRequests subdomainQuery = new DNSRequests();
         String host = txtDomain.getText();
-        if (subdomainQuery.isSubdomain(host)) {
-            txtDomain.setText(subdomainQuery.getMainDomain(host));
-            DNSOutput(subdomainQuery.getMainDomain(host), (String) typeBox.getValue());
+        if (Domain.isSubdomain(host)) {
+            txtDomain.setText(Domain.getMainDomain(host));
+            DNSOutput(Domain.getMainDomain(host), (String) typeBox.getValue());
         }
     }
 

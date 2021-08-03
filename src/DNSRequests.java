@@ -75,8 +75,6 @@ public class DNSRequests {
                         //System.err.println("No Records for " + type + " in " + hostname + " found!");
                     }
                 }
-            } catch (CommunicationException e) {
-                System.out.println("it timed out");
             } catch (NameNotFoundException e) {
                 addMessage("No DNS-Records Found for " + hostname);
             } catch (ServiceUnavailableException e) {

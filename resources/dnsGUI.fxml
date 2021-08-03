@@ -299,15 +299,8 @@
                     <Font name="Roboto Light" size="10.0" />
                 </font>
             </CheckBox>
-            <Label contentDisplay="RIGHT" layoutX="15.0" layoutY="42.0" text="Server reachable (A): " visible="false">
-                <graphic>
-                    <Circle fx:id="reachable" fill="#ff0a0a00" radius="5.0" stroke="#a69d9d00" strokeType="INSIDE" />
-                </graphic>
-                <font>
-                    <Font name="Roboto Light" size="12.0" />
-                </font>
-            </Label>
-         <Label fx:id="templbl" layoutX="15.0" layoutY="38.0" prefHeight="25.0" prefWidth="173.0" text="Label" visible="false" />
+         <Label fx:id="txtRegistrar" layoutX="16.0" layoutY="39.0" prefHeight="17.0" prefWidth="191.0" text="Registrar: " visible="false" />
+         <Label fx:id="templbl" layoutX="25.0" layoutY="486.0" prefHeight="25.0" prefWidth="173.0" text="temp" visible="false" />
         </children>
     </AnchorPane>
 </VBox>

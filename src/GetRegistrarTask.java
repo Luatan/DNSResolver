@@ -4,22 +4,20 @@ public class GetRegistrarTask extends Task<String> {
     private String host;
 
     GetRegistrarTask(String host) {
-        this.host = setupDomainName(host);
+        this.host = Domain.trimDomain(host);
     }
 
     @Override
     protected String call() throws Exception {
-        DNSRequests query = new DNSRequests();
-        if (query.isSubdomain(host)) {
-            host = query.getMainDomain(host);
+        if (Domain.isSubdomain(host)) {
+            host = Domain.getMainDomain(host);
         }
-        switch (query.getExtension(host)) {
+        switch (Domain.getExtension(host)) {
             case "com":
             case "net":
             case "ru":
             case "org":
             case "ca":
-                //hyperLbl = true;
                 updateMessage("whois.com/whois/" + host);
                 updateValue("");
                 break;
@@ -33,36 +31,43 @@ public class GetRegistrarTask extends Task<String> {
             case "li":
                 updateValue(getWHOIS_NIC(host));
                 break;
+            case "lu":
+                updateValue(setDomainCheckResult(host, "whois.dns.lu"));
+                break;
             case "swiss":
                 updateValue(setDomainCheckResult(host, "whois.nic.swiss"));
                 break;
             case "de":
                 updateValue(setDomainCheckResult("-T dn " + host, "whois.denic.de"));
                 break;
+            case "at":
+                updateValue(setDomainCheckResult(host, "whois.nic.at"));
+                break;
+            case "dk":
+                updateValue(setDomainCheckResult(host, "whois.dk-hostmaster.dk"));
+                break;
+            case "nl":
+                updateValue(setDomainCheckResult(host, "whois.domain-registry.nl"));
+                break;
+            case "uk":
+                updateValue(setDomainCheckResult(host, "whois.nic.uk"));
+                break;
             default:
                 updateMessage("show Whois for " + host);
-                //hyperLbl = true;
                 updateValue("This TLD is not compatible");
                 break;
         }
         return String.valueOf(valueProperty());
     }
 
-    private String setupDomainName(String domain) {
-        domain = domain.toLowerCase().replace(" ", "");
-        return java.net.IDN.toASCII(domain);
-    }
-
     private String setDomainCheckResult(String host, String whoisServer) {
         updateMessage("show Whois for " + this.host);
-        //hyperLbl = true;
         return new Whois().getWhois(host, whoisServer);
     }
 
     private String getWHOIS_NIC(String domain) {
         Whois_NIC api = new Whois_NIC(domain);
         updateMessage("show Whois for " + this.host);
-        //hyperLbl = true;
         return api.getNicValues();
     }
 }

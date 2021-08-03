@@ -38,7 +38,7 @@ public class Whois {
             e.printStackTrace();
         }
 
-        return whoisData.replaceAll("(%.*)", "").trim();
+        return whoisData.replaceAll("(%.*)|(#.*)", "").trim();
 
     }
 

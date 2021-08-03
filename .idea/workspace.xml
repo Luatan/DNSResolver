@@ -9,13 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="TODO improve requests">
-      <change afterPath="$PROJECT_DIR$/src/Domain.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="automatically removes comments from the whois Server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Diagrams/DNS_Resolver.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/Diagrams/DNS_Resolver.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Whois.java" afterDir="false" />
     </list>
@@ -38,7 +36,6 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="window_decoration" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -163,27 +160,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00013" summary="implemented history and changed json management">
-      <created>1612733887365</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1612733887366</updated>
-    </task>
-    <task id="LOCAL-00014" summary="corrected version">
-      <created>1612733979737</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1612733979737</updated>
-    </task>
-    <task id="LOCAL-00015" summary="changed styles">
-      <created>1612735101801</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1612735101801</updated>
     </task>
     <task id="LOCAL-00016" summary="changed history to remove the oldest entry at 10 entries">
       <created>1612770847904</created>
@@ -507,7 +483,28 @@
       <option name="project" value="LOCAL" />
       <updated>1622380814976</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Changed a few methods to be accessible thorough Domain.java">
+      <created>1625598006905</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1625598006906</updated>
+    </task>
+    <task id="LOCAL-00063" summary="changed diagramm">
+      <created>1625598014360</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1625598014360</updated>
+    </task>
+    <task id="LOCAL-00064" summary="automatically removes comments from the whois Server">
+      <created>1625598036977</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1625598036977</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -536,9 +533,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated API connection to not overstep the limit" />
-    <MESSAGE value="added JSONHandler to Handle all JSON (needs further implementation for other classes).&#10;&#10;Changed IP info to use a super class as API" />
-    <MESSAGE value="changed Whois_NIC to use the api.java as super class" />
     <MESSAGE value="added Method to see if file exists to remove full path of IP_Info.java" />
     <MESSAGE value="Settingshandler uses JSONHandler for generic tasks. Same goes for main.java" />
     <MESSAGE value="test" />
@@ -561,7 +555,10 @@
     <MESSAGE value="tried to use jfx 11 but did not work" />
     <MESSAGE value="corrected UML" />
     <MESSAGE value="TODO improve requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="TODO improve requests" />
+    <MESSAGE value="Changed a few methods to be accessible thorough Domain.java" />
+    <MESSAGE value="changed diagramm" />
+    <MESSAGE value="automatically removes comments from the whois Server" />
+    <option name="LAST_COMMIT_MESSAGE" value="automatically removes comments from the whois Server" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

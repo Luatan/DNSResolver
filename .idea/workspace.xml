@@ -9,13 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="automatically removes comments from the whois Server">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="update tld">
+      <change afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/JSONController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DNS/Record.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DNS/Zone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Whois.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +93,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -101,6 +103,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controller.test" />
+      <module name="DNSResolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,14 +156,15 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="TestNG.DNSRequestsTest" />
       <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
+      <item itemvalue="Application.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,13 +176,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00016" summary="changed history to remove the oldest entry at 10 entries">
-      <created>1612770847904</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1612770847904</updated>
     </task>
     <task id="LOCAL-00017" summary="code cleanup">
       <created>1612771072527</created>
@@ -504,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625598036977</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="update tld">
+      <created>1627993230106</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1627993230106</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,7 +549,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added Method to see if file exists to remove full path of IP_Info.java" />
     <MESSAGE value="Settingshandler uses JSONHandler for generic tasks. Same goes for main.java" />
     <MESSAGE value="test" />
     <MESSAGE value="formated style.css&#10;changed Controller.java to GUI.java&#10;in Gui.java changed OpenIP Method and removed global var curIP" />
@@ -558,7 +573,25 @@
     <MESSAGE value="Changed a few methods to be accessible thorough Domain.java" />
     <MESSAGE value="changed diagramm" />
     <MESSAGE value="automatically removes comments from the whois Server" />
-    <option name="LAST_COMMIT_MESSAGE" value="automatically removes comments from the whois Server" />
+    <MESSAGE value="update tld" />
+    <option name="LAST_COMMIT_MESSAGE" value="update tld" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/DNSController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="hash" />
+        <PinnedItemInfo parentTag="java.util.Hashtable$Enumerator" memberName="table" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

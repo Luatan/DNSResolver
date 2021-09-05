@@ -1,8 +1,9 @@
+import Utils.Domain;
+
 import javax.naming.*;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
-import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 public class DNSRequests {
@@ -21,7 +22,6 @@ public class DNSRequests {
     DNSRequests(String domain, String type) throws UnknownHostException, NamingException {
         setHost(Domain.trimDomain(domain));
         setRecords(type);
-
     }
 
     private void setHost(String host) throws NamingException, UnknownHostException {
@@ -56,11 +56,11 @@ public class DNSRequests {
 
     private void setRecords(String type) throws NamingException, UnknownHostException {
         if (type.matches("PTR")) {
-            //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
+            //If PTR-Record do not call the Model.DNS again - UI calls getPTRRecords Method
         } else if (!hostname.equals("Unrecognized host")) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
-                // get all the DNS records for hostname
+                // get all the Model.DNS records for hostname
                 Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
                 if (type.matches("[*]")) {
                     setAllRecords();
@@ -76,7 +76,7 @@ public class DNSRequests {
                     }
                 }
             } catch (NameNotFoundException e) {
-                addMessage("No DNS-Records Found for " + hostname);
+                addMessage("No Model.DNS-Records Found for " + hostname);
             } catch (ServiceUnavailableException e) {
                 addMessage("Service unavailable for " + hostname);
             } catch (OperationNotSupportedException e) {

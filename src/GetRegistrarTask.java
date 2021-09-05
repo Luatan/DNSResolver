@@ -1,3 +1,6 @@
+import Utils.Domain;
+import Model.NIC;
+import Model.Whois;
 import javafx.concurrent.Task;
 
 public class GetRegistrarTask extends Task<String> {
@@ -53,7 +56,7 @@ public class GetRegistrarTask extends Task<String> {
                 updateValue(setDomainCheckResult(host, "whois.nic.uk"));
                 break;
             default:
-                updateMessage("show Whois for " + host);
+                updateMessage("show WHOIS.Model.Whois for " + host);
                 updateValue("This TLD is not compatible");
                 break;
         }
@@ -61,13 +64,13 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String setDomainCheckResult(String host, String whoisServer) {
-        updateMessage("show Whois for " + this.host);
+        updateMessage("show WHOIS.Model.Whois for " + this.host);
         return new Whois().getWhois(host, whoisServer);
     }
 
     private String getWHOIS_NIC(String domain) {
-        Whois_NIC api = new Whois_NIC(domain);
-        updateMessage("show Whois for " + this.host);
+        NIC api = new NIC(domain);
+        updateMessage("show WHOIS.Model.Whois for " + this.host);
         return api.getNicValues();
     }
 }

@@ -1,3 +1,5 @@
+package Model;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -5,7 +7,7 @@ import org.json.JSONObject;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Whois_NIC extends API {
+public class NIC extends API {
     private final String RESPONSE;
     private final String API_URL = "https://rdap.nic.ch/domain/";;
     private String domain;
@@ -17,7 +19,7 @@ public class Whois_NIC extends API {
     private String[] resNSDomain;
     private String[] resNSIP;
 
-    Whois_NIC(String domain) {
+    public NIC(String domain) {
         setDomain(domain);
         RESPONSE = super.request(API_URL + domain);
     }
@@ -27,7 +29,7 @@ public class Whois_NIC extends API {
         if (RESPONSE != null && super.responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
             //System.out.println(jsonObj.toString(4));
-            //get Domain name
+            //get Helper.Domain name
             resDomain = jsonObj.getString("ldhName");
 
 
@@ -112,7 +114,7 @@ public class Whois_NIC extends API {
                 nsString.append("\n");
             }
         }
-        return "Domain: " + resDomain + "\n" +
+        return "Helper.Domain: " + resDomain + "\n" +
                 "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
                 + "\nFirst Registration: " + resRegistrationDate + "\n" + nsString;
     }
@@ -121,7 +123,7 @@ public class Whois_NIC extends API {
         if (!isIPAdress(domain)) {
             this.domain = domain;
         } else {
-            System.out.println("This is not a Domain");
+            System.out.println("This is not a Helper.Domain");
         }
     }
 

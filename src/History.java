@@ -1,17 +1,20 @@
+import Controller.JSONController;
+import Utils.Files;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 public class History {
-    private final String HISTORYFILE = "history.json";
-    private JSONHandler handler;
+    private final String FILENAME = "history.json";
+    private final JSONController handler;
 
     History() {
-        handler = new JSONHandler(HISTORYFILE);
+        handler = new JSONController(FILENAME);
         init();
     }
 
     private boolean init() {
-        if (handler.fileExists()) {
+        if (Files.fileExists(FILENAME)) {
             return true;
         }
         writeDefaultHistory();
@@ -34,7 +37,7 @@ public class History {
     }
 
     private void removeIndex(int index) {
-        JSONObject obj = new JSONObject(handler.readFile());
+        JSONObject obj = new JSONObject(Files.readFile(FILENAME));
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.remove(index);
         handler.write(obj);
@@ -43,7 +46,7 @@ public class History {
     private void toTheEnd(int start_pos) {
         String domain = getDomain(start_pos);
         removeIndex(start_pos);
-        JSONObject obj = new JSONObject(handler.readFile());
+        JSONObject obj = new JSONObject(Files.readFile(FILENAME));
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.put(domain);
         handler.write(obj);
@@ -61,7 +64,7 @@ public class History {
     }
 
     private JSONArray getArray() {
-        JSONObject object = new JSONObject(handler.readFile());
+        JSONObject object = new JSONObject(Files.readFile(FILENAME));
         return object.getJSONArray("domains");
     }
 
@@ -86,7 +89,7 @@ public class History {
             if (domainExists(domain)) {
                 toTheEnd(getIndex(domain));
             } else {
-                JSONObject object = new JSONObject(handler.readFile());
+                JSONObject object = new JSONObject(Files.readFile(FILENAME));
                 JSONArray domainList = object.getJSONArray("domains");
                 domainList.put(domain.toLowerCase());
                 //Write File

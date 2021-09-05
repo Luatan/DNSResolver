@@ -1,3 +1,5 @@
+package Model;
+
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -5,11 +7,11 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-public class API {
+public abstract class API {
     public Headers responseHeaders;
     public int responseCode = 500;
 
-    String request(String url) {
+    protected String request(String url) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder().url(url).build();
@@ -28,7 +30,7 @@ public class API {
         return "Query failed";
     }
 
-    String checkResponseCode() {
+    protected String checkResponseCode() {
         switch (responseCode) {
             case 200:
                 return "200 - OK";

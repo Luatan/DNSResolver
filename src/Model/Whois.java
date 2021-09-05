@@ -1,3 +1,5 @@
+package Model;
+
 import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;

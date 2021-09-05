@@ -1,3 +1,5 @@
+import Utils.Domain;
+import Model.IP_Info;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -49,8 +50,6 @@ public class GUI implements Initializable {
     @FXML
     Label hyperLbl;
     @FXML
-    Circle reachable;
-    @FXML
     CheckBox chckBox;
     @FXML
     ImageView moon;
@@ -60,7 +59,7 @@ public class GUI implements Initializable {
 
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
-    //initialize Variables for Domain Check
+    //initialize Variables for Helper.Domain Check
     @FXML
     Label templbl;
     String domainCheckResult = "";
@@ -71,18 +70,18 @@ public class GUI implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         typeBox.setItems(types);
         typeBox.setValue("Any");
-        chckBox.setSelected(Main.emptyRecordSetting);
+        chckBox.setSelected(Main.gui.isShowAllRecords());
         updateHistoryDisplay(); // Update history at startup
     }
 
     @FXML
     private void onClose(MouseEvent e) {
-        Main.stage.close();
+        Main.gui.exit();
     }
 
     @FXML
     private void onMinimize(MouseEvent e) {
-        Main.stage.setIconified(true);
+        Main.gui.minimize();
     }
 
     @FXML
@@ -93,9 +92,7 @@ public class GUI implements Initializable {
 
     @FXML
     private void moveWindow(MouseEvent event) { // If Toolbar is dragged the scene gets moved
-        Main.stage.setX(event.getScreenX() - offsetX);
-        Main.stage.setY(event.getScreenY() - offsetY);
-
+        Main.gui.moveWindow(event.getScreenX() - offsetX, event.getScreenY() - offsetY);
     }
 
     @FXML
@@ -105,7 +102,7 @@ public class GUI implements Initializable {
         resetTempValues();
         DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
 
-        if (!txtDomain.getText().equals("")) { //add Domain to history
+        if (!txtDomain.getText().equals("")) { //add Helper.Domain to history
             history.addDomain(txtDomain.getText());
             updateHistoryDisplay(); //Update history list
         }
@@ -137,12 +134,12 @@ public class GUI implements Initializable {
 
     @FXML
     private void changeEmptyRecordsSetting(MouseEvent event) {
-        Main.setEmptyRecordSetting();
+        Main.gui.setShowAllRecords();
     }
 
     @FXML
     private void changeTheme(MouseEvent event) {
-        Main.changeTheme();
+        Main.gui.changeTheme();
     }
 
     @FXML

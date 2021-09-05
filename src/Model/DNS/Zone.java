@@ -1,14 +1,13 @@
-package DNS;
+package Model.DNS;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Zone {
     private String domainName;
     private List<Record> records;
 
     public Zone() {
-        records = new ArrayList<>();
+        records = new LinkedList<>();
     }
 
     public void addRecord(Record record) {
@@ -19,7 +18,7 @@ public class Zone {
         this.domainName = domainName;
     }
 
-    public List<Record> getRecord(String type) {
+    public List<Record> getRecords(String type) {
         List<Record> rec = new ArrayList<>();
         for (Record record:records) {
             if (record.getType().equals(type)) {

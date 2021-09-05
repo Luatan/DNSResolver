@@ -9,15 +9,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="update tld">
-      <change afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/JSONController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DNS/Record.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DNS/Zone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="rework of dns mechanism">
+      <change afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/Files.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_4_20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_0_M1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_0_M1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_0_M1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_0_M1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_0_M1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_0_M1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/JSONController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JSONController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Zone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Zone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IP_Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSONHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Whois_NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/NIC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +117,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.test">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -115,7 +139,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Controller.*" />
+          <option name="PATTERN" value="Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -154,14 +178,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.test" />
       <item itemvalue="TestNG.DNSRequestsTest" />
       <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
-      <item itemvalue="Application.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.test" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.Main" />
@@ -176,13 +200,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00017" summary="code cleanup">
-      <created>1612771072527</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1612771072527</updated>
     </task>
     <task id="LOCAL-00018" summary="added Multithreading for Whois">
       <created>1613170557060</created>
@@ -520,7 +537,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627993230106</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="rework of dns mechanism">
+      <created>1629043896515</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1629043896515</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -549,7 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Settingshandler uses JSONHandler for generic tasks. Same goes for main.java" />
     <MESSAGE value="test" />
     <MESSAGE value="formated style.css&#10;changed Controller.java to GUI.java&#10;in Gui.java changed OpenIP Method and removed global var curIP" />
     <MESSAGE value="changed lambda expression in GUI&#10;removed not used import" />
@@ -574,24 +597,42 @@
     <MESSAGE value="changed diagramm" />
     <MESSAGE value="automatically removes comments from the whois Server" />
     <MESSAGE value="update tld" />
-    <option name="LAST_COMMIT_MESSAGE" value="update tld" />
+    <MESSAGE value="rework of dns mechanism" />
+    <option name="LAST_COMMIT_MESSAGE" value="rework of dns mechanism" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/DNSController.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/src/Controller/GUIController.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Controller/GUIController.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/GUI.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.String" memberName="hash" />
+        <PinnedItemInfo parentTag="Controller.GUIController" memberName="emptyRecordSetting" />
         <PinnedItemInfo parentTag="java.util.Hashtable$Enumerator" memberName="table" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="showAllRecords" language="JAVA" />
+        <watch expression="Main.gui.isShowAllRecords()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

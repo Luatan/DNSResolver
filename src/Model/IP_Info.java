@@ -1,3 +1,7 @@
+package Model;
+
+import Controller.JSONController;
+import Utils.Files;
 import okhttp3.Headers;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -5,15 +9,15 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class IP_Info extends API {
-    private final String FILE = "IP_API_req.json";
+    private final String FILENAME = "IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
-    private final JSONHandler JSON = new JSONHandler(FILE);
+    private final JSONController JSON = new JSONController(FILENAME);
     private final int MINRL = 10;
     private String info = "";
     private String ip = "";
     //private String fields = "53769";
 
-    IP_Info(String ip) {
+    public IP_Info(String ip) {
         this.ip = ip;
         if (checkTracker()) {
             info = super.request(buildURL(this.ip));
@@ -62,11 +66,11 @@ public class IP_Info extends API {
     }
 
     private JSONObject readTracker() {
-        return new JSONObject(Objects.requireNonNull(JSON.readFile()));
+        return new JSONObject(Objects.requireNonNull(Files.readFile(FILENAME)));
     }
 
     private boolean checkTracker() {
-        if (JSON.fileExists()) {
+        if (Files.fileExists(FILENAME)) {
             JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
             long time = obj.getLong("lastrequest");

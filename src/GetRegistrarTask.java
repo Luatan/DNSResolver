@@ -20,6 +20,8 @@ public class GetRegistrarTask extends Task<String> {
             case "net":
             case "ru":
             case "org":
+                updateValue(setDomainCheckResult(host, "whois.psi-usa.info"));
+                break;
             case "ca":
                 updateMessage("whois.com/whois/" + host);
                 updateValue("");
@@ -56,7 +58,7 @@ public class GetRegistrarTask extends Task<String> {
                 updateValue(setDomainCheckResult(host, "whois.nic.uk"));
                 break;
             default:
-                updateMessage("show WHOIS.Model.Whois for " + host);
+                updateMessage("show Whois for " + host);
                 updateValue("This TLD is not compatible");
                 break;
         }
@@ -64,13 +66,13 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String setDomainCheckResult(String host, String whoisServer) {
-        updateMessage("show WHOIS.Model.Whois for " + this.host);
+        updateMessage("show Whois for " + this.host);
         return new Whois().getWhois(host, whoisServer);
     }
 
     private String getWHOIS_NIC(String domain) {
         NIC api = new NIC(domain);
-        updateMessage("show WHOIS.Model.Whois for " + this.host);
+        updateMessage("show Whois for " + this.host);
         return api.getNicValues();
     }
 }

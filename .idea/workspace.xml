@@ -9,39 +9,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="rework of dns mechanism">
-      <change afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utils/Files.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_4_20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_0_M1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_0_M1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_0_M1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_0_M1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_0_M1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_0_M1.xml" beforeDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="automatically removes comments from the whois Server">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_0_RC1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/JSONController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JSONController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Zone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Zone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/History.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IP_Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JSONHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Whois_NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +70,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/icons/Icon.png" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
@@ -119,7 +99,7 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH" value="azul-11 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
@@ -603,16 +583,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/GUIController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Controller/GUIController.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GUI.java</url>
           <line>70</line>

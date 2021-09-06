@@ -9,9 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="small fixes to strings and added whois server for .org domains">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="jdk 11">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +66,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jfxrt.jar" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
@@ -97,8 +104,7 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files/Java/zulu11/zulu11.45.27-ca-fx-jdk11.0.10-win_x64" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-16" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
@@ -178,13 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00020" summary="bugfix:&#10;Textarea not selectable&#10;removed console output which contains nothing from &quot;api.java&quot;&#10;&#10;added:&#10;- Mouse changed to pointer for &quot;Top&quot; button&#10;- Output of time the request took (only in IDE)">
-      <created>1613338204338</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1613338204338</updated>
     </task>
     <task id="LOCAL-00021" summary="changed dark theme">
       <created>1613338247610</created>
@@ -522,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630924375068</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="jdk 11">
+      <created>1630925444530</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1630925444530</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -551,7 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed lambda expression in GUI&#10;removed not used import" />
     <MESSAGE value="started to implement the class History" />
     <MESSAGE value="implemented History.java" />
     <MESSAGE value="corrected items getting added to the bottom instead of top" />
@@ -576,18 +581,10 @@
     <MESSAGE value="rework of dns mechanism" />
     <MESSAGE value="overhaul&#10;- created packages&#10;- added Files.java to handle file operations&#10;- added GUIController to handle gui&#10;- Added Zone and Record to handle dns request better" />
     <MESSAGE value="small fixes to strings and added whois server for .org domains" />
-    <option name="LAST_COMMIT_MESSAGE" value="small fixes to strings and added whois server for .org domains" />
+    <MESSAGE value="jdk 11" />
+    <option name="LAST_COMMIT_MESSAGE" value="jdk 11" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.String" memberName="hash" />

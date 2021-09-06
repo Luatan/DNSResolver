@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 
 public class GUIController extends Application {
 
-    private boolean darkMode = false;
+    private static boolean darkMode;
     private static boolean showAllRecords;
     private static Scene scene;
     private static Stage stage;
@@ -26,7 +26,6 @@ public class GUIController extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
         scene = new Scene(root, 678, 585);
-
 
         if (darkMode) {
             scene.getStylesheets().add("/styles/style_dark.css");
@@ -44,13 +43,13 @@ public class GUIController extends Application {
 
     public void changeTheme() {
         darkMode = !darkMode;
-
         if (darkMode) {
-            scene.getStylesheets().remove("/styles/style_light.css");
             scene.getStylesheets().add("/styles/style_dark.css");
+            scene.getStylesheets().remove("/styles/style_light.css");
         } else {
-            scene.getStylesheets().remove("/styles/style_dark.css");
             scene.getStylesheets().add("/styles/style_light.css");
+            scene.getStylesheets().remove("/styles/style_dark.css");
+
         }
         settingsController.edit("darkmode", darkMode);
         stage.setScene(scene);

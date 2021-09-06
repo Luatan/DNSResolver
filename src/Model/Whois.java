@@ -40,7 +40,7 @@ public class Whois {
             e.printStackTrace();
         }
 
-        return whoisData.replaceAll("(%.*)|(#.*)|(.+REDACTED.*\\n)", "").trim();
+        return whoisData.replaceAll("(%.*)|(#.*)|(.+REDACTED.*\\n)|(For more info.[\\S\\s]*)", "").trim();
 
     }
 

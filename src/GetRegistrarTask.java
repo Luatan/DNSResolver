@@ -11,14 +11,18 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     @Override
-    protected String call() throws Exception {
+    protected String call() {
         if (Domain.isSubdomain(host)) {
             host = Domain.getMainDomain(host);
         }
         switch (Domain.getExtension(host)) {
+            case "ru":
+                updateValue(setDomainCheckResult(host, "whois.tcinet.ru"));
+                break;
             case "com":
             case "net":
-            case "ru":
+                updateValue(setDomainCheckResult(host, "whois.verisign-grs.com"));
+                break;
             case "org":
                 updateValue(setDomainCheckResult(host, "whois.psi-usa.info"));
                 break;

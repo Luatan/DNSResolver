@@ -60,7 +60,7 @@ public class DNSRequests {
         } else if (!hostname.equals("Unrecognized host")) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
-                // get all the Model.DNS records for hostname
+                // get all the DNS records for hostname
                 Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
                 if (type.matches("[*]")) {
                     setAllRecords();
@@ -76,7 +76,7 @@ public class DNSRequests {
                     }
                 }
             } catch (NameNotFoundException e) {
-                addMessage("No Model.DNS-Records Found for " + hostname);
+                addMessage("No DNS-Records Found for " + hostname);
             } catch (ServiceUnavailableException e) {
                 addMessage("Service unavailable for " + hostname);
             } catch (OperationNotSupportedException e) {

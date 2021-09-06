@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="update to jfx 11">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="small fixes to strings and added whois server for .org domains">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,14 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/DNSController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/test.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Model/Whois.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -57,7 +63,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -92,7 +97,7 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="azul-11 (2)" />
+      <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files/Java/zulu11/zulu11.45.27-ca-fx-jdk11.0.10-win_x64" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
@@ -503,19 +508,19 @@
       <option name="project" value="LOCAL" />
       <updated>1629043896515</updated>
     </task>
-    <task id="LOCAL-00067" summary="update to jfx 11">
-      <created>1630924117730</created>
+    <task id="LOCAL-00067" summary="overhaul&#10;- created packages&#10;- added Files.java to handle file operations&#10;- added GUIController to handle gui&#10;- Added Zone and Record to handle dns request better">
+      <created>1630872339463</created>
       <option name="number" value="00067" />
       <option name="presentableId" value="LOCAL-00067" />
       <option name="project" value="LOCAL" />
-      <updated>1630924117730</updated>
+      <updated>1630872339464</updated>
     </task>
-    <task id="LOCAL-00068" summary="update to jfx 11">
-      <created>1630924136962</created>
+    <task id="LOCAL-00068" summary="small fixes to strings and added whois server for .org domains">
+      <created>1630924375068</created>
       <option name="number" value="00068" />
       <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
-      <updated>1630924136962</updated>
+      <updated>1630924375068</updated>
     </task>
     <option name="localTasksCounter" value="69" />
     <servers />
@@ -546,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="formated style.css&#10;changed Controller.java to GUI.java&#10;in Gui.java changed OpenIP Method and removed global var curIP" />
     <MESSAGE value="changed lambda expression in GUI&#10;removed not used import" />
     <MESSAGE value="started to implement the class History" />
     <MESSAGE value="implemented History.java" />
@@ -570,8 +574,9 @@
     <MESSAGE value="automatically removes comments from the whois Server" />
     <MESSAGE value="update tld" />
     <MESSAGE value="rework of dns mechanism" />
-    <MESSAGE value="update to jfx 11" />
-    <option name="LAST_COMMIT_MESSAGE" value="update to jfx 11" />
+    <MESSAGE value="overhaul&#10;- created packages&#10;- added Files.java to handle file operations&#10;- added GUIController to handle gui&#10;- Added Zone and Record to handle dns request better" />
+    <MESSAGE value="small fixes to strings and added whois server for .org domains" />
+    <option name="LAST_COMMIT_MESSAGE" value="small fixes to strings and added whois server for .org domains" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

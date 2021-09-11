@@ -305,7 +305,7 @@ public class GUI implements Initializable {
                 System.err.println("No list found - recordPutter Try Catch");
             }
             txtAreaRecords.home();
-        } else if (chckBox.isSelected()) {
+        } else if (chckBox.isSelected() && !type.equals("Messages")) {
             txtAreaRecords.appendText(type + ": \n");
             txtAreaRecords.appendText("\t" + "No Records found\n\n");
         }

@@ -5,3 +5,7 @@
 #minimize_rect:hover {
     -fx-fill: lightgray;
 }
+
+#windowBar {
+    -fx-background-color: #e2e2e2;
+}

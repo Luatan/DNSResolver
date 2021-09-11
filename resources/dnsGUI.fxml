@@ -10,8 +10,8 @@
 <?import javafx.scene.web.*?>
 
 <VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
-   <ToolBar id="toolbar" fx:id="toolbar" minHeight="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#getOffset" prefHeight="27.0" prefWidth="200.0">
-     <items>
+   <HBox id="windowBar" fx:id="WindowMenu" onMouseDragged="#moveWindow" onMousePressed="#getOffset" spacing="2.0">
+      <children>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@icons/Icon.png" />
@@ -19,32 +19,35 @@
             <viewport>
                <Rectangle2D />
             </viewport>
+            <HBox.margin>
+               <Insets left="3.0" right="3.0" top="5.0" />
+            </HBox.margin>
          </ImageView>
-         <Label prefHeight="19.0" prefWidth="83.0" text="DNS Resolver" translateX="5.0">
+         <Label text="DNS Resolver">
             <font>
                <Font name="Roboto Light" size="13.0" />
-            </font></Label>
-         <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" layoutX="34.0" layoutY="9.0" prefHeight="17.0" prefWidth="363.0" text="by Simon Schmid">
+            </font>
+            <HBox.margin>
+               <Insets top="5.0" />
+            </HBox.margin>
+            <padding>
+               <Insets left="5.0" />
+            </padding></Label>
+         <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" text="by Simon Schmid">
             <font>
                <Font name="Roboto Light" size="9.0" />
             </font>
+            <padding>
+               <Insets left="5.0" top="5.0" />
+            </padding>
+            <HBox.margin>
+               <Insets top="5.0" />
+            </HBox.margin>
          </Label>
-         <Group translateX="156.0" translateY="-1.0">
+         <Region HBox.hgrow="ALWAYS" />
+         <Group>
             <children>
-               <Rectangle id="close_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="25.0" onMouseClicked="#onClose" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
-               <ImageView id="close" fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="6.0" mouseTransparent="true" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@icons/close_icon.png" />
-                  </image>
-                  <viewport>
-                     <Rectangle2D />
-                  </viewport>
-               </ImageView>
-            </children>
-         </Group>
-         <Group layoutX="129.0" layoutY="11.0" translateX="73.0" translateY="-1.0">
-            <children>
-               <Rectangle id="minimize_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="25.0" onMouseClicked="#onMinimize" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+               <Rectangle id="minimize_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="27.0" onMouseClicked="#onMinimize" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
                <ImageView id="minimize" fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="7.0" mouseTransparent="true" onMouseClicked="#onMinimize" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@icons/minimize_icon.png" />
@@ -54,12 +57,36 @@
                   </viewport>
                </ImageView>
             </children>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
          </Group>
-     </items>
-   </ToolBar>
+         <Group>
+            <children>
+               <Rectangle id="close_rect" arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="27.0" onMouseClicked="#onClose" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+               <ImageView id="close" fitHeight="15.0" fitWidth="15.0" layoutX="12.0" layoutY="6.0" mouseTransparent="true" onMouseClicked="#onClose" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@icons/close_icon.png" />
+                  </image>
+                  <viewport>
+                     <Rectangle2D />
+                  </viewport>
+               </ImageView>
+            </children>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </Group>
+      </children>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+      <padding>
+         <Insets left="5.0" />
+      </padding>
+   </HBox>
     <AnchorPane prefHeight="570.0" prefWidth="676.0">
         <children>
-            <Separator layoutX="517.0" orientation="VERTICAL" prefHeight="59.0" prefWidth="25.0" />
             <GridPane layoutX="10.0" prefHeight="44.0" prefWidth="666.0">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="85.0" />
@@ -264,7 +291,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="403.0" text="Whois:" textAlignment="CENTER" visible="false">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="453.0" text="Whois:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -278,7 +305,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="310.0" style="-fx-cursor: hand;" text="No URL Found">
+                    <Hyperlink fx:id="registryLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="405.0" style="-fx-cursor: hand;" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -299,8 +326,10 @@
                     <Font name="Roboto Light" size="10.0" />
                 </font>
             </CheckBox>
-         <Label fx:id="txtRegistrar" layoutX="16.0" layoutY="39.0" prefHeight="17.0" prefWidth="191.0" text="Registrar: " visible="false" />
-         <Label fx:id="templbl" layoutX="25.0" layoutY="486.0" prefHeight="25.0" prefWidth="173.0" text="temp" visible="false" />
+         <Label fx:id="txtRegistrar" layoutX="16.0" layoutY="39.0" prefHeight="17.0" prefWidth="191.0" text="Registrar: ">
+            <font>
+               <Font name="Roboto Light" size="12.0" />
+            </font></Label>
         </children>
     </AnchorPane>
 </VBox>

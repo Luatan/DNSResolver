@@ -19,24 +19,25 @@ public class DNSRequests {
     private String[] srv;
     private String[] soa;
 
-    DNSRequests(String domain, String type) throws UnknownHostException, NamingException {
+    DNSRequests(String domain, String type) {
         setHost(Domain.trimDomain(domain));
         setRecords(type);
     }
 
-    private void setHost(String host) throws NamingException, UnknownHostException {
-        try {
-            InetAddress inetHost = InetAddress.getByName(host);
-            hostname = inetHost.getHostName();
-            ip = inetHost.getHostAddress();
-        } catch (UnknownHostException ex) {
-            hostname = host;
-            System.err.println("This host: " + host + " has no IP Address");
-        }
+    private void setHost(String host) {
+        this.hostname = host;
+//        try {
+//            InetAddress inetHost = InetAddress.getByName(host);
+//            hostname = inetHost.getHostName();
+//            ip = inetHost.getHostAddress();
+//        } catch (UnknownHostException ex) {
+//            hostname = host;
+//            System.err.println("This host: " + host + " has no IP Address");
+//        }
         setNameServer();
     }
 
-    private void setNameServer() throws UnknownHostException, NamingException {
+    private void setNameServer(){
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
@@ -47,14 +48,14 @@ public class DNSRequests {
         }
     }
 
-    private void setAllRecords() throws NamingException, UnknownHostException {
+    private void setAllRecords() {
         String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
         for (String record : recordsToUse) {
             setRecords(record);
         }
     }
 
-    private void setRecords(String type) throws NamingException, UnknownHostException {
+    private void setRecords(String type) {
         if (type.matches("PTR")) {
             //If PTR-Record do not call the Model.DNS again - UI calls getPTRRecords Method
         } else if (!hostname.equals("Unrecognized host")) {

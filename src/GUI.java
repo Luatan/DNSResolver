@@ -21,12 +21,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
-import javax.naming.NamingException;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class GUI implements Initializable {
@@ -99,17 +97,36 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void startSearchButton(ActionEvent event) throws NamingException, UnknownHostException { //Handels the Start Button action
-        long startSearchTime = System.currentTimeMillis();
+    private void startSearchButton(ActionEvent event) { //Handels the Start Button action
+        //Clean up
+        txtFieldIP.textProperty().unbind();
+        txtFieldHost.textProperty().unbind();
         closeWebView(event);
         resetTempValues();
-        DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
 
-        if (!txtDomain.getText().equals("")) { //add Helper.Domain to history
-            history.addDomain(txtDomain.getText());
-            updateHistoryDisplay(); //Update history list
+        //Do nothing if empty
+        if (txtDomain.getText().equals("")) {
+            return;
         }
-        System.out.println("Request took " + (System.currentTimeMillis() - startSearchTime) + "ms");
+
+        if (Domain.isIPAdress(txtDomain.getText())) {
+            //clean up old entries
+            txtFieldHost.setText("");
+            btnWeb.setVisible(false);
+            domainCheckResult = "";
+            nameServerDisplay(new String[0]);
+
+            //set new entries
+            displayIPInfo(txtDomain.getText());
+            resolveHost(txtDomain.getText());
+
+        } else {
+            DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
+        }
+
+        // Add the domain to history
+        history.addDomain(txtDomain.getText());
+        updateHistoryDisplay(); //Update history list
     }
 
     private void resetTempValues() {
@@ -168,7 +185,7 @@ public class GUI implements Initializable {
 
     @FXML
     private void openWebView(ActionEvent event) {
-        if (registrarInfo.getValue().equals("")) {
+        if (registrarInfo.getValue().isEmpty()) {
             domainCheckResult = "";
         } else {
             domainCheckResult = registrarInfo.getValue();
@@ -178,13 +195,13 @@ public class GUI implements Initializable {
 
     @FXML
     private void closeWebView(ActionEvent event) {
-        if (domainCheckResult.equals("")) {
+        if (domainCheckResult.isEmpty()) {
             final WebEngine webEngine = web.getEngine();
             web.setVisible(false);
             btnWeb.setVisible(false);
             webEngine.load(null);
         } else {
-            if (!originalRecords.equals("")) {
+            if (originalRecords.isEmpty()) {
                 txtAreaRecords.setText(originalRecords);
             }
             btnWeb.setVisible(false);
@@ -196,7 +213,7 @@ public class GUI implements Initializable {
     }
 
     private void displayWebView(String host) {
-        if (domainCheckResult.equals("")) {
+        if (domainCheckResult.isEmpty()) {
             final WebEngine webEngine = web.getEngine();
             webEngine.load("http://" + host);
             btnWeb.setVisible(true);
@@ -214,11 +231,14 @@ public class GUI implements Initializable {
 
     @FXML
     private void openIP(MouseEvent event) {
+        if (txtFieldIP.getText().isEmpty()) {
+            return;
+        }
+
         try {
-            if (!txtFieldIP.getText().equals("")) {
-                closeWebView(null);
-                displayIPInfo(txtFieldIP.getText());
-            }
+            closeWebView(null);
+            displayIPInfo(txtFieldIP.getText());
+
         } catch (NullPointerException e) {
             System.err.println("null Pointer - GUI openIP Function");
         }
@@ -227,21 +247,19 @@ public class GUI implements Initializable {
     private void displayIPInfo(String ip) {
         domainCheckResult = "ip";
         originalRecords = txtAreaRecords.getText();
-        if (!ip.equals("")) {
-            if (ip_data == null) {
-                IP_Info info = new IP_Info(ip);
-                ip_data = info.getInfo();
-            }
-            txtAreaRecords.setText(ip_data);
-        } else {
-            txtAreaRecords.setText("No IP Address found");
+
+        if (ip_data == null) {
+            IP_Info info = new IP_Info(ip);
+            ip_data = info.getInfo();
         }
+        txtAreaRecords.setText(ip_data);
+
         btnWeb.setVisible(true);
         btnWeb.setText("Back");
     }
 
     @FXML
-    private void useTextHostnameField(MouseEvent event) throws NamingException, UnknownHostException {
+    private void useTextHostnameField(MouseEvent event) {
         btnWeb.setVisible(false);
         String host = txtDomain.getText();
         if (Domain.isSubdomain(host)) {
@@ -293,11 +311,13 @@ public class GUI implements Initializable {
         txtAreaRecords.home();
     }
 
-    private void DNSOutput(String host, String type) throws NamingException, UnknownHostException {
+    private void DNSOutput(String host, String type) {
+        long requestTime = 0;
         DNSRequests query;
         if (!txtDomain.getText().isEmpty()) {
             txtAreaRecords.clear();
             if (type.equals("Any")) {
+                requestTime = System.currentTimeMillis();
                 query = new DNSRequests(host, "*");
                 //Set Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
@@ -309,15 +329,24 @@ public class GUI implements Initializable {
                 query = new DNSRequests(host, type);
                 recordPutter(query.getRecords("Messages"), "Messages");
                 recordPutter(query.getRecords(type), type);
-                //setReachableCircle(query.getReachable());
             }
             txtFieldHost.clear();
             txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
-            txtFieldHost.setText(query.getHostname());
-            txtFieldIP.setText(query.getIP());
+            resolveHost(host);
+            System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime));
         }
         getRegistrar(host);
+    }
+
+    private void resolveHost(String host) {
+        if (host.equals("")) {
+            return;
+        }
+        LookupTask lookup = new LookupTask(host);
+        txtFieldHost.textProperty().bind(lookup.valueProperty());
+        txtFieldIP.textProperty().bind(lookup.messageProperty());
+        new Thread(lookup).start();
     }
 
     private void getRegistrar(String host) {
@@ -325,13 +354,13 @@ public class GUI implements Initializable {
             hyperLbl.setVisible(false);
             return;
         }
-            GetRegistrarTask task = new GetRegistrarTask(host);
-            registryLink.textProperty().bind(task.messageProperty());
-            registrarInfo.bind(task.valueProperty());
+        GetRegistrarTask task = new GetRegistrarTask(host);
+        registryLink.textProperty().bind(task.messageProperty());
+        registrarInfo.bind(task.valueProperty());
 
-            hyperLbl.disableProperty().bind(task.runningProperty());
-            hyperLbl.setVisible(true);
-            new Thread(task).start();
+        hyperLbl.disableProperty().bind(task.runningProperty());
+        hyperLbl.setVisible(true);
+        new Thread(task).start();
     }
 
 }

@@ -1,5 +1,8 @@
 package Utils;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +16,7 @@ public class Domain {
         Matcher m = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(host);
         return m.find();
     }
+
 
     public static String getMainDomain(String host) {
         String[] partDomain = host.replace(" ", "").split("[.]");

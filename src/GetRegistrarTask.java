@@ -3,8 +3,14 @@ import Model.NIC;
 import Model.Whois;
 import javafx.concurrent.Task;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GetRegistrarTask extends Task<String> {
     private String host;
+    private StringBuilder message = new StringBuilder("Show Whois for ");
+    private String res = "";
+
 
     GetRegistrarTask(String host) {
         this.host = Domain.trimDomain(host);
@@ -24,7 +30,7 @@ public class GetRegistrarTask extends Task<String> {
                 updateValue(setDomainCheckResult(host, "whois.verisign-grs.com"));
                 break;
             case "org":
-                updateValue(setDomainCheckResult(host, "whois.psi-usa.info"));
+                updateValue(setDomainCheckResult(host, "whois.pir.org"));
                 break;
             case "ca":
                 updateMessage("whois.com/whois/" + host);
@@ -70,13 +76,38 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String setDomainCheckResult(String host, String whoisServer) {
-        updateMessage("show Whois for " + this.host);
-        return new Whois().getWhois(host, whoisServer);
+        res = new Whois().getWhois(host, whoisServer);
+        message.append(this.host);
+        String reg = getRegistrarName();
+        if (reg != null) {
+            message.append(" - " + reg);
+        }
+        updateMessage(message.toString());
+
+        return res;
     }
 
     private String getWHOIS_NIC(String domain) {
-        NIC api = new NIC(domain);
-        updateMessage("show Whois for " + this.host);
-        return api.getNicValues();
+        res = new NIC(domain).getNicValues();
+        message.append(this.host);
+
+        String reg = getRegistrarName();
+        if (reg != null) {
+            message.append(" - " + reg);
+        }
+        updateMessage(message.toString());
+
+        return res;
     }
+
+    private String getRegistrarName() {
+        Pattern pattern = Pattern.compile("(?:Registrar:) (.+)");
+        Matcher matcher = pattern.matcher(res);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
 }

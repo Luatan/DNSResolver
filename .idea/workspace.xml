@@ -9,12 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="back to jdk 8 becaus no deploy">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added whois server for .ru,.com,.net,.org">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_light.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_light.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Record.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Zone.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Controller/DNSController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Controller/test.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Model/Whois.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
@@ -184,20 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00022" summary="managing git">
-      <created>1613338719271</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1613338719271</updated>
-    </task>
-    <task id="LOCAL-00023" summary="moved directorys">
-      <created>1613339323714</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1613339323714</updated>
     </task>
     <task id="LOCAL-00024" summary="added icon reference">
       <created>1613339516063</created>
@@ -528,7 +522,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630927561350</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="String fixes">
+      <created>1630940490122</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1630940490122</updated>
+    </task>
+    <task id="LOCAL-00072" summary="added whois server for .ru,.com,.net,.org">
+      <created>1630940543763</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1630940543763</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -557,8 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="implemented History.java" />
-    <MESSAGE value="corrected items getting added to the bottom instead of top" />
     <MESSAGE value="changed var names" />
     <MESSAGE value="optimized imports" />
     <MESSAGE value="changed from SettingsHandler.java to Settings.java" />
@@ -582,22 +588,20 @@
     <MESSAGE value="small fixes to strings and added whois server for .org domains" />
     <MESSAGE value="jdk 11" />
     <MESSAGE value="back to jdk 8 becaus no deploy" />
-    <option name="LAST_COMMIT_MESSAGE" value="back to jdk 8 becaus no deploy" />
+    <MESSAGE value="String fixes" />
+    <MESSAGE value="added whois server for .ru,.com,.net,.org" />
+    <option name="LAST_COMMIT_MESSAGE" value="added whois server for .ru,.com,.net,.org" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="java.lang.String" memberName="hash" />
+        <PinnedItemInfo parentTag="java.util.Hashtable$Entry" memberName="value" />
+        <PinnedItemInfo parentTag="javax.naming.directory.BasicAttributes" memberName="attrs" />
         <PinnedItemInfo parentTag="Controller.GUIController" memberName="emptyRecordSetting" />
         <PinnedItemInfo parentTag="java.util.Hashtable$Enumerator" memberName="table" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="showAllRecords" language="JAVA" />
-        <watch expression="Main.gui.isShowAllRecords()" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

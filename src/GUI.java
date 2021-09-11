@@ -1,5 +1,7 @@
-import Utils.Domain;
 import Model.IP_Info;
+import Utils.Domain;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -30,9 +33,8 @@ public class GUI implements Initializable {
     // used for calaculating the offset to move the Window
     private double offsetX;
     private double offsetY;
-
     @FXML
-    ToolBar toolbar;
+    HBox WindowMenu;
     @FXML
     TextField txtNS1, txtNS2, txtNS3, txtNS4;
     @FXML
@@ -48,7 +50,7 @@ public class GUI implements Initializable {
     @FXML
     WebView web;
     @FXML
-    Label hyperLbl;
+    Label hyperLbl, txtRegistrar;
     @FXML
     CheckBox chckBox;
     @FXML
@@ -60,8 +62,8 @@ public class GUI implements Initializable {
     //List of Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Helper.Domain Check
-    @FXML
-    Label templbl;
+
+    StringProperty registrarInfo = new SimpleStringProperty("");
     String domainCheckResult = "";
     String ip_data = null;
     String originalRecords = ""; //To undo
@@ -72,6 +74,7 @@ public class GUI implements Initializable {
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
         updateHistoryDisplay(); // Update history at startup
+
     }
 
     @FXML
@@ -165,10 +168,10 @@ public class GUI implements Initializable {
 
     @FXML
     private void openWebView(ActionEvent event) {
-        if (templbl.getText() == null) {
+        if (registrarInfo.getValue().equals("")) {
             domainCheckResult = "";
         } else {
-            domainCheckResult = templbl.getText();
+            domainCheckResult = registrarInfo.getValue();
         }
         displayWebView(registryLink.getText());
     }
@@ -318,17 +321,17 @@ public class GUI implements Initializable {
     }
 
     private void getRegistrar(String host) {
-        if (!host.equals("")) {
+        if (host.equals("")) {
+            hyperLbl.setVisible(false);
+            return;
+        }
             GetRegistrarTask task = new GetRegistrarTask(host);
             registryLink.textProperty().bind(task.messageProperty());
-            templbl.textProperty().bind(task.valueProperty());
+            registrarInfo.bind(task.valueProperty());
+
             hyperLbl.disableProperty().bind(task.runningProperty());
             hyperLbl.setVisible(true);
             new Thread(task).start();
-        } else {
-            hyperLbl.setVisible(false);
-        }
-
     }
 
 }

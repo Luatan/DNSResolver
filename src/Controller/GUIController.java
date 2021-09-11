@@ -16,6 +16,11 @@ public class GUIController extends Application {
     private static Stage stage;
     private final SettingsController settingsController = new SettingsController();
 
+    public void work() {
+        String[] args = new String[0];
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         loadSettings();
@@ -78,7 +83,5 @@ public class GUIController extends Application {
         stage.setY(y);
     }
 
-    public void work(String[] args) {
-        launch(args);
-    }
+
 }

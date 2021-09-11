@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IP_Info extends API {
     private final String FILENAME = "IP_API_req.json";
@@ -38,11 +40,20 @@ public class IP_Info extends API {
                     regionName = jsonObj.getString("regionName");
 
             double longitude = jsonObj.getDouble("lon"), latitude = jsonObj.getDouble("lat");
+            Pattern pattern = Pattern.compile("AS\\d+");
+            Matcher matcher = pattern.matcher(as);
+
+            if (matcher.find()) {
+                as = matcher.group();
+            }
+
+            String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + as;
+
 
             String res =
                     "Query: " + query + "\nStatus: " + status + "\n\nNetwork Owner: " + isp + "\nNetwork Organisation: " +
                             org + "\n\nAddress:\n" + zip + " " + city + "\n" + regionName + " (" + region + ")\n" +
-                            country + " (" + countryCode + ")\n" + "\n\n" + mapsLink(latitude, longitude);
+                            country + " (" + countryCode + ")\n" + "\nMore Information about this Network Owner:\n" + asLink +  "\n\n" + mapsLink(latitude, longitude);
 
             return res;
         } catch (JSONException e) {

@@ -185,7 +185,7 @@ public class GUI implements Initializable {
 
     @FXML
     private void openWebView(ActionEvent event) {
-        if (registrarInfo.getValue().isEmpty()) {
+        if (registrarInfo.getValue().equals("")) {
             domainCheckResult = "";
         } else {
             domainCheckResult = registrarInfo.getValue();
@@ -195,13 +195,14 @@ public class GUI implements Initializable {
 
     @FXML
     private void closeWebView(ActionEvent event) {
-        if (domainCheckResult.isEmpty()) {
+        if (domainCheckResult.equals("")) {
             final WebEngine webEngine = web.getEngine();
             web.setVisible(false);
             btnWeb.setVisible(false);
             webEngine.load(null);
         } else {
-            if (originalRecords.isEmpty()) {
+
+            if (!originalRecords.equals("")) {
                 txtAreaRecords.setText(originalRecords);
             }
             btnWeb.setVisible(false);
@@ -213,7 +214,7 @@ public class GUI implements Initializable {
     }
 
     private void displayWebView(String host) {
-        if (domainCheckResult.isEmpty()) {
+        if (domainCheckResult.equals("")) {
             final WebEngine webEngine = web.getEngine();
             webEngine.load("http://" + host);
             btnWeb.setVisible(true);

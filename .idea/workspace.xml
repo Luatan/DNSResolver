@@ -9,8 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="Hostname lookup is now in his own task">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="dependency clean up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,6 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -178,13 +180,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00029" summary="created addMessage Method to add messages to the output directly&#10;&#10;also added exceptions for Serviceunavailabele and Operation Not supported">
-      <created>1613685818176</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1613685818176</updated>
     </task>
     <task id="LOCAL-00030" summary="added hand cursor for buttons">
       <created>1613686147890</created>
@@ -522,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631388006301</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="dependency clean up">
+      <created>1631388226969</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1631388226969</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -551,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed a bug where you could click the empty IP Field and get empty labels" />
     <MESSAGE value="fixed bug, where a whois of a domain where a NS has an ip cannot be shown and the empty web view is opening" />
     <MESSAGE value="startet to make class Diagramm and corrected variable names" />
     <MESSAGE value="init custom window border" />
@@ -576,7 +577,8 @@
     <MESSAGE value="make registrar apparant in url and changed functions to be able to communicate with UI root" />
     <MESSAGE value="changed main for communication between UI and Controller" />
     <MESSAGE value="Hostname lookup is now in his own task" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hostname lookup is now in his own task" />
+    <MESSAGE value="dependency clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="dependency clean up" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -586,8 +588,14 @@
         <PinnedItemInfo parentTag="javax.naming.directory.BasicAttributes" memberName="attrs" />
         <PinnedItemInfo parentTag="Controller.GUIController" memberName="emptyRecordSetting" />
         <PinnedItemInfo parentTag="java.util.Hashtable$Enumerator" memberName="table" />
+        <PinnedItemInfo parentTag="GUI" memberName="originalRecords" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((GUI)this).originalRecords" custom="GUI" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

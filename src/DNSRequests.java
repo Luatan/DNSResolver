@@ -8,7 +8,6 @@ import java.net.UnknownHostException;
 
 public class DNSRequests {
     private String hostname;
-    private String ip;
     private String[] messages;
     private String[] a;
     private String[] aaaa;
@@ -26,14 +25,6 @@ public class DNSRequests {
 
     private void setHost(String host) {
         this.hostname = host;
-//        try {
-//            InetAddress inetHost = InetAddress.getByName(host);
-//            hostname = inetHost.getHostName();
-//            ip = inetHost.getHostAddress();
-//        } catch (UnknownHostException ex) {
-//            hostname = host;
-//            System.err.println("This host: " + host + " has no IP Address");
-//        }
         setNameServer();
     }
 
@@ -57,7 +48,7 @@ public class DNSRequests {
 
     private void setRecords(String type) {
         if (type.matches("PTR")) {
-            //If PTR-Record do not call the Model.DNS again - UI calls getPTRRecords Method
+            //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
         } else if (!hostname.equals("Unrecognized host")) {
             try {
                 InitialDirContext iDirC = new InitialDirContext();
@@ -174,19 +165,13 @@ public class DNSRequests {
 
     private String[] formatSOA(String[] list) {
         String[] new_list = list[0].split(" ");
+
         new_list[2] += "\t\t serialnumber";
         new_list[3] += "\t\t\t\t refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[3])) + ")";
         new_list[4] += "\t\t\t\t retry (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[4])) + ")";
         new_list[5] += "\t\t\t expire (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[5])) + ")";
         new_list[6] += "\t\t\t minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[6])) + ")";
+
         return new_list;
-    }
-
-    public String getHostname() {
-        return hostname.toLowerCase();
-    }
-
-    public String getIP() {
-        return ip;
     }
 }

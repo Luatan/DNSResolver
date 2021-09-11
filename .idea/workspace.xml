@@ -9,13 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed main for communication between UI and Controller">
-      <change afterPath="$PROJECT_DIR$/src/LookupTask.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="Hostname lookup is now in his own task">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +32,7 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,7 +47,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Model/Whois.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -168,9 +163,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.test" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -183,13 +178,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00028" summary="changed outputs to convert to lower case">
-      <created>1613511561507</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1613511561507</updated>
     </task>
     <task id="LOCAL-00029" summary="created addMessage Method to add messages to the output directly&#10;&#10;also added exceptions for Serviceunavailabele and Operation Not supported">
       <created>1613685818176</created>
@@ -527,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631382768647</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Hostname lookup is now in his own task">
+      <created>1631388006301</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1631388006301</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -556,7 +551,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed url to final" />
     <MESSAGE value="fixed a bug where you could click the empty IP Field and get empty labels" />
     <MESSAGE value="fixed bug, where a whois of a domain where a NS has an ip cannot be shown and the empty web view is opening" />
     <MESSAGE value="startet to make class Diagramm and corrected variable names" />
@@ -581,7 +575,8 @@
     <MESSAGE value="redesign UI" />
     <MESSAGE value="make registrar apparant in url and changed functions to be able to communicate with UI root" />
     <MESSAGE value="changed main for communication between UI and Controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed main for communication between UI and Controller" />
+    <MESSAGE value="Hostname lookup is now in his own task" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hostname lookup is now in his own task" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added link to ripe for network owner">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed bug and made description for timer more clear">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LookupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="Develop" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -72,8 +71,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jfxrt.jar" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -101,7 +100,8 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-16" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
@@ -181,27 +181,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00034" summary="empty domainnames dont get added to history anymore">
-      <created>1614967924244</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1614967924244</updated>
-    </task>
-    <task id="LOCAL-00035" summary="added days to SOA format">
-      <created>1617211430156</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1617211430156</updated>
-    </task>
-    <task id="LOCAL-00036" summary="implemented api from https://ip-api.com">
-      <created>1618347115111</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1618347115111</updated>
     </task>
     <task id="LOCAL-00037" summary="updated API connection to not overstep the limit">
       <created>1618352259148</created>
@@ -525,7 +504,28 @@
       <option name="project" value="LOCAL" />
       <updated>1631399921214</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="rename variable">
+      <created>1631442064979</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1631442064979</updated>
+    </task>
+    <task id="LOCAL-00084" summary="added matching for Ipv6">
+      <created>1631442083366</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1631442083366</updated>
+    </task>
+    <task id="LOCAL-00085" summary="fixed bug and made description for timer more clear">
+      <created>1631442108807</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1631442108807</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -554,9 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed viewport" />
-    <MESSAGE value="tried to use jfx 11 but did not work" />
-    <MESSAGE value="corrected UML" />
     <MESSAGE value="TODO improve requests" />
     <MESSAGE value="Changed a few methods to be accessible thorough Domain.java" />
     <MESSAGE value="changed diagramm" />
@@ -579,7 +576,10 @@
     <MESSAGE value="removed IP Variable&#10;corrected comments" />
     <MESSAGE value="added exception for messages to not show" />
     <MESSAGE value="added link to ripe for network owner" />
-    <option name="LAST_COMMIT_MESSAGE" value="added link to ripe for network owner" />
+    <MESSAGE value="rename variable" />
+    <MESSAGE value="added matching for Ipv6" />
+    <MESSAGE value="fixed bug and made description for timer more clear" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug and made description for timer more clear" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -592,11 +592,6 @@
         <PinnedItemInfo parentTag="GUI" memberName="originalRecords" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((GUI)this).originalRecords" custom="GUI" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

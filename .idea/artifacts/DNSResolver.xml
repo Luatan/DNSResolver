@@ -32,7 +32,7 @@
         <option name="title" value="DNSRsolver" />
         <option name="updateMode" value="background" />
         <option name="vendor" value="Simon Schmid" />
-        <option name="version" value="0.8" />
+        <option name="version" value="1.5" />
         <option name="width" value="600" />
       </options>
     </properties>

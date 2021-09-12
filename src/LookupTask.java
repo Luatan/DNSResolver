@@ -2,7 +2,6 @@ import javafx.concurrent.Task;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.concurrent.TimeoutException;
 
 public class LookupTask extends Task<String> {
     private String host;
@@ -10,18 +9,20 @@ public class LookupTask extends Task<String> {
     LookupTask(String host) {
         this.host = host;
     }
+
     @Override
     protected String call() {
         long time = System.currentTimeMillis();
         InetAddress inetHost;
         try {
             inetHost = InetAddress.getByName(host);
+
             updateValue(inetHost.getHostName());
             updateMessage(inetHost.getHostAddress());
         } catch (UnknownHostException e) {
-            updateValue("Unknown Host!");
+            updateValue(host);
         }
-        System.out.println("Lookup took: " + (System.currentTimeMillis() - time));
+        System.out.println("Lookup of " + host + " took: " + (System.currentTimeMillis() - time) + "ms");
         return String.valueOf(valueProperty());
     }
 }

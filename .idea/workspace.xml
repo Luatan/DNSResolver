@@ -9,11 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="bug fix">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added link to ripe for network owner">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IP_Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,27 +181,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00031" summary="added hand cursor for buttons">
-      <created>1613686338588</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1613686338588</updated>
-    </task>
-    <task id="LOCAL-00032" summary="changed Name from Domain Check to Whois">
-      <created>1614471119592</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1614471119592</updated>
-    </task>
-    <task id="LOCAL-00033" summary="fixed bug where the whois doesnt work if the domain name has a space at the end">
-      <created>1614795069285</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1614795069285</updated>
     </task>
     <task id="LOCAL-00034" summary="empty domainnames dont get added to history anymore">
       <created>1614967924244</created>
@@ -524,7 +504,28 @@
       <option name="project" value="LOCAL" />
       <updated>1631390614246</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="removed IP Variable&#10;corrected comments">
+      <created>1631399870376</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1631399870376</updated>
+    </task>
+    <task id="LOCAL-00081" summary="added exception for messages to not show">
+      <created>1631399905636</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1631399905636</updated>
+    </task>
+    <task id="LOCAL-00082" summary="added link to ripe for network owner">
+      <created>1631399921214</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1631399921214</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -553,9 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="startet to make class Diagramm and corrected variable names" />
-    <MESSAGE value="init custom window border" />
-    <MESSAGE value="moved files and implemented light theme css for exceptions from the design" />
     <MESSAGE value="fixed viewport" />
     <MESSAGE value="tried to use jfx 11 but did not work" />
     <MESSAGE value="corrected UML" />
@@ -578,7 +576,10 @@
     <MESSAGE value="Hostname lookup is now in his own task" />
     <MESSAGE value="dependency clean up" />
     <MESSAGE value="bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
+    <MESSAGE value="removed IP Variable&#10;corrected comments" />
+    <MESSAGE value="added exception for messages to not show" />
+    <MESSAGE value="added link to ripe for network owner" />
+    <option name="LAST_COMMIT_MESSAGE" value="added link to ripe for network owner" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

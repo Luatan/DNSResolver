@@ -44,7 +44,7 @@ public class GUI implements Initializable {
     @FXML
     ComboBox typeBox;
     @FXML
-    Hyperlink registryLink;
+    Hyperlink whoisLink;
     @FXML
     WebView web;
     @FXML
@@ -61,7 +61,7 @@ public class GUI implements Initializable {
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Helper.Domain Check
 
-    StringProperty registrarInfo = new SimpleStringProperty("");
+    StringProperty whoisInfo = new SimpleStringProperty("");
     String domainCheckResult = "";
     String ip_data = null;
     String originalRecords = ""; //To undo
@@ -101,6 +101,7 @@ public class GUI implements Initializable {
         //Clean up
         txtFieldIP.textProperty().unbind();
         txtFieldHost.textProperty().unbind();
+
         closeWebView(event);
         resetTempValues();
 
@@ -112,12 +113,13 @@ public class GUI implements Initializable {
         if (Domain.isIPAdress(txtDomain.getText())) {
             //clean up old entries
             txtFieldHost.setText("");
-            btnWeb.setVisible(false);
             domainCheckResult = "";
             nameServerDisplay(new String[0]);
 
             //set new entries
             displayIPInfo(txtDomain.getText());
+            btnWeb.setVisible(false);
+            hyperLbl.setVisible(false);
             resolveHost(txtDomain.getText());
 
         } else {
@@ -185,12 +187,12 @@ public class GUI implements Initializable {
 
     @FXML
     private void openWebView(ActionEvent event) {
-        if (registrarInfo.getValue().equals("")) {
+        if (whoisInfo.getValue().equals("")) {
             domainCheckResult = "";
         } else {
-            domainCheckResult = registrarInfo.getValue();
+            domainCheckResult = whoisInfo.getValue();
         }
-        displayWebView(registryLink.getText());
+        displayWebView(whoisLink.getText());
     }
 
     @FXML
@@ -337,7 +339,7 @@ public class GUI implements Initializable {
             resolveHost(host);
             System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime));
         }
-        getRegistrar(host);
+        getWhois(host);
     }
 
     private void resolveHost(String host) {
@@ -350,14 +352,14 @@ public class GUI implements Initializable {
         new Thread(lookup).start();
     }
 
-    private void getRegistrar(String host) {
+    private void getWhois(String host) {
         if (host.equals("")) {
             hyperLbl.setVisible(false);
             return;
         }
         GetRegistrarTask task = new GetRegistrarTask(host);
-        registryLink.textProperty().bind(task.messageProperty());
-        registrarInfo.bind(task.valueProperty());
+        whoisLink.textProperty().bind(task.messageProperty());
+        whoisInfo.bind(task.valueProperty());
 
         hyperLbl.disableProperty().bind(task.runningProperty());
         hyperLbl.setVisible(true);

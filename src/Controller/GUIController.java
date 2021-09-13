@@ -1,5 +1,6 @@
 package Controller;
 
+import Utils.Files;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GUIController extends Application {
 
@@ -17,6 +23,7 @@ public class GUIController extends Application {
     private final SettingsController settingsController = new SettingsController();
 
     public void work() {
+        checkWhoisSettings();
         String[] args = new String[0];
         launch(args);
     }
@@ -39,6 +46,22 @@ public class GUIController extends Application {
         }
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void checkWhoisSettings() {
+        if (Files.fileExists("config/whois-servers.json")){
+            return;
+        }
+
+        // try to get Stream
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("config_default/default_whois.json")) {
+
+            // convert input stream to file
+            FileUtils.copyInputStreamToFile(is, new File(Files.DIR_HOME + "config/whois_servers.json"));
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void loadSettings() {

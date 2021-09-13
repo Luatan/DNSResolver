@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 
 public class History {
-    private final String FILENAME = "history.json";
+    private final String FILENAME = "logs/history.json";
     private final JSONController handler;
 
     History() {

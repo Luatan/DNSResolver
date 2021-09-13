@@ -25,7 +25,6 @@ public class SettingsController {
         //Create Json Object
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("darkmode", false);
-        jsonObj.put("language", "eng");
         jsonObj.put("ShowEmptyRecords", false);
 
         SETTINGS.write(jsonObj);

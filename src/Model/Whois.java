@@ -39,8 +39,8 @@ public class Whois {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return whoisData.replaceAll("(%.*)|(#.*)|(.+REDACTED.*\\n)|(For more info.[\\S\\s]*)", "").trim();
+        whoisData = whoisData.replaceAll("(%.*)|(#.*)|(.*REDACTED.*)|(For more info.[\\S\\s]*)", "");
+        return whoisData.trim();
 
     }
 

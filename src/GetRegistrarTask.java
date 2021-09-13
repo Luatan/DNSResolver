@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetRegistrarTask extends Task<String> {
+    private final String CONF_FILE = "config/whois_servers.json";
     private String host;
     private StringBuilder message = new StringBuilder("Show Whois for ");
     private String res = "";
@@ -21,25 +22,35 @@ public class GetRegistrarTask extends Task<String> {
 
     @Override
     protected String call() {
+        // Don't run if host is not set
         if (host == null) {
             return "";
         }
 
+        // Checks if the domain is the maindomain
         if (Domain.isSubdomain(host)) {
             host = Domain.getMainDomain(host);
         }
 
+        // Handles DE Domains (special params for full info)
         String ext = Domain.getExtension(host);
         if (ext.equals("de")) {
             host = "-T dn " + host;
         }
 
+        // Handles CH and LI Method of getting the whois (whois server is not available)
         if (ext.equals("ch") | ext.equals("li")) {
             updateValue(getWHOIS_NIC(host));
             return String.valueOf(valueProperty());
         }
 
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile("config/whois_servers.json")));
+        //Checks if Configuration File is in Place
+        if (!FileStructure.fileExists(CONF_FILE)){
+            FileStructure.createFile("config/default_whois.json", CONF_FILE);
+        }
+
+        // Read config file
+        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(CONF_FILE)));
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
         } else {

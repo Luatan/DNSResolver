@@ -22,6 +22,9 @@ public class GetRegistrarTask extends Task<String> {
             host = Domain.getMainDomain(host);
         }
         switch (Domain.getExtension(host)) {
+            case "it":
+                updateValue(setDomainCheckResult(host, "whois.nic.it"));
+                break;
             case "ag":
                 updateValue(setDomainCheckResult(host, "whois.nic.ag"));
                 break;

@@ -1,6 +1,6 @@
 package Controller;
 
-import Utils.Files;
+import Utils.FileStructure;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,7 +49,7 @@ public class GUIController extends Application {
     }
 
     private void checkWhoisSettings() {
-        if (Files.fileExists("config/whois-servers.json")){
+        if (FileStructure.fileExists("config/whois-servers.json")){
             return;
         }
 
@@ -57,7 +57,7 @@ public class GUIController extends Application {
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("config_default/default_whois.json")) {
 
             // convert input stream to file
-            FileUtils.copyInputStreamToFile(is, new File(Files.DIR_HOME + "config/whois_servers.json"));
+            FileUtils.copyInputStreamToFile(is, new File(FileStructure.DIR_HOME + "config/whois_servers.json"));
 
         } catch (IOException ex) {
             ex.printStackTrace();

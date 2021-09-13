@@ -1,7 +1,7 @@
 package Model;
 
 import Controller.JSONController;
-import Utils.Files;
+import Utils.FileStructure;
 import okhttp3.Headers;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -77,11 +77,11 @@ public class IP_Info extends API {
     }
 
     private JSONObject readTracker() {
-        return new JSONObject(Objects.requireNonNull(Files.readFile(FILENAME)));
+        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(FILENAME)));
     }
 
     private boolean checkTracker() {
-        if (Files.fileExists(FILENAME)) {
+        if (FileStructure.fileExists(FILENAME)) {
             JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
             long time = obj.getLong("lastrequest");

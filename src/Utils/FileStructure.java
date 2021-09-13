@@ -3,8 +3,11 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class Files {
+public class FileStructure {
 
     public static final String DIR_HOME = System.getProperty("user.dir") + "/";
 
@@ -12,6 +15,10 @@ public class Files {
     public static boolean fileExists(String filename) {
         File file = new File(DIR_HOME + filename);
         return file.exists();
+    }
+
+    public static boolean directoryExists(String directoryName) {
+        return Files.isDirectory(Paths.get(DIR_HOME + directoryName));
     }
 
     public static String readFile(String filename) {
@@ -23,5 +30,7 @@ public class Files {
         }
         return null;
     }
+
+
 
 }

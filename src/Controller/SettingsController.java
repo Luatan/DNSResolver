@@ -1,6 +1,6 @@
 package Controller;
 
-import Utils.Files;
+import Utils.FileStructure;
 import org.json.JSONObject;
 
 public class SettingsController {
@@ -8,13 +8,13 @@ public class SettingsController {
     private final JSONController SETTINGS = new JSONController(FILENAME);
 
     public SettingsController() {
-        if (!Files.fileExists(FILENAME)) {
+        if (!FileStructure.fileExists(FILENAME)) {
             writeDefault();
         }
     }
 
     public void edit(String key, boolean value) {
-        JSONObject object = new JSONObject(Files.readFile(FILENAME));
+        JSONObject object = new JSONObject(FileStructure.readFile(FILENAME));
         object.put(key, value);
 
         //Write File

@@ -1,5 +1,5 @@
 import Controller.JSONController;
-import Utils.Files;
+import Utils.FileStructure;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -14,7 +14,7 @@ public class History {
     }
 
     private boolean init() {
-        if (Files.fileExists(FILENAME)) {
+        if (FileStructure.fileExists(FILENAME)) {
             return true;
         }
         writeDefaultHistory();
@@ -37,7 +37,7 @@ public class History {
     }
 
     private void removeIndex(int index) {
-        JSONObject obj = new JSONObject(Files.readFile(FILENAME));
+        JSONObject obj = new JSONObject(FileStructure.readFile(FILENAME));
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.remove(index);
         handler.write(obj);
@@ -46,7 +46,7 @@ public class History {
     private void toTheEnd(int start_pos) {
         String domain = getDomain(start_pos);
         removeIndex(start_pos);
-        JSONObject obj = new JSONObject(Files.readFile(FILENAME));
+        JSONObject obj = new JSONObject(FileStructure.readFile(FILENAME));
         JSONArray domainList = obj.getJSONArray("domains");
         domainList.put(domain);
         handler.write(obj);
@@ -64,7 +64,7 @@ public class History {
     }
 
     private JSONArray getArray() {
-        JSONObject object = new JSONObject(Files.readFile(FILENAME));
+        JSONObject object = new JSONObject(FileStructure.readFile(FILENAME));
         return object.getJSONArray("domains");
     }
 
@@ -89,7 +89,7 @@ public class History {
             if (domainExists(domain)) {
                 toTheEnd(getIndex(domain));
             } else {
-                JSONObject object = new JSONObject(Files.readFile(FILENAME));
+                JSONObject object = new JSONObject(FileStructure.readFile(FILENAME));
                 JSONArray domainList = object.getJSONArray("domains");
                 domainList.put(domain.toLowerCase());
                 //Write File

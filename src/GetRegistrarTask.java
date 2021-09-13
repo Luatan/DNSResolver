@@ -1,7 +1,7 @@
 import Model.NIC;
 import Model.Whois;
 import Utils.Domain;
-import Utils.Files;
+import Utils.FileStructure;
 import javafx.concurrent.Task;
 import org.json.JSONObject;
 
@@ -39,7 +39,7 @@ public class GetRegistrarTask extends Task<String> {
             return String.valueOf(valueProperty());
         }
 
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(Files.readFile("config/whois_servers.json")));
+        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile("config/whois_servers.json")));
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
         } else {

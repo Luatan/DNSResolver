@@ -1,6 +1,6 @@
 package Controller;
 
-import Utils.Files;
+import Utils.FileStructure;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.json.JSONObject;
 
@@ -17,7 +17,7 @@ public class JSONController {
 
     public void write(JSONObject object) {
         try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(Files.DIR_HOME + filename, "utf-8");
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + filename, "utf-8");
             file.write(object.toString(4));
             file.close();
         } catch (IOException e) {
@@ -26,12 +26,12 @@ public class JSONController {
     }
 
     public boolean getBoolValue(String key) {
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(Files.readFile(filename)));
+        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(filename)));
         return readObj.getBoolean(key);
     }
 
     public String getStringValue(String key) {
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(Files.readFile(filename)));
+        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(filename)));
         return readObj.getString(key);
     }
 

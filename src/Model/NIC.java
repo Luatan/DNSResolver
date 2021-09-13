@@ -1,5 +1,6 @@
 package Model;
 
+import Utils.Domain;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -120,15 +121,11 @@ public class NIC extends API {
     }
 
     private void setDomain(String domain) {
-        if (!isIPAdress(domain)) {
+        if (!Domain.isIPAdress(domain)) {
             this.domain = domain;
         } else {
             System.out.println("This is not a Helper.Domain");
         }
     }
 
-    private boolean isIPAdress(String domain) {
-        Matcher m = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$").matcher(domain);
-        return m.find();
-    }
 }

@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IP_Info extends API {
-    private final String FILENAME = "IP_API_req.json";
+    private final String FILENAME = "logs/IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
     private final JSONController JSON = new JSONController(FILENAME);
     private final int MINRL = 10;

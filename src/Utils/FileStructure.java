@@ -1,9 +1,9 @@
 package Utils;
+import Controller.GUIController;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 
-import java.io.IOException;
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -56,10 +56,11 @@ public class FileStructure {
         }
     }
 
+    //TODO works in IDE but not in build .... fix
     public static void copyDirFromRessources(String srcPath, String destPath) {
         File test;
         try {
-            test = new File(FileStructure.class.getClassLoader().getResource(srcPath).getFile());
+            test = new File(GUIController.class.getClassLoader().getResource(srcPath).getFile());
         } catch (NullPointerException e){
             e.printStackTrace();
             return;
@@ -71,7 +72,4 @@ public class FileStructure {
             e.printStackTrace();
         }
     }
-
-
-
 }

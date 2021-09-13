@@ -4,7 +4,7 @@ import Utils.FileStructure;
 import org.json.JSONObject;
 
 public class SettingsController {
-    private final String FILENAME = "settings.json";
+    private final String FILENAME = "config/settings.json";
     private final JSONController SETTINGS = new JSONController(FILENAME);
 
     public SettingsController() {

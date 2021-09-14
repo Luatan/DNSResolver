@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class GetRegistrarTask extends Task<String> {
     private final String CONF_FILE = "config/whois_servers.json";
     private String host;
-    private StringBuilder message = new StringBuilder("Show Whois for ");
+    private StringBuilder message = new StringBuilder();
     private String res = "";
 
 
@@ -54,7 +54,7 @@ public class GetRegistrarTask extends Task<String> {
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
         } else {
-            updateMessage("show Whois for " + host);
+            updateMessage(host);
             updateValue("This TLD is not compatible");
         }
 

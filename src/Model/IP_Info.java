@@ -70,7 +70,6 @@ public class IP_Info extends API {
     private void writeTracker(Headers header) {
         int rl = Integer.parseInt(header.value(5));
 
-        System.out.println(header);
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("lastrequest", System.currentTimeMillis());
         jsonObj.put("rl", rl);

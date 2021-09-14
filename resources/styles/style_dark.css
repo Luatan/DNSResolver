@@ -15,20 +15,46 @@
     -fx-border-color: #393E41;
 }
 
+/*---- TEXT AREA ----*/
 .text-area {
     -fx-text-fill: white;
     -fx-background-color: #1E2019;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar {
+    -fx-background-color: #1E2019;
+}
+
+.text-area .increment-button:hover , .text-area .decrement-button:hover{
+    -fx-background-color: #393E41;
+}
+
+.text-area .scroll-bar .thumb {
+    -fx-background-color: #393E41;
 }
 
 .text-area .content {
     -fx-background-color: #1E2019;
 }
 
+
+/*---- TEXT FIELD ----*/
 .text-field {
     -fx-text-fill: #393E41;
     -fx-text-fill: white;
 }
 
+/*---- COMBO BOX ----*/
 .combo-box {
     -fx-background-color: #393E41;
 }
@@ -44,6 +70,7 @@
     -fx-text-fill: white;
 }
 
+/*---- CHECKBOXES ----*/
 .check-box {
     -fx-text-fill: white;
 }
@@ -66,6 +93,7 @@
     -fx-background-color: #28a3f4;
 }
 
+/*---- MENU BUTTON ----*/
 .menu-button {
     -fx-background-color: #393E41;
     -fx-border-color: black;
@@ -96,10 +124,13 @@
     -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em;
 }
 
+/*---- HYPER LINK ----*/
 .hyperlink:visited {
     -fx-text-fill: #0c95af;
 }
 
+
+/*---- WINDOW TOOLS ----*/
 #close_rect:hover {
     -fx-fill: red;
 }

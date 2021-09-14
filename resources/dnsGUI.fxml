@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
-<VBox id="VBox" prefHeight="559.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
+<VBox id="VBox" prefHeight="585.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI">
    <HBox id="windowBar" fx:id="WindowMenu" onMouseDragged="#moveWindow" onMousePressed="#getOffset" spacing="2.0">
       <children>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -291,7 +291,7 @@
                     <Font name="Roboto Light" size="13.0" />
                 </font>
             </Button>
-            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="524.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="453.0" text="Whois:" textAlignment="CENTER" visible="false">
+            <Label fx:id="hyperLbl" contentDisplay="RIGHT" layoutX="12.0" layoutY="523.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Whois:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -305,7 +305,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWebView" prefHeight="28.0" prefWidth="405.0" style="-fx-cursor: hand;" text="No URL Found">
+                    <Hyperlink id="whoisLink" fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWebView" style="-fx-cursor: hand; -fx-border-color: transparent; -fx-padding: 4 0 4 0;" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -315,7 +315,7 @@
                     </Hyperlink>
                 </graphic>
             </Label>
-            <Button fx:id="btnWeb" layoutX="572.0" layoutY="524.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" layoutX="572.0" layoutY="522.0" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Close Web" visible="false">
                 <font>
                     <Font name="Roboto Light" size="12.0" />
                 </font>

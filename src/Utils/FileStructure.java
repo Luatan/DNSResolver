@@ -55,21 +55,4 @@ public class FileStructure {
             ex.printStackTrace();
         }
     }
-
-    //TODO works in IDE but not in build .... fix
-    public static void copyDirFromRessources(String srcPath, String destPath) {
-        File test;
-        try {
-            test = new File(GUIController.class.getClassLoader().getResource(srcPath).getFile());
-        } catch (NullPointerException e){
-            e.printStackTrace();
-            return;
-        }
-
-        try {
-            FileUtils.copyDirectoryToDirectory(test, new File(FileStructure.DIR_HOME + destPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

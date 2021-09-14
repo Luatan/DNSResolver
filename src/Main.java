@@ -10,9 +10,6 @@ public class Main {
             FileStructure.createDir(dir);
         }
 
-        //Make Licences visible for EndUser in files (on runtime)
-        FileStructure.copyDirFromRessources("licenses", "/");
-
         gui = new GUIController();
         gui.work();
     }

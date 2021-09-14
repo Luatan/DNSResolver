@@ -14,7 +14,7 @@ public class IP_Info extends API {
     private final String FILENAME = "logs/IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
     private final JSONController JSON = new JSONController(FILENAME);
-    private final int MINRL = 10;
+    private final int MINRL = 16;
     private String info = "";
     private String ip = "";
     //private String fields = "53769";
@@ -53,7 +53,7 @@ public class IP_Info extends API {
             String res =
                     "Query: " + query + "\nStatus: " + status + "\n\nNetwork Owner: " + isp + "\nNetwork Organisation: " +
                             org + "\n\nAddress:\n" + zip + " " + city + "\n" + regionName + " (" + region + ")\n" +
-                            country + " (" + countryCode + ")\n" + "\nMore Information about this Network Owner:\n" + asLink +  "\n\n" + mapsLink(latitude, longitude);
+                            country + " (" + countryCode + ")\n" + "\nMore Information about this Network Owner:\n" + asLink + "\n\n" + mapsLink(latitude, longitude);
 
             return res;
         } catch (JSONException e) {
@@ -70,6 +70,7 @@ public class IP_Info extends API {
     private void writeTracker(Headers header) {
         int rl = Integer.parseInt(header.value(5));
 
+        System.out.println(header);
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("lastrequest", System.currentTimeMillis());
         jsonObj.put("rl", rl);
@@ -89,14 +90,11 @@ public class IP_Info extends API {
 
             if (pastTime > 60) {
                 return true;
-            } else {
-                if (rl <= MINRL) {
-                    String message = "The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!";
-                    info = JSON.message(message);
-                    return false;
-                } else {
-                    return true;
-                }
+            }
+            if (rl <= MINRL) {
+                String message = "The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!";
+                info = JSON.message(message);
+                return false;
             }
         }
         return true;

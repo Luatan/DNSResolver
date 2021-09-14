@@ -30,7 +30,7 @@ public class NIC extends API {
         if (RESPONSE != null && super.responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
             //System.out.println(jsonObj.toString(4));
-            //get Helper.Domain name
+            //get Domain name
             resDomain = jsonObj.getString("ldhName");
 
 
@@ -115,7 +115,7 @@ public class NIC extends API {
                 nsString.append("\n");
             }
         }
-        return "Helper.Domain: " + resDomain + "\n" +
+        return "Domain: " + resDomain + "\n" +
                 "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
                 + "\nFirst Registration: " + resRegistrationDate + "\n" + nsString;
     }
@@ -124,7 +124,7 @@ public class NIC extends API {
         if (!Domain.isIPAdress(domain)) {
             this.domain = domain;
         } else {
-            System.out.println("This is not a Helper.Domain");
+            System.out.println("This is not a Domain");
         }
     }
 

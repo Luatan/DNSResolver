@@ -203,10 +203,7 @@ public class GUI implements Initializable {
             btnWeb.setVisible(false);
             webEngine.load(null);
         } else {
-
-            if (!originalRecords.equals("")) {
-                txtAreaRecords.setText(originalRecords);
-            }
+            txtAreaRecords.setText(originalRecords);
             btnWeb.setVisible(false);
             hyperLbl.setVisible(true);
             btnWeb.setText("Close Web");
@@ -221,10 +218,9 @@ public class GUI implements Initializable {
             webEngine.load("http://" + host);
             btnWeb.setVisible(true);
             web.setVisible(true);
-
         } else {
-            closeWebView(null);
             originalRecords = txtAreaRecords.getText();
+            closeWebView(null);
             txtAreaRecords.setText(domainCheckResult);
             btnWeb.setVisible(true);
             hyperLbl.setVisible(false);
@@ -342,13 +338,16 @@ public class GUI implements Initializable {
         getWhois(host);
     }
 
+
     private void resolveHost(String host) {
         if (host.equals("")) {
             return;
         }
         LookupTask lookup = new LookupTask(host);
         txtFieldHost.textProperty().bind(lookup.valueProperty());
+        txtFieldHost.disableProperty().bind(lookup.runningProperty());
         txtFieldIP.textProperty().bind(lookup.messageProperty());
+        txtFieldIP.disableProperty().bind(lookup.runningProperty());
         new Thread(lookup).start();
     }
 

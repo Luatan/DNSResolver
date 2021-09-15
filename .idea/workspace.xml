@@ -9,13 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="will be added in a later patch">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed a few bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/IP_Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/NIC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,8 +72,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -89,11 +85,11 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config_default" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\config" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -109,7 +105,6 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
@@ -177,7 +172,7 @@
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -189,55 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00057" summary="moved files and implemented light theme css for exceptions from the design">
-      <created>1622300104412</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1622300104413</updated>
-    </task>
-    <task id="LOCAL-00058" summary="fixed viewport">
-      <created>1622302182261</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1622302182261</updated>
-    </task>
-    <task id="LOCAL-00059" summary="tried to use jfx 11 but did not work">
-      <created>1622302964407</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1622302964408</updated>
-    </task>
-    <task id="LOCAL-00060" summary="corrected UML">
-      <created>1622315720167</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1622315720168</updated>
-    </task>
-    <task id="LOCAL-00061" summary="TODO improve requests">
-      <created>1622380814975</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1622380814976</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Changed a few methods to be accessible thorough Domain.java">
-      <created>1625598006905</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1625598006906</updated>
-    </task>
-    <task id="LOCAL-00063" summary="changed diagramm">
-      <created>1625598014360</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1625598014360</updated>
     </task>
     <task id="LOCAL-00064" summary="automatically removes comments from the whois Server">
       <created>1625598036977</created>
@@ -533,7 +479,56 @@
       <option name="project" value="LOCAL" />
       <updated>1631640000510</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="small GUI fixes">
+      <created>1631657338191</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1631657338191</updated>
+    </task>
+    <task id="LOCAL-00107" summary="String fixes">
+      <created>1631657410035</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1631657410035</updated>
+    </task>
+    <task id="LOCAL-00108" summary="change link text">
+      <created>1631657428189</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1631657428189</updated>
+    </task>
+    <task id="LOCAL-00109" summary="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout">
+      <created>1631657477310</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1631657477311</updated>
+    </task>
+    <task id="LOCAL-00110" summary="remove print">
+      <created>1631657599328</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1631657599328</updated>
+    </task>
+    <task id="LOCAL-00111" summary="fixed dark mode styling to be more uniform">
+      <created>1631661340641</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1631661340641</updated>
+    </task>
+    <task id="LOCAL-00112" summary="fixed a few bugs">
+      <created>1631723391882</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1631723391883</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -562,13 +557,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added exception for messages to not show" />
-    <MESSAGE value="added link to ripe for network owner" />
-    <MESSAGE value="rename variable" />
-    <MESSAGE value="added matching for Ipv6" />
-    <MESSAGE value="fixed bug and made description for timer more clear" />
-    <MESSAGE value="fix module" />
-    <MESSAGE value="changed Task to be more dynamic&#10;Servers can now be added in a config file" />
     <MESSAGE value="renamed Files.java to FileStructure.java to avoid same names with provided apis&#10;added check for directories" />
     <MESSAGE value="now automatically creates needed folders in appDir" />
     <MESSAGE value="added dirs which are created on runtime" />
@@ -587,7 +575,14 @@
     <MESSAGE value="create a copy of licences to make it available to user" />
     <MESSAGE value="needs fixing" />
     <MESSAGE value="will be added in a later patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="will be added in a later patch" />
+    <MESSAGE value="small GUI fixes" />
+    <MESSAGE value="String fixes" />
+    <MESSAGE value="change link text" />
+    <MESSAGE value="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout" />
+    <MESSAGE value="remove print" />
+    <MESSAGE value="fixed dark mode styling to be more uniform" />
+    <MESSAGE value="fixed a few bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed a few bugs" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

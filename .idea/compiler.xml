@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DNSResolver" target="11" />
+      <module name="DNSResolver" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

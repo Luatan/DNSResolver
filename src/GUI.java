@@ -345,9 +345,7 @@ public class GUI implements Initializable {
         }
         LookupTask lookup = new LookupTask(host);
         txtFieldHost.textProperty().bind(lookup.valueProperty());
-        txtFieldHost.disableProperty().bind(lookup.runningProperty());
         txtFieldIP.textProperty().bind(lookup.messageProperty());
-        txtFieldIP.disableProperty().bind(lookup.runningProperty());
         new Thread(lookup).start();
     }
 

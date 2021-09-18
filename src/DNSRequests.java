@@ -1,6 +1,9 @@
 import Utils.Domain;
 
-import javax.naming.*;
+import javax.naming.NameNotFoundException;
+import javax.naming.OperationNotSupportedException;
+import javax.naming.ServiceUnavailableException;
+import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
@@ -28,7 +31,7 @@ public class DNSRequests {
         setNameServer();
     }
 
-    private void setNameServer(){
+    private void setNameServer() {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
@@ -48,34 +51,45 @@ public class DNSRequests {
 
     private void setRecords(String type) {
         if (type.matches("PTR")) {
+            return;
             //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
-        } else if (!hostname.equals("Unrecognized host")) {
-            try {
-                InitialDirContext iDirC = new InitialDirContext();
-                // get all the DNS records for hostname
-                Attributes attributes = iDirC.getAttributes("dns:/" + hostname, new String[]{type});
-                if (type.matches("[*]")) {
-                    setAllRecords();
-                } else {
-                    try {
-                        //Get the Records
-                        String[] listRecords = attributes.get(type).toString().split("(,)( )");
-                        //Replace first char with the actual value instead of the type
-                        listRecords[0] = listRecords[0].split(": ", 2)[1];
-                        populateRecords(listRecords, type);
-                    } catch (Exception e) {
-                        //System.err.println("No Records for " + type + " in " + hostname + " found!");
+        }
+
+        if (hostname == null || hostname.equals("")) {
+            return;
+        }
+
+        try {
+            // get all the DNS records for hostname
+            Attributes attributes = new InitialDirContext().getAttributes("dns:/" + hostname, new String[]{type});
+            if (type.matches("[*]")) {
+                setAllRecords();
+            } else {
+                try {
+                    //Get Attribute
+                    Attribute attr = attributes.get(type);
+
+                    //Init String Array
+                    String[] listRecords = new String[attr.size()];
+                    for (int i = 0; i < attr.size(); i++) {
+                        listRecords[i] = attr.get(i).toString();
                     }
+
+                    //Populate
+                    populateRecords(listRecords, type);
+
+                } catch (Exception e) {
+                    //System.err.println("No Records for " + type + " in " + hostname + " found!");
                 }
-            } catch (NameNotFoundException e) {
-                addMessage("No DNS-Records Found for " + hostname);
-            } catch (ServiceUnavailableException e) {
-                addMessage("Service unavailable for " + hostname);
-            } catch (OperationNotSupportedException e) {
-                addMessage("could not resolve " + hostname);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (NameNotFoundException e) {
+            addMessage("No DNS-Records Found for " + hostname);
+        } catch (ServiceUnavailableException e) {
+            addMessage("Service unavailable for " + hostname);
+        } catch (OperationNotSupportedException e) {
+            addMessage("could not resolve " + hostname);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

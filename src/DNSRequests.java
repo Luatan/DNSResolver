@@ -118,6 +118,9 @@ public class DNSRequests {
             case "TXT":
                 records.add(new TXT(type,record));
                 break;
+            case "NS":
+                records.add(new NS(type, record));
+                break;
         }
     }
 
@@ -183,6 +186,7 @@ public class DNSRequests {
                 list.add(record);
             }
         }
+        return list;
 //        switch (type) {
 //            case "A":
 //                return a;
@@ -208,7 +212,7 @@ public class DNSRequests {
 //                System.err.println("Type was not found - getRecords");
 //                break;
 //        }
-        return null;
+
     }
 
     private String[] formatSOA(String[] list) {

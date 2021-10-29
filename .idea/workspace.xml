@@ -9,19 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="improve performance of DNSRequests">
-      <change afterPath="$PROJECT_DIR$/src/Records/A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/AAAA.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/CNAME.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/MX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/NS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/PTR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/Record.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Records/TXT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="trying to implement record">
       <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,13 +186,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00067" summary="overhaul&#10;- created packages&#10;- added Files.java to handle file operations&#10;- added GUIController to handle gui&#10;- Added Zone and Record to handle dns request better">
-      <created>1630872339463</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1630872339464</updated>
     </task>
     <task id="LOCAL-00068" summary="small fixes to strings and added whois server for .org domains">
       <created>1630924375068</created>
@@ -541,7 +523,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631926715723</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="trying to implement record">
+      <created>1635528349739</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1635528349739</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -570,7 +559,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="cleanup import" />
     <MESSAGE value="changed path for history to log/history.json" />
     <MESSAGE value="changed path for settings to config/settings.json" />
     <MESSAGE value="changed path for ip query to logs/" />
@@ -595,7 +583,8 @@
     <MESSAGE value="fucking javafx deploy" />
     <MESSAGE value="bug fix" />
     <MESSAGE value="improve performance of DNSRequests" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve performance of DNSRequests" />
+    <MESSAGE value="trying to implement record" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to implement record" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

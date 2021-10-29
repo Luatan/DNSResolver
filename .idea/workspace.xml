@@ -9,14 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed a few bugs">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="improve performance of DNSRequests">
+      <change afterPath="$PROJECT_DIR$/src/Records/A.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/AAAA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/CNAME.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/MX.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/NS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/PTR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/Record.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Records/TXT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,6 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="Develop" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -49,9 +63,6 @@
     <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -72,13 +83,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MiniProjektFX" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -105,6 +117,7 @@
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
@@ -184,27 +197,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00064" summary="automatically removes comments from the whois Server">
-      <created>1625598036977</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1625598036977</updated>
-    </task>
-    <task id="LOCAL-00065" summary="update tld">
-      <created>1627993230106</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1627993230106</updated>
-    </task>
-    <task id="LOCAL-00066" summary="rework of dns mechanism">
-      <created>1629043896515</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1629043896515</updated>
     </task>
     <task id="LOCAL-00067" summary="overhaul&#10;- created packages&#10;- added Files.java to handle file operations&#10;- added GUIController to handle gui&#10;- Added Zone and Record to handle dns request better">
       <created>1630872339463</created>
@@ -528,7 +520,28 @@
       <option name="project" value="LOCAL" />
       <updated>1631723391883</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="fucking javafx deploy">
+      <created>1631725570447</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1631725570448</updated>
+    </task>
+    <task id="LOCAL-00114" summary="bug fix">
+      <created>1631776759793</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1631776759794</updated>
+    </task>
+    <task id="LOCAL-00115" summary="improve performance of DNSRequests">
+      <created>1631926715723</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1631926715723</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -557,9 +570,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed Files.java to FileStructure.java to avoid same names with provided apis&#10;added check for directories" />
-    <MESSAGE value="now automatically creates needed folders in appDir" />
-    <MESSAGE value="added dirs which are created on runtime" />
     <MESSAGE value="cleanup import" />
     <MESSAGE value="changed path for history to log/history.json" />
     <MESSAGE value="changed path for settings to config/settings.json" />
@@ -582,7 +592,10 @@
     <MESSAGE value="remove print" />
     <MESSAGE value="fixed dark mode styling to be more uniform" />
     <MESSAGE value="fixed a few bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed a few bugs" />
+    <MESSAGE value="fucking javafx deploy" />
+    <MESSAGE value="bug fix" />
+    <MESSAGE value="improve performance of DNSRequests" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve performance of DNSRequests" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

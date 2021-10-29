@@ -1,3 +1,4 @@
+import Records.*;
 import Utils.Domain;
 
 import javax.naming.NameNotFoundException;
@@ -8,6 +9,8 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DNSRequests {
     private String hostname;
@@ -20,15 +23,18 @@ public class DNSRequests {
     private String[] txt;
     private String[] srv;
     private String[] soa;
+    private List<Record> records;
 
     DNSRequests(String domain, String type) {
-        setHost(Domain.trimDomain(domain));
+        records = new ArrayList<>();
+        setHost(domain);
+        setNameServer();
         setRecords(type);
+        System.out.println(records);
     }
 
     private void setHost(String host) {
-        this.hostname = host;
-        setNameServer();
+        this.hostname = Domain.trimDomain(host);
     }
 
     private void setNameServer() {
@@ -73,6 +79,8 @@ public class DNSRequests {
                     String[] listRecords = new String[attr.size()];
                     for (int i = 0; i < attr.size(); i++) {
                         listRecords[i] = attr.get(i).toString();
+                        createRecord(attr.get(i).toString(), type);
+
                     }
 
                     //Populate
@@ -90,6 +98,26 @@ public class DNSRequests {
             addMessage("could not resolve " + hostname);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void createRecord(String record, String type) {
+        switch (type){
+            case "A":
+                records.add(new A(type,record));
+                break;
+            case "AAAA":
+                records.add(new AAAA(type,record));
+                break;
+            case "MX":
+                records.add(new MX(type,record, 20));
+                break;
+            case "CNAME":
+                records.add(new CNAME(type,record));
+                break;
+            case "TXT":
+                records.add(new TXT(type,record));
+                break;
         }
     }
 
@@ -148,32 +176,38 @@ public class DNSRequests {
         }
     }
 
-    public String[] getRecords(String type) {
-        switch (type) {
-            case "A":
-                return a;
-            case "AAAA":
-                return aaaa;
-            case "CNAME":
-                return cname;
-            case "MX":
-                return mx;
-            case "SOA":
-                return (soa == null) ? null : formatSOA(soa);
-            case "NS":
-                return ns;
-            case "SRV":
-                return srv;
-            case "TXT":
-                return txt;
-            case "PTR":
-                return new String[]{getPTRRecord(hostname)};
-            case "Messages":
-                return messages;
-            default:
-                System.err.println("Type was not found - getRecords");
-                break;
+    public List<Record> getRecords(String type) {
+        List<Record> list = new ArrayList<>();
+        for (Record record:records) {
+            if (record.getType().equals(type)){
+                list.add(record);
+            }
         }
+//        switch (type) {
+//            case "A":
+//                return a;
+//            case "AAAA":
+//                return aaaa;
+//            case "CNAME":
+//                return cname;
+//            case "MX":
+//                return mx;
+//            case "SOA":
+//                return (soa == null) ? null : formatSOA(soa);
+//            case "NS":
+//                return ns;
+//            case "SRV":
+//                return srv;
+//            case "TXT":
+//                return txt;
+//            case "PTR":
+//                return new String[]{getPTRRecord(hostname)};
+//            case "Messages":
+//                return messages;
+//            default:
+//                System.err.println("Type was not found - getRecords");
+//                break;
+//        }
         return null;
     }
 

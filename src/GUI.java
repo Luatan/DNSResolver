@@ -1,4 +1,5 @@
 import Model.IP_Info;
+import Records.Record;
 import Utils.Domain;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -25,6 +26,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class GUI implements Initializable {
@@ -114,7 +117,7 @@ public class GUI implements Initializable {
             //clean up old entries
             txtFieldHost.setText("");
             domainCheckResult = "";
-            nameServerDisplay(new String[0]);
+            nameServerDisplay(new ArrayList<>());
 
             //set new entries
             displayIPInfo(txtDomain.getText());
@@ -267,7 +270,7 @@ public class GUI implements Initializable {
         }
     }
 
-    private void nameServerDisplay(String[] records) {
+    private void nameServerDisplay(List<Record> records) {
         txtNS1.clear();
         txtNS2.clear();
         txtNS3.clear();
@@ -275,10 +278,10 @@ public class GUI implements Initializable {
 
         if (records != null) {
             try {
-                txtNS1.setText(records[0]);
-                txtNS2.setText(records[1]);
-                txtNS3.setText(records[2]);
-                txtNS4.setText(records[3]);
+                txtNS1.setText(records.get(0).getValue());
+                txtNS2.setText(records.get(1).getValue());
+                txtNS3.setText(records.get(2).getValue());
+                txtNS4.setText(records.get(3).getValue());
             } catch (ArrayIndexOutOfBoundsException ignored) {
 
             } catch (NullPointerException e) {
@@ -287,16 +290,16 @@ public class GUI implements Initializable {
         }
     }
 
-    private void recordPutter(String[] list, String type) {
+    private void recordPutter(List<Record> list, String type) {
         if (list != null && type.equals("Messages")) {
-            for (String rec : list) {
-                txtAreaRecords.appendText("\t" + rec + "\n");
+            for (Record rec : list) {
+                txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
             }
         } else if (list != null) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
-                for (String rec : list) {
-                    txtAreaRecords.appendText("\t" + rec + "\n");
+                for (Record rec : list) {
+                    txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
                 }
                 txtAreaRecords.appendText("\n");
             } catch (NullPointerException e) {

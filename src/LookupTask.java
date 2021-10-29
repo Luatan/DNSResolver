@@ -22,7 +22,7 @@ public class LookupTask extends Task<String> {
         } catch (UnknownHostException e) {
             updateValue(host);
         }
-        System.out.println("Lookup of " + host + " took: " + (System.currentTimeMillis() - time) + "ms");
+        System.out.println("Lookup of " + host + " took: " + (System.currentTimeMillis() - time) + " ms");
         return String.valueOf(valueProperty());
     }
 }

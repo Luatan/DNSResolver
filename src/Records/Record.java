@@ -9,6 +9,10 @@ public abstract class Record {
         setType(type);
     }
 
+    public Record(String type) {
+        setType(type);
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -17,7 +21,7 @@ public abstract class Record {
         return type;
     }
 
-    private void setValue(String value) {
+    protected void setValue(String value) {
         this.value = value;
     }
 

@@ -14,23 +14,13 @@ import java.util.List;
 
 public class DNSRequests {
     private String hostname;
-    private String[] messages;
-    private String[] a;
-    private String[] aaaa;
-    private String[] cname;
-    private String[] mx;
-    private String[] ns;
-    private String[] txt;
-    private String[] srv;
-    private String[] soa;
-    private List<Record> records;
+    private final List<Record> records;
 
     DNSRequests(String domain, String type) {
         records = new ArrayList<>();
         setHost(domain);
         setNameServer();
         setRecords(type);
-        System.out.println(records);
     }
 
     private void setHost(String host) {
@@ -57,6 +47,7 @@ public class DNSRequests {
 
     private void setRecords(String type) {
         if (type.matches("PTR")) {
+            createRecord(getPTRRecord(hostname),type);
             return;
             //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
         }
@@ -74,18 +65,10 @@ public class DNSRequests {
                 try {
                     //Get Attribute
                     Attribute attr = attributes.get(type);
-
-                    //Init String Array
-                    String[] listRecords = new String[attr.size()];
                     for (int i = 0; i < attr.size(); i++) {
-                        listRecords[i] = attr.get(i).toString();
                         createRecord(attr.get(i).toString(), type);
 
                     }
-
-                    //Populate
-                    populateRecords(listRecords, type);
-
                 } catch (Exception e) {
                     //System.err.println("No Records for " + type + " in " + hostname + " found!");
                 }
@@ -102,31 +85,40 @@ public class DNSRequests {
     }
 
     private void createRecord(String record, String type) {
-        switch (type){
+        switch (type) {
+            case "MSG":
+                System.out.println("message: " + record);
+                break;
             case "A":
-                records.add(new A(type,record));
+                records.add(new A(type, record));
                 break;
             case "AAAA":
-                records.add(new AAAA(type,record));
+                records.add(new AAAA(type, record));
                 break;
             case "MX":
-                records.add(new MX(type,record, 20));
+                records.add(new MX(type, record, 20));
                 break;
             case "CNAME":
-                records.add(new CNAME(type,record));
+                records.add(new CNAME(type, record));
                 break;
             case "TXT":
-                records.add(new TXT(type,record));
+                records.add(new TXT(type, record));
                 break;
             case "NS":
                 records.add(new NS(type, record));
+                break;
+            case "SOA":
+                records.add(new SOA(type, record));
+                break;
+            default:
+                System.err.println("No Record met case!");
                 break;
         }
     }
 
     private void addMessage(String message) {
         System.err.println(message);
-        populateRecords(new String[]{message}, "Messages");
+        createRecord("MSG", message);
     }
 
     private String getPTRRecord(String host) {
@@ -144,86 +136,18 @@ public class DNSRequests {
         return null;
     }
 
-    private void populateRecords(String[] recordList, String type) {
-        switch (type) {
-            case "A":
-                a = recordList;
-                break;
-            case "AAAA":
-                aaaa = recordList;
-                break;
-            case "CNAME":
-                cname = recordList;
-                break;
-            case "MX":
-                mx = recordList;
-                break;
-            case "SOA":
-                soa = recordList;
-                break;
-            case "NS":
-                ns = recordList;
-                break;
-            case "TXT":
-                txt = recordList;
-                break;
-            case "SRV":
-                srv = recordList;
-                break;
-            case "Messages":
-                messages = recordList;
-                break;
-            default:
-                System.err.println("type was not found - PopulateRecords");
-                break;
-        }
-    }
-
     public List<Record> getRecords(String type) {
         List<Record> list = new ArrayList<>();
-        for (Record record:records) {
-            if (record.getType().equals(type)){
+        for (Record record : records) {
+            if (record.getType().equals(type)) {
                 list.add(record);
             }
         }
         return list;
-//        switch (type) {
-//            case "A":
-//                return a;
-//            case "AAAA":
-//                return aaaa;
-//            case "CNAME":
-//                return cname;
-//            case "MX":
-//                return mx;
 //            case "SOA":
 //                return (soa == null) ? null : formatSOA(soa);
-//            case "NS":
-//                return ns;
-//            case "SRV":
-//                return srv;
-//            case "TXT":
-//                return txt;
 //            case "PTR":
 //                return new String[]{getPTRRecord(hostname)};
-//            case "Messages":
-//                return messages;
-//            default:
-//                System.err.println("Type was not found - getRecords");
-//                break;
-//        }
 
-    }
-
-    private String[] formatSOA(String[] list) {
-        String[] new_list = list[0].split(" ");
-
-        new_list[2] += "\t\t serialnumber";
-        new_list[3] += "\t\t\t\t refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[3])) + ")";
-        new_list[4] += "\t\t\t\t retry (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[4])) + ")";
-        new_list[5] += "\t\t\t expire (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[5])) + ")";
-        new_list[6] += "\t\t\t minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(new_list[6])) + ")";
-
-        return new_list;
     }
 }

@@ -276,13 +276,13 @@ public class GUI implements Initializable {
         txtNS3.clear();
         txtNS4.clear();
 
-        if (records != null) {
+        if (!records.isEmpty()) {
             try {
                 txtNS1.setText(records.get(0).getValue());
                 txtNS2.setText(records.get(1).getValue());
                 txtNS3.setText(records.get(2).getValue());
                 txtNS4.setText(records.get(3).getValue());
-            } catch (ArrayIndexOutOfBoundsException ignored) {
+            } catch (IndexOutOfBoundsException ignored) {
 
             } catch (NullPointerException e) {
                 System.err.println("NullPointerException - Try catch NameServerDisplay");
@@ -291,11 +291,11 @@ public class GUI implements Initializable {
     }
 
     private void recordPutter(List<Record> list, String type) {
-        if (list != null && type.equals("Messages")) {
+        if (!list.isEmpty() && type.equals("Messages")) {
             for (Record rec : list) {
                 txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
             }
-        } else if (list != null) {
+        } else if (!list.isEmpty()) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
                 for (Record rec : list) {
@@ -336,7 +336,7 @@ public class GUI implements Initializable {
             txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
             resolveHost(host);
-            System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime));
+            System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime) + " ms");
         }
         getWhois(host);
     }

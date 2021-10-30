@@ -1,7 +1,5 @@
 package Utils;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

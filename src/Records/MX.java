@@ -3,9 +3,13 @@ package Records;
 public class MX extends Record{
     private int priority;
 
-    public MX(String type,String value, int priority) {
-        super(type, value);
+    public MX(String value, int priority) {
+        super("MX", value);
         setPriority(priority);
+    }
+
+    public MX(String value) {
+        super("MX", value);
     }
 
     public void setPriority(int priority) {

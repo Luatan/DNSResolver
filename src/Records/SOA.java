@@ -4,8 +4,8 @@ import Utils.Domain;
 
 public class SOA extends Record {
 
-    public SOA(String type, String value) {
-        super(type);
+    public SOA(String value) {
+        super("SOA");
         super.setValue(format(value));
     }
 

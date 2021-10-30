@@ -291,10 +291,8 @@ public class GUI implements Initializable {
     }
 
     private void recordPutter(List<Record> list, String type) {
-        if (!list.isEmpty() && type.equals("Messages")) {
-            for (Record rec : list) {
-                txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
-            }
+        if (!list.isEmpty() && type.equals("MSG")) {
+            txtAreaRecords.appendText("\t" + list.get(0).getValue() + "\n");
         } else if (!list.isEmpty()) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
@@ -306,7 +304,7 @@ public class GUI implements Initializable {
                 System.err.println("No list found - recordPutter Try Catch");
             }
             txtAreaRecords.home();
-        } else if (chckBox.isSelected() && !type.equals("Messages")) {
+        } else if (chckBox.isSelected() && !type.equals("MSG")) {
             txtAreaRecords.appendText(type + ": \n");
             txtAreaRecords.appendText("\t" + "No Records found\n\n");
         }
@@ -314,6 +312,10 @@ public class GUI implements Initializable {
     }
 
     private void DNSOutput(String host, String type) {
+        // create Thread to get Whois
+        getWhois(host);
+        // create Thread to resolve Host
+        resolveHost(host);
         long requestTime = 0;
         DNSRequests query;
         if (!txtDomain.getText().isEmpty()) {
@@ -323,22 +325,20 @@ public class GUI implements Initializable {
                 query = new DNSRequests(host, "*");
                 //Set Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
-                recordPutter(query.getRecords("Messages"), "Messages");
+                recordPutter(query.getRecords("MSG"), "MSG");
                 for (String request : requests) {
                     recordPutter(query.getRecords(request), request);
                 }
             } else {
                 query = new DNSRequests(host, type);
-                recordPutter(query.getRecords("Messages"), "Messages");
+                recordPutter(query.getRecords("MSG"), "MSG");
                 recordPutter(query.getRecords(type), type);
             }
             txtFieldHost.clear();
             txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
-            resolveHost(host);
             System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime) + " ms");
         }
-        getWhois(host);
     }
 
 

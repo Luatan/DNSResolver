@@ -47,7 +47,7 @@ public class DNSRequests {
 
     private void setRecords(String type) {
         if (type.matches("PTR")) {
-            createRecord(getPTRRecord(hostname),type);
+            createRecord(getPTRRecord(hostname), type);
             return;
             //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
         }
@@ -67,8 +67,8 @@ public class DNSRequests {
                     Attribute attr = attributes.get(type);
                     for (int i = 0; i < attr.size(); i++) {
                         createRecord(attr.get(i).toString(), type);
-
                     }
+
                 } catch (Exception e) {
                     //System.err.println("No Records for " + type + " in " + hostname + " found!");
                 }
@@ -87,28 +87,28 @@ public class DNSRequests {
     private void createRecord(String record, String type) {
         switch (type) {
             case "MSG":
-                System.out.println("message: " + record);
+                records.add(new MSG(record));
                 break;
             case "A":
-                records.add(new A(type, record));
+                records.add(new A(record));
                 break;
             case "AAAA":
-                records.add(new AAAA(type, record));
+                records.add(new AAAA(record));
                 break;
             case "MX":
-                records.add(new MX(type, record, 20));
+                records.add(new MX(record));
                 break;
             case "CNAME":
-                records.add(new CNAME(type, record));
+                records.add(new CNAME(record));
                 break;
             case "TXT":
-                records.add(new TXT(type, record));
+                records.add(new TXT(record));
                 break;
             case "NS":
-                records.add(new NS(type, record));
+                records.add(new NS(record));
                 break;
             case "SOA":
-                records.add(new SOA(type, record));
+                records.add(new SOA(record));
                 break;
             default:
                 System.err.println("No Record met case!");
@@ -117,8 +117,8 @@ public class DNSRequests {
     }
 
     private void addMessage(String message) {
-        System.err.println(message);
-        createRecord("MSG", message);
+        System.err.println("Error: " + message);
+        createRecord(message, "MSG");
     }
 
     private String getPTRRecord(String host) {
@@ -144,10 +144,5 @@ public class DNSRequests {
             }
         }
         return list;
-//            case "SOA":
-//                return (soa == null) ? null : formatSOA(soa);
-//            case "PTR":
-//                return new String[]{getPTRRecord(hostname)};
-
     }
 }

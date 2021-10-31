@@ -67,7 +67,7 @@ public class GetRegistrarTask extends Task<String> {
         MESSAGE.append(this.host);
         String reg = getRegistrarName();
         if (reg != null) {
-            MESSAGE.append(" - " + reg);
+            MESSAGE.append(" - ").append(reg);
         }
         updateMessage(MESSAGE.toString());
 
@@ -80,7 +80,7 @@ public class GetRegistrarTask extends Task<String> {
 
         String reg = getRegistrarName();
         if (reg != null) {
-            MESSAGE.append(" - " + reg);
+            MESSAGE.append(" - ").append(reg);
         }
         updateMessage(MESSAGE.toString());
 

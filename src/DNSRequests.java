@@ -49,7 +49,6 @@ public class DNSRequests {
         if (type.matches("PTR")) {
             createRecord(getPTRRecord(hostname), type);
             return;
-            //If PTR-Record do not call the DNS again - UI calls getPTRRecords Method
         }
 
         if (hostname == null || hostname.equals("")) {

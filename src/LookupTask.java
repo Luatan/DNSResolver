@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class LookupTask extends Task<String> {
-    private String host;
+    private final String host;
 
     LookupTask(String host) {
         this.host = host;

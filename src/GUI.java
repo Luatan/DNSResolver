@@ -17,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -45,7 +44,7 @@ public class GUI implements Initializable {
     @FXML
     TextArea txtAreaRecords;
     @FXML
-    ComboBox typeBox;
+    ComboBox<String> typeBox;
     @FXML
     Hyperlink whoisLink;
     @FXML
@@ -79,12 +78,12 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void onClose(MouseEvent e) {
+    private void onClose() {
         Main.gui.exit();
     }
 
     @FXML
-    private void onMinimize(MouseEvent e) {
+    private void onMinimize() {
         Main.gui.minimize();
     }
 
@@ -100,12 +99,12 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void startSearchButton(ActionEvent event) { //Handels the Start Button action
+    private void startSearchButton() { //Handels the Start Button action
         //Clean up
         txtFieldIP.textProperty().unbind();
         txtFieldHost.textProperty().unbind();
 
-        closeWebView(event);
+        closeWebView();
         resetTempValues();
 
         //Do nothing if empty
@@ -126,7 +125,7 @@ public class GUI implements Initializable {
             resolveHost(txtDomain.getText());
 
         } else {
-            DNSOutput(txtDomain.getText(), (String) typeBox.getValue());
+            DNSOutput(txtDomain.getText(), typeBox.getValue());
         }
 
         // Add the domain to history
@@ -158,28 +157,28 @@ public class GUI implements Initializable {
 
 
     @FXML
-    private void changeEmptyRecordsSetting(MouseEvent event) {
+    private void changeEmptyRecordsSetting() {
         Main.gui.setShowAllRecords();
     }
 
     @FXML
-    private void changeTheme(MouseEvent event) {
+    private void changeTheme() {
         Main.gui.changeTheme();
     }
 
     @FXML
-    private void scrollUPButtonVisibility(ScrollEvent event) {
+    private void scrollUPButtonVisibility() {
         scrollButton.setVisible(txtAreaRecords.getScrollTop() > 1);
     }
 
     @FXML
-    private void scrollUPButton(ActionEvent event) {
+    private void scrollUPButton() {
         txtAreaRecords.setScrollTop(0);
         scrollButton.setVisible(false);
     }
 
     @FXML
-    private void copyRecords(ActionEvent event) {
+    private void copyRecords() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
@@ -189,7 +188,7 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void openWebView(ActionEvent event) {
+    private void openWebView() {
         if (whoisInfo.getValue().equals("")) {
             domainCheckResult = "";
         } else {
@@ -199,7 +198,7 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void closeWebView(ActionEvent event) {
+    private void closeWebView() {
         if (domainCheckResult.equals("")) {
             final WebEngine webEngine = web.getEngine();
             web.setVisible(false);
@@ -223,7 +222,7 @@ public class GUI implements Initializable {
             web.setVisible(true);
         } else {
             originalRecords = txtAreaRecords.getText();
-            closeWebView(null);
+            closeWebView();
             txtAreaRecords.setText(domainCheckResult);
             btnWeb.setVisible(true);
             hyperLbl.setVisible(false);
@@ -232,13 +231,13 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void openIP(MouseEvent event) {
+    private void openIP() {
         if (txtFieldIP.getText().isEmpty()) {
             return;
         }
 
         try {
-            closeWebView(null);
+            closeWebView();
             displayIPInfo(txtFieldIP.getText());
 
         } catch (NullPointerException e) {
@@ -261,12 +260,12 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void useTextHostnameField(MouseEvent event) {
+    private void useTextHostnameField() {
         btnWeb.setVisible(false);
         String host = txtDomain.getText();
         if (Domain.isSubdomain(host)) {
             txtDomain.setText(Domain.getMainDomain(host));
-            DNSOutput(Domain.getMainDomain(host), (String) typeBox.getValue());
+            DNSOutput(Domain.getMainDomain(host), typeBox.getValue());
         }
     }
 

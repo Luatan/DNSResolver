@@ -1,4 +1,4 @@
-import Model.IP_Info;
+import Model.API.IP_Info;
 import Records.Record;
 import Utils.Domain;
 import javafx.beans.property.SimpleStringProperty;
@@ -251,7 +251,7 @@ public class GUI implements Initializable {
 
         if (ip_data == null) {
             IP_Info info = new IP_Info(ip);
-            ip_data = info.getInfo();
+            ip_data = info.getOutput();
         }
         txtAreaRecords.setText(ip_data);
 

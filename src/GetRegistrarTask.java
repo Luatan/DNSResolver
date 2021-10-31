@@ -1,4 +1,4 @@
-import Model.NIC;
+import Model.API.NIC;
 import Model.Whois;
 import Utils.Domain;
 import Utils.FileStructure;
@@ -75,7 +75,7 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String getWHOIS_NIC(String domain) {
-        res = new NIC(domain).getNicValues();
+        res = new NIC(domain).getOutput();
         MESSAGE.append(this.host);
 
         String reg = getRegistrarName();

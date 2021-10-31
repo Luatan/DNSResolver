@@ -1,17 +1,12 @@
-package Model;
+package Model.API;
 
-import Utils.Domain;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class NIC extends API {
     private final String RESPONSE;
     private final String API_URL = "https://rdap.nic.ch/domain/";;
-    private String domain;
     private String resDomain;
     private String resRegistrar;
     private String resRegistrationDate;
@@ -21,13 +16,12 @@ public class NIC extends API {
     private String[] resNSIP;
 
     public NIC(String domain) {
-        setDomain(domain);
-        RESPONSE = super.request(API_URL + domain);
+        RESPONSE = request(API_URL + domain);
     }
 
-    public String getNicValues() {
+    public String getOutput() {
         //Get Whole Object which icludes all Arrays
-        if (RESPONSE != null && super.responseCode == 200) {
+        if (RESPONSE != null && responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
             //System.out.println(jsonObj.toString(4));
             //get Domain name
@@ -86,8 +80,8 @@ public class NIC extends API {
             }
 
             return convertResultNic();
-        } else if (super.responseCode != 200) {
-            return super.checkResponseCode();
+        } else if (responseCode != 200) {
+            return checkResponseCode();
         }
         return null;
     }
@@ -118,14 +112,6 @@ public class NIC extends API {
         return "Domain: " + resDomain + "\n" +
                 "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
                 + "\nFirst Registration: " + resRegistrationDate + "\n" + nsString;
-    }
-
-    private void setDomain(String domain) {
-        if (!Domain.isIPAdress(domain)) {
-            this.domain = domain;
-        } else {
-            System.out.println("This is not a Domain");
-        }
     }
 
 }

@@ -1,4 +1,4 @@
-package Model;
+package Model.API;
 
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
@@ -38,10 +38,16 @@ public abstract class API {
                 return "404 - Not Found";
             case 400:
                 return "400 - Bad Request";
+            case 401:
+                return "401 - Bad Request";
+            case 403:
+                return "403 - Forbidden";
             case 429:
                 return "429 - Too Many Requests";
             default:
                 return "Invalid Statuscode";
         }
     }
+
+    protected abstract String getOutput();
 }

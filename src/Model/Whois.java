@@ -6,27 +6,6 @@ import java.io.IOException;
 
 public class Whois {
 
-    public String getWhois(String domainName, String whoisServer, int port) {
-
-        StringBuilder result = new StringBuilder();
-
-        WhoisClient whois = new WhoisClient();
-        try {
-
-            whois.connect(whoisServer, port);
-            String whoisData1 = whois.query(domainName);
-
-            result.append(whoisData1);
-            whois.disconnect();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return result.toString();
-
-    }
-
     public String getWhois(String domainName, String whoisServer) {
         WhoisClient whois = new WhoisClient();
         String whoisData = "";

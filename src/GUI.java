@@ -1,5 +1,8 @@
+import DNS.DNSRequests;
 import Model.API.IP_Info;
-import Records.Record;
+import DNS.Records.Record;
+import Tasks.GetRegistrarTask;
+import Tasks.LookupTask;
 import Utils.Domain;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
@@ -56,7 +59,7 @@ public class GUI implements Initializable {
     MenuButton historyButton;
     History history = new History(); // init History cache
 
-    //List of Records
+    //List of DNS.Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Helper.Domain Check
 
@@ -187,7 +190,7 @@ public class GUI implements Initializable {
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
-        System.out.println("Records copied!");
+        System.out.println("DNS.Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
     }
 
@@ -304,7 +307,7 @@ public class GUI implements Initializable {
             txtAreaRecords.home();
         } else if (chckBox.isSelected() && !type.equals("MSG")) {
             txtAreaRecords.appendText(type + ": \n");
-            txtAreaRecords.appendText("\t" + "No Records found\n\n");
+            txtAreaRecords.appendText("\t" + "No DNS.Records found\n\n");
         }
         txtAreaRecords.home();
     }
@@ -321,7 +324,7 @@ public class GUI implements Initializable {
             if (type.equals("Any")) {
                 requestTime = System.currentTimeMillis();
                 query = new DNSRequests(host, "*");
-                //Set Records
+                //Set DNS.Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
                 recordPutter(query.getRecords("MSG"), "MSG");
                 for (String request : requests) {

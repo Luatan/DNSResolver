@@ -1,4 +1,4 @@
-package Records;
+package DNS.Records;
 
 import Utils.Domain;
 

@@ -9,13 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="improved api and whois calls">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="gui improvements and redesign to be more flexible">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNS/DNSRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -190,13 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00075" summary="make registrar apparant in url and changed functions to be able to communicate with UI root">
-      <created>1631382748713</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1631382748713</updated>
     </task>
     <task id="LOCAL-00076" summary="changed main for communication between UI and Controller">
       <created>1631382768647</created>
@@ -534,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635715898405</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="gui improvements and redesign to be more flexible">
+      <created>1637109992816</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1637109992816</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,7 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed dependencies" />
     <MESSAGE value="renamed folder, added licences" />
     <MESSAGE value="changed foldername" />
     <MESSAGE value="moved to ressources" />
@@ -588,7 +587,8 @@
     <MESSAGE value="added .gg extension" />
     <MESSAGE value="removed errors" />
     <MESSAGE value="improved api and whois calls" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved api and whois calls" />
+    <MESSAGE value="gui improvements and redesign to be more flexible" />
+    <option name="LAST_COMMIT_MESSAGE" value="gui improvements and redesign to be more flexible" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

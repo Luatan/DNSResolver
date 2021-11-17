@@ -1,4 +1,4 @@
-package Records;
+package DNS.Records;
 
 public class CNAME extends Record{
 

@@ -1,4 +1,6 @@
-import Records.*;
+package DNS;
+
+import DNS.Records.*;
 import Utils.Domain;
 
 import javax.naming.NameNotFoundException;
@@ -16,7 +18,7 @@ public class DNSRequests {
     private String hostname;
     private final List<Record> records;
 
-    DNSRequests(String domain, String type) {
+    public DNSRequests(String domain, String type) {
         records = new ArrayList<>();
         setHost(domain);
         setNameServer();
@@ -69,11 +71,11 @@ public class DNSRequests {
                     }
 
                 } catch (Exception e) {
-                    //System.err.println("No Records for " + type + " in " + hostname + " found!");
+                    //System.err.println("No DNS.Records for " + type + " in " + hostname + " found!");
                 }
             }
         } catch (NameNotFoundException e) {
-            addMessage("No DNS-Records Found for " + hostname);
+            addMessage("No DNS-DNS.Records Found for " + hostname);
         } catch (ServiceUnavailableException e) {
             addMessage("Service unavailable for " + hostname);
         } catch (OperationNotSupportedException e) {

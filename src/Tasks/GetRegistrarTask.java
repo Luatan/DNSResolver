@@ -2,6 +2,7 @@ package Tasks;
 
 import Model.API.NIC;
 import Model.Whois;
+import Utils.Config;
 import Utils.Domain;
 import Utils.FileStructure;
 import javafx.concurrent.Task;
@@ -12,7 +13,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetRegistrarTask extends Task<String> {
-    private final String CONF_FILE = "config/whois_servers.json";
     private final StringBuilder MESSAGE = new StringBuilder();
     private String host;
     private String res = "";
@@ -46,13 +46,8 @@ public class GetRegistrarTask extends Task<String> {
             return String.valueOf(valueProperty());
         }
 
-        //Checks if Configuration File is in Place
-        if (!FileStructure.fileExists(CONF_FILE)){
-            FileStructure.createFile("config/default_whois.json", CONF_FILE);
-        }
-
         // Read config file
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(CONF_FILE)));
+        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.WHOIS_CONF_FILE)));
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
         }

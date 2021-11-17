@@ -12,21 +12,6 @@ public class History {
 
     History() {
         handler = new JSONController(FILENAME);
-        init();
-    }
-
-    private boolean init() {
-        if (FileStructure.fileExists(FILENAME)) {
-            return true;
-        }
-        writeDefaultHistory();
-        return false;
-    }
-
-    private void writeDefaultHistory() {
-        JSONObject obj = new JSONObject();
-        obj.put("domains", new String[]{});
-        handler.write(obj);
     }
 
     private String[] readHistory() {

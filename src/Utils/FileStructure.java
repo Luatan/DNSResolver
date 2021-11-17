@@ -1,5 +1,6 @@
 package Utils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class FileStructure {
         }
     }
 
-    public static void createFile(String ressourcePath, String destPath) {
+    public static void createFileFromPath(String ressourcePath, String destPath) {
         if (FileStructure.fileExists(destPath)){
             return;
         }
@@ -53,6 +54,20 @@ public class FileStructure {
 
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    public static void createFile(String fileContent, String destPath) {
+        if (FileStructure.fileExists(destPath)){
+            return;
+        }
+
+        try {
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + destPath, "utf-8");
+            file.write(fileContent);
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

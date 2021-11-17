@@ -1,15 +1,17 @@
 import Controller.GUIController;
-import Utils.FileStructure;
+import Utils.Config;
 
 public class Main {
     public static GUIController gui;
-    public static void main(String[] args) {
-        //Create essential folders in RunDir (on runtime)
-        String[] dirs = new String[] {"logs", "config"};
-        for (String dir:dirs) {
-            FileStructure.createDir(dir);
-        }
 
+    public static void main(String[] args) {
+        //Init work
+        Config.createDirs();
+        Config.createHistoryConfig();
+        Config.createSettingsConfig();
+        Config.createWhoisConfig();
+
+        //launch GUI
         gui = new GUIController();
         gui.work();
     }

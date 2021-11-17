@@ -55,14 +55,7 @@ public class GetRegistrarTask extends Task<String> {
         JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(CONF_FILE)));
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
-        } else {
-            //updateMessage(host);
-            //updateValue("This TLD is not compatible");
-
-            //if no server found then return nothing
-            return String.valueOf(valueProperty());
         }
-
         return String.valueOf(valueProperty());
     }
 

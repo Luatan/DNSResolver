@@ -9,13 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="gui improvements and redesign to be more flexible">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed structure and improved registrar detection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DNS/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/config/default_whois.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_whois.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/LookupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,20 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00076" summary="changed main for communication between UI and Controller">
-      <created>1631382768647</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1631382768647</updated>
-    </task>
-    <task id="LOCAL-00077" summary="Hostname lookup is now in his own task">
-      <created>1631388006301</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1631388006301</updated>
     </task>
     <task id="LOCAL-00078" summary="dependency clean up">
       <created>1631388226969</created>
@@ -534,7 +520,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637109992816</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="changed structure">
+      <created>1637111336329</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1637111336329</updated>
+    </task>
+    <task id="LOCAL-00126" summary="changed structure and improved registrar detection">
+      <created>1637111359535</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1637111359535</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,8 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed folder, added licences" />
-    <MESSAGE value="changed foldername" />
     <MESSAGE value="moved to ressources" />
     <MESSAGE value="moved functions to create whois file to GetRegistrarTask" />
     <MESSAGE value="added create dir function to copy the whole dir from ressources" />
@@ -588,7 +586,9 @@
     <MESSAGE value="removed errors" />
     <MESSAGE value="improved api and whois calls" />
     <MESSAGE value="gui improvements and redesign to be more flexible" />
-    <option name="LAST_COMMIT_MESSAGE" value="gui improvements and redesign to be more flexible" />
+    <MESSAGE value="changed structure" />
+    <MESSAGE value="changed structure and improved registrar detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed structure and improved registrar detection" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

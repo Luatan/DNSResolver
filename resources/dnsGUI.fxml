@@ -86,9 +86,9 @@
    </HBox>
    <HBox VBox.vgrow="NEVER">
       <children>
-             <Label minWidth="-Infinity" prefHeight="25.0" text="Domain: ">
+             <Label graphicTextGap="0.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" text="Domain: ">
                  <font>
-                     <Font name="Roboto Light" size="13.0" />
+                     <Font name="Roboto Light" size="14.0" />
                  </font>
             <padding>
                <Insets right="2.0" />
@@ -122,7 +122,7 @@
                      <Font name="Roboto Light" size="12.0" />
                  </font>
             <HBox.margin>
-               <Insets right="10.0" />
+               <Insets right="30.0" />
             </HBox.margin>
              </Button>
          <ImageView fx:id="moon" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#changeTheme" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
@@ -130,7 +130,7 @@
                <Image url="@icons/moon_light.png" />
             </image>
             <HBox.margin>
-               <Insets right="10.0" />
+               <Insets right="20.0" />
             </HBox.margin>
          </ImageView>
       </children>
@@ -140,7 +140,7 @@
       <VBox.margin>
          <Insets />
       </VBox.margin></HBox>
-      <CheckBox fx:id="chckBox" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#changeEmptyRecordsSetting" prefHeight="15.0" prefWidth="126.0" text="Show Empty DNS.Records">
+      <CheckBox fx:id="chckBox" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#changeEmptyRecordsSetting" text="Show Empty DNS.Records">
           <font>
               <Font name="Roboto Light" size="10.0" />
           </font>
@@ -305,7 +305,7 @@
       <children>
             <TextArea fx:id="txtAreaRecords" editable="false" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" wrapText="true">
                 <font>
-                    <Font name="Roboto Light" size="13.0" />
+                    <Font name="Roboto Light" size="14.0" />
                 </font>
             </TextArea>
             <Button fx:id="scrollButton" cache="true" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" style="-fx-cursor: hand;" text="Top" visible="false" StackPane.alignment="BOTTOM_RIGHT">

@@ -76,7 +76,7 @@ public class GUI implements Initializable {
         updateHistoryDisplay(); // Update history at startup
 
         //prevent start button pressed without input
-        BooleanBinding enableSearchbtn = txtDomain.textProperty().greaterThan("2");
+        BooleanBinding enableSearchbtn = txtDomain.textProperty().isNotEmpty();
         btnStart.disableProperty().bind(enableSearchbtn.not());
 
         //prevent empty copy
@@ -201,7 +201,7 @@ public class GUI implements Initializable {
         } else {
             domainCheckResult = whoisInfo.getValue();
         }
-        displayWebView(whoisLink.getText());
+        displayWebView();
     }
 
     @FXML
@@ -219,7 +219,7 @@ public class GUI implements Initializable {
 
     }
 
-    private void displayWebView(String host) {
+    private void displayWebView() {
         if (domainCheckResult.equals("")) {
             btnWeb.setVisible(true);
         } else {

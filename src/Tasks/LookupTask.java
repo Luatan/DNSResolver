@@ -1,5 +1,6 @@
 package Tasks;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 
 import java.net.InetAddress;
@@ -7,6 +8,7 @@ import java.net.UnknownHostException;
 
 public class LookupTask extends Task<String> {
     private final String host;
+    public SimpleStringProperty test = new SimpleStringProperty();
 
     public LookupTask(String host) {
         this.host = host;

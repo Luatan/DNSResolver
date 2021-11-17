@@ -190,7 +190,7 @@ public class GUI implements Initializable {
         Clipboard clipboard = toolkit.getSystemClipboard();
         StringSelection strSel = new StringSelection(txtAreaRecords.getText());
         clipboard.setContents(strSel, null);
-        System.out.println("DNS.Records copied!");
+        System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
     }
 
@@ -317,12 +317,16 @@ public class GUI implements Initializable {
         getWhois(host);
         // create Thread to resolve Host
         resolveHost(host);
-        long requestTime = 0;
+
         DNSRequests query;
+
+        //clear fileds
+        txtFieldHost.clear();
+        txtFieldIP.clear();
+
         if (!txtDomain.getText().isEmpty()) {
             txtAreaRecords.clear();
             if (type.equals("Any")) {
-                requestTime = System.currentTimeMillis();
                 query = new DNSRequests(host, "*");
                 //Set DNS.Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
@@ -335,13 +339,9 @@ public class GUI implements Initializable {
                 recordPutter(query.getRecords("MSG"), "MSG");
                 recordPutter(query.getRecords(type), type);
             }
-            txtFieldHost.clear();
-            txtFieldIP.clear();
             nameServerDisplay(query.getRecords("NS"));
-            System.out.println("DNS Query took: " + (System.currentTimeMillis() - requestTime) + " ms");
         }
     }
-
 
     private void resolveHost(String host) {
         if (host.equals("")) {

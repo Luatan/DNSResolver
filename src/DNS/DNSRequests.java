@@ -19,10 +19,14 @@ public class DNSRequests {
     private final List<Record> records;
 
     public DNSRequests(String domain, String type) {
+        long startTime = System.currentTimeMillis();
         records = new ArrayList<>();
         setHost(domain);
         setNameServer();
         setRecords(type);
+
+        //Calculate Time for a request
+        System.out.println("DNS Queries took: " + (System.currentTimeMillis() - startTime) + " ms");
     }
 
     private void setHost(String host) {

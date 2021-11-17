@@ -86,11 +86,11 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String getRegistrarName() {
-        Pattern pattern = Pattern.compile("(?:Registrar:)([\\s].+)");
+        Pattern pattern = Pattern.compile("(Registrar:)([\\s].+)");
         Matcher matcher = pattern.matcher(res);
 
         if (matcher.find()) {
-            return matcher.group(1).trim();
+            return matcher.group(2).trim();
         }
         return null;
     }

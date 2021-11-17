@@ -1,6 +1,7 @@
 import Model.API.IP_Info;
 import Records.Record;
 import Utils.Domain;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -18,8 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -48,9 +47,7 @@ public class GUI implements Initializable {
     @FXML
     Hyperlink whoisLink;
     @FXML
-    WebView web;
-    @FXML
-    Label hyperLbl, txtRegistrar;
+    Label hyperLbl;
     @FXML
     CheckBox chckBox;
     @FXML
@@ -75,6 +72,13 @@ public class GUI implements Initializable {
         chckBox.setSelected(Main.gui.isShowAllRecords());
         updateHistoryDisplay(); // Update history at startup
 
+        //prevent start button pressed without input
+        BooleanBinding enableSearchbtn = txtDomain.textProperty().greaterThan("2");
+        btnStart.disableProperty().bind(enableSearchbtn.not());
+
+        //prevent empty copy
+        BooleanBinding enableCopybtn = txtAreaRecords.textProperty().isNotEmpty();
+        cpyRecords.visibleProperty().bind(enableCopybtn);
     }
 
     @FXML
@@ -199,11 +203,9 @@ public class GUI implements Initializable {
 
     @FXML
     private void closeWebView() {
+        hyperLbl.visibleProperty().unbind();
         if (domainCheckResult.equals("")) {
-            final WebEngine webEngine = web.getEngine();
-            web.setVisible(false);
             btnWeb.setVisible(false);
-            webEngine.load(null);
         } else {
             txtAreaRecords.setText(originalRecords);
             btnWeb.setVisible(false);
@@ -216,10 +218,7 @@ public class GUI implements Initializable {
 
     private void displayWebView(String host) {
         if (domainCheckResult.equals("")) {
-            final WebEngine webEngine = web.getEngine();
-            webEngine.load("http://" + host);
             btnWeb.setVisible(true);
-            web.setVisible(true);
         } else {
             originalRecords = txtAreaRecords.getText();
             closeWebView();
@@ -360,8 +359,8 @@ public class GUI implements Initializable {
         whoisLink.textProperty().bind(task.messageProperty());
         whoisInfo.bind(task.valueProperty());
 
-        hyperLbl.disableProperty().bind(task.runningProperty());
-        hyperLbl.setVisible(true);
+        BooleanBinding gotWhois = whoisLink.textProperty().isNotEmpty().and(whoisInfo.isNotEmpty());
+        hyperLbl.visibleProperty().bind(gotWhois);
         new Thread(task).start();
     }
 

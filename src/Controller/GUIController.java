@@ -1,6 +1,5 @@
 package Controller;
 
-import Utils.FileStructure;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,8 +29,7 @@ public class GUIController extends Application {
         stage.setTitle("DNS Resolver");
         stage.getIcons().add(new Image(GUIController.class.getResourceAsStream("/icons/Icon.png")));
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);
-        scene = new Scene(root, 678, 585);
+        scene = new Scene(root);
 
         if (darkMode) {
             scene.getStylesheets().add("/styles/style_dark.css");

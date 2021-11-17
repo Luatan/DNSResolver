@@ -54,8 +54,11 @@ public class GetRegistrarTask extends Task<String> {
         if (readObj.has(ext)) {
             updateValue(setDomainCheckResult(host, readObj.getString(ext)));
         } else {
-            updateMessage(host);
-            updateValue("This TLD is not compatible");
+            //updateMessage(host);
+            //updateValue("This TLD is not compatible");
+
+            //if no server found then return nothing
+            return String.valueOf(valueProperty());
         }
 
         return String.valueOf(valueProperty());

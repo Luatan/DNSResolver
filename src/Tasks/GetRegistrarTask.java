@@ -1,3 +1,5 @@
+package Tasks;
+
 import Model.API.NIC;
 import Model.Whois;
 import Utils.Domain;
@@ -16,7 +18,7 @@ public class GetRegistrarTask extends Task<String> {
     private String res = "";
 
 
-    GetRegistrarTask(String host) {
+    public GetRegistrarTask(String host) {
         this.host = Domain.trimDomain(host);
     }
 
@@ -91,11 +93,11 @@ public class GetRegistrarTask extends Task<String> {
     }
 
     private String getRegistrarName() {
-        Pattern pattern = Pattern.compile("(?:Registrar:) (.+)");
+        Pattern pattern = Pattern.compile("(?:Registrar:)([\\s].+)");
         Matcher matcher = pattern.matcher(res);
 
         if (matcher.find()) {
-            return matcher.group(1);
+            return matcher.group(1).trim();
         }
         return null;
     }

@@ -1,5 +1,6 @@
-import Controller.JSONController;
+import Utils.Config;
 import Utils.FileStructure;
+import Utils.Json;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,11 +8,11 @@ import java.util.Objects;
 
 
 public class History {
-    private final String FILENAME = "logs/history.json";
-    private final JSONController handler;
+    private final String FILENAME = Config.HISTORY_CONF_FILE;
+    private final Json handler;
 
     History() {
-        handler = new JSONController(FILENAME);
+        handler = new Json(FILENAME);
     }
 
     private String[] readHistory() {

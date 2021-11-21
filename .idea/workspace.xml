@@ -9,13 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed structure and improved registrar detection">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="deleted test var">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/config/default_whois.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_whois.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/JSONController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,41 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00078" summary="dependency clean up">
-      <created>1631388226969</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1631388226969</updated>
-    </task>
-    <task id="LOCAL-00079" summary="bug fix">
-      <created>1631390614246</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1631390614246</updated>
-    </task>
-    <task id="LOCAL-00080" summary="removed IP Variable&#10;corrected comments">
-      <created>1631399870376</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1631399870376</updated>
-    </task>
-    <task id="LOCAL-00081" summary="added exception for messages to not show">
-      <created>1631399905636</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1631399905636</updated>
-    </task>
-    <task id="LOCAL-00082" summary="added link to ripe for network owner">
-      <created>1631399921214</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1631399921214</updated>
     </task>
     <task id="LOCAL-00083" summary="rename variable">
       <created>1631442064979</created>
@@ -534,7 +499,42 @@
       <option name="project" value="LOCAL" />
       <updated>1637111359535</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="modifications for gui and registrar calls">
+      <created>1637145388246</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1637145388247</updated>
+    </task>
+    <task id="LOCAL-00128" summary="changed regex">
+      <created>1637148297060</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1637148297060</updated>
+    </task>
+    <task id="LOCAL-00129" summary="Config Management">
+      <created>1637179591918</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1637179591919</updated>
+    </task>
+    <task id="LOCAL-00130" summary="changes to timing requests">
+      <created>1637188455403</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1637188455403</updated>
+    </task>
+    <task id="LOCAL-00131" summary="deleted test var">
+      <created>1637188473949</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1637188473949</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,11 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved to ressources" />
-    <MESSAGE value="moved functions to create whois file to GetRegistrarTask" />
-    <MESSAGE value="added create dir function to copy the whole dir from ressources" />
-    <MESSAGE value="create a copy of licences to make it available to user" />
-    <MESSAGE value="needs fixing" />
     <MESSAGE value="will be added in a later patch" />
     <MESSAGE value="small GUI fixes" />
     <MESSAGE value="String fixes" />
@@ -588,7 +583,12 @@
     <MESSAGE value="gui improvements and redesign to be more flexible" />
     <MESSAGE value="changed structure" />
     <MESSAGE value="changed structure and improved registrar detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed structure and improved registrar detection" />
+    <MESSAGE value="modifications for gui and registrar calls" />
+    <MESSAGE value="changed regex" />
+    <MESSAGE value="Config Management" />
+    <MESSAGE value="changes to timing requests" />
+    <MESSAGE value="deleted test var" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted test var" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

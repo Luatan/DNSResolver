@@ -1,7 +1,7 @@
 package Model.API;
 
-import Controller.JSONController;
 import Utils.FileStructure;
+import Utils.Json;
 import okhttp3.Headers;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class IP_Info extends API {
     private final String FILENAME = "logs/IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
-    private final JSONController JSON = new JSONController(FILENAME);
+    private final Json JSON = new Json(FILENAME);
     private final int MINRL = 16;
     private String api_output = "";
     //private String fields = "53769";

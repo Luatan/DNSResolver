@@ -61,7 +61,7 @@ public class GUI implements Initializable {
 
     //List of DNS.Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
-    //initialize Variables for Helper.Domain Check
+    //initialize Variables for Domain Check
 
     StringProperty whoisInfo = new SimpleStringProperty("");
     String domainCheckResult = "";

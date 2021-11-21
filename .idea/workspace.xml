@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="deleted test var">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="json management">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/JSONController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Json.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/History.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="fix/licences_folder" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -55,7 +53,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -129,7 +126,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Model.API.*" />
+          <option name="PATTERN" value="Model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -190,13 +187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00083" summary="rename variable">
-      <created>1631442064979</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1631442064979</updated>
     </task>
     <task id="LOCAL-00084" summary="added matching for Ipv6">
       <created>1631442083366</created>
@@ -534,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637188473949</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="json management">
+      <created>1637531811930</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1637531811930</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -548,7 +545,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Develop" />
+                        <option value="fix/licences_folder" />
                       </list>
                     </value>
                   </entry>
@@ -563,7 +560,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="will be added in a later patch" />
     <MESSAGE value="small GUI fixes" />
     <MESSAGE value="String fixes" />
     <MESSAGE value="change link text" />
@@ -588,7 +584,8 @@
     <MESSAGE value="Config Management" />
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted test var" />
+    <MESSAGE value="json management" />
+    <option name="LAST_COMMIT_MESSAGE" value="json management" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

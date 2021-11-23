@@ -75,11 +75,11 @@ public class DNSRequests {
                     }
 
                 } catch (Exception e) {
-                    //System.err.println("No DNS.Records for " + type + " in " + hostname + " found!");
+                    //System.err.println("No Records for " + type + " in " + hostname + " found!");
                 }
             }
         } catch (NameNotFoundException e) {
-            addMessage("No DNS-DNS.Records Found for " + hostname);
+            addMessage("No DNS-Records found for " + hostname);
         } catch (ServiceUnavailableException e) {
             addMessage("Service unavailable for " + hostname);
         } catch (OperationNotSupportedException e) {

@@ -42,14 +42,22 @@ public class GetRegistrarTask extends Task<String> {
 
         // Handles CH and LI Method of getting the whois (whois server is not available)
         if (ext.equals("ch") | ext.equals("li")) {
-            updateValue(getWHOIS_NIC(host));
+            try {
+                updateValue(getWHOIS_NIC(host));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             return String.valueOf(valueProperty());
         }
 
         // Read config file
         JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.WHOIS_CONF_FILE)));
         if (readObj.has(ext)) {
-            updateValue(setDomainCheckResult(host, readObj.getString(ext)));
+            try {
+                updateValue(setDomainCheckResult(host, readObj.getString(ext)));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
         return String.valueOf(valueProperty());
     }

@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="json management">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="corrected comment error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +37,6 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fix/licences_folder" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -75,7 +75,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MiniProjektFX" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -83,6 +83,9 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Model.API" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
@@ -187,20 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00084" summary="added matching for Ipv6">
-      <created>1631442083366</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1631442083366</updated>
-    </task>
-    <task id="LOCAL-00085" summary="fixed bug and made description for timer more clear">
-      <created>1631442108807</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1631442108807</updated>
     </task>
     <task id="LOCAL-00086" summary="fix module">
       <created>1631444040750</created>
@@ -531,7 +520,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637531811930</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="updated readme">
+      <created>1637533335183</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1637533335183</updated>
+    </task>
+    <task id="LOCAL-00134" summary="corrected comment error">
+      <created>1637533348023</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1637533348023</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -560,8 +563,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small GUI fixes" />
-    <MESSAGE value="String fixes" />
     <MESSAGE value="change link text" />
     <MESSAGE value="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout" />
     <MESSAGE value="remove print" />
@@ -585,7 +586,9 @@
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
     <MESSAGE value="json management" />
-    <option name="LAST_COMMIT_MESSAGE" value="json management" />
+    <MESSAGE value="updated readme" />
+    <MESSAGE value="corrected comment error" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected comment error" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

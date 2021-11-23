@@ -4,18 +4,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class NIC extends API {
+    private final String API_URL = "https://rdap.nic.ch/domain/";
     private final String RESPONSE;
-    private final String API_URL = "https://rdap.nic.ch/domain/";;
+    private final ArrayList<String> event;
+    private final ArrayList<String> resNSDomain;
+    private final ArrayList<String> resNSIP;
+    private String[] resAddress;
     private String resDomain;
     private String resRegistrar;
-    private String resRegistrationDate;
     private String resStatus;
-    private String[] resAddress;
-    private String[] resNSDomain;
-    private String[] resNSIP;
 
     public NIC(String domain) {
+        event = new ArrayList();
+        resNSDomain = new ArrayList<>();
+        resNSIP = new ArrayList<>();
         RESPONSE = request(API_URL + domain);
     }
 
@@ -23,10 +28,9 @@ public class NIC extends API {
         //Get Whole Object which icludes all Arrays
         if (RESPONSE != null && responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
-            //System.out.println(jsonObj.toString(4));
+
             //get Domain name
             resDomain = jsonObj.getString("ldhName");
-
 
             //get into VcardArray -> vcard
             JSONArray checkVcard = jsonObj.getJSONArray("entities");
@@ -54,31 +58,35 @@ public class NIC extends API {
 
             if (jsonObj.getJSONArray("events").length() > 0) {
                 JSONObject events = jsonObj.getJSONArray("events").getJSONObject(0);
-                resRegistrationDate = events.getString("eventDate");
+                event.add(events.getString("eventAction"));
+                event.add(events.getString("eventDate"));
             } else {
-                resRegistrationDate = "before 01 January 1996";
+                event.add("registration");
+                event.add("before 01. January 1996");
             }
-            JSONArray nameservers = jsonObj.getJSONArray("nameservers");
-            resNSDomain = new String[nameservers.length()];
-            resNSIP = new String[nameservers.length()];
-            for (int i = 0; i < nameservers.length(); i++) {
-                JSONObject ns = nameservers.getJSONObject(i);
-                resNSDomain[i] = ns.getString("ldhName");
-                JSONObject ips = ns.getJSONObject("ipAddresses");
-                if (ips.length() > 0) {
-                    try {
-                        if (ips.getJSONArray("v4").length() > 0) {
-                            resNSIP[i] = ips.getJSONArray("v4").getString(0);
-                        } else if (ips.getJSONArray("v6").length() > 0) {
-                            resNSIP[i] = ips.getJSONArray("v6").getString(0);
+
+            if (jsonObj.has("nameservers")) {
+                JSONArray nameservers = jsonObj.getJSONArray("nameservers");
+
+                for (int i = 0; i < nameservers.length(); i++) {
+                    JSONObject ns = nameservers.getJSONObject(i);
+                    resNSDomain.add(ns.getString("ldhName"));
+                    JSONObject ips = ns.getJSONObject("ipAddresses");
+                    if (ips.length() > 0) {
+                        try {
+                            if (ips.getJSONArray("v4").length() > 0) {
+                                resNSIP.add(ips.getJSONArray("v4").getString(0));
+                            } else if (ips.getJSONArray("v6").length() > 0) {
+                                resNSIP.add(ips.getJSONArray("v6").getString(0));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-
                 }
+            } else {
+                System.out.println("No NS");
             }
-
             return convertResultNic();
         } else if (responseCode != 200) {
             return checkResponseCode();
@@ -95,23 +103,28 @@ public class NIC extends API {
             addressString = "No Address found";
         }
 
+
         //Nameservers
-        StringBuilder nsString = new StringBuilder("\nNameservers: \n");
-        for (int i = 0; i < resNSDomain.length; i++) {
-            if (resNSDomain[i] != null) {
-                nsString.append("NS ").append(i + 1).append(": ");
-                nsString.append(resNSDomain[i]).append("\t");
-            }
-            if (resNSIP[i] != null) {
-                nsString.append("IP: ");
-                nsString.append(resNSIP[i]).append("\n");
-            } else {
-                nsString.append("\n");
+        StringBuilder nsString = new StringBuilder();
+        if (resNSDomain.size() > 0) {
+            nsString.append("\nNameservers: \n");
+            for (int i = 0; i < resNSDomain.size(); i++) {
+                if (resNSDomain.get(i) != null) {
+                    nsString.append("NS").append(i + 1).append(": ");
+                    nsString.append(resNSDomain.get(i)).append("\t");
+                }
+                if (resNSIP.size() > 0) {
+                    nsString.append("IP: ");
+                    nsString.append(resNSIP.get(i)).append("\n");
+                } else {
+                    nsString.append("\n");
+                }
             }
         }
+
         return "Domain: " + resDomain + "\n" +
                 "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
-                + "\nFirst Registration: " + resRegistrationDate + "\n" + nsString;
+                + "\n" + event.get(0) + ": " + event.get(1) + "\n" + nsString;
     }
 
 }

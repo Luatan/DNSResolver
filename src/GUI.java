@@ -1,6 +1,7 @@
 import DNS.DNSRequests;
 import Model.API.IP_Info;
 import DNS.Records.Record;
+import Tasks.CacheCleanupTask;
 import Tasks.GetRegistrarTask;
 import Tasks.LookupTask;
 import Utils.Domain;
@@ -82,6 +83,11 @@ public class GUI implements Initializable {
         //prevent empty copy
         BooleanBinding enableCopybtn = txtAreaRecords.textProperty().isNotEmpty();
         cpyRecords.visibleProperty().bind(enableCopybtn);
+
+        //Start cache cleanup Task after startup
+        CacheCleanupTask cachClean = new CacheCleanupTask();
+        cachClean.setDaemon(true);
+        cachClean.start();
     }
 
     @FXML

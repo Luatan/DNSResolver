@@ -9,13 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="json management">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="cleanup main">
+      <change afterPath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,20 +187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00084" summary="added matching for Ipv6">
-      <created>1631442083366</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1631442083366</updated>
-    </task>
-    <task id="LOCAL-00085" summary="fixed bug and made description for timer more clear">
-      <created>1631442108807</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1631442108807</updated>
     </task>
     <task id="LOCAL-00086" summary="fix module">
       <created>1631444040750</created>
@@ -534,7 +517,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637531811930</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="cache optimized">
+      <created>1637769024273</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1637769024273</updated>
+    </task>
+    <task id="LOCAL-00134" summary="cleanup main">
+      <created>1637769056665</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1637769056665</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,8 +560,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="small GUI fixes" />
-    <MESSAGE value="String fixes" />
     <MESSAGE value="change link text" />
     <MESSAGE value="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout" />
     <MESSAGE value="remove print" />
@@ -588,7 +583,9 @@
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
     <MESSAGE value="json management" />
-    <option name="LAST_COMMIT_MESSAGE" value="json management" />
+    <MESSAGE value="cache optimized" />
+    <MESSAGE value="cleanup main" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup main" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

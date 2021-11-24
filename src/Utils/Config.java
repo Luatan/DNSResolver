@@ -37,6 +37,9 @@ public class Config {
 
     public static void cleanCacheFiles() {
         File cacheDir = new File(Config.CACHE_FILES);
+        if (!cacheDir.exists()) {
+            return;
+        }
         try {
             for (String file:Objects.requireNonNull(cacheDir.list())) {
                 WhoisCache cache = new WhoisCache(file.substring(0, file.indexOf(".tmp")));

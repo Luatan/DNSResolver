@@ -5,6 +5,7 @@ import Model.Whois;
 import Utils.Config;
 import Utils.Domain;
 import Utils.FileStructure;
+import Utils.WhoisCache;
 import javafx.concurrent.Task;
 import org.json.JSONObject;
 
@@ -13,9 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetRegistrarTask extends Task<String> {
-    private final StringBuilder MESSAGE = new StringBuilder();
+    private final StringBuilder LINKTEXT = new StringBuilder();
     private String host;
     private String res = "";
+    private WhoisCache cache;
 
 
     public GetRegistrarTask(String host) {
@@ -34,6 +36,21 @@ public class GetRegistrarTask extends Task<String> {
             host = Domain.getMainDomain(host);
         }
 
+        // Check if this whois is cached
+        cache = new WhoisCache(host);
+            if (cache.isCached()) {
+                try {
+                    System.out.println("cache!");
+                    res = cache.readCache();
+                    setLINKTEXT();
+                    updateMessage(LINKTEXT.toString());
+                    updateValue(res);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return getValue();
+            }
+
         // Handles DE Domains (special params for full info)
         String ext = Domain.getExtension(host);
         if (ext.equals("de")) {
@@ -44,48 +61,47 @@ public class GetRegistrarTask extends Task<String> {
         if (ext.equals("ch") | ext.equals("li")) {
             try {
                 updateValue(getWHOIS_NIC(host));
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            return String.valueOf(valueProperty());
+            return getValue();
         }
 
         // Read config file
         JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.WHOIS_CONF_FILE)));
         if (readObj.has(ext)) {
             try {
-                updateValue(setDomainCheckResult(host, readObj.getString(ext)));
-            } catch (Exception e){
+                updateValue(setDomainCheckResult(readObj.getString(ext)));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return String.valueOf(valueProperty());
+        return getValue();
     }
 
 
-    private String setDomainCheckResult(String host, String whoisServer) {
-        res = new Whois().getWhois(host, whoisServer);
-        MESSAGE.append(this.host);
-        String reg = getRegistrarName();
-        if (reg != null) {
-            MESSAGE.append(" - ").append(reg);
-        }
-        updateMessage(MESSAGE.toString());
-
+    private String setDomainCheckResult(String whoisServer) {
+        res = new Whois().getWhois(this.host, whoisServer);
+        setLINKTEXT();
+        updateMessage(LINKTEXT.toString());
+        cache.writeCache(res);
         return res;
     }
 
     private String getWHOIS_NIC(String domain) {
         res = new NIC(domain).getOutput();
-        MESSAGE.append(this.host);
+        setLINKTEXT();
+        updateMessage(LINKTEXT.toString());
+        cache.writeCache(res);
+        return res;
+    }
 
+    private void setLINKTEXT() {
+        LINKTEXT.append(this.host);
         String reg = getRegistrarName();
         if (reg != null) {
-            MESSAGE.append(" - ").append(reg);
+            LINKTEXT.append(" - ").append(reg);
         }
-        updateMessage(MESSAGE.toString());
-
-        return res;
     }
 
     private String getRegistrarName() {

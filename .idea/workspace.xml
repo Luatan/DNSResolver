@@ -9,11 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="corrected comment error">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed text">
+      <change afterPath="$PROJECT_DIR$/cache/luatan.com.tmp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FileStructure.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,20 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00086" summary="fix module">
-      <created>1631444040750</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1631444040750</updated>
-    </task>
-    <task id="LOCAL-00087" summary="changed Task to be more dynamic&#10;Servers can now be added in a config file">
-      <created>1631556611027</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1631556611028</updated>
     </task>
     <task id="LOCAL-00088" summary="renamed Files.java to FileStructure.java to avoid same names with provided apis&#10;added check for directories">
       <created>1631557434857</created>
@@ -534,7 +524,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637533348023</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="fixed bug, where the whois is not displayed, if the event is deletion">
+      <created>1637691014156</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1637691014157</updated>
+    </task>
+    <task id="LOCAL-00136" summary="changed text">
+      <created>1637691029545</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1637691029545</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,8 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change link text" />
-    <MESSAGE value="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout" />
     <MESSAGE value="remove print" />
     <MESSAGE value="fixed dark mode styling to be more uniform" />
     <MESSAGE value="fixed a few bugs" />
@@ -588,7 +590,9 @@
     <MESSAGE value="json management" />
     <MESSAGE value="updated readme" />
     <MESSAGE value="corrected comment error" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected comment error" />
+    <MESSAGE value="fixed bug, where the whois is not displayed, if the event is deletion" />
+    <MESSAGE value="changed text" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed text" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

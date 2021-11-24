@@ -6,7 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
         //Init work
-        Config.createDirs();
+//        Config.createDirs(); // create needed dirs
+
+        // init config files
         Config.createHistoryConfig();
         Config.createSettingsConfig();
         Config.createWhoisConfig();

@@ -8,27 +8,19 @@ import java.util.Objects;
 
 
 public class WhoisCache {
-    private final String PATH = Config.CACHE_FILES;
-    private String domain;
-    private String fileName;
-    private long ttl = 60000;
+    private final String DOMAIN;
     private File cacheFile;
+    private long ttl;
 
 
     public WhoisCache(String domain) {
-        this.domain = domain;
-        // domain-time.tmp
-        selectFile();
+        DOMAIN = domain;
+        setTimeToLive(Config.CACHE_TIME_TO_LIVE); //defines how long a file should be kept.
+        selectFile(); // search cache folder for existing files
     }
 
-    private void selectFile() {
-        cacheFile = new File(PATH + domain + ".tmp");
-
-        for (File file: Objects.requireNonNull(cacheFile.getParentFile().listFiles())) {
-            if (file.getName().contains(domain)){
-                cacheFile = file;
-            }
-        }
+    public void setTimeToLive(int seconds) {
+        ttl = (long) seconds * 1000;
     }
 
     public void writeCache(String content) {
@@ -40,32 +32,36 @@ public class WhoisCache {
     }
 
     public boolean isCached() {
-        if (cacheFile.exists() && isValid()) {
-            return true;
-        }
-        return false;
+        return cacheFile.exists() && isValid();
     }
 
-    private boolean isValid() {
+    public boolean isValid() {
         long cacheTime = cacheFile.lastModified();
-        System.out.println();
-        System.out.println(System.currentTimeMillis() - cacheTime);
         if ((System.currentTimeMillis() - cacheTime) > ttl) {
             try {
-                if(Files.deleteIfExists(Paths.get(cacheFile.getAbsolutePath()))) {
-                    System.out.println("deleted");
-                } else {
-                    System.out.println("could not be deleted");
+                if (!Files.deleteIfExists(Paths.get(cacheFile.getAbsolutePath()))) {
+                    System.err.println("Cache File" + cacheFile.getName() + "could not be deleted");
                 }
-                return false;
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            return false;
         }
         return true;
     }
 
-    public void setTimeToLive(int seconds) {
-        ttl = seconds;
+    private void selectFile() {
+        cacheFile = new File(Config.CACHE_FILES + DOMAIN + ".tmp");
+        File parent = cacheFile.getParentFile();
+        if (parent.exists()) {
+            // search cache directory for an already existing file
+            for (File file : Objects.requireNonNull(parent.listFiles())) {
+                if (file.getName().contains(DOMAIN)) {
+                    cacheFile = file;
+                }
+            }
+        }
     }
+
+
 }

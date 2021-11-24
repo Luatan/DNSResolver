@@ -38,18 +38,18 @@ public class GetRegistrarTask extends Task<String> {
 
         // Check if this whois is cached
         cache = new WhoisCache(host);
-            if (cache.isCached()) {
-                try {
-                    System.out.println("cache!");
-                    res = cache.readCache();
-                    setLINKTEXT();
-                    updateMessage(LINKTEXT.toString());
-                    updateValue(res);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return getValue();
+        if (cache.isCached()) {
+            try {
+                res = cache.readCache();
+                setLINKTEXT();
+                LINKTEXT.append(" (cached)");
+                updateMessage(LINKTEXT.toString());
+                updateValue(res);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return getValue();
+        }
 
         // Handles DE Domains (special params for full info)
         String ext = Domain.getExtension(host);

@@ -5,9 +5,6 @@ public class Main {
     public static GUIController gui;
 
     public static void main(String[] args) {
-        //Init work
-//        Config.createDirs(); // create needed dirs
-
         // init config files
         Config.createHistoryConfig();
         Config.createSettingsConfig();

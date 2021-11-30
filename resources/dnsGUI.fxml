@@ -22,7 +22,7 @@
                <Insets left="3.0" right="3.0" top="5.0" />
             </HBox.margin>
          </ImageView>
-         <Label text="DNS Resolver">
+         <Label text="Model.DNS Resolver">
             <font>
                <Font name="Roboto Light" size="13.0" />
             </font>
@@ -140,7 +140,7 @@
       <VBox.margin>
          <Insets />
       </VBox.margin></HBox>
-      <CheckBox fx:id="chckBox" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#changeEmptyRecordsSetting" text="Show Empty DNS.Records">
+      <CheckBox fx:id="chckBox" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#changeEmptyRecordsSetting" text="Show Empty">
           <font>
               <Font name="Roboto Light" size="10.0" />
           </font>

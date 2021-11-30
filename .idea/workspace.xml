@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added more settings">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="clean up">
+      <change afterPath="$PROJECT_DIR$/resources/config/default_settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +72,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MiniProjektFX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
@@ -85,14 +85,15 @@
       <recent name="Model.API" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config_default" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -188,13 +189,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00095" summary="removed language option because it is not used">
-      <created>1631558217354</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1631558217354</updated>
     </task>
     <task id="LOCAL-00096" summary="added licenses">
       <created>1631559852897</created>
@@ -532,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638310113317</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="clean up">
+      <created>1638313688804</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1638313688804</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -561,7 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed classes to use the new Records" />
     <MESSAGE value="changes to consturctor" />
     <MESSAGE value="added .gg extension" />
     <MESSAGE value="removed errors" />
@@ -586,7 +586,8 @@
     <MESSAGE value="fixed bug, where the extension triggers the cache instead of each extension having its own file" />
     <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
     <MESSAGE value="added more settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="added more settings" />
+    <MESSAGE value="clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -113,7 +113,7 @@ public class NIC extends API {
                     nsString.append("NS").append(i + 1).append(": ");
                     nsString.append(resNSDomain.get(i)).append("\t");
                 }
-                if (resNSIP.size() > 0) {
+                if (i < resNSIP.size()) {
                     nsString.append("IP: ");
                     nsString.append(resNSIP.get(i)).append("\n");
                 } else {

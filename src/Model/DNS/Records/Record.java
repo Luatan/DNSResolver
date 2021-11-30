@@ -1,4 +1,4 @@
-package DNS.Records;
+package Model.DNS.Records;
 
 public abstract class Record {
     protected String value;

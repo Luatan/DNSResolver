@@ -1,6 +1,6 @@
-package DNS;
+package Model.DNS;
 
-import DNS.Records.*;
+import Model.DNS.Records.*;
 import Utils.Domain;
 
 import javax.naming.NameNotFoundException;

@@ -6,7 +6,8 @@ import java.io.File;
 import java.util.Objects;
 
 public class Config {
-    public static final int CACHE_TIME_TO_LIVE = 1200;
+    public static boolean CACHING = true;
+    public static int CACHE_TIME_TO_LIVE = 20;
     public static final String WHOIS_CONF_FILE = "config/whois_servers.json";
     public static final String HISTORY_CONF_FILE = "logs/history.json";
     public static final String SETTINGS_CONF_FILE = "config/settings.json";
@@ -31,6 +32,8 @@ public class Config {
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("darkmode", false);
             jsonObj.put("ShowEmptyRecords", false);
+            jsonObj.put("cache", true);
+            jsonObj.put("cacheTime", 20);
             FileStructure.createFile(jsonObj.toString(4), SETTINGS_CONF_FILE);
         }
     }

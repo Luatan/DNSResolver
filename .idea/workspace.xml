@@ -9,25 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="cache function added">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed bug, where it would get an error if only 1 nameserver has an IP">
+      <change afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/config/default_whois.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_whois.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DNSRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/CNAME.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/MSG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/MX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/NS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/PTR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/SOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DNS/Records/TXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,41 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00089" summary="now automatically creates needed folders in appDir">
-      <created>1631557819300</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1631557819300</updated>
-    </task>
-    <task id="LOCAL-00090" summary="added dirs which are created on runtime">
-      <created>1631557840674</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1631557840674</updated>
-    </task>
-    <task id="LOCAL-00091" summary="cleanup import">
-      <created>1631558035789</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1631558035790</updated>
-    </task>
-    <task id="LOCAL-00092" summary="changed path for history to log/history.json">
-      <created>1631558060557</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1631558060557</updated>
-    </task>
-    <task id="LOCAL-00093" summary="changed path for settings to config/settings.json">
-      <created>1631558077971</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1631558077971</updated>
     </task>
     <task id="LOCAL-00094" summary="changed path for ip query to logs/">
       <created>1631558102159</created>
@@ -549,7 +503,42 @@
       <option name="project" value="LOCAL" />
       <updated>1637753386679</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="structure">
+      <created>1638304287603</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1638304287603</updated>
+    </task>
+    <task id="LOCAL-00139" summary="fixed text bug">
+      <created>1638304297340</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1638304297340</updated>
+    </task>
+    <task id="LOCAL-00140" summary="structure + fixed text bug">
+      <created>1638304341218</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1638304341218</updated>
+    </task>
+    <task id="LOCAL-00141" summary="fixed bug, where the extension triggers the cache instead of each extension having its own file">
+      <created>1638304393311</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1638304393311</updated>
+    </task>
+    <task id="LOCAL-00142" summary="fixed bug, where it would get an error if only 1 nameserver has an IP">
+      <created>1638304430834</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1638304430834</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -578,11 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed dark mode styling to be more uniform" />
-    <MESSAGE value="fixed a few bugs" />
-    <MESSAGE value="fucking javafx deploy" />
-    <MESSAGE value="bug fix" />
-    <MESSAGE value="improve performance of DNSRequests" />
     <MESSAGE value="trying to implement record" />
     <MESSAGE value="changed classes to use the new Records" />
     <MESSAGE value="changes to consturctor" />
@@ -603,7 +587,12 @@
     <MESSAGE value="fixed bug, where the whois is not displayed, if the event is deletion" />
     <MESSAGE value="changed text" />
     <MESSAGE value="cache function added" />
-    <option name="LAST_COMMIT_MESSAGE" value="cache function added" />
+    <MESSAGE value="structure" />
+    <MESSAGE value="fixed text bug" />
+    <MESSAGE value="structure + fixed text bug" />
+    <MESSAGE value="fixed bug, where the extension triggers the cache instead of each extension having its own file" />
+    <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -15,6 +15,9 @@ public class WhoisCache {
 
     public WhoisCache(String domain) {
         DOMAIN = domain;
+        if (!Config.CACHING) {
+            return;
+        }
         setTimeToLive(Config.CACHE_TIME_TO_LIVE); //defines how long a file should be kept.
         selectFile(); // search cache folder for existing files
     }

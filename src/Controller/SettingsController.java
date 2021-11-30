@@ -1,26 +1,41 @@
 package Controller;
 
+import Model.AppConfig;
 import Utils.FileStructure;
-import Utils.Json;
-import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.apache.commons.io.output.FileWriterWithEncoding;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class SettingsController {
+    public Gson jsonHandler = new GsonBuilder().setPrettyPrinting().create();
     private final String FILENAME = "config/settings.json";
-    private final Json SETTINGS = new Json(FILENAME);
+    public AppConfig config;
 
-    public void edit(String key, boolean value) {
-        JSONObject object = new JSONObject(FileStructure.readFile(FILENAME));
-        object.put(key, value);
-
-        //Write File
-        SETTINGS.write(object);
+    SettingsController() {
+        load();
     }
 
-    public boolean getDisplayMode() {
-        return SETTINGS.getBoolValue("darkmode");
+    public void write() {
+        try {
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + FILENAME, "utf-8");
+            file.write(jsonHandler.toJson(config));
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public boolean getDisplayRecords() {
-        return SETTINGS.getBoolValue("ShowEmptyRecords");
+    private void load() {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(FILENAME));
+            config = jsonHandler.fromJson(reader, AppConfig.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

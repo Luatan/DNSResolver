@@ -1,5 +1,6 @@
 package Controller;
 
+import Utils.Config;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,16 +15,22 @@ public class GUIController extends Application {
     private static boolean showAllRecords;
     private static Scene scene;
     private static Stage stage;
-    private final SettingsController settingsController = new SettingsController();
+    private final SettingsController SETTINGS = new SettingsController();
 
     public void work() {
-        String[] args = new String[0];
-        launch(args);
+        launch();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         loadSettings();
+
+        // Set Config Variables
+        Config.CACHING = SETTINGS.config.isCache();
+        Config.CACHE_TIME_TO_LIVE = SETTINGS.config.getCacheTime();
+
+        System.out.println(SETTINGS.config);
+
         Parent root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
@@ -41,8 +48,8 @@ public class GUIController extends Application {
     }
 
     private void loadSettings() {
-        darkMode = settingsController.getDisplayMode();
-        showAllRecords = settingsController.getDisplayRecords();
+        darkMode = SETTINGS.config.isDarkmode();
+        showAllRecords = SETTINGS.config.isShowEmptyRecords();
     }
 
     public void changeTheme() {
@@ -55,21 +62,35 @@ public class GUIController extends Application {
             scene.getStylesheets().remove("/styles/style_dark.css");
 
         }
-        settingsController.edit("darkmode", darkMode);
+//        SETTINGS.edit("darkmode", darkMode);
+        //Change Config
+        SETTINGS.config.setDarkmode(darkMode);
+
+        // make changes visible
         stage.setScene(scene);
         stage.show();
     }
 
     public void setShowAllRecords() {
-        settingsController.edit("ShowEmptyRecords", !showAllRecords);
+//        SETTINGS.edit("ShowEmptyRecords", !showAllRecords);
+        SETTINGS.config.setShowEmptyRecords(!showAllRecords);
     }
 
     public boolean isShowAllRecords() {
         return showAllRecords;
     }
 
+    public boolean isCache() {
+        return SETTINGS.config.isCache();
+    }
+
+    public int getCacheTime() {
+        return SETTINGS.config.getCacheTime();
+    }
+
     public void exit() {
         stage.close();
+        SETTINGS.write();
         System.exit(0);
     }
 

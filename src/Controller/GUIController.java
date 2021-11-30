@@ -26,10 +26,6 @@ public class GUIController extends Application {
         // Settings init
         loadSettings();
 
-        // Set Config Variables
-        Config.CACHING = SETTINGS.config.isCache();
-        Config.CACHE_TIME_TO_LIVE = SETTINGS.config.getCacheTime();
-
         //FX
         Parent root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
         stage = primaryStage;
@@ -49,8 +45,14 @@ public class GUIController extends Application {
     }
 
     private void loadSettings() {
-        darkMode = SETTINGS.config.isDarkmode();
-        showAllRecords = SETTINGS.config.isShowEmptyRecords();
+        if (SETTINGS.config != null) {
+            darkMode = SETTINGS.config.isDarkmode();
+            showAllRecords = SETTINGS.config.isShowEmptyRecords();
+
+            // Set Config Variables
+            Config.CACHING = SETTINGS.config.isCache();
+            Config.CACHE_TIME_TO_LIVE = SETTINGS.config.getCacheTime();
+        }
     }
 
     public void changeTheme() {

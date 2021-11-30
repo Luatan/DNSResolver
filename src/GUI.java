@@ -1,6 +1,6 @@
-import DNS.DNSRequests;
+import Model.DNS.DNSRequests;
 import Model.API.IP_Info;
-import DNS.Records.Record;
+import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
 import Tasks.GetRegistrarTask;
 import Tasks.LookupTask;
@@ -313,7 +313,7 @@ public class GUI implements Initializable {
             txtAreaRecords.home();
         } else if (chckBox.isSelected() && !type.equals("MSG")) {
             txtAreaRecords.appendText(type + ": \n");
-            txtAreaRecords.appendText("\t" + "No DNS.Records found\n\n");
+            txtAreaRecords.appendText("\t" + "No Records found\n\n");
         }
         txtAreaRecords.home();
     }

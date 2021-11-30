@@ -9,10 +9,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="cleanup main">
-      <change afterPath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="cache function added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/config/default_whois.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_whois.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/DNSRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DNSRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/CNAME.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/MSG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/MX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/NS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/PTR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/SOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DNS/Records/TXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +52,6 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fix/licences_folder" />
         <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
@@ -75,7 +90,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MiniProjektFX" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -83,6 +98,9 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Model.API" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
@@ -187,27 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00086" summary="fix module">
-      <created>1631444040750</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1631444040750</updated>
-    </task>
-    <task id="LOCAL-00087" summary="changed Task to be more dynamic&#10;Servers can now be added in a config file">
-      <created>1631556611027</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1631556611028</updated>
-    </task>
-    <task id="LOCAL-00088" summary="renamed Files.java to FileStructure.java to avoid same names with provided apis&#10;added check for directories">
-      <created>1631557434857</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1631557434857</updated>
     </task>
     <task id="LOCAL-00089" summary="now automatically creates needed folders in appDir">
       <created>1631557819300</created>
@@ -517,21 +514,42 @@
       <option name="project" value="LOCAL" />
       <updated>1637531811930</updated>
     </task>
-    <task id="LOCAL-00133" summary="cache optimized">
-      <created>1637769024273</created>
+    <task id="LOCAL-00133" summary="updated readme">
+      <created>1637533335183</created>
       <option name="number" value="00133" />
       <option name="presentableId" value="LOCAL-00133" />
       <option name="project" value="LOCAL" />
-      <updated>1637769024273</updated>
+      <updated>1637533335183</updated>
     </task>
-    <task id="LOCAL-00134" summary="cleanup main">
-      <created>1637769056665</created>
+    <task id="LOCAL-00134" summary="corrected comment error">
+      <created>1637533348023</created>
       <option name="number" value="00134" />
       <option name="presentableId" value="LOCAL-00134" />
       <option name="project" value="LOCAL" />
-      <updated>1637769056665</updated>
+      <updated>1637533348023</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="fixed bug, where the whois is not displayed, if the event is deletion">
+      <created>1637691014156</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1637691014157</updated>
+    </task>
+    <task id="LOCAL-00136" summary="changed text">
+      <created>1637691029545</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1637691029545</updated>
+    </task>
+    <task id="LOCAL-00137" summary="cache function added">
+      <created>1637753386678</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1637753386679</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -560,9 +578,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change link text" />
-    <MESSAGE value="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout" />
-    <MESSAGE value="remove print" />
     <MESSAGE value="fixed dark mode styling to be more uniform" />
     <MESSAGE value="fixed a few bugs" />
     <MESSAGE value="fucking javafx deploy" />
@@ -583,9 +598,12 @@
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
     <MESSAGE value="json management" />
-    <MESSAGE value="cache optimized" />
-    <MESSAGE value="cleanup main" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup main" />
+    <MESSAGE value="updated readme" />
+    <MESSAGE value="corrected comment error" />
+    <MESSAGE value="fixed bug, where the whois is not displayed, if the event is deletion" />
+    <MESSAGE value="changed text" />
+    <MESSAGE value="cache function added" />
+    <option name="LAST_COMMIT_MESSAGE" value="cache function added" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

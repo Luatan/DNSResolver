@@ -56,7 +56,7 @@ public class WhoisCache {
         if (parent.exists()) {
             // search cache directory for an already existing file
             for (File file : Objects.requireNonNull(parent.listFiles())) {
-                if (file.getName().contains(DOMAIN)) {
+                if (file.getName().equals(DOMAIN + ".tmp")) {
                     cacheFile = file;
                 }
             }

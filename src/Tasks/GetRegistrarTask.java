@@ -41,9 +41,7 @@ public class GetRegistrarTask extends Task<String> {
         if (cache.isCached()) {
             try {
                 res = cache.readCache();
-                setLINKTEXT();
-                LINKTEXT.append(" (cached)");
-                updateMessage(LINKTEXT.toString());
+                setLINKTEXT(getRegistrarName() + " (cached)");
                 updateValue(res);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -51,12 +49,7 @@ public class GetRegistrarTask extends Task<String> {
             return getValue();
         }
 
-        // Handles DE Domains (special params for full info)
         String ext = Domain.getExtension(host);
-        if (ext.equals("de")) {
-            host = "-T dn " + host;
-        }
-
         // Handles CH and LI Method of getting the whois (whois server is not available)
         if (ext.equals("ch") | ext.equals("li")) {
             try {
@@ -81,27 +74,31 @@ public class GetRegistrarTask extends Task<String> {
 
 
     private String setDomainCheckResult(String whoisServer) {
-        res = new Whois().getWhois(this.host, whoisServer);
-        setLINKTEXT();
-        updateMessage(LINKTEXT.toString());
+        String host = this.host;
+        // Handles DE Domains (special params for full info)
+        if (Domain.getExtension(this.host).equals("de")) {
+            host = "-T dn " + this.host;
+        }
+
+        res = new Whois().getWhois(host, whoisServer);
+        setLINKTEXT(getRegistrarName());
         cache.writeCache(res);
         return res;
     }
 
     private String getWHOIS_NIC(String domain) {
         res = new NIC(domain).getOutput();
-        setLINKTEXT();
-        updateMessage(LINKTEXT.toString());
+        setLINKTEXT(getRegistrarName());
         cache.writeCache(res);
         return res;
     }
 
-    private void setLINKTEXT() {
+    private void setLINKTEXT(String message) {
         LINKTEXT.append(this.host);
-        String reg = getRegistrarName();
-        if (reg != null) {
-            LINKTEXT.append(" - ").append(reg);
+        if (message != null && !message.isEmpty()) {
+            LINKTEXT.append(" - ").append(message);
         }
+        updateMessage(LINKTEXT.toString());
     }
 
     private String getRegistrarName() {
@@ -110,6 +107,10 @@ public class GetRegistrarTask extends Task<String> {
 
         if (matcher.find()) {
             return matcher.group(2).trim();
+        }
+
+        if (res.toLowerCase().contains("not found")){
+            return "Not Found";
         }
         return null;
     }

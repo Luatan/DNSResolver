@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="clean up">
-      <change afterPath="$PROJECT_DIR$/resources/config/default_settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="gson license">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,20 +189,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00096" summary="added licenses">
-      <created>1631559852897</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1631559852897</updated>
-    </task>
-    <task id="LOCAL-00097" summary="changed dependencies">
-      <created>1631559864176</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1631559864176</updated>
     </task>
     <task id="LOCAL-00098" summary="renamed folder, added licences">
       <created>1631565608984</created>
@@ -533,7 +519,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638313688804</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="settings file has now a template">
+      <created>1638314178886</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1638314178886</updated>
+    </task>
+    <task id="LOCAL-00146" summary="gson license">
+      <created>1638314290677</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1638314290677</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -562,8 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changes to consturctor" />
-    <MESSAGE value="added .gg extension" />
     <MESSAGE value="removed errors" />
     <MESSAGE value="improved api and whois calls" />
     <MESSAGE value="gui improvements and redesign to be more flexible" />
@@ -587,7 +585,9 @@
     <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
     <MESSAGE value="added more settings" />
     <MESSAGE value="clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean up" />
+    <MESSAGE value="settings file has now a template" />
+    <MESSAGE value="gson license" />
+    <option name="LAST_COMMIT_MESSAGE" value="gson license" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

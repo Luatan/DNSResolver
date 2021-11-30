@@ -23,14 +23,14 @@ public class GUIController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Settings init
         loadSettings();
 
         // Set Config Variables
         Config.CACHING = SETTINGS.config.isCache();
         Config.CACHE_TIME_TO_LIVE = SETTINGS.config.getCacheTime();
 
-        System.out.println(SETTINGS.config);
-
+        //FX
         Parent root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
@@ -38,6 +38,7 @@ public class GUIController extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root);
 
+        // set Darkmode on Start if in Settings
         if (darkMode) {
             scene.getStylesheets().add("/styles/style_dark.css");
         } else {
@@ -62,7 +63,7 @@ public class GUIController extends Application {
             scene.getStylesheets().remove("/styles/style_dark.css");
 
         }
-//        SETTINGS.edit("darkmode", darkMode);
+
         //Change Config
         SETTINGS.config.setDarkmode(darkMode);
 
@@ -78,14 +79,6 @@ public class GUIController extends Application {
 
     public boolean isShowAllRecords() {
         return showAllRecords;
-    }
-
-    public boolean isCache() {
-        return SETTINGS.config.isCache();
-    }
-
-    public int getCacheTime() {
-        return SETTINGS.config.getCacheTime();
     }
 
     public void exit() {

@@ -9,15 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed bug, where it would get an error if only 1 nameserver has an IP">
-      <change afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added more settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,13 +188,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00094" summary="changed path for ip query to logs/">
-      <created>1631558102159</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1631558102159</updated>
     </task>
     <task id="LOCAL-00095" summary="removed language option because it is not used">
       <created>1631558217354</created>
@@ -538,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638304430834</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="added more settings">
+      <created>1638310113317</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1638310113317</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,7 +561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="trying to implement record" />
     <MESSAGE value="changed classes to use the new Records" />
     <MESSAGE value="changes to consturctor" />
     <MESSAGE value="added .gg extension" />
@@ -592,7 +585,8 @@
     <MESSAGE value="structure + fixed text bug" />
     <MESSAGE value="fixed bug, where the extension triggers the cache instead of each extension having its own file" />
     <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
+    <MESSAGE value="added more settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more settings" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

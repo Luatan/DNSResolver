@@ -37,23 +37,27 @@ public class GetRegistrarTask extends Task<String> {
         }
 
         // Check if this whois is cached
-        cache = new WhoisCache(host);
-        if (cache.isCached()) {
-            try {
-                res = cache.readCache();
-                setLINKTEXT(getRegistrarName() + " (cached)");
-                updateValue(res);
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (Config.CACHING) {
+            cache = new WhoisCache(host);
+            if (cache.isCached()) {
+                try {
+                    res = cache.readCache();
+                    setLINKTEXT(getRegistrarName() + " (cached)");
+                    updateValue(res);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return getValue();
             }
-            return getValue();
         }
+
 
         String ext = Domain.getExtension(host);
         // Handles CH and LI Method of getting the whois (whois server is not available)
         if (ext.equals("ch") | ext.equals("li")) {
             try {
                 updateValue(getWHOIS_NIC(host));
+//                cache.writeCache(res);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,6 +69,7 @@ public class GetRegistrarTask extends Task<String> {
         if (readObj.has(ext)) {
             try {
                 updateValue(setDomainCheckResult(readObj.getString(ext)));
+//                cache.writeCache(res);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -82,14 +87,12 @@ public class GetRegistrarTask extends Task<String> {
 
         res = new Whois().getWhois(host, whoisServer);
         setLINKTEXT(getRegistrarName());
-        cache.writeCache(res);
         return res;
     }
 
     private String getWHOIS_NIC(String domain) {
         res = new NIC(domain).getOutput();
         setLINKTEXT(getRegistrarName());
-        cache.writeCache(res);
         return res;
     }
 
@@ -109,8 +112,12 @@ public class GetRegistrarTask extends Task<String> {
             return matcher.group(2).trim();
         }
 
-        if (res.toLowerCase().contains("not found")){
-            return "Not Found";
+        if (res.toLowerCase().contains("not found")) {
+            return "Free";
+        }
+
+        if (res.toLowerCase().contains("status: free")){
+            return "Free";
         }
         return null;
     }

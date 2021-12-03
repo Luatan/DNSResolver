@@ -22,7 +22,7 @@
                <Insets left="3.0" right="3.0" top="5.0" />
             </HBox.margin>
          </ImageView>
-         <Label text="Model.DNS Resolver">
+         <Label text="DNS Resolver">
             <font>
                <Font name="Roboto Light" size="13.0" />
             </font>

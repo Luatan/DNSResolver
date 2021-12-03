@@ -57,7 +57,9 @@ public class GetRegistrarTask extends Task<String> {
         if (ext.equals("ch") | ext.equals("li")) {
             try {
                 updateValue(getWHOIS_NIC(host));
-//                cache.writeCache(res);
+                if (Config.CACHING) {
+                    cache.writeCache(res);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -69,7 +71,9 @@ public class GetRegistrarTask extends Task<String> {
         if (readObj.has(ext)) {
             try {
                 updateValue(setDomainCheckResult(readObj.getString(ext)));
-//                cache.writeCache(res);
+                if (Config.CACHING) {
+                    cache.writeCache(res);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

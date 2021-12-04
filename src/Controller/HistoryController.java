@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.AppConfig;
+import Model.HistoryFile;
 import Model.JSON;
 import Utils.Config;
 import Utils.FileStructure;
@@ -13,48 +13,52 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class SettingsController extends JSON {
-    public AppConfig config;
 
-    SettingsController() {
+public class HistoryController extends JSON {
+    public HistoryFile history;
+
+    public HistoryController() {
         super();
     }
 
+    @Override
     public void write() {
         try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.SETTINGS_CONF_FILE, "utf-8");
-            file.write(HANDLER.toJson(config));
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.HISTORY_CONF_FILE, "utf-8");
+            file.write(HANDLER.toJson(history));
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
     protected void load() {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(Config.SETTINGS_CONF_FILE));
-            config = HANDLER.fromJson(reader, AppConfig.class);
+            Reader reader = Files.newBufferedReader(Paths.get(Config.HISTORY_CONF_FILE));
+            history = HANDLER.fromJson(reader, HistoryFile.class);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JsonSyntaxException jsonE) {
             reset();
         }
-        if (config == null) {
+        if (history == null) {
             reset();
         }
     }
 
+    @Override
     protected void reset() {
         System.err.println("Settings File error.... reseting File");
-        File file = new File(Config.SETTINGS_CONF_FILE);
+        File file = new File(Config.HISTORY_CONF_FILE);
         if (file.delete()) {
             System.out.println("true");
         } else {
             System.out.println("false");
         }
 
-        Config.createSettingsConfig();
+        Config.createHistoryConfig();
         load();
     }
 }

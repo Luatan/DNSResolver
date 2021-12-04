@@ -9,11 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="build settings">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed whois not being cached if enabled">
+      <change afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/HistoryFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/JSON.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Json.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -52,7 +58,6 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/History.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
@@ -106,6 +111,9 @@
       <recent name="com.dns" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
@@ -192,20 +200,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00102" summary="added create dir function to copy the whole dir from ressources">
-      <created>1631565760336</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565760336</updated>
-    </task>
-    <task id="LOCAL-00103" summary="create a copy of licences to make it available to user">
-      <created>1631565787544</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565787545</updated>
     </task>
     <task id="LOCAL-00104" summary="needs fixing">
       <created>1631567591535</created>
@@ -536,7 +530,21 @@
       <option name="project" value="LOCAL" />
       <updated>1638397203142</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="fixed text bug after moving files">
+      <created>1638573557987</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1638573557987</updated>
+    </task>
+    <task id="LOCAL-00152" summary="fixed whois not being cached if enabled">
+      <created>1638573581751</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1638573581751</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -565,8 +573,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed structure and improved registrar detection" />
-    <MESSAGE value="modifications for gui and registrar calls" />
     <MESSAGE value="changed regex" />
     <MESSAGE value="Config Management" />
     <MESSAGE value="changes to timing requests" />
@@ -590,7 +596,9 @@
     <MESSAGE value="settings error handling" />
     <MESSAGE value="fixed bug with caching" />
     <MESSAGE value="build settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="build settings" />
+    <MESSAGE value="fixed text bug after moving files" />
+    <MESSAGE value="fixed whois not being cached if enabled" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed whois not being cached if enabled" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

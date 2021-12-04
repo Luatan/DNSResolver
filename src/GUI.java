@@ -1,5 +1,6 @@
-import Model.DNS.DNSRequests;
+import Controller.HistoryController;
 import Model.API.IP_Info;
+import Model.DNS.DNSRequests;
 import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
 import Tasks.GetRegistrarTask;
@@ -58,7 +59,9 @@ public class GUI implements Initializable {
     ImageView moon;
     @FXML
     MenuButton historyButton;
-    History history = new History(); // init History cache
+//    History history = new History(); // init History cache
+    HistoryController historyController = new HistoryController();
+
 
     //List of DNS.Records
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
@@ -71,6 +74,7 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
@@ -92,6 +96,7 @@ public class GUI implements Initializable {
 
     @FXML
     private void onClose() {
+        historyController.write();
         Main.gui.exit();
     }
 
@@ -142,7 +147,7 @@ public class GUI implements Initializable {
         }
 
         // Add the domain to history
-        history.addDomain(txtDomain.getText());
+        historyController.history.addDomain(txtDomain.getText());
         updateHistoryDisplay(); //Update history list
     }
 
@@ -153,10 +158,10 @@ public class GUI implements Initializable {
     }
 
     private void updateHistoryDisplay() {
+        System.out.println("updated history");
         historyButton.getItems().clear();
-        String[] historyList = history.getHistory();
-        for (int i = historyList.length - 1; i >= 0; i--) {
-            addHistoryDisplay(historyList[i]);
+        for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
+            addHistoryDisplay(historyController.history.getDomains().get(i));
         }
     }
 

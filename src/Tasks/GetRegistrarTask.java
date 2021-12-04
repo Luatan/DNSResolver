@@ -42,7 +42,7 @@ public class GetRegistrarTask extends Task<String> {
             if (cache.isCached()) {
                 try {
                     res = cache.readCache();
-                    setLINKTEXT(getRegistrarName() + " (cached)");
+                    setLINKTEXT(" (cached)");
                     updateValue(res);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -50,7 +50,6 @@ public class GetRegistrarTask extends Task<String> {
                 return getValue();
             }
         }
-
 
         String ext = Domain.getExtension(host);
         // Handles CH and LI Method of getting the whois (whois server is not available)
@@ -90,21 +89,31 @@ public class GetRegistrarTask extends Task<String> {
         }
 
         res = new Whois().getWhois(host, whoisServer);
-        setLINKTEXT(getRegistrarName());
+        setLINKTEXT();
         return res;
     }
 
     private String getWHOIS_NIC(String domain) {
         res = new NIC(domain).getOutput();
-        setLINKTEXT(getRegistrarName());
+        setLINKTEXT();
         return res;
     }
 
-    private void setLINKTEXT(String message) {
+    private void setLINKTEXT() {
         LINKTEXT.append(this.host);
-        if (message != null && !message.isEmpty()) {
-            LINKTEXT.append(" - ").append(message);
+        String registrar = getRegistrarName();
+        if (registrar.length() > 0){
+            LINKTEXT.append(" - ").append(registrar);
         }
+        updateMessage(LINKTEXT.toString());
+    }
+
+    private void setLINKTEXT(String message){
+        setLINKTEXT();
+        if (message != null && !message.isEmpty()) {
+            LINKTEXT.append(message);
+        }
+
         updateMessage(LINKTEXT.toString());
     }
 
@@ -123,7 +132,7 @@ public class GetRegistrarTask extends Task<String> {
         if (res.toLowerCase().contains("status: free")){
             return "Free";
         }
-        return null;
+        return "";
     }
 
 }

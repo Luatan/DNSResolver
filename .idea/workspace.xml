@@ -9,16 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed whois not being cached if enabled">
-      <change afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/HistoryFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/JSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/History.java" beforeDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="implemented history with gson">
       <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Json.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,13 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00104" summary="needs fixing">
-      <created>1631567591535</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1631567591535</updated>
     </task>
     <task id="LOCAL-00105" summary="will be added in a later patch">
       <created>1631640000509</created>
@@ -544,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638573581751</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="implemented history with gson">
+      <created>1638580714955</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1638580714955</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -573,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="changed regex" />
     <MESSAGE value="Config Management" />
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
@@ -598,7 +591,8 @@
     <MESSAGE value="build settings" />
     <MESSAGE value="fixed text bug after moving files" />
     <MESSAGE value="fixed whois not being cached if enabled" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed whois not being cached if enabled" />
+    <MESSAGE value="implemented history with gson" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented history with gson" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

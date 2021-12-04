@@ -12,6 +12,7 @@ public class Config {
     public static final String WHOIS_CONF_FILE = "config/whois_servers.json";
     public static final String HISTORY_CONF_FILE = "logs/history.json";
     public static final String SETTINGS_CONF_FILE = "config/settings.json";
+    public static final String IP_API_CONF_FILE = "logs/IP_API_req.json";
 
     public static void createWhoisConfig() {
         if (!FileStructure.fileExists(WHOIS_CONF_FILE)){

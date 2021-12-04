@@ -1,21 +1,21 @@
 package Model.API;
 
+import Utils.Config;
 import Utils.FileStructure;
-import Utils.Json;
 import okhttp3.Headers;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IP_Info extends API {
-    private final String FILENAME = "logs/IP_API_req.json";
     private final String URL = "http://ip-api.com/json/";
-    private final Json JSON = new Json(FILENAME);
     private final int MINRL = 16;
-    private String api_output = "";
+    private String api_output;
     //private String fields = "53769";
 
     public IP_Info(String ip_addr) {
@@ -23,7 +23,7 @@ public class IP_Info extends API {
             api_output = super.request(buildURL(ip_addr));
             writeTracker(responseHeaders);
         } else if (api_output.equals("")) {
-            api_output = JSON.message("The Service is currently not available.");
+            api_output = message("The Service is currently not available.");
         }
     }
 
@@ -70,15 +70,25 @@ public class IP_Info extends API {
         JSONObject jsonObj = new JSONObject();
         jsonObj.put("lastrequest", System.currentTimeMillis());
         jsonObj.put("rl", rl);
-        JSON.write(jsonObj);
+        write(jsonObj);
+    }
+
+    public void write(JSONObject object) {
+        try {
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.IP_API_CONF_FILE, "utf-8");
+            file.write(object.toString(4));
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private JSONObject readTracker() {
-        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(FILENAME)));
+        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.IP_API_CONF_FILE)));
     }
 
     private boolean isReqAllowed() {
-        if (FileStructure.fileExists(FILENAME)) {
+        if (FileStructure.fileExists(Config.IP_API_CONF_FILE)) {
             JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
 
@@ -91,8 +101,7 @@ public class IP_Info extends API {
                 return true;
             }
             if (rl <= MINRL) {
-                String message = "The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!";
-                api_output = JSON.message(message);
+                api_output = message("The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!");
                 return false;
             }
         }
@@ -109,5 +118,11 @@ public class IP_Info extends API {
 
     private String mapsLink(double x, double y) {
         return "https://www.google.com/maps/search/?api=1&query=" + x + "," + y;
+    }
+
+    private String message(String message) {
+        JSONObject obj = new JSONObject();
+        obj.put("message", message);
+        return obj.toString();
     }
 }

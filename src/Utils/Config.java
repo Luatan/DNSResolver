@@ -10,9 +10,9 @@ public class Config {
     public static int CACHE_TIME_TO_LIVE = 20;
     public static final String CACHE_FILES = "cache/";
     public static final String WHOIS_CONF_FILE = "config/whois_servers.json";
-    public static final String HISTORY_CONF_FILE = "logs/history.json";
     public static final String SETTINGS_CONF_FILE = "config/settings.json";
-    public static final String IP_API_CONF_FILE = "logs/IP_API_req.json";
+    public static final String HISTORY_LOG_FILE = "logs/history.json";
+    public static final String IP_API_LOG_FILE = "logs/IP_API_req.json";
 
     public static void createWhoisConfig() {
         if (!FileStructure.fileExists(WHOIS_CONF_FILE)){
@@ -21,9 +21,9 @@ public class Config {
     }
 
     public static void createHistoryConfig(){
-        if (!FileStructure.fileExists(HISTORY_CONF_FILE)) {
+        if (!FileStructure.fileExists(HISTORY_LOG_FILE)) {
             JSONObject obj = new JSONObject().put("domains", new String[]{});
-            FileStructure.createFile(obj.toString(4), HISTORY_CONF_FILE);
+            FileStructure.createFile(obj.toString(4), HISTORY_LOG_FILE);
         }
     }
 

@@ -2,6 +2,8 @@ package Model.API;
 
 import Utils.Config;
 import Utils.FileStructure;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.Headers;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.json.JSONException;
@@ -13,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IP_Info extends API {
+    private final Tracker tracker = new Tracker();
     private final String URL = "http://ip-api.com/json/";
     private final int MINRL = 16;
     private String api_output;
@@ -75,7 +78,7 @@ public class IP_Info extends API {
 
     public void write(JSONObject object) {
         try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.IP_API_CONF_FILE, "utf-8");
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.IP_API_LOG_FILE, "utf-8");
             file.write(object.toString(4));
             file.close();
         } catch (IOException e) {
@@ -84,11 +87,13 @@ public class IP_Info extends API {
     }
 
     private JSONObject readTracker() {
-        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.IP_API_CONF_FILE)));
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.IP_API_LOG_FILE)));
     }
 
     private boolean isReqAllowed() {
-        if (FileStructure.fileExists(Config.IP_API_CONF_FILE)) {
+        if (FileStructure.fileExists(Config.IP_API_LOG_FILE)) {
             JSONObject obj = readTracker();
             int rl = obj.getInt("rl");
 
@@ -124,5 +129,18 @@ public class IP_Info extends API {
         JSONObject obj = new JSONObject();
         obj.put("message", message);
         return obj.toString();
+    }
+
+    public static class Tracker {
+        private int rl;
+        private long lastrequest;
+
+        public int getRl() {
+            return this.rl;
+        }
+
+        public long getLastrequest() {
+            return this.lastrequest;
+        }
     }
 }

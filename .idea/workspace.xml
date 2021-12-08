@@ -9,9 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="removed json class and added log path to config">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="remove spaces before query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetRegistrarTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/JSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +31,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -36,11 +41,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="fix/ConfigHandling" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -73,11 +77,10 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
@@ -104,9 +107,6 @@
       <recent name="com.dns" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
@@ -177,11 +177,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -193,6 +193,48 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
+    </task>
+    <task id="LOCAL-00100" summary="moved to ressources">
+      <created>1631565652193</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1631565652193</updated>
+    </task>
+    <task id="LOCAL-00101" summary="moved functions to create whois file to GetRegistrarTask">
+      <created>1631565704289</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1631565704289</updated>
+    </task>
+    <task id="LOCAL-00102" summary="added create dir function to copy the whole dir from ressources">
+      <created>1631565760336</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1631565760336</updated>
+    </task>
+    <task id="LOCAL-00103" summary="create a copy of licences to make it available to user">
+      <created>1631565787544</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1631565787545</updated>
+    </task>
+    <task id="LOCAL-00104" summary="needs fixing">
+      <created>1631567591535</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1631567591535</updated>
+    </task>
+    <task id="LOCAL-00105" summary="will be added in a later patch">
+      <created>1631640000509</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1631640000510</updated>
     </task>
     <task id="LOCAL-00106" summary="small GUI fixes">
       <created>1631657338191</created>
@@ -488,56 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638315700743</updated>
     </task>
-    <task id="LOCAL-00148" summary="settings error handling">
-      <created>1638316561634</created>
+    <task id="LOCAL-00148" summary="remove spaces before query">
+      <created>1638976743443</created>
       <option name="number" value="00148" />
       <option name="presentableId" value="LOCAL-00148" />
       <option name="project" value="LOCAL" />
-      <updated>1638316561635</updated>
+      <updated>1638976743443</updated>
     </task>
-    <task id="LOCAL-00149" summary="fixed bug with caching">
-      <created>1638396291537</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1638396291537</updated>
-    </task>
-    <task id="LOCAL-00150" summary="build settings">
-      <created>1638397203142</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1638397203142</updated>
-    </task>
-    <task id="LOCAL-00151" summary="fixed text bug after moving files">
-      <created>1638573557987</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1638573557987</updated>
-    </task>
-    <task id="LOCAL-00152" summary="fixed whois not being cached if enabled">
-      <created>1638573581751</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1638573581751</updated>
-    </task>
-    <task id="LOCAL-00153" summary="implemented history with gson">
-      <created>1638580714955</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1638580714955</updated>
-    </task>
-    <task id="LOCAL-00154" summary="removed json class and added log path to config">
-      <created>1638581127192</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1638581127193</updated>
-    </task>
-    <option name="localTasksCounter" value="155" />
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,6 +566,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="gui improvements and redesign to be more flexible" />
+    <MESSAGE value="changed structure" />
+    <MESSAGE value="changed structure and improved registrar detection" />
+    <MESSAGE value="modifications for gui and registrar calls" />
+    <MESSAGE value="changed regex" />
+    <MESSAGE value="Config Management" />
     <MESSAGE value="changes to timing requests" />
     <MESSAGE value="deleted test var" />
     <MESSAGE value="json management" />
@@ -584,14 +590,8 @@
     <MESSAGE value="settings file has now a template" />
     <MESSAGE value="gson license" />
     <MESSAGE value="de host handling and linktext" />
-    <MESSAGE value="settings error handling" />
-    <MESSAGE value="fixed bug with caching" />
-    <MESSAGE value="build settings" />
-    <MESSAGE value="fixed text bug after moving files" />
-    <MESSAGE value="fixed whois not being cached if enabled" />
-    <MESSAGE value="implemented history with gson" />
-    <MESSAGE value="removed json class and added log path to config" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed json class and added log path to config" />
+    <MESSAGE value="remove spaces before query" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove spaces before query" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

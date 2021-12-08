@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.AppConfig;
-import Model.JSON;
+import Model.JsonAdapter;
 import Utils.Config;
 import Utils.FileStructure;
 import com.google.gson.JsonSyntaxException;
@@ -13,11 +13,11 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class SettingsController extends JSON {
+public class SettingsController extends JsonAdapter {
     public AppConfig config;
 
     SettingsController() {
-        super();
+        super(AppConfig.class);
     }
 
     public void write() {
@@ -33,7 +33,7 @@ public class SettingsController extends JSON {
     protected void load() {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(Config.SETTINGS_CONF_FILE));
-            config = HANDLER.fromJson(reader, AppConfig.class);
+            config = (AppConfig) HANDLER.fromJson(reader, type);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

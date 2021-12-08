@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.HistoryFile;
-import Model.JSON;
+import Model.JsonAdapter;
 import Utils.Config;
 import Utils.FileStructure;
 import com.google.gson.JsonSyntaxException;
@@ -14,17 +14,17 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 
-public class HistoryController extends JSON {
+public class HistoryController extends JsonAdapter {
     public HistoryFile history;
 
     public HistoryController() {
-        super();
+        super(HistoryFile.class);
     }
 
     @Override
     public void write() {
         try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.HISTORY_CONF_FILE, "utf-8");
+            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.HISTORY_LOG_FILE, "utf-8");
             file.write(HANDLER.toJson(history));
             file.close();
         } catch (IOException e) {
@@ -35,8 +35,8 @@ public class HistoryController extends JSON {
     @Override
     protected void load() {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(Config.HISTORY_CONF_FILE));
-            history = HANDLER.fromJson(reader, HistoryFile.class);
+            Reader reader = Files.newBufferedReader(Paths.get(Config.HISTORY_LOG_FILE));
+            history = (HistoryFile) HANDLER.fromJson(reader,type);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class HistoryController extends JSON {
     @Override
     protected void reset() {
         System.err.println("Settings File error.... reseting File");
-        File file = new File(Config.HISTORY_CONF_FILE);
+        File file = new File(Config.HISTORY_LOG_FILE);
         if (file.delete()) {
             System.out.println("true");
         } else {

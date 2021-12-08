@@ -118,6 +118,9 @@ public class GUI implements Initializable {
 
     @FXML
     private void startSearchButton() { //Handels the Start Button action
+        //remove spaces before searching
+        txtDomain.setText(txtDomain.getText().trim());
+
         //Clean up
         txtFieldIP.textProperty().unbind();
         txtFieldHost.textProperty().unbind();

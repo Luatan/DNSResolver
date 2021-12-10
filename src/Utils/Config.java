@@ -1,9 +1,9 @@
 package Utils;
 
-import org.json.JSONObject;
+import Model.JsonAdapter;
 
 import java.io.File;
-import java.util.Objects;
+import java.util.*;
 
 public class Config {
     public static boolean CACHING = true;
@@ -22,8 +22,9 @@ public class Config {
 
     public static void createHistoryConfig(){
         if (!FileStructure.fileExists(HISTORY_LOG_FILE)) {
-            JSONObject obj = new JSONObject().put("domains", new String[]{});
-            FileStructure.createFile(obj.toString(4), HISTORY_LOG_FILE);
+            Map<String, List<String>> domains = new LinkedHashMap<>();
+            domains.put("domains", new ArrayList<>());
+            JsonAdapter.write(domains, Config.HISTORY_LOG_FILE);
         }
     }
 

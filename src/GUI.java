@@ -78,7 +78,9 @@ public class GUI implements Initializable {
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
-        updateHistoryDisplay(); // Update history at startup
+
+        // Update history at startup
+        updateHistoryDisplay();
 
         //prevent start button pressed without input
         BooleanBinding enableSearchbtn = txtDomain.textProperty().isNotEmpty();
@@ -163,18 +165,13 @@ public class GUI implements Initializable {
     private void updateHistoryDisplay() {
         historyButton.getItems().clear();
         for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
-            addHistoryDisplay(historyController.history.getDomains().get(i));
+            MenuItem item = new MenuItem(historyController.history.getDomains().get(i));
+            historyButton.getItems().add(item);
+
+            EventHandler<ActionEvent> event1 = e -> txtDomain.setText(((MenuItem) e.getSource()).getText());
+            item.setOnAction(event1);
         }
     }
-
-    private void addHistoryDisplay(String domain) {
-        MenuItem item = new MenuItem(domain);
-        historyButton.getItems().add(item);
-
-        EventHandler<ActionEvent> event1 = e -> txtDomain.setText(((MenuItem) e.getSource()).getText());
-        item.setOnAction(event1);
-    }
-
 
     @FXML
     private void changeEmptyRecordsSetting() {

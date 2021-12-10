@@ -1,15 +1,22 @@
 package Utils;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileStructure {
 
     public static final String DIR_HOME = System.getProperty("user.dir") + "/";
 
+    public static Reader getReader(String filename) throws IOException {
+        return Files.newBufferedReader(Paths.get(filename));
+    }
 
     public static boolean fileExists(String filename) {
         File file = new File(DIR_HOME + filename);
@@ -27,7 +34,7 @@ public class FileStructure {
     }
 
     public static boolean createFileFromPath(String ressourcePath, String destPath) {
-        if (FileStructure.fileExists(destPath)){
+        if (FileStructure.fileExists(destPath)) {
             return true;
         }
 
@@ -47,7 +54,7 @@ public class FileStructure {
 
     public static boolean createFile(String fileContent, String destPath) {
         String path = FileStructure.DIR_HOME + destPath;
-        if (FileStructure.fileExists(destPath)){
+        if (FileStructure.fileExists(destPath)) {
             return true;
         }
 

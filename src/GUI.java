@@ -1,6 +1,6 @@
 import Controller.HistoryController;
-import Model.API.IP_Info;
-import Model.DNS.DNSRequests;
+import Model.API.Ip_api;
+import Model.DNS.DnsAdapter;
 import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
 import Tasks.GetRegistrarTask;
@@ -161,7 +161,6 @@ public class GUI implements Initializable {
     }
 
     private void updateHistoryDisplay() {
-        System.out.println("updated history");
         historyButton.getItems().clear();
         for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
             addHistoryDisplay(historyController.history.getDomains().get(i));
@@ -266,7 +265,7 @@ public class GUI implements Initializable {
         originalRecords = txtAreaRecords.getText();
 
         if (ip_data == null) {
-            IP_Info info = new IP_Info(ip);
+            Ip_api info = new Ip_api(ip);
             ip_data = info.getOutput();
         }
         txtAreaRecords.setText(ip_data);
@@ -332,7 +331,7 @@ public class GUI implements Initializable {
         // create Thread to resolve Host
         resolveHost(host);
 
-        DNSRequests query;
+        DnsAdapter query;
 
         //clear fileds
         txtFieldHost.clear();
@@ -341,7 +340,7 @@ public class GUI implements Initializable {
         if (!txtDomain.getText().isEmpty()) {
             txtAreaRecords.clear();
             if (type.equals("Any")) {
-                query = new DNSRequests(host, "*");
+                query = new DnsAdapter(host, "*");
                 //Set DNS.Records
                 String[] requests = {"A", "AAAA", "CNAME", "MX", "TXT", "SRV", "SOA"};
                 recordPutter(query.getRecords("MSG"), "MSG");
@@ -349,7 +348,7 @@ public class GUI implements Initializable {
                     recordPutter(query.getRecords(request), request);
                 }
             } else {
-                query = new DNSRequests(host, type);
+                query = new DnsAdapter(host, type);
                 recordPutter(query.getRecords("MSG"), "MSG");
                 recordPutter(query.getRecords(type), type);
             }

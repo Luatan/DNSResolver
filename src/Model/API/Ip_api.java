@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.Headers;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -16,14 +15,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IP_Info extends API {
+public class Ip_api extends API {
     private final String URL = "http://ip-api.com/json/";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private Map<String, Long> log;
     private String api_output;
     //private String fields = "53769";
 
-    public IP_Info(String ip_addr) {
+    public Ip_api(String ip_addr) {
         readTracker();
         if (isAllowed()) {
             api_output = super.request(buildURL(ip_addr));
@@ -34,40 +33,30 @@ public class IP_Info extends API {
     }
 
     public String getOutput() {
-        JSONObject jsonObj = new JSONObject(api_output);
-        try {
-            String query = jsonObj.getString("query"), isp = jsonObj.getString("isp"),
-                    org = jsonObj.getString("org"), status = jsonObj.getString("status"),
-                    as = jsonObj.getString("as"), country = jsonObj.getString("country"),
-                    countryCode = jsonObj.getString("countryCode"), zip = jsonObj.getString("zip"),
-                    city = jsonObj.getString("city"), region = jsonObj.getString("region"),
-                    regionName = jsonObj.getString("regionName");
+        Map<String, String> output = JsonAdapter.HANDLER.fromJson(api_output, new TypeToken<Map<String, String>>() {
+        }.getType());
 
-            double longitude = jsonObj.getDouble("lon"), latitude = jsonObj.getDouble("lat");
-            Pattern pattern = Pattern.compile("AS\\d+");
-            Matcher matcher = pattern.matcher(as);
+        double longitude = Double.parseDouble(output.get("lon")), latitude = Double.parseDouble(output.get("lat"));
+        Pattern pattern = Pattern.compile("AS\\d+");
+        Matcher matcher = pattern.matcher(output.get("as"));
 
-            if (matcher.find()) {
-                as = matcher.group();
-            }
-
-            String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + as;
-
-
-            String result =
-                    "Query: " + query + "\nStatus: " + status + "\n\nNetwork Owner: " + isp + "\nNetwork Organisation: " +
-                            org + "\n\nAddress:\n" + zip + " " + city + "\n" + regionName + " (" + region + ")\n" +
-                            country + " (" + countryCode + ")\n" + "\nMore Information about this Network Owner:\n" + asLink + "\n\n" + mapsLink(latitude, longitude);
-
-            return result;
-        } catch (JSONException e) {
-            try {
-                return jsonObj.getString("message");
-            } catch (JSONException y) {
-                y.printStackTrace();
-            }
+        if (matcher.find()) {
+            output.put("as", matcher.group());
         }
-        return null;
+
+        String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + output.get("as");
+
+
+        String result = "Query: " + output.get("query")
+                + "\nStatus: " + output.get("status") +
+                "\n\nNetwork Owner: " + output.get("isp") +
+                "\nNetwork Organisation: " + output.get("org") +
+                "\n\nAddress:\n" + output.get("zip") + " " + output.get("city") + "\n" + output.get("regionName") + " (" + output.get("region") + ")\n"
+                + output.get("country") + " (" + output.get("countryCode") + ")\n" +
+                "\nMore Information about this Network Owner:\n" + asLink + "\n\n" +
+                mapsLink(latitude, longitude);
+
+        return result;
     }
 
     private void writeTracker(Headers header) {
@@ -85,7 +74,8 @@ public class IP_Info extends API {
     private void readTracker() {
         try {
             Reader reader = FileStructure.getReader(Config.IP_API_LOG_FILE);
-            log = gson.fromJson(reader, new TypeToken<Map<String, Long>>() {}.getType());
+            log = gson.fromJson(reader, new TypeToken<Map<String, Long>>() {
+            }.getType());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,7 +22,7 @@ public abstract class API {
             if (!res.equals("")) {
                 return res;
             } else {
-                return null;
+                return "";
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -14,11 +14,11 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DNSRequests {
+public class DnsAdapter {
     private String hostname;
     private final List<Record> records;
 
-    public DNSRequests(String domain, String type) {
+    public DnsAdapter(String domain, String type) {
         long startTime = System.currentTimeMillis();
         records = new ArrayList<>();
         setHost(domain);

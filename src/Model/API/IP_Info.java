@@ -1,25 +1,31 @@
 package Model.API;
 
+import Model.JsonAdapter;
 import Utils.Config;
 import Utils.FileStructure;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import okhttp3.Headers;
-import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.io.Reader;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class IP_Info extends API {
     private final String URL = "http://ip-api.com/json/";
-    private final int MINRL = 16;
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private Map<String, Long> log;
     private String api_output;
     //private String fields = "53769";
 
     public IP_Info(String ip_addr) {
-        if (isReqAllowed()) {
+        readTracker();
+        if (isAllowed()) {
             api_output = super.request(buildURL(ip_addr));
             writeTracker(responseHeaders);
         } else if (api_output.equals("")) {
@@ -65,41 +71,39 @@ public class IP_Info extends API {
     }
 
     private void writeTracker(Headers header) {
-        int rl = Integer.parseInt(header.value(5));
+        // get RL from header of request
+        long rl = Integer.parseInt(header.value(5));
 
-        JSONObject jsonObj = new JSONObject();
-        jsonObj.put("lastrequest", System.currentTimeMillis());
-        jsonObj.put("rl", rl);
-        write(jsonObj);
+        // update values
+        log.put("lastrequest", System.currentTimeMillis());
+        log.put("rl", rl);
+
+        //write to json
+        JsonAdapter.write(log, Config.IP_API_LOG_FILE);
     }
 
-    public void write(JSONObject object) {
+    private void readTracker() {
         try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + Config.IP_API_CONF_FILE, "utf-8");
-            file.write(object.toString(4));
-            file.close();
+            Reader reader = FileStructure.getReader(Config.IP_API_LOG_FILE);
+            log = gson.fromJson(reader, new TypeToken<Map<String, Long>>() {}.getType());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private JSONObject readTracker() {
-        return new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.IP_API_CONF_FILE)));
-    }
-
-    private boolean isReqAllowed() {
-        if (FileStructure.fileExists(Config.IP_API_CONF_FILE)) {
-            JSONObject obj = readTracker();
-            int rl = obj.getInt("rl");
+    private boolean isAllowed() {
+        if (FileStructure.fileExists(Config.IP_API_LOG_FILE)) {
+            long rl = log.get("rl");
 
             // Calculate Time since last request
-            long time = obj.getLong("lastrequest");
+            long time = log.get("lastrequest");
             long pastTime = (System.currentTimeMillis() - time) / 1000;
 
             // pass if exceed 1 min
             if (pastTime > 60) {
                 return true;
             }
+            int MINRL = 16;
             if (rl <= MINRL) {
                 api_output = message("The Service is currently not available.\nPlease wait " + (60 - pastTime) + " Seconds to query again!");
                 return false;

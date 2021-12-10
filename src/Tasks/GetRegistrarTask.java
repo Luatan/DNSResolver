@@ -1,15 +1,17 @@
 package Tasks;
 
 import Model.API.NIC;
+import Model.JsonAdapter;
 import Model.Whois;
 import Utils.Config;
 import Utils.Domain;
 import Utils.FileStructure;
 import Utils.WhoisCache;
+import com.google.gson.reflect.TypeToken;
 import javafx.concurrent.Task;
-import org.json.JSONObject;
 
-import java.util.Objects;
+import java.io.IOException;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,16 +68,24 @@ public class GetRegistrarTask extends Task<String> {
         }
 
         // Read config file
-        JSONObject readObj = new JSONObject(Objects.requireNonNull(FileStructure.readFile(Config.WHOIS_CONF_FILE)));
-        if (readObj.has(ext)) {
-            try {
-                updateValue(setDomainCheckResult(readObj.getString(ext)));
-                if (Config.CACHING) {
-                    cache.writeCache(res);
+        Map<String, String> whois_list;
+        try {
+            whois_list = JsonAdapter.HANDLER.fromJson(FileStructure.getReader(Config.WHOIS_CONF_FILE), new TypeToken<Map<String, String>>() {
+            }.getType());
+
+            if (whois_list.containsKey(ext)) {
+                try {
+                    updateValue(setDomainCheckResult(whois_list.get(ext)));
+                    if (Config.CACHING) {
+                        cache.writeCache(res);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+            return getValue();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return getValue();
     }
@@ -102,13 +112,13 @@ public class GetRegistrarTask extends Task<String> {
     private void setLINKTEXT() {
         LINKTEXT.append(this.host);
         String registrar = getRegistrarName();
-        if (registrar.length() > 0){
+        if (registrar.length() > 0) {
             LINKTEXT.append(" - ").append(registrar);
         }
         updateMessage(LINKTEXT.toString());
     }
 
-    private void setLINKTEXT(String message){
+    private void setLINKTEXT(String message) {
         setLINKTEXT();
         if (message != null && !message.isEmpty()) {
             LINKTEXT.append(message);
@@ -129,7 +139,7 @@ public class GetRegistrarTask extends Task<String> {
             return "Free";
         }
 
-        if (res.toLowerCase().contains("status: free")){
+        if (res.toLowerCase().contains("status: free")) {
             return "Free";
         }
         return "";

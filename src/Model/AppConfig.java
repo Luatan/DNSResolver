@@ -3,8 +3,8 @@ package Model;
 public class AppConfig {
     private boolean ShowEmptyRecords;
     private boolean darkmode;
-    private boolean cache;
-    private int cacheTime;
+    private final boolean cache;
+    private final int cacheTime;
 
     public AppConfig(boolean showEmptyRecords, boolean darkmode, boolean cache, int cacheTime) {
         ShowEmptyRecords = showEmptyRecords;

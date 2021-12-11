@@ -129,6 +129,12 @@
     -fx-text-fill: #0c95af;
 }
 
+.hyperlink {
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding:  4 0 4 0
+}
+
 
 /*---- WINDOW TOOLS ----*/
 #close_rect:hover {

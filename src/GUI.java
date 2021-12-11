@@ -1,5 +1,6 @@
 import Controller.HistoryController;
 import Model.API.Ip_api;
+import Model.CustomCellFactory;
 import Model.DNS.DnsAdapter;
 import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
@@ -59,7 +60,12 @@ public class GUI implements Initializable {
     ImageView moon;
     @FXML
     MenuButton historyButton;
-//    History history = new History(); // init History cache
+    @FXML
+    ListView<String> testList;
+
+
+    ObservableList<String> testListModel = FXCollections.observableArrayList();
+    //History history = new History(); // init History cache
     HistoryController historyController = new HistoryController();
 
 
@@ -74,7 +80,9 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        testList.setCellFactory(e -> new CustomCellFactory());
+        testList.setItems(testListModel);
+        testListModel.add("https://luatan.com/");
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
@@ -94,6 +102,7 @@ public class GUI implements Initializable {
         CacheCleanupTask cachClean = new CacheCleanupTask();
         cachClean.setDaemon(true);
         cachClean.start();
+
     }
 
     @FXML
@@ -304,11 +313,19 @@ public class GUI implements Initializable {
     private void recordPutter(List<Record> list, String type) {
         if (!list.isEmpty() && type.equals("MSG")) {
             txtAreaRecords.appendText("\t" + list.get(0).getValue() + "\n");
+            //TODO test
+            testListModel.add("\t" + list.get(0).getValue());
         } else if (!list.isEmpty()) {
             try {
                 txtAreaRecords.appendText(type + ": \n");
+
+                //TODO test
+                testListModel.add(type + ": ");
                 for (Record rec : list) {
                     txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
+
+                    //TODO test
+                    testListModel.add("\t" + rec.getValue());
                 }
                 txtAreaRecords.appendText("\n");
             } catch (NullPointerException e) {

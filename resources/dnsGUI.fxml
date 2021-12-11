@@ -308,6 +308,7 @@
                     <Font name="Roboto Light" size="14.0" />
                 </font>
             </TextArea>
+         <ListView fx:id="testList" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="scrollButton" cache="true" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" style="-fx-cursor: hand;" text="Top" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                 <font>
                     <Font name="Roboto Light" size="13.0" />

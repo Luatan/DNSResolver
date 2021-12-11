@@ -64,7 +64,6 @@ public class GUI implements Initializable {
     ListView<String> testList;
 
 
-    ObservableList<String> testListModel = FXCollections.observableArrayList();
     //History history = new History(); // init History cache
     HistoryController historyController = new HistoryController();
 
@@ -73,16 +72,18 @@ public class GUI implements Initializable {
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Domain Check
 
-    StringProperty whoisInfo = new SimpleStringProperty("");
-    String domainCheckResult = "";
-    String ip_data = null;
-    String originalRecords = ""; //To undo
+    private static ObservableList<String> testListModel;
+    private StringProperty whoisInfo = new SimpleStringProperty("");
+    private String domainCheckResult = "";
+    private String ip_data = null;
+    private String originalRecords = ""; //To undo
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        testListModel = FXCollections.observableArrayList();
         testList.setCellFactory(e -> new CustomCellFactory());
+        testList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         testList.setItems(testListModel);
-        testListModel.add("https://luatan.com/");
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
@@ -135,6 +136,7 @@ public class GUI implements Initializable {
         //Clean up
         txtFieldIP.textProperty().unbind();
         txtFieldHost.textProperty().unbind();
+        testListModel.clear();
 
         closeWebView();
         resetTempValues();
@@ -211,6 +213,7 @@ public class GUI implements Initializable {
         clipboard.setContents(strSel, null);
         System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
+
     }
 
     @FXML
@@ -234,6 +237,10 @@ public class GUI implements Initializable {
             hyperLbl.setVisible(true);
             btnWeb.setText("Close Web");
             txtFieldIP.setDisable(false);
+
+            //TODO Test
+            testList.getItems().removeAll();
+            testList.setItems(testListModel);
         }
 
     }
@@ -273,6 +280,9 @@ public class GUI implements Initializable {
         if (ip_data == null) {
             Ip_api info = new Ip_api(ip);
             ip_data = info.getOutput();
+            ObservableList<String> iplist = FXCollections.observableArrayList();
+            iplist.addAll(info.res);
+            testList.setItems(iplist);
         }
         txtAreaRecords.setText(ip_data);
 

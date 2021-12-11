@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,6 +20,7 @@ import java.util.regex.Pattern;
 public class Ip_api extends API {
     private final String URL = "http://ip-api.com/json/";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public List<String> res;
     private Map<String, Long> log;
     private String api_output;
     //private String fields = "53769";
@@ -46,6 +49,17 @@ public class Ip_api extends API {
 
         String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + output.get("as");
 
+        res = new ArrayList<>();
+        res.add("Query: " + output.get("query"));
+        res.add("Status: " + output.get("status"));
+        res.add("Network Owner: " + output.get("isp"));
+        res.add("Network Organisation: " + output.get("org"));
+        res.add("Address:\n" + output.get("zip") + " " + output.get("city") + "\n" + output.get("regionName") + " (" + output.get("region") + ")\n"
+                + output.get("country") + " (" + output.get("countryCode") + ")\n");
+        res.add("More Information about this Network Owner:");
+        res.add(asLink);
+        res.add("Google Maps (Precision depends on the IP Address):");
+        res.add(mapsLink(latitude, longitude));
 
         String result = "Query: " + output.get("query")
                 + "\nStatus: " + output.get("status") +
@@ -56,8 +70,10 @@ public class Ip_api extends API {
                 "\nMore Information about this Network Owner:\n" + asLink + "\n\n" +
                 mapsLink(latitude, longitude);
 
+
         return result;
     }
+
 
     private void writeTracker(Headers header) {
         // get RL from header of request

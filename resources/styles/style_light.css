@@ -9,3 +9,11 @@
 #windowBar {
     -fx-background-color: #e2e2e2;
 }
+
+.hyperlink {
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding:  4 0 4 0
+}
+
+

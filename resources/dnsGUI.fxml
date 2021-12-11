@@ -346,7 +346,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink id="whoisLink" fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWebView" style="-fx-cursor: hand; -fx-border-color: transparent; -fx-padding: 4 0 4 0;" text="No URL Found">
+                    <Hyperlink id="whoisLink" fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWebView" text="No URL Found">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>

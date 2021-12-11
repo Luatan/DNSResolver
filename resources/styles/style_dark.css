@@ -148,3 +148,20 @@
 #windowBar {
     -fx-background-color: #393E41;
 }
+
+.list-cell {
+    -fx-background-color: #1E2019;
+}
+
+.list-cell:selected {
+    -fx-background-color: #494c4f;
+}
+
+.list-view {
+    -fx-border-color: transparent;
+    -fx-background-insets: 2 2 2 2;
+}
+
+.list-view:hover:selected:focused:inactive {
+    -fx-border-color: transparent;
+}

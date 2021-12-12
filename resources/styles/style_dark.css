@@ -1,57 +1,26 @@
+.root {
+    -fx-background-color: #1E2019;
+}
+
 .button {
     -fx-background-color: #393E41;
     -fx-text-fill: white;
-}
-
-.root {
-    -fx-background-color: #1E2019;
 }
 
 .label {
     -fx-text-fill: white;
 }
 
+
 .separator .line {
     -fx-border-color: #393E41;
 }
-
-/*---- TEXT AREA ----*/
-.text-area {
-    -fx-text-fill: white;
-    -fx-background-color: #1E2019;
-}
-
-.text-area .scroll-pane {
-    -fx-background-color: transparent;
-}
-.text-area .scroll-pane .viewport{
-    -fx-background-color: transparent;
-}
-.text-area .scroll-pane .content{
-    -fx-background-color: transparent;
-}
-
-.text-area .scroll-bar {
-    -fx-background-color: #1E2019;
-}
-
-.text-area .increment-button:hover , .text-area .decrement-button:hover{
-    -fx-background-color: #393E41;
-}
-
-.text-area .scroll-bar .thumb {
-    -fx-background-color: #393E41;
-}
-
-.text-area .content {
-    -fx-background-color: #1E2019;
-}
-
 
 /*---- TEXT FIELD ----*/
 .text-field {
     -fx-text-fill: #393E41;
     -fx-text-fill: white;
+    -fx-cursor: pointer;
 }
 
 /*---- COMBO BOX ----*/
@@ -62,12 +31,15 @@
 .combo-box .cell {
     -fx-background-color: #393E41;
     -fx-text-fill: white;
+    -fx-font-size: 12px;
 }
 
 #input {
     -fx-background-color: #393E41;
     -fx-border-color: black;
     -fx-text-fill: white;
+    -fx-cursor: text;
+    -fx-font-size: 12px;
 }
 
 /*---- CHECKBOXES ----*/
@@ -135,7 +107,6 @@
     -fx-padding:  4 0 4 0
 }
 
-
 /*---- WINDOW TOOLS ----*/
 #close_rect:hover {
     -fx-fill: red;
@@ -149,19 +120,43 @@
     -fx-background-color: #393E41;
 }
 
-.list-cell {
+/* LIST-VIEW */
+
+#recordList .cell {
     -fx-background-color: #1E2019;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
 }
 
-.list-cell:selected {
+#recordList .cell:selected {
     -fx-background-color: #494c4f;
 }
 
-.list-view {
+#recordList {
+    -fx-background-color: #1E2019;
     -fx-border-color: transparent;
     -fx-background-insets: 2 2 2 2;
 }
 
-.list-view:hover:selected:focused:inactive {
+#recordList:hover:selected:focused:inactive {
     -fx-border-color: transparent;
+}
+
+#recordList .text-field {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
+
+/* SCROLL-BAR */
+
+.scroll-bar {
+    -fx-background-color: #1E2019;
+}
+
+.increment-button:hover , .text-area .decrement-button:hover{
+    -fx-background-color: #393E41;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #393E41;
 }

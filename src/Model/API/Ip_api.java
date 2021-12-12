@@ -20,7 +20,6 @@ import java.util.regex.Pattern;
 public class Ip_api extends API {
     private final String URL = "http://ip-api.com/json/";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    public List<String> res;
     private Map<String, Long> log;
     private String api_output;
     //private String fields = "53769";
@@ -35,7 +34,7 @@ public class Ip_api extends API {
         }
     }
 
-    public String getOutput() {
+    public List<String> getOutput() {
         Map<String, String> output = JsonAdapter.HANDLER.fromJson(api_output, new TypeToken<Map<String, String>>() {
         }.getType());
 
@@ -49,7 +48,7 @@ public class Ip_api extends API {
 
         String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + output.get("as");
 
-        res = new ArrayList<>();
+        List<String> res = new ArrayList<>();
         res.add("Query: " + output.get("query"));
         res.add("Status: " + output.get("status"));
         res.add("Network Owner: " + output.get("isp"));
@@ -71,9 +70,8 @@ public class Ip_api extends API {
                 mapsLink(latitude, longitude);
 
 
-        return result;
+        return res;
     }
-
 
     private void writeTracker(Headers header) {
         // get RL from header of request

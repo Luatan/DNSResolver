@@ -16,4 +16,17 @@
     -fx-padding:  4 0 4 0
 }
 
+/* Text-Field */
+#recordList .text-field {
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+}
 
+#recordList .cell {
+    -fx-background-color: white;
+    -fx-font-size: 14px;
+}
+
+#recordList .cell:selected {
+    -fx-text-fill: black;
+}

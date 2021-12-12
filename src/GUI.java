@@ -4,31 +4,21 @@ import Model.CustomCellFactory;
 import Model.DNS.DnsAdapter;
 import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
-import Tasks.GetRegistrarTask;
+import Tasks.GetWhoisTask;
 import Tasks.LookupTask;
 import Utils.Domain;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +37,6 @@ public class GUI implements Initializable {
     @FXML
     Button cpyRecords, btnStart, scrollButton, btnWeb;
     @FXML
-    TextArea txtAreaRecords;
-    @FXML
     ComboBox<String> typeBox;
     @FXML
     Hyperlink whoisLink;
@@ -61,7 +49,7 @@ public class GUI implements Initializable {
     @FXML
     MenuButton historyButton;
     @FXML
-    ListView<String> testList;
+    ListView<String> listViewRecords;
 
 
     //History history = new History(); // init History cache
@@ -72,18 +60,14 @@ public class GUI implements Initializable {
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     //initialize Variables for Domain Check
 
-    private static ObservableList<String> testListModel;
-    private StringProperty whoisInfo = new SimpleStringProperty("");
-    private String domainCheckResult = "";
-    private String ip_data = null;
-    private String originalRecords = ""; //To undo
+    private static ObservableList<String> listViewRecordsModel;
+    private List<String> whoisInfo = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        testListModel = FXCollections.observableArrayList();
-        testList.setCellFactory(e -> new CustomCellFactory());
-        testList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        testList.setItems(testListModel);
+        listViewRecordsModel = FXCollections.observableArrayList();
+        listViewRecords.setCellFactory(e -> new CustomCellFactory());
+        listViewRecords.setItems(listViewRecordsModel);
         typeBox.setItems(types);
         typeBox.setValue("Any");
         chckBox.setSelected(Main.gui.isShowAllRecords());
@@ -96,8 +80,9 @@ public class GUI implements Initializable {
         btnStart.disableProperty().bind(enableSearchbtn.not());
 
         //prevent empty copy
-        BooleanBinding enableCopybtn = txtAreaRecords.textProperty().isNotEmpty();
-        cpyRecords.visibleProperty().bind(enableCopybtn);
+        //TODO copy button
+//        BooleanBinding enableCopybtn = txtAreaRecords.textProperty().isNotEmpty();
+//        cpyRecords.visibleProperty().bind(enableCopybtn);
 
         //Start cache cleanup Task after startup
         CacheCleanupTask cachClean = new CacheCleanupTask();
@@ -134,12 +119,11 @@ public class GUI implements Initializable {
         txtDomain.setText(txtDomain.getText().trim());
 
         //Clean up
+        closeList();
         txtFieldIP.textProperty().unbind();
         txtFieldHost.textProperty().unbind();
-        testListModel.clear();
-
-        closeWebView();
-        resetTempValues();
+        listViewRecordsModel.clear();
+        whoisInfo.clear();
 
         //Do nothing if empty
         if (txtDomain.getText().equals("")) {
@@ -149,11 +133,11 @@ public class GUI implements Initializable {
         if (Domain.isIPAdress(txtDomain.getText())) {
             //clean up old entries
             txtFieldHost.setText("");
-            domainCheckResult = "";
             nameServerDisplay(new ArrayList<>());
 
             //set new entries
-            displayIPInfo(txtDomain.getText());
+            txtFieldIP.setText(txtDomain.getText());
+            showIPInfo();
             btnWeb.setVisible(false);
             hyperLbl.setVisible(false);
             resolveHost(txtDomain.getText());
@@ -165,12 +149,6 @@ public class GUI implements Initializable {
         // Add the domain to history
         historyController.history.addDomain(txtDomain.getText());
         updateHistoryDisplay(); //Update history list
-    }
-
-    private void resetTempValues() {
-        domainCheckResult = "";
-        ip_data = null;
-        originalRecords = "";
     }
 
     private void updateHistoryDisplay() {
@@ -195,99 +173,50 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void scrollUPButtonVisibility() {
-        scrollButton.setVisible(txtAreaRecords.getScrollTop() > 1);
-    }
-
-    @FXML
-    private void scrollUPButton() {
-        txtAreaRecords.setScrollTop(0);
-        scrollButton.setVisible(false);
-    }
-
-    @FXML
     private void copyRecords() {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Clipboard clipboard = toolkit.getSystemClipboard();
-        StringSelection strSel = new StringSelection(txtAreaRecords.getText());
-        clipboard.setContents(strSel, null);
-        System.out.println("DNS Records copied!");
+        //TODO implement copy function
+//        Toolkit toolkit = Toolkit.getDefaultToolkit();
+//        Clipboard clipboard = toolkit.getSystemClipboard();
+//        StringSelection strSel = new StringSelection(txtAreaRecords.getText());
+//        clipboard.setContents(strSel, null);
+//        System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
 
     }
 
     @FXML
-    private void openWebView() {
-        if (whoisInfo.getValue().equals("")) {
-            domainCheckResult = "";
-        } else {
-            domainCheckResult = whoisInfo.getValue();
+    private void openWhois() {
+        if (whoisInfo.isEmpty()) {
+            System.err.println("No Whois found!!");
+            return;
         }
-        displayWebView();
+        openList(whoisInfo);
+
     }
+
 
     @FXML
-    private void closeWebView() {
-        hyperLbl.visibleProperty().unbind();
-        if (domainCheckResult.equals("")) {
-            btnWeb.setVisible(false);
-        } else {
-            txtAreaRecords.setText(originalRecords);
-            btnWeb.setVisible(false);
-            hyperLbl.setVisible(true);
-            btnWeb.setText("Close Web");
-            txtFieldIP.setDisable(false);
-
-            //TODO Test
-            testList.getItems().removeAll();
-            testList.setItems(testListModel);
-        }
-
-    }
-
-    private void displayWebView() {
-        if (domainCheckResult.equals("")) {
-            btnWeb.setVisible(true);
-        } else {
-            originalRecords = txtAreaRecords.getText();
-            closeWebView();
-            txtAreaRecords.setText(domainCheckResult);
-            btnWeb.setVisible(true);
-            hyperLbl.setVisible(false);
-            btnWeb.setText("Back");
-        }
-    }
-
-    @FXML
-    private void openIP() {
+    private void showIPInfo() {
         if (txtFieldIP.getText().isEmpty()) {
             return;
         }
-
-        try {
-            closeWebView();
-            displayIPInfo(txtFieldIP.getText());
-
-        } catch (NullPointerException e) {
-            System.err.println("null Pointer - GUI openIP Function");
-        }
+        Ip_api info = new Ip_api(txtFieldIP.getText());
+        openList(info.getOutput());
     }
 
-    private void displayIPInfo(String ip) {
-        domainCheckResult = "ip";
-        originalRecords = txtAreaRecords.getText();
-
-        if (ip_data == null) {
-            Ip_api info = new Ip_api(ip);
-            ip_data = info.getOutput();
-            ObservableList<String> iplist = FXCollections.observableArrayList();
-            iplist.addAll(info.res);
-            testList.setItems(iplist);
-        }
-        txtAreaRecords.setText(ip_data);
-
+    private void openList(List<String> list) {
+        closeList();
+        ObservableList<String> observableList = FXCollections.observableArrayList();
+        observableList.addAll(list);
+        listViewRecords.setItems(observableList);
         btnWeb.setVisible(true);
-        btnWeb.setText("Back");
+    }
+
+    @FXML
+    private void closeList() {
+        listViewRecords.getItems().removeAll();
+        listViewRecords.setItems(listViewRecordsModel);
+        btnWeb.setVisible(false);
     }
 
     @FXML
@@ -322,31 +251,19 @@ public class GUI implements Initializable {
 
     private void recordPutter(List<Record> list, String type) {
         if (!list.isEmpty() && type.equals("MSG")) {
-            txtAreaRecords.appendText("\t" + list.get(0).getValue() + "\n");
-            //TODO test
-            testListModel.add("\t" + list.get(0).getValue());
+            listViewRecordsModel.add("\t" + list.get(0).getValue());
         } else if (!list.isEmpty()) {
             try {
-                txtAreaRecords.appendText(type + ": \n");
-
-                //TODO test
-                testListModel.add(type + ": ");
+                listViewRecordsModel.add(type + ": ");
                 for (Record rec : list) {
-                    txtAreaRecords.appendText("\t" + rec.getValue() + "\n");
-
-                    //TODO test
-                    testListModel.add("\t" + rec.getValue());
+                    listViewRecordsModel.add("\t" + rec.getValue());
                 }
-                txtAreaRecords.appendText("\n");
             } catch (NullPointerException e) {
                 System.err.println("No list found - recordPutter Try Catch");
             }
-            txtAreaRecords.home();
         } else if (chckBox.isSelected() && !type.equals("MSG")) {
-            txtAreaRecords.appendText(type + ": \n");
-            txtAreaRecords.appendText("\t" + "No Records found\n\n");
+            listViewRecordsModel.add("\t" + "No Records found");
         }
-        txtAreaRecords.home();
     }
 
     private void DNSOutput(String host, String type) {
@@ -362,7 +279,7 @@ public class GUI implements Initializable {
         txtFieldIP.clear();
 
         if (!txtDomain.getText().isEmpty()) {
-            txtAreaRecords.clear();
+            listViewRecordsModel.clear();
             if (type.equals("Any")) {
                 query = new DnsAdapter(host, "*");
                 //Set DNS.Records
@@ -395,11 +312,12 @@ public class GUI implements Initializable {
             hyperLbl.setVisible(false);
             return;
         }
-        GetRegistrarTask task = new GetRegistrarTask(host);
+        GetWhoisTask task = new GetWhoisTask(host);
         whoisLink.textProperty().bind(task.messageProperty());
-        whoisInfo.bind(task.valueProperty());
+        task.setOnSucceeded(e-> whoisInfo.addAll(task.getValue()));
+        task.setOnFailed(e-> System.err.println("Whois Task failed - " + host));
 
-        BooleanBinding gotWhois = whoisLink.textProperty().isNotEmpty().and(whoisInfo.isNotEmpty());
+        BooleanBinding gotWhois = whoisLink.textProperty().isNotEmpty();
         hyperLbl.visibleProperty().bind(gotWhois);
         new Thread(task).start();
     }

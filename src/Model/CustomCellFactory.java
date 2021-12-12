@@ -1,44 +1,73 @@
 package Model;
 
+import Model.DNS.DnsAdapter;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.function.Predicate;
 
 public class CustomCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
-    private Label label = new Label();
+    private final TextField tf = new TextField();
+
     @Override
     protected void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null & !empty) {
+            //init Textfield
+            tf.setText(item);
+            tf.setEditable(false);
+
+            tf.setOnMouseClicked(event -> {
+                if (!isSelected()) {
+                    updateSelected(true);
+                }
+            });
+
+            //set Item
             setText(item);
-            label.setText(item);
-            setGraphic(label);
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            setGraphic(tf);
+
+            if (Arrays.stream(DnsAdapter.RECORD_TYPES).anyMatch(Predicate.isEqual(item.split(":")[0]))) {
+                setContentDisplay(ContentDisplay.TEXT_ONLY);
+                setText(item);
+            }
+
             if (item.startsWith("http")) {
+                setLink(item);
+
+                // Item
                 setText("");
-                link.setOnAction(e -> {
-                    if (Desktop.isDesktopSupported()) {
-                        try {
-                            Desktop.getDesktop().browse(new URI(item));
-                        } catch (IOException | URISyntaxException ex) {
-                            ex.printStackTrace();
-                        }
-                    }
-                });
-                link.setText(item);
                 setGraphic(link);
+
             }
         } else {
             setText("");
             setContentDisplay(ContentDisplay.TEXT_ONLY);
             setGraphic(null);
         }
+    }
+
+
+
+    private void setLink(String text) {
+        link.setOnAction(e -> {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(text));
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        link.setText(text);
     }
 }

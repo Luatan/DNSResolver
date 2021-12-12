@@ -3,10 +3,12 @@ package Model;
 import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class Whois {
 
-    public String getWhois(String domainName, String whoisServer) {
+    public List<String> getWhois(String domainName, String whoisServer) {
         WhoisClient whois = new WhoisClient();
         String whoisData = "";
         try {
@@ -19,7 +21,10 @@ public class Whois {
             e.printStackTrace();
         }
         whoisData = whoisData.replaceAll("(%.*)|(#.*)|(.*REDACTED.*)|(For more info.[\\S\\s]*)", "");
-        return whoisData.trim();
+
+        String[] tokens = whoisData.split("\\n");
+
+        return Arrays.asList(tokens);
 
     }
 

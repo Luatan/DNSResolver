@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -32,6 +34,18 @@ public class WhoisCache {
 
     public String readCache() {
         return FileStructure.readFile(cacheFile.getPath());
+    }
+
+    public List<String> readCacheByLine() {
+        List<String> cache = new ArrayList<>();
+        String cacheString = readCache();
+        String[] tokens = cacheString.split("\\n");
+
+        for (String t:tokens) {
+            System.out.println(t);
+        }
+
+        return cache;
     }
 
     public boolean isCached() {

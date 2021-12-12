@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.List;
 
 public abstract class API {
     public Headers responseHeaders;
@@ -49,5 +50,5 @@ public abstract class API {
         }
     }
 
-    protected abstract String getOutput();
+    protected abstract List<String> getOutput();
 }

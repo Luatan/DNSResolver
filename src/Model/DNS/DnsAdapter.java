@@ -17,6 +17,7 @@ import java.util.List;
 public class DnsAdapter {
     private String hostname;
     private final List<Record> records;
+    public static final String[] RECORD_TYPES = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
 
     public DnsAdapter(String domain, String type) {
         long startTime = System.currentTimeMillis();
@@ -45,8 +46,7 @@ public class DnsAdapter {
     }
 
     private void setAllRecords() {
-        String[] recordsToUse = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
-        for (String record : recordsToUse) {
+        for (String record : RECORD_TYPES) {
             setRecords(record);
         }
     }

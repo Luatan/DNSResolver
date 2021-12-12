@@ -11,26 +11,26 @@ import com.google.gson.reflect.TypeToken;
 import javafx.concurrent.Task;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GetRegistrarTask extends Task<String> {
+public class GetWhoisTask extends Task<List<String>> {
     private final StringBuilder LINKTEXT = new StringBuilder();
     private String host;
-    private String res = "";
+    private List<String> res;
     private WhoisCache cache;
 
 
-    public GetRegistrarTask(String host) {
+    public GetWhoisTask(String host) {
         this.host = Domain.trimDomain(host);
     }
 
     @Override
-    protected String call() {
+    protected List<String> call() {
         // Don't run if host is not set
         if (host == null) {
-            return "";
+            return res;
         }
 
         // Checks if the domain is the maindomain
@@ -41,15 +41,17 @@ public class GetRegistrarTask extends Task<String> {
         // Check if this whois is cached
         if (Config.CACHING) {
             cache = new WhoisCache(host);
+
             if (cache.isCached()) {
                 try {
-                    res = cache.readCache();
+                    res = cache.readCacheByLine();
+
                     setLINKTEXT(" (cached)");
                     updateValue(res);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                return getValue();
+                return res;
             }
         }
 
@@ -59,12 +61,12 @@ public class GetRegistrarTask extends Task<String> {
             try {
                 updateValue(getWHOIS_NIC(host));
                 if (Config.CACHING) {
-                    cache.writeCache(res);
+                    cache.writeCache(res.toString());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return getValue();
+            return res;
         }
 
         // Read config file
@@ -77,21 +79,21 @@ public class GetRegistrarTask extends Task<String> {
                 try {
                     updateValue(setDomainCheckResult(whois_list.get(ext)));
                     if (Config.CACHING) {
-                        cache.writeCache(res);
+                        cache.writeCache(res.toString());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            return getValue();
+            return res;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return getValue();
+        return res;
     }
 
 
-    private String setDomainCheckResult(String whoisServer) {
+    private List<String> setDomainCheckResult(String whoisServer) {
         String host = this.host;
         // Handles DE Domains (special params for full info)
         if (Domain.getExtension(this.host).equals("de")) {
@@ -100,10 +102,11 @@ public class GetRegistrarTask extends Task<String> {
 
         res = new Whois().getWhois(host, whoisServer);
         setLINKTEXT();
+
         return res;
     }
 
-    private String getWHOIS_NIC(String domain) {
+    private List<String> getWHOIS_NIC(String domain) {
         res = new NIC(domain).getOutput();
         setLINKTEXT();
         return res;
@@ -129,19 +132,22 @@ public class GetRegistrarTask extends Task<String> {
 
     private String getRegistrarName() {
         Pattern pattern = Pattern.compile("(Registrar:)([\\s].+)");
-        Matcher matcher = pattern.matcher(res);
 
-        if (matcher.find()) {
-            return matcher.group(2).trim();
-        }
-
-        if (res.toLowerCase().contains("not found")) {
-            return "Free";
-        }
-
-        if (res.toLowerCase().contains("status: free")) {
-            return "Free";
-        }
+        //TODO implement method
+//        Matcher matcher = pattern.matcher(res);
+//
+//        if (matcher.find()) {
+//            return matcher.group(2).trim();
+//        }
+//
+//
+//        if (res.toLowerCase().contains("not found")) {
+//            return "Free";
+//        }
+//
+//        if (res.toLowerCase().contains("status: free")) {
+//            return "Free";
+//        }
         return "";
     }
 

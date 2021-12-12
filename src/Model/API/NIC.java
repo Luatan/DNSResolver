@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NIC extends API {
     private final String API_URL = "https://rdap.nic.ch/domain/";
@@ -24,7 +25,7 @@ public class NIC extends API {
         RESPONSE = request(API_URL + domain);
     }
 
-    public String getOutput() {
+    public List<String> getOutput() {
         //Get Whole Object which icludes all Arrays
         if (RESPONSE != null && responseCode == 200) {
             JSONObject jsonObj = new JSONObject(RESPONSE);
@@ -88,13 +89,12 @@ public class NIC extends API {
                 System.out.println("No NS");
             }
             return convertResultNic();
-        } else if (responseCode != 200) {
-            return checkResponseCode();
         }
+
         return null;
     }
 
-    private String convertResultNic() {
+    private List<String> convertResultNic() {
         //Address
         String addressString;
         if (resAddress != null) {
@@ -122,9 +122,17 @@ public class NIC extends API {
             }
         }
 
-        return "Domain: " + resDomain + "\n" +
-                "Registrar: " + resRegistrar + "\n\n" + addressString + "\n\nStatus: " + resStatus
-                + "\n" + event.get(0) + ": " + event.get(1) + "\n" + nsString;
+        List<String> res = new ArrayList<>();
+        res.add("Domain: " + resDomain);
+        res.add("Registrar: " + resRegistrar);
+        res.add("");
+        res.add(addressString);
+        res.add("");
+        res.add("Status: " + resStatus);
+        res.add(event.get(0) + ": " + event.get(1));
+        res.add(nsString.toString());
+
+        return res;
     }
 
 }

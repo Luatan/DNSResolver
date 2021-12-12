@@ -94,7 +94,7 @@
                <Insets right="2.0" />
             </padding>
              </Label>
-             <TextField id="input" fx:id="txtDomain" minWidth="-Infinity" onAction="#startSearchButton" HBox.hgrow="ALWAYS">
+             <TextField id="input" fx:id="txtDomain" maxHeight="-Infinity" minHeight="-Infinity" onAction="#startSearchButton" prefHeight="25.0" HBox.hgrow="ALWAYS">
                  <font>
                      <Font name="Roboto Light" size="12.0" />
                  </font>
@@ -198,7 +198,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#openIP" prefWidth="272.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                    <TextField fx:id="txtFieldIP" editable="false" onMouseClicked="#showIPInfo" prefWidth="272.0" style="-fx-background-color: transparent; -fx-cursor: hand;">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -303,13 +303,8 @@
       </padding></Separator>
    <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
       <children>
-            <TextArea fx:id="txtAreaRecords" editable="false" onScroll="#scrollUPButtonVisibility" onScrollFinished="#scrollUPButtonVisibility" onScrollStarted="#scrollUPButtonVisibility" pickOnBounds="false" wrapText="true">
-                <font>
-                    <Font name="Roboto Light" size="14.0" />
-                </font>
-            </TextArea>
-         <ListView fx:id="testList" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="scrollButton" cache="true" mnemonicParsing="false" onAction="#scrollUPButton" opacity="0.6" style="-fx-cursor: hand;" text="Top" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+         <ListView id="recordList" fx:id="listViewRecords" prefHeight="200.0" prefWidth="200.0" />
+            <Button fx:id="scrollButton" cache="true" mnemonicParsing="false" opacity="0.6" style="-fx-cursor: hand;" text="Top" visible="false" StackPane.alignment="BOTTOM_RIGHT">
                 <font>
                     <Font name="Roboto Light" size="13.0" />
                 </font>
@@ -346,7 +341,7 @@
                     <Insets left="5.0" />
                 </padding>
                 <graphic>
-                    <Hyperlink id="whoisLink" fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWebView" text="No URL Found">
+                    <Hyperlink id="whoisLink" fx:id="whoisLink" contentDisplay="CENTER" onAction="#openWhois" text="1">
                         <font>
                             <Font name="Roboto Light" size="13.0" />
                         </font>
@@ -357,7 +352,7 @@
                 </graphic>
             </Label>
          <Region HBox.hgrow="SOMETIMES" />
-            <Button fx:id="btnWeb" mnemonicParsing="false" onAction="#closeWebView" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Close Web" visible="false">
+            <Button fx:id="btnWeb" mnemonicParsing="false" onAction="#closeList" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Back" visible="false">
                 <font>
                     <Font name="Roboto Light" size="12.0" />
                 </font>

@@ -1,6 +1,7 @@
 package Model;
 
 import Model.DNS.DnsAdapter;
+import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListCell;
@@ -20,6 +21,7 @@ public class CustomCellFactory extends ListCell<String> {
     @Override
     protected void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);
+        setPadding(new Insets(1, 0, 1, 15));
         if (item != null & !empty) {
             //init Textfield
             tf.setText(item);
@@ -37,8 +39,10 @@ public class CustomCellFactory extends ListCell<String> {
             setGraphic(tf);
 
             if (Arrays.stream(DnsAdapter.RECORD_TYPES).anyMatch(Predicate.isEqual(item.split(":")[0]))) {
+                setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
                 setText(item);
+                setPadding(new Insets(5, 0, 10, 5));
             }
 
             if (item.startsWith("http")) {
@@ -55,8 +59,6 @@ public class CustomCellFactory extends ListCell<String> {
             setGraphic(null);
         }
     }
-
-
 
     private void setLink(String text) {
         link.setOnAction(e -> {

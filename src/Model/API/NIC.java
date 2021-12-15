@@ -89,9 +89,11 @@ public class NIC extends API {
                 System.out.println("No NS");
             }
             return convertResultNic();
+        } else {
+            List<String> response = new ArrayList<>();
+            response.add(checkResponseCode());
+            return response;
         }
-
-        return null;
     }
 
     private List<String> convertResultNic() {
@@ -131,6 +133,8 @@ public class NIC extends API {
         res.add("Status: " + resStatus);
         res.add(event.get(0) + ": " + event.get(1));
         res.add(nsString.toString());
+
+        System.out.println(res);
 
         return res;
     }

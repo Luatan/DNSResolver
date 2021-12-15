@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,8 +28,13 @@ public class WhoisCache {
         ttl = (long) seconds * 1000;
     }
 
-    public void writeCache(String content) {
-        FileStructure.createFile(content, cacheFile.getPath());
+    public void writeCache(List<String> content) {
+        String list = "";
+        for (String element:content) {
+            list += element.trim() + ",";
+        }
+
+        FileStructure.createFile(list, cacheFile.getPath());
     }
 
     public String readCache() {
@@ -37,15 +42,7 @@ public class WhoisCache {
     }
 
     public List<String> readCacheByLine() {
-        List<String> cache = new ArrayList<>();
-        String cacheString = readCache();
-        String[] tokens = cacheString.split("\\n");
-
-        for (String t:tokens) {
-            System.out.println(t);
-        }
-
-        return cache;
+        return Arrays.asList(readCache().split(","));
     }
 
     public boolean isCached() {
@@ -79,6 +76,4 @@ public class WhoisCache {
             }
         }
     }
-
-
 }

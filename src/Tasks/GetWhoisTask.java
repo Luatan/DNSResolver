@@ -11,8 +11,10 @@ import com.google.gson.reflect.TypeToken;
 import javafx.concurrent.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetWhoisTask extends Task<List<String>> {
@@ -28,6 +30,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
     @Override
     protected List<String> call() {
+        res = new ArrayList<>();
         // Don't run if host is not set
         if (host == null) {
             return res;
@@ -61,7 +64,7 @@ public class GetWhoisTask extends Task<List<String>> {
             try {
                 updateValue(getWHOIS_NIC(host));
                 if (Config.CACHING) {
-                    cache.writeCache(res.toString());
+                    cache.writeCache(res);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -79,7 +82,7 @@ public class GetWhoisTask extends Task<List<String>> {
                 try {
                     updateValue(setDomainCheckResult(whois_list.get(ext)));
                     if (Config.CACHING) {
-                        cache.writeCache(res.toString());
+                        cache.writeCache(res);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -114,7 +117,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
     private void setLINKTEXT() {
         LINKTEXT.append(this.host);
-        String registrar = getRegistrarName();
+        String registrar = searchWhois("(?:registrar:)([\\s].+)");
         if (registrar.length() > 0) {
             LINKTEXT.append(" - ").append(registrar);
         }
@@ -130,24 +133,26 @@ public class GetWhoisTask extends Task<List<String>> {
         updateMessage(LINKTEXT.toString());
     }
 
-    private String getRegistrarName() {
-        Pattern pattern = Pattern.compile("(Registrar:)([\\s].+)");
-
+    private String searchWhois(String regex) {
         //TODO implement method
-//        Matcher matcher = pattern.matcher(res);
-//
-//        if (matcher.find()) {
-//            return matcher.group(2).trim();
-//        }
-//
-//
-//        if (res.toLowerCase().contains("not found")) {
-//            return "Free";
-//        }
-//
-//        if (res.toLowerCase().contains("status: free")) {
-//            return "Free";
-//        }
+
+        if (res.isEmpty()) {
+            return "";
+        }
+        for (String line:res) {
+            Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(line);
+            if (matcher.find()) {
+                return matcher.group(1).trim();
+            }
+        }
+
+        if (res.contains("not found")) {
+            return "Free";
+        }
+
+        if (res.contains("status: free")) {
+            return "Free";
+        }
         return "";
     }
 

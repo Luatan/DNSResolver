@@ -132,6 +132,7 @@ public class GUI implements Initializable {
 
         if (Domain.isIPAdress(txtDomain.getText())) {
             //clean up old entries
+            hyperLbl.visibleProperty().unbind();
             txtFieldHost.setText("");
             nameServerDisplay(new ArrayList<>());
 
@@ -314,13 +315,16 @@ public class GUI implements Initializable {
         }
         GetWhoisTask task = new GetWhoisTask(host);
         whoisLink.textProperty().bind(task.messageProperty());
-        task.setOnSucceeded(e-> whoisInfo.addAll(task.getValue()));
+        task.setOnSucceeded(e-> {
+            if (task.getValue().size() > 0) {
+                whoisInfo.addAll(task.getValue());
+            }
+        });
         task.setOnFailed(e-> System.err.println("Whois Task failed - " + host));
 
         BooleanBinding gotWhois = whoisLink.textProperty().isNotEmpty();
         hyperLbl.visibleProperty().bind(gotWhois);
         new Thread(task).start();
     }
-
 }
 

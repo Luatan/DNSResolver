@@ -12,6 +12,8 @@ import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DnsAdapter {
@@ -113,7 +115,27 @@ public class DnsAdapter {
                 records.add(new NS(record));
                 break;
             case "SOA":
-                records.add(new SOA(record));
+                int max;
+                int padding = 2;
+
+                List<String> list = Arrays.asList(record.split(" "));
+                max = Collections.max(list).length();
+
+                String formatting = "%-" + (max + padding) + "." + (max + padding) + "s" + "%s";
+
+                System.out.println(formatting);
+
+                list.set(1, list.get(1).replaceFirst("[.]", "@"));
+                list.set(2, String.format(formatting, list.get(2), "serialnumber"));
+                list.set(3, String.format(formatting, list.get(3), "refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(3))) + ")"));
+                list.set(4, String.format(formatting, list.get(4), "retry (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(4))) + ")"));
+                list.set(5, String.format(formatting, list.get(5), "expire (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(5))) + ")"));
+                list.set(6, String.format(formatting, list.get(6), "minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(6))) + ")"));
+
+                for (String rec:list) {
+                    records.add(new SOA(rec));
+                }
+
                 break;
             default:
                 System.err.println("No Record met case!");
@@ -137,7 +159,6 @@ public class DnsAdapter {
         } catch (UnknownHostException e) {
             System.out.println("No PTR Record found");
         }
-
         return null;
     }
 

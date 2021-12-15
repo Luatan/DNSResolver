@@ -123,8 +123,6 @@ public class DnsAdapter {
 
                 String formatting = "%-" + (max + padding) + "." + (max + padding) + "s" + "%s";
 
-                System.out.println(formatting);
-
                 list.set(1, list.get(1).replaceFirst("[.]", "@"));
                 list.set(2, String.format(formatting, list.get(2), "serialnumber"));
                 list.set(3, String.format(formatting, list.get(3), "refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(3))) + ")"));

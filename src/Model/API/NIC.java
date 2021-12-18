@@ -97,45 +97,38 @@ public class NIC extends API {
     }
 
     private List<String> convertResultNic() {
-        //Address
-        String addressString;
-        if (resAddress != null) {
-            addressString = "Address: \n" + resAddress[0] + "\n" + resAddress[3] + "-" + resAddress[2] + " " + resAddress[1];
-        } else {
-            addressString = "No Address found";
-        }
-
-
-        //Nameservers
-        StringBuilder nsString = new StringBuilder();
-        if (resNSDomain.size() > 0) {
-            nsString.append("\nNameservers: \n");
-            for (int i = 0; i < resNSDomain.size(); i++) {
-                if (resNSDomain.get(i) != null) {
-                    nsString.append("NS").append(i + 1).append(": ");
-                    nsString.append(resNSDomain.get(i)).append("\t");
-                }
-                if (i < resNSIP.size()) {
-                    nsString.append("IP: ");
-                    nsString.append(resNSIP.get(i)).append("\n");
-                } else {
-                    nsString.append("\n");
-                }
-            }
-        }
-
         List<String> res = new ArrayList<>();
         res.add("Domain: " + resDomain);
         res.add("Registrar: " + resRegistrar);
+
+        //Address
         res.add("");
-        res.add(addressString);
+        if (resAddress != null) {
+            res.add("Address:");
+            res.add(resAddress[0]);
+            res.add(resAddress[3] + "-" + resAddress[2] + " " + resAddress[1]);
+        } else {
+            res.add("No Address Found!");
+        }
+
         res.add("");
         res.add("Status: " + resStatus);
         res.add(event.get(0) + ": " + event.get(1));
-        res.add(nsString.toString());
 
-        System.out.println(res);
-
+        //Nameservers
+        if (resNSDomain.size() > 0) {
+            res.add("");
+            res.add("Nameservers:");
+            for (int i = 0; i < resNSDomain.size(); i++) {
+                if (resNSDomain.get(i) != null) {
+                    if (i < resNSIP.size()) {
+                        res.add("NS" + (i + 1) + ": " + resNSDomain.get(i) + "\t" + "IP: " + resNSIP.get(i));
+                    } else {
+                        res.add("NS" + (i + 1) + ": " + resNSDomain.get(i));
+                    }
+                }
+            }
+        }
         return res;
     }
 

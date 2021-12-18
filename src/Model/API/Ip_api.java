@@ -46,29 +46,28 @@ public class Ip_api extends API {
             output.put("as", matcher.group());
         }
 
-        String asLink = "https://apps.db.ripe.net/db-web-ui/query?searchtext=" + output.get("as");
-
         List<String> res = new ArrayList<>();
         res.add("Query: " + output.get("query"));
         res.add("Status: " + output.get("status"));
+
+        res.add(""); // new Line
         res.add("Network Owner: " + output.get("isp"));
         res.add("Network Organisation: " + output.get("org"));
-        res.add("Address:\n" + output.get("zip") + " " + output.get("city") + "\n" + output.get("regionName") + " (" + output.get("region") + ")\n"
-                + output.get("country") + " (" + output.get("countryCode") + ")\n");
+
+        //Address
+        res.add(""); // new Line
+        res.add("Address:");
+        res.add(output.get("zip") + " " + output.get("city"));
+        res.add(output.get("regionName") + " (" + output.get("region") + ")");
+        res.add(output.get("country") + " (" + output.get("countryCode") + ")");
+
+        res.add(""); // new Line
         res.add("More Information about this Network Owner:");
-        res.add(asLink);
+        res.add("https://apps.db.ripe.net/db-web-ui/query?searchtext=" + output.get("as"));
+
+        res.add(""); // new Line
         res.add("Google Maps (Precision depends on the IP Address):");
         res.add(mapsLink(latitude, longitude));
-
-        String result = "Query: " + output.get("query")
-                + "\nStatus: " + output.get("status") +
-                "\n\nNetwork Owner: " + output.get("isp") +
-                "\nNetwork Organisation: " + output.get("org") +
-                "\n\nAddress:\n" + output.get("zip") + " " + output.get("city") + "\n" + output.get("regionName") + " (" + output.get("region") + ")\n"
-                + output.get("country") + " (" + output.get("countryCode") + ")\n" +
-                "\nMore Information about this Network Owner:\n" + asLink + "\n\n" +
-                mapsLink(latitude, longitude);
-
 
         return res;
     }

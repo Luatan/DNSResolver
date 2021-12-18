@@ -7,7 +7,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -27,11 +27,13 @@ public class CustomCellFactory extends ListCell<String> {
             tf.setText(item);
             tf.setEditable(false);
 
-            tf.setOnMouseClicked(event -> {
-                if (!isSelected()) {
-                    updateSelected(true);
-                }
-            });
+
+            //color status active to green
+            if (tf.getText().contains("active")) {
+                tf.setStyle("-fx-text-fill: green;");
+            } else {
+                tf.setStyle("");
+            }
 
             //set Item
             setText(item);
@@ -46,6 +48,7 @@ public class CustomCellFactory extends ListCell<String> {
             }
 
             if (item.startsWith("http")) {
+                setPadding(new Insets(0,0,0,15));
                 setLink(item);
 
                 // Item
@@ -72,4 +75,5 @@ public class CustomCellFactory extends ListCell<String> {
         });
         link.setText(text);
     }
+
 }

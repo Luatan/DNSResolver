@@ -7,6 +7,7 @@ import Tasks.CacheCleanupTask;
 import Tasks.GetWhoisTask;
 import Tasks.LookupTask;
 import Utils.Domain;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,11 +15,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +69,7 @@ public class GUI implements Initializable {
     //initialize Variables for Domain Check
 
     private static ObservableList<String> listViewRecordsModel;
-    private List<String> whoisInfo = new ArrayList<>();
+    private final List<String> whoisInfo = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,9 +88,8 @@ public class GUI implements Initializable {
         btnStart.disableProperty().bind(enableSearchbtn.not());
 
         //prevent empty copy
-        //TODO copy button
-//        BooleanBinding enableCopybtn = txtAreaRecords.textProperty().isNotEmpty();
-//        cpyRecords.visibleProperty().bind(enableCopybtn);
+        BooleanBinding enableCopybtn = Bindings.size(listViewRecords.itemsProperty().get()).greaterThan(0);
+        cpyRecords.visibleProperty().bind(enableCopybtn);
 
         //Start cache cleanup Task after startup
         CacheCleanupTask cachClean = new CacheCleanupTask();
@@ -175,12 +182,18 @@ public class GUI implements Initializable {
 
     @FXML
     private void copyRecords() {
-        //TODO implement copy function
-//        Toolkit toolkit = Toolkit.getDefaultToolkit();
-//        Clipboard clipboard = toolkit.getSystemClipboard();
-//        StringSelection strSel = new StringSelection(txtAreaRecords.getText());
-//        clipboard.setContents(strSel, null);
-//        System.out.println("DNS Records copied!");
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+
+        StringBuilder sb = new StringBuilder();
+        for (String element:listViewRecords.itemsProperty().get()) {
+            sb.append(element).append("\n");
+        }
+
+        StringSelection strSel = new StringSelection(sb.toString());
+        clipboard.setContents(strSel, null);
+
+        System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
 
     }

@@ -128,8 +128,8 @@
     -fx-font-size: 14px;
 }
 
-#recordList .cell:selected {
-    -fx-background-color: #494c4f;
+#recordList .cell .text-field:hover {
+    -fx-cursor: text;
 }
 
 #recordList {

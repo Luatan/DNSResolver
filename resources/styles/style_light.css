@@ -16,7 +16,12 @@
     -fx-padding:  4 0 4 0
 }
 
-/* Text-Field */
+#recordList {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: transparent;
+    -fx-background-insets: 2 2 2 2;
+}
+
 #recordList .text-field {
     -fx-font-size: 14px;
     -fx-background-color: transparent;
@@ -25,10 +30,18 @@
 }
 
 #recordList .cell {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-font-size: 14px;
 }
 
-#recordList .cell:selected {
+#recordList:focused {
+    -fx-background-color: transparent;
+}
+
+#recordList .cell:focused {
     -fx-text-fill: black;
+}
+
+#recordList .cell .text-field:hover {
+    -fx-cursor: text;
 }

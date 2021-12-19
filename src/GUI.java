@@ -1,6 +1,6 @@
 import Controller.HistoryController;
 import Model.API.Ip_api;
-import Model.CustomCellFactory;
+import Model.RecordListCellFactory;
 import Model.DNS.Records.Record;
 import Tasks.CacheCleanupTask;
 import Tasks.DnsTask;
@@ -72,7 +72,7 @@ public class GUI implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //init listview
         listViewRecordsModel = FXCollections.observableArrayList();
-        listViewRecords.setCellFactory(e -> new CustomCellFactory());
+        listViewRecords.setCellFactory(e -> new RecordListCellFactory());
         listViewRecords.setItems(listViewRecordsModel);
 
         //init Choicebox

@@ -11,10 +11,7 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class DnsAdapter {
     private String hostname;
@@ -22,7 +19,7 @@ public class DnsAdapter {
     public static final String[] RECORD_TYPES = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
 
     public DnsAdapter(String domain, String type) {
-        records = new ArrayList<>();
+        records = new LinkedList<>();
         setHost(domain);
         setNameServer();
         if (!type.equals("NS")){
@@ -70,9 +67,6 @@ public class DnsAdapter {
                 try {
                     //Get Attribute
                     Attribute attr = attributes.get(type);
-                    if (type.equals("NS")) {
-                        System.out.println("Nameserver Requested");
-                    }
                     for (int i = 0; i < attr.size(); i++) {
                         createRecord(attr.get(i).toString(), type);
                     }

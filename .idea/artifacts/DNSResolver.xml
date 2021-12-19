@@ -3,37 +3,19 @@
     <output-path>$PROJECT_DIR$/out/artifacts/DNSResolver</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="alias" />
         <option name="appClass" value="Main" />
         <option name="convertCss2Bin" value="true" />
-        <option name="customManifestAttributes">
-          <list />
-        </option>
         <option name="description" value="" />
-        <option name="enabledSigning" value="false" />
-        <option name="height" value="400" />
-        <option name="htmlParamFile" />
         <option name="htmlPlaceholderId" value="" />
-        <option name="htmlTemplateFile" />
         <option name="icons">
           <JavaFxApplicationIcons>
-            <option name="linuxIcon" />
-            <option name="macIcon" />
             <option name="windowsIcon" value="$PROJECT_DIR$/resources/icons/Icon.ico" />
           </JavaFxApplicationIcons>
         </option>
-        <option name="keypass" />
-        <option name="keystore" />
-        <option name="msgOutputLevel" value="Default" />
         <option name="nativeBundle" value="all" />
-        <option name="paramFile" />
-        <option name="selfSigning" value="true" />
-        <option name="storepass" />
         <option name="title" value="DNSRsolver" />
-        <option name="updateMode" value="background" />
         <option name="vendor" value="Simon Schmid" />
         <option name="version" value="1.2.1" />
-        <option name="width" value="600" />
       </options>
     </properties>
     <root id="root">

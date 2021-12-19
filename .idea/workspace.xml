@@ -9,44 +9,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="removed selection eventhandler and added color depending on the status for .ch domains">
-      <change afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed from arraylist to linked list">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/Diagrams/DNS_Resolver.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/resources/Diagrams/DNS_Resolver.drawio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/Ip_api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/NIC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/CustomCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/CustomCellFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/A.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/AAAA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/CNAME.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/MSG.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/MX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/NS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/PTR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/SOA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/TXT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HistoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/HistoryFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/JsonAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/Whois.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/CacheCleanupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/GetWhoisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/LookupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/Domain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/FileStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/WhoisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/Ip_api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/CustomCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CustomCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/CNAME.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/MSG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/MX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/NS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/PTR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/SOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/DNS/Records/TXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/HistoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/HistoryFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/FileStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/luatan/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +84,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/ch/simon/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -109,8 +109,8 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -146,7 +146,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="ch.simon.Main" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
       <extension name="coverage">
@@ -225,34 +225,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00100" summary="moved to ressources">
-      <created>1631565652193</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565652193</updated>
-    </task>
-    <task id="LOCAL-00101" summary="moved functions to create whois file to GetRegistrarTask">
-      <created>1631565704289</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565704289</updated>
-    </task>
-    <task id="LOCAL-00102" summary="added create dir function to copy the whole dir from ressources">
-      <created>1631565760336</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565760336</updated>
-    </task>
-    <task id="LOCAL-00103" summary="create a copy of licences to make it available to user">
-      <created>1631565787544</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1631565787545</updated>
     </task>
     <task id="LOCAL-00104" summary="needs fixing">
       <created>1631567591535</created>
@@ -569,7 +541,35 @@
       <option name="project" value="LOCAL" />
       <updated>1638976743443</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon">
+      <created>1639873887653</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1639873887653</updated>
+    </task>
+    <task id="LOCAL-00150" summary="renamed package to luatan">
+      <created>1639873968721</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1639873968721</updated>
+    </task>
+    <task id="LOCAL-00151" summary="renamed variables and optimized the setnameserver method">
+      <created>1639877382813</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1639877382813</updated>
+    </task>
+    <task id="LOCAL-00152" summary="changed from arraylist to linked list">
+      <created>1639877406997</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1639877406997</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -583,7 +583,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="fix/licences_folder" />
+                        <option value="Develop" />
                       </list>
                     </value>
                   </entry>
@@ -597,10 +597,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="gui improvements and redesign to be more flexible" />
-    <MESSAGE value="changed structure" />
-    <MESSAGE value="changed structure and improved registrar detection" />
-    <MESSAGE value="modifications for gui and registrar calls" />
     <MESSAGE value="changed regex" />
     <MESSAGE value="Config Management" />
     <MESSAGE value="changes to timing requests" />
@@ -622,7 +618,11 @@
     <MESSAGE value="gson license" />
     <MESSAGE value="de host handling and linktext" />
     <MESSAGE value="remove spaces before query" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove spaces before query" />
+    <MESSAGE value="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon" />
+    <MESSAGE value="renamed package to luatan" />
+    <MESSAGE value="renamed variables and optimized the setnameserver method" />
+    <MESSAGE value="changed from arraylist to linked list" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed from arraylist to linked list" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -39,6 +39,7 @@ public class GUIController extends Application {
         scene = new Scene(root);
 
         // set Darkmode on Start if in Settings
+        scene.getStylesheets().add("/styles/style_common.css");
         if (darkMode) {
             scene.getStylesheets().add("/styles/style_dark.css");
         } else {

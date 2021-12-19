@@ -14,13 +14,15 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-public class CustomCellFactory extends ListCell<String> {
+public class RecordListCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
-    private final TextField tf = new TextField();
+    private TextField tf;
 
     @Override
     protected void updateItem(String item, boolean empty) {
+        tf = new TextField();
         super.updateItem(item, empty);
+        getStylesheets().add("/styles/style_common.css");
         setPadding(new Insets(1, 0, 1, 15));
         if (item != null & !empty) {
             //init Textfield
@@ -29,10 +31,18 @@ public class CustomCellFactory extends ListCell<String> {
 
 
             //color status active to green
-            if (tf.getText().contains("active")) {
-                tf.setStyle("-fx-text-fill: green;");
-            } else {
-                tf.setStyle("");
+            if (tf.getText().matches("Status:.*")) {
+                if (tf.getText().contains("delete") || tf.getText().contains("inactive")){
+                    tf.getStyleClass().add("red");
+                } else if (tf.getText().contains("active")){
+                    tf.getStyleClass().add("green");
+                } else if (tf.getText().contains("transfer")){
+                    tf.getStyleClass().add("orange");
+                } else {
+                    tf.getStylesheets().remove("green");
+                    tf.getStylesheets().remove("red");
+                    tf.getStylesheets().remove("orange");
+                }
             }
 
             //set Item

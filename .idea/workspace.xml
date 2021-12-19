@@ -9,15 +9,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="remove spaces before query">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="removed selection eventhandler and added color depending on the status for .ch domains">
+      <change afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/IP_Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/IP_Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/JSON.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/Diagrams/DNS_Resolver.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/resources/Diagrams/DNS_Resolver.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/Ip_api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/CustomCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/CustomCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/DnsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/A.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/AAAA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/CNAME.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/MSG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/MX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/NS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/PTR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/SOA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/DNS/Records/TXT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/HistoryFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/HistoryFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/JsonAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Model/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/CacheCleanupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/FileStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/simon/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +84,10 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/ch/simon/GUI.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1nlc3kbTCFgq0dRmJowax1LFEoz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -77,12 +109,12 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -114,7 +146,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="ch.simon.Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
       <extension name="coverage">
@@ -177,10 +209,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.test" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
       </list>
     </recent_temporary>
@@ -562,7 +594,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

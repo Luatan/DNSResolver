@@ -1,11 +1,8 @@
-package ch.luatan.Model;
+package Model;
 
-import ch.luatan.Utils.FileStructure;
+import Utils.FileStructure;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.commons.io.output.FileWriterWithEncoding;
-
-import java.io.IOException;
 
 public abstract class JsonAdapter {
     protected final Class type;
@@ -17,13 +14,7 @@ public abstract class JsonAdapter {
     }
 
     public static void write(Object json, String destinationFile) {
-        try {
-            FileWriterWithEncoding file = new FileWriterWithEncoding(FileStructure.DIR_HOME + destinationFile, "utf-8");
-            file.write(HANDLER.toJson(json));
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileStructure.createFile(HANDLER.toJson(json), destinationFile);
     }
 
     public abstract void write();

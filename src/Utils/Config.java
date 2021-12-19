@@ -1,6 +1,6 @@
-package ch.luatan.Utils;
+package Utils;
 
-import ch.luatan.Model.JsonAdapter;
+import Model.JsonAdapter;
 
 import java.io.File;
 import java.util.*;

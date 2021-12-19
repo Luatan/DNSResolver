@@ -30,9 +30,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class GUI implements Initializable {
     // used for calaculating the offset to move the Window
@@ -41,57 +40,58 @@ public class GUI implements Initializable {
     @FXML
     HBox WindowMenu;
     @FXML
-    TextField txtNS1, txtNS2, txtNS3, txtNS4;
+    TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
     @FXML
-    TextField txtDomain, txtFieldIP, txtFieldHost;
+    TextField queryTf, ipTf, hostTf;
     @FXML
-    Button cpyRecords, btnStart, scrollButton, btnWeb;
+    Button copyBtn, startBtn, scrollTopBtn, backBtn;
     @FXML
-    ComboBox<String> typeBox;
+    ComboBox<String> typeComboBox;
     @FXML
-    Hyperlink whoisLink;
+    Hyperlink whoisHyperLink;
     @FXML
-    Label hyperLbl;
+    Label whoisLinkLbl;
     @FXML
-    CheckBox chckBox;
+    CheckBox showRecordsTickBox;
     @FXML
-    ImageView moon;
+    ImageView moonImg;
     @FXML
-    MenuButton historyButton;
+    MenuButton historyBtn;
     @FXML
     ListView<String> listViewRecords;
-
 
     //History history = new History(); // init History cache
     HistoryController historyController = new HistoryController();
 
-
-    //List of DNS.Records
+    //List of types to choose
     ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
-    //initialize Variables for Domain Check
 
+    //initialize Variables for Domain Check
     private static ObservableList<String> listViewRecordsModel;
     private final List<String> whoisInfo = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //init listview
         listViewRecordsModel = FXCollections.observableArrayList();
         listViewRecords.setCellFactory(e -> new CustomCellFactory());
         listViewRecords.setItems(listViewRecordsModel);
-        typeBox.setItems(types);
-        typeBox.setValue("Any");
-        chckBox.setSelected(Main.gui.isShowAllRecords());
+
+        //init Choicebox
+        typeComboBox.setItems(types);
+        typeComboBox.setValue("Any");
+        showRecordsTickBox.setSelected(Main.gui.isShowAllRecords());
 
         // Update history at startup
         updateHistoryDisplay();
 
         //prevent start button pressed without input
-        BooleanBinding enableSearchbtn = txtDomain.textProperty().isNotEmpty();
-        btnStart.disableProperty().bind(enableSearchbtn.not());
+        BooleanBinding enableSearchbtn = queryTf.textProperty().isNotEmpty();
+        startBtn.disableProperty().bind(enableSearchbtn.not());
 
         //prevent empty copy
         BooleanBinding enableCopybtn = Bindings.size(listViewRecords.itemsProperty().get()).greaterThan(0);
-        cpyRecords.visibleProperty().bind(enableCopybtn);
+        copyBtn.visibleProperty().bind(enableCopybtn);
 
         //Start cache cleanup Task after startup
         CacheCleanupTask cachClean = new CacheCleanupTask();
@@ -123,56 +123,6 @@ public class GUI implements Initializable {
     }
 
     @FXML
-    private void startSearchButton() { //Handels the Start Button action
-        //remove spaces before searching
-        txtDomain.setText(txtDomain.getText().trim());
-
-        //Clean up
-        closeList();
-        txtFieldIP.textProperty().unbind();
-        txtFieldHost.textProperty().unbind();
-        listViewRecordsModel.clear();
-        whoisInfo.clear();
-
-        //Do nothing if empty
-        if (txtDomain.getText().equals("")) {
-            return;
-        }
-
-        if (Domain.isIPAdress(txtDomain.getText())) {
-            //clean up old entries
-            hyperLbl.visibleProperty().unbind();
-            txtFieldHost.setText("");
-            nameServerDisplay(new ArrayList<>());
-
-            //set new entries
-            txtFieldIP.setText(txtDomain.getText());
-            showIPInfo();
-            btnWeb.setVisible(false);
-            hyperLbl.setVisible(false);
-            resolveHost(txtDomain.getText());
-
-        } else {
-            DNSOutput(txtDomain.getText(), typeBox.getValue());
-        }
-
-        // Add the domain to history
-        historyController.history.addDomain(txtDomain.getText());
-        updateHistoryDisplay(); //Update history list
-    }
-
-    private void updateHistoryDisplay() {
-        historyButton.getItems().clear();
-        for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
-            MenuItem item = new MenuItem(historyController.history.getDomains().get(i));
-            historyButton.getItems().add(item);
-
-            EventHandler<ActionEvent> event1 = e -> txtDomain.setText(((MenuItem) e.getSource()).getText());
-            item.setOnAction(event1);
-        }
-    }
-
-    @FXML
     private void changeEmptyRecordsSetting() {
         Main.gui.setShowAllRecords();
     }
@@ -180,6 +130,56 @@ public class GUI implements Initializable {
     @FXML
     private void changeTheme() {
         Main.gui.changeTheme();
+    }
+
+    @FXML
+    private void search() { //Handels the Start Button action
+        //remove spaces before searching
+        queryTf.setText(queryTf.getText().trim());
+
+        //Clean up
+        closeList();
+        ipTf.textProperty().unbind();
+        hostTf.textProperty().unbind();
+        listViewRecordsModel.clear();
+        whoisInfo.clear();
+
+        //Do nothing if empty
+        if (queryTf.getText().equals("")) {
+            return;
+        }
+
+        if (Domain.isIPAdress(queryTf.getText())) {
+            //clean up old entries
+            whoisLinkLbl.visibleProperty().unbind();
+            hostTf.setText("");
+            nameServerDisplay(new ArrayList<>());
+
+            //set new entries
+            ipTf.setText(queryTf.getText());
+            IpInfo();
+            backBtn.setVisible(false);
+            whoisLinkLbl.setVisible(false);
+            resolveHost(queryTf.getText());
+
+        } else {
+            DNSOutput(queryTf.getText(), typeComboBox.getValue());
+        }
+
+        // Add the domain to history
+        historyController.history.addDomain(queryTf.getText());
+        updateHistoryDisplay(); //Update history list
+    }
+
+    private void updateHistoryDisplay() {
+        historyBtn.getItems().clear();
+        for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
+            MenuItem item = new MenuItem(historyController.history.getDomains().get(i));
+            historyBtn.getItems().add(item);
+
+            EventHandler<ActionEvent> event1 = e -> queryTf.setText(((MenuItem) e.getSource()).getText());
+            item.setOnAction(event1);
+        }
     }
 
     @FXML
@@ -197,70 +197,76 @@ public class GUI implements Initializable {
 
         System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
-
     }
 
     @FXML
-    private void openWhois() {
+    private void whois() {
         if (whoisInfo.isEmpty()) {
             System.err.println("No Whois found!!");
             return;
         }
         openList(whoisInfo);
-
     }
 
-
     @FXML
-    private void showIPInfo() {
-        if (txtFieldIP.getText().isEmpty()) {
+    private void IpInfo() {
+        if (ipTf.getText().isEmpty()) {
             return;
         }
-        Ip_api info = new Ip_api(txtFieldIP.getText());
+        Ip_api info = new Ip_api(ipTf.getText());
         openList(info.getOutput());
     }
 
     private void openList(List<String> list) {
+        //close the old list before opening a new one
         closeList();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(list);
         listViewRecords.setItems(observableList);
-        btnWeb.setVisible(true);
+        backBtn.setVisible(true);
     }
 
     @FXML
     private void closeList() {
         listViewRecords.getItems().removeAll();
         listViewRecords.setItems(listViewRecordsModel);
-        btnWeb.setVisible(false);
+        backBtn.setVisible(false);
     }
 
     @FXML
     private void useTextHostnameField() {
-        btnWeb.setVisible(false);
-        String host = txtDomain.getText();
+        backBtn.setVisible(false);
+        String host = queryTf.getText();
         if (Domain.isSubdomain(host)) {
-            txtDomain.setText(Domain.getMainDomain(host));
-            DNSOutput(Domain.getMainDomain(host), typeBox.getValue());
+            queryTf.setText(Domain.getMainDomain(host));
+            DNSOutput(Domain.getMainDomain(host), typeComboBox.getValue());
         }
     }
 
     public void nameServerDisplay(List<Record> records) {
-        txtNS1.clear();
-        txtNS2.clear();
-        txtNS3.clear();
-        txtNS4.clear();
+        List<TextField> nsTf = new LinkedList<>();
+        nsTf.add(ns1Lbl);
+        nsTf.add(ns2Lbl);
+        nsTf.add(ns3Lbl);
+        nsTf.add(ns4Lbl);
 
+        //sort list
+        records.sort(new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
+
+        //set Textfield text
         if (!records.isEmpty()) {
-            try {
-                txtNS1.setText(records.get(0).getValue());
-                txtNS2.setText(records.get(1).getValue());
-                txtNS3.setText(records.get(2).getValue());
-                txtNS4.setText(records.get(3).getValue());
-            } catch (IndexOutOfBoundsException ignored) {
-
-            } catch (NullPointerException e) {
-                System.err.println("NullPointerException - Try catch NameServerDisplay");
+            for (int i = 0; i < nsTf.size(); i++) {
+                nsTf.get(i).clear();
+                try {
+                    nsTf.get(i).setText(records.get(i).getValue());
+                } catch (IndexOutOfBoundsException ignored) {
+                    //do nothing
+                }
             }
         }
     }
@@ -272,20 +278,23 @@ public class GUI implements Initializable {
         resolveHost(host);
 
         //clear fileds
-        txtFieldHost.clear();
-        txtFieldIP.clear();
+        hostTf.clear();
+        ipTf.clear();
 
-        if (!txtDomain.getText().isEmpty()) {
+        if (!queryTf.getText().isEmpty()) {
             listViewRecordsModel.clear();
 
             DnsTask dnsLookup = new DnsTask(host, type);
-            if (chckBox.isSelected()) {
+            if (showRecordsTickBox.isSelected()) {
                 dnsLookup.showEmpty(true);
             }
             dnsLookup.setOnSucceeded(e -> {
                 listViewRecordsModel.addAll(dnsLookup.getValue());
-                nameServerDisplay(dnsLookup.getNameservers());
-
+                try {
+                    nameServerDisplay(dnsLookup.getNameservers());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             });
             new Thread(dnsLookup).start();
         }
@@ -297,18 +306,18 @@ public class GUI implements Initializable {
             return;
         }
         LookupTask lookup = new LookupTask(host);
-        txtFieldHost.textProperty().bind(lookup.valueProperty());
-        txtFieldIP.textProperty().bind(lookup.messageProperty());
+        hostTf.textProperty().bind(lookup.valueProperty());
+        ipTf.textProperty().bind(lookup.messageProperty());
         new Thread(lookup).start();
     }
 
     private void getWhois(String host) {
         if (host.equals("")) {
-            hyperLbl.setVisible(false);
+            whoisLinkLbl.setVisible(false);
             return;
         }
         GetWhoisTask task = new GetWhoisTask(host);
-        whoisLink.textProperty().bind(task.messageProperty());
+        whoisHyperLink.textProperty().bind(task.messageProperty());
         task.setOnSucceeded(e -> {
             if (task.getValue().size() > 0) {
                 whoisInfo.addAll(task.getValue());
@@ -316,8 +325,8 @@ public class GUI implements Initializable {
         });
         task.setOnFailed(e -> System.err.println("Whois Task failed - " + host));
 
-        BooleanBinding gotWhois = whoisLink.textProperty().isNotEmpty();
-        hyperLbl.visibleProperty().bind(gotWhois);
+        BooleanBinding gotWhois = whoisHyperLink.textProperty().isNotEmpty();
+        whoisLinkLbl.visibleProperty().bind(gotWhois);
         new Thread(task).start();
     }
 }

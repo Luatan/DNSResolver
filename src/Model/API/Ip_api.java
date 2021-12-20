@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -25,6 +26,7 @@ public class Ip_api extends API {
     //private String fields = "53769";
 
     public Ip_api(String ip_addr) {
+        log = new LinkedHashMap<>();
         readTracker();
         if (isAllowed()) {
             api_output = super.request(buildURL(ip_addr));
@@ -35,6 +37,7 @@ public class Ip_api extends API {
     }
 
     public List<String> getOutput() {
+        //TODO handle private Range
         Map<String, String> output = JsonAdapter.HANDLER.fromJson(api_output, new TypeToken<Map<String, String>>() {
         }.getType());
 
@@ -85,6 +88,10 @@ public class Ip_api extends API {
     }
 
     private void readTracker() {
+        if (!FileStructure.fileExists(Config.IP_API_LOG_FILE)) {
+            System.err.println("File: " + Config.IP_API_LOG_FILE + " does not exist!");
+            return;
+        }
         try {
             Reader reader = FileStructure.getReader(Config.IP_API_LOG_FILE);
             log = gson.fromJson(reader, new TypeToken<Map<String, Long>>() {

@@ -37,20 +37,24 @@ public class Ip_api extends API {
     }
 
     public List<String> getOutput() {
-        //TODO handle private Range
         Map<String, String> output = JsonAdapter.HANDLER.fromJson(api_output, new TypeToken<Map<String, String>>() {
         }.getType());
 
-        double longitude = Double.parseDouble(output.get("lon")), latitude = Double.parseDouble(output.get("lat"));
-        Pattern pattern = Pattern.compile("AS\\d+");
-        Matcher matcher = pattern.matcher(output.get("as"));
+        List<String> res = new ArrayList<>();
 
+        if (output.get("status").equals("fail")) {
+            res.add("Status: " + output.get("status"));
+            res.add("");
+            res.add("Message: " + output.get("message"));
+
+            return res;
+        }
+
+        Matcher matcher = Pattern.compile("AS\\d+").matcher(output.get("as"));
         if (matcher.find()) {
             output.put("as", matcher.group());
         }
 
-        List<String> res = new ArrayList<>();
-        res.add("Query: " + output.get("query"));
         res.add("Status: " + output.get("status"));
 
         res.add(""); // new Line
@@ -70,7 +74,7 @@ public class Ip_api extends API {
 
         res.add(""); // new Line
         res.add("Google Maps (Precision depends on the IP Address):");
-        res.add(mapsLink(latitude, longitude));
+        res.add(mapsLink(Double.parseDouble(output.get("lat")), Double.parseDouble(output.get("lon"))));
 
         return res;
     }

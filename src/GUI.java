@@ -1,7 +1,7 @@
 import Controller.HistoryController;
 import Model.API.Ip_api;
-import Model.RecordListCellFactory;
 import Model.DNS.Records.Record;
+import Model.RecordListCellFactory;
 import Tasks.CacheCleanupTask;
 import Tasks.DnsTask;
 import Tasks.GetWhoisTask;
@@ -9,6 +9,8 @@ import Tasks.LookupTask;
 import Utils.Domain;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,8 +30,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.net.URL;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class GUI implements Initializable {
     @FXML
@@ -67,7 +69,7 @@ public class GUI implements Initializable {
 
     //initialize Variables for Domain Check
     private static ObservableList<String> listViewRecordsModel;
-    private final List<String> whoisInfo = new ArrayList<>();
+    private final ObservableList<String> whoisInfo = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -315,18 +317,28 @@ public class GUI implements Initializable {
             whoisLinkLbl.setVisible(false);
             return;
         }
-        GetWhoisTask task = new GetWhoisTask(host);
-        whoisHyperLink.textProperty().bind(task.messageProperty());
-        task.setOnSucceeded(e -> {
-            if (task.getValue().size() > 0) {
-                whoisInfo.addAll(task.getValue());
+        GetWhoisTask whoisTask = new GetWhoisTask(host);
+
+        whoisHyperLink.textProperty().bind(whoisTask.messageProperty());
+
+        BooleanProperty whoisEmpty = new SimpleBooleanProperty(false);
+
+        whoisTask.setOnSucceeded(e -> {
+            if (whoisTask.getValue().size() > 1) {
+                whoisInfo.addAll(whoisTask.getValue());
+                whoisEmpty.setValue(true);
+            } else {
+                whoisEmpty.setValue(false);
             }
         });
-        task.setOnFailed(e -> System.err.println("Whois Task failed - " + host));
+        whoisTask.setOnFailed(e -> System.err.println("Whois Task failed - " + host));
+
+
+        whoisHyperLink.disableProperty().bind(whoisEmpty.not());
 
         BooleanBinding gotWhois = whoisHyperLink.textProperty().isNotEmpty();
         whoisLinkLbl.visibleProperty().bind(gotWhois);
-        new Thread(task).start();
+        new Thread(whoisTask).start();
     }
 }
 

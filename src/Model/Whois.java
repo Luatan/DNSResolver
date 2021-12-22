@@ -20,7 +20,7 @@ public class Whois {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        whoisData = whoisData.replaceAll("(%.*)|(#.*)|(.*REDACTED.*)|(For more info.[\\S\\s]*)", "").replaceAll("\r", "");
+        whoisData = whoisData.replaceAll("([%#].*[\\S\\s])|(.*REDACTED.*[\\S\\s])|(For more info.[\\S\\s]*)", "").replaceAll("\r", "");
         String[] tokens = whoisData.split("\\n");
 
         return Arrays.asList(tokens);

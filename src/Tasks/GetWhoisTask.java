@@ -117,7 +117,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
     private void setLINKTEXT() {
         LINKTEXT.append(this.host);
-        String registrar = searchWhois("(?:registrar:)[\\W\\r]+(.+)");
+        String registrar = searchWhois("(?:registrar[:\\n]|registrar-name[:])[\\W\\r]+(?:Organization:)?(?:[\\W\\r]+)?(.+)");
         if (registrar.length() > 0) {
             LINKTEXT.append(" - ").append(registrar);
         }
@@ -134,6 +134,9 @@ public class GetWhoisTask extends Task<List<String>> {
     }
 
     private String searchWhois(String regex) {
+        Pattern input = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Pattern de = Pattern.compile("(?:Status:)\\W(connect)", Pattern.CASE_INSENSITIVE);
+
         if (res.isEmpty()) {
             return "";
         }
@@ -144,10 +147,16 @@ public class GetWhoisTask extends Task<List<String>> {
             sb.append(line).append("\n");
         }
 
-        Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(sb.toString());
+        Matcher matcher = input.matcher(sb.toString());
         if (matcher.find()) {
             return matcher.group(1).trim();
         }
+
+        matcher = de.matcher(sb.toString());
+        if (matcher.find()) {
+            return "Registred";
+        }
+
 
         return "Free";
     }

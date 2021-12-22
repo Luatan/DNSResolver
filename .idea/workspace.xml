@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed bug with marking the status of whois with colors">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed whoistask registrar display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/Ip_api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +52,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.jdks/java8_fx_zulu/src.zip!/java/lang/String.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -190,48 +193,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00109" summary="fixed bug by changing the MINRL to 16&#10;if its less than 15 the request timesout">
-      <created>1631657477310</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1631657477311</updated>
-    </task>
-    <task id="LOCAL-00110" summary="remove print">
-      <created>1631657599328</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1631657599328</updated>
-    </task>
-    <task id="LOCAL-00111" summary="fixed dark mode styling to be more uniform">
-      <created>1631661340641</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1631661340641</updated>
-    </task>
-    <task id="LOCAL-00112" summary="fixed a few bugs">
-      <created>1631723391882</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1631723391883</updated>
-    </task>
-    <task id="LOCAL-00113" summary="fucking javafx deploy">
-      <created>1631725570447</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1631725570448</updated>
-    </task>
-    <task id="LOCAL-00114" summary="bug fix">
-      <created>1631776759793</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1631776759794</updated>
     </task>
     <task id="LOCAL-00115" summary="improve performance of DNSRequests">
       <created>1631926715723</created>
@@ -534,7 +495,49 @@
       <option name="project" value="LOCAL" />
       <updated>1639922334842</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="private range bug found">
+      <created>1640039096516</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1640039096517</updated>
+    </task>
+    <task id="LOCAL-00159" summary="fixed private range bug">
+      <created>1640124106528</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1640124106529</updated>
+    </task>
+    <task id="LOCAL-00160" summary="fix warnings">
+      <created>1640132028713</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1640132028713</updated>
+    </task>
+    <task id="LOCAL-00161" summary="fix warnings">
+      <created>1640132371048</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1640132371048</updated>
+    </task>
+    <task id="LOCAL-00162" summary="fixed diverse bugs">
+      <created>1640140702023</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1640140702023</updated>
+    </task>
+    <task id="LOCAL-00163" summary="fixed whoistask registrar display">
+      <created>1640141924327</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1640141924327</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -562,11 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="updated readme" />
-    <MESSAGE value="corrected comment error" />
-    <MESSAGE value="fixed bug, where the whois is not displayed, if the event is deletion" />
-    <MESSAGE value="changed text" />
-    <MESSAGE value="cache function added" />
     <MESSAGE value="structure" />
     <MESSAGE value="fixed text bug" />
     <MESSAGE value="structure + fixed text bug" />
@@ -587,7 +585,12 @@
     <MESSAGE value="renamed cellfactory" />
     <MESSAGE value="added new css File" />
     <MESSAGE value="fixed bug with marking the status of whois with colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with marking the status of whois with colors" />
+    <MESSAGE value="private range bug found" />
+    <MESSAGE value="fixed private range bug" />
+    <MESSAGE value="fix warnings" />
+    <MESSAGE value="fixed diverse bugs" />
+    <MESSAGE value="fixed whoistask registrar display" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed whoistask registrar display" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

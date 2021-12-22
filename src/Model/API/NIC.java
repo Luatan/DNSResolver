@@ -10,16 +10,16 @@ import java.util.List;
 public class NIC extends API {
     private final String API_URL = "https://rdap.nic.ch/domain/";
     private final String RESPONSE;
-    private final ArrayList<String> event;
-    private final ArrayList<String> resNSDomain;
-    private final ArrayList<String> resNSIP;
+    private final List<String> event;
+    private final List<String> resNSDomain;
+    private final List<String> resNSIP;
     private String[] resAddress;
     private String resDomain;
     private String resRegistrar;
     private String resStatus;
 
     public NIC(String domain) {
-        event = new ArrayList();
+        event = new ArrayList<>();
         resNSDomain = new ArrayList<>();
         resNSIP = new ArrayList<>();
         RESPONSE = request(API_URL + domain);

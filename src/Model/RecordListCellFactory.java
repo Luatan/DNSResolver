@@ -16,11 +16,10 @@ import java.util.function.Predicate;
 
 public class RecordListCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
-    private TextField tf;
 
     @Override
     protected void updateItem(String item, boolean empty) {
-        tf = new TextField();
+        TextField tf = new TextField();
         super.updateItem(item, empty);
         getStylesheets().add("/styles/style_common.css");
         setPadding(new Insets(1, 0, 1, 15));

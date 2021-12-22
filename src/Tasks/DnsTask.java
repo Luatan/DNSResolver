@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DnsTask extends Task<List<String>> {
     long startTime = System.currentTimeMillis();
-    private String host;
+    private final String host;
     private String type = "*";
     private List<String> result;
     private boolean showEmpty = false;
@@ -44,7 +44,7 @@ public class DnsTask extends Task<List<String>> {
     }
 
     @Override
-    protected List<String> call() throws Exception {
+    protected List<String> call() {
         result = new ArrayList<>();
         DnsAdapter query = new DnsAdapter(host, type);
 

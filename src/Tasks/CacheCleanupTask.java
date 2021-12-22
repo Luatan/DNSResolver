@@ -9,7 +9,6 @@ public class CacheCleanupTask extends Thread{
         if (!Config.CACHING) {
             return;
         }
-        System.out.println("running cache cleanup!");
         Config.cleanCacheFiles();
     }
 }

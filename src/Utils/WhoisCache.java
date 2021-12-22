@@ -29,6 +29,9 @@ public class WhoisCache {
     }
 
     public void writeCache(List<String> content) {
+        if (content.size() < 1) {
+            return;
+        }
         StringBuilder list = new StringBuilder();
         for (String element:content) {
             list.append(element.trim()).append(",");

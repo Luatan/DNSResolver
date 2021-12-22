@@ -71,7 +71,6 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // TODO fix NS clear
 
         //init listview
         listViewRecordsModel = FXCollections.observableArrayList();
@@ -263,6 +262,10 @@ public class GUI implements Initializable {
                 } catch (IndexOutOfBoundsException ignored) {
                     //do nothing
                 }
+            }
+        } else {
+            for (TextField tf:nsTf) {
+                tf.clear();
             }
         }
     }

@@ -117,7 +117,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
     private void setLINKTEXT() {
         LINKTEXT.append(this.host);
-        String registrar = searchWhois("(?:registrar:)\\W(.+)");
+        String registrar = searchWhois("(?:registrar:)[\\W\\r]+(.+)");
         if (registrar.length() > 0) {
             LINKTEXT.append(" - ").append(registrar);
         }
@@ -134,17 +134,21 @@ public class GetWhoisTask extends Task<List<String>> {
     }
 
     private String searchWhois(String regex) {
-
         if (res.isEmpty()) {
             return "";
         }
 
+        StringBuilder sb = new StringBuilder();
+
         for (String line:res) {
-            Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(line);
-            if (matcher.find()) {
-                return matcher.group(1).trim();
-            }
+            sb.append(line).append("\n");
         }
+
+        Matcher matcher = Pattern.compile(regex, Pattern.CASE_INSENSITIVE).matcher(sb.toString());
+        if (matcher.find()) {
+            return matcher.group(1).trim();
+        }
+
         return "Free";
     }
 

@@ -32,11 +32,6 @@ import java.util.*;
 import java.util.List;
 
 public class GUI implements Initializable {
-    // used for calaculating the offset to move the Window
-    private double offsetX;
-    private double offsetY;
-    @FXML
-    HBox WindowMenu;
     @FXML
     TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
     @FXML
@@ -57,12 +52,18 @@ public class GUI implements Initializable {
     MenuButton historyBtn;
     @FXML
     ListView<String> listViewRecords;
+    @FXML
+    HBox WindowMenu;
+
+    // used for calaculating the offset to move the Window
+    private double offsetX;
+    private double offsetY;
 
     //History history = new History(); // init History cache
-    HistoryController historyController = new HistoryController();
+    private final HistoryController historyController = new HistoryController();
 
     //List of types to choose
-    ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
+    private final ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
 
     //initialize Variables for Domain Check
     private static ObservableList<String> listViewRecordsModel;
@@ -70,6 +71,8 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // TODO fix NS clear
+
         //init listview
         listViewRecordsModel = FXCollections.observableArrayList();
         listViewRecords.setCellFactory(e -> new RecordListCellFactory());
@@ -249,12 +252,7 @@ public class GUI implements Initializable {
         nsTf.add(ns4Lbl);
 
         //sort list
-        records.sort(new Comparator<Record>() {
-            @Override
-            public int compare(Record o1, Record o2) {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
+        records.sort(Comparator.comparing(Record::getValue));
 
         //set Textfield text
         if (!records.isEmpty()) {

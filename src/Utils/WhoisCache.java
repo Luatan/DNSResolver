@@ -29,12 +29,12 @@ public class WhoisCache {
     }
 
     public void writeCache(List<String> content) {
-        String list = "";
+        StringBuilder list = new StringBuilder();
         for (String element:content) {
-            list += element.trim() + ",";
+            list.append(element.trim()).append(",");
         }
 
-        FileStructure.createFile(list, cacheFile.getPath());
+        FileStructure.createFile(list.toString(), cacheFile.getPath());
     }
 
     public String readCache() {

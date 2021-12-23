@@ -104,6 +104,7 @@ public class DnsAdapter {
                 records.add(new CNAME(record));
                 break;
             case "TXT":
+                record = record.replaceAll("\"", "");
                 records.add(new TXT(record));
                 break;
             case "NS":

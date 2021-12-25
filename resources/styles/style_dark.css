@@ -7,6 +7,10 @@
     -fx-text-fill: white;
 }
 
+.button:pressed {
+    -fx-background-color: derive(#393E41, 30%);
+}
+
 .label {
     -fx-text-fill: white;
 }
@@ -23,22 +27,31 @@
     -fx-cursor: pointer;
 }
 
+#input {
+    -fx-background-color: #393E41;
+    -fx-border-color: #393E41;
+    -fx-border-radius: 0px;
+    -fx-text-fill: white;
+    -fx-cursor: text;
+    -fx-font-size: 12px;
+}
+
 /*---- COMBO BOX ----*/
 .combo-box {
     -fx-background-color: #393E41;
 }
 
+.combo-box:focused, .combo-box .cell:hover{
+    -fx-background-color: derive(#393E41, 30%);
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: transparent;
+}
+
 .combo-box .cell {
     -fx-background-color: #393E41;
     -fx-text-fill: white;
-    -fx-font-size: 12px;
-}
-
-#input {
-    -fx-background-color: #393E41;
-    -fx-border-color: black;
-    -fx-text-fill: white;
-    -fx-cursor: text;
     -fx-font-size: 12px;
 }
 
@@ -50,7 +63,8 @@
 .check-box .box {
     -fx-border-radius: 3px;
     -fx-background-color: #393E41;
-    -fx-border-color: black;
+    -fx-border-color: transparent;
+    -fx-background-insets: 1;
 }
 
 .check-box .content {
@@ -62,30 +76,17 @@
 }
 
 .check-box:selected .box {
-    -fx-background-color: #28a3f4;
+    -fx-background-color: derive(#28a3f4, 20%);
 }
 
 /*---- MENU BUTTON ----*/
 .menu-button {
     -fx-background-color: #393E41;
-    -fx-border-color: black;
+    -fx-background-insets: 0.3;
 }
 
-.menu-button:focused {
-    -fx-border-color: black;
-    -fx-background-color: #393E41;
-}
-
-.menu-item .menu-button {
-    -fx-text-fill: white;
-}
-
-.menu-item:focused {
-    -fx-background-color: #393E41;
-}
-
-.menu-item:focused .label {
-    -fx-background-color: #494c4f;
+.menu-button .menu-item:focused {
+    -fx-background-color: derive(#393E41, 30%);
 }
 
 .context-menu {
@@ -120,7 +121,7 @@
     -fx-background-color: #393E41;
 }
 
-/* LIST-VIEW */
+/* -----LIST-VIEW ------*/
 
 #recordList .cell {
     -fx-background-color: #1E2019;

@@ -163,7 +163,7 @@
        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" maxWidth="-Infinity" pickOnBounds="false" text="Hostname:" textAlignment="CENTER" GridPane.hgrow="ALWAYS">
+            <Label fx:id="hostnameLbl" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" maxWidth="-Infinity" pickOnBounds="false" text="Hostname:" textAlignment="CENTER" GridPane.hgrow="ALWAYS">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -320,14 +320,19 @@
                <Insets right="22.0" top="8.0" />
             </StackPane.margin>
              </Button>
+         <ImageView fx:id="loading_duck" fitHeight="140.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <image>
+               <Image url="@icons/loading_duck.gif" />
+            </image>
+         </ImageView>
       </children>
       <padding>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
    </StackPane>
-   <HBox>
+   <HBox alignment="CENTER">
       <children>
-            <Label fx:id="whoisLinkLbl" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Whois:" textAlignment="CENTER" visible="false">
+            <Label fx:id="whoisLinkLbl" contentDisplay="RIGHT" text="Whois:" textAlignment="CENTER" visible="false">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
@@ -351,6 +356,11 @@
                     </Hyperlink>
                 </graphic>
             </Label>
+         <ImageView fx:id="whoisLoading" fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <image>
+               <Image url="@icons/reload_64x64.png" />
+            </image>
+         </ImageView>
          <Region HBox.hgrow="SOMETIMES" />
             <Button fx:id="backBtn" mnemonicParsing="false" onAction="#closeList" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Back" visible="false">
                 <font>

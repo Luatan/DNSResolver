@@ -25,6 +25,7 @@ public class DnsAdapter {
         if (!type.equals("NS")){
             setRecords(type);
         }
+        System.out.println(records);
     }
 
     private void setHost(String host) {
@@ -109,6 +110,9 @@ public class DnsAdapter {
                 break;
             case "NS":
                 records.add(new NS(record));
+                break;
+            case "SRV":
+                records.add(new SRV(record));
                 break;
             case "SOA":
                 int max;

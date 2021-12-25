@@ -327,6 +327,12 @@ public class GUI implements Initializable {
                     ex.printStackTrace();
                 }
             });
+
+            //error handling, if the task fails
+            dnsLookup.setOnFailed(e -> {
+                Throwable error = dnsLookup.getException();
+                error.printStackTrace();
+            });
             new Thread(dnsLookup).start();
         }
 
@@ -349,12 +355,14 @@ public class GUI implements Initializable {
         lookup.setOnSucceeded(e -> {
             hostnameLbl.setGraphic(hostTf);
             hostnameLbl.setGraphicTextGap(0);
-            System.out.println("success");
         });
 
+        //error handling, if the task fails
         lookup.setOnFailed(e -> {
-            System.out.println("failed");
+            Throwable error = lookup.getException();
+            error.printStackTrace();
         });
+
         hostTf.textProperty().bind(lookup.valueProperty());
         ipTf.textProperty().bind(lookup.messageProperty());
         new Thread(lookup).start();
@@ -381,8 +389,12 @@ public class GUI implements Initializable {
                 whoisEmpty.setValue(false);
             }
         });
-        whoisTask.setOnFailed(e -> System.err.println("Whois Task failed - " + host));
 
+        //error handling, if the task fails
+        whoisTask.setOnFailed(e -> {
+            Throwable error = whoisTask.getException();
+            error.printStackTrace();
+        });
 
         whoisHyperLink.disableProperty().bind(whoisEmpty.not());
 

@@ -9,11 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed whoistask registrar display">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed version">
+      <change afterPath="$PROJECT_DIR$/resources/icons/loading_duck.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/icons/reload_64x64.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_dark.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/LookupTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,12 +80,12 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/META-INF" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/dnsGUI.fxml" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -93,8 +96,8 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config_default" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
@@ -193,27 +196,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00115" summary="improve performance of DNSRequests">
-      <created>1631926715723</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1631926715723</updated>
-    </task>
-    <task id="LOCAL-00116" summary="trying to implement record">
-      <created>1635528349739</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1635528349739</updated>
-    </task>
-    <task id="LOCAL-00117" summary="trying to implement record">
-      <created>1635528717061</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1635528717061</updated>
     </task>
     <task id="LOCAL-00118" summary="changed classes to use the new Records">
       <created>1635551872958</created>
@@ -537,7 +519,28 @@
       <option name="project" value="LOCAL" />
       <updated>1640141924327</updated>
     </task>
-    <option name="localTasksCounter" value="164" />
+    <task id="LOCAL-00164" summary="fixed whois display link and whoisresult">
+      <created>1640197973424</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1640197973424</updated>
+    </task>
+    <task id="LOCAL-00165" summary="removed quotation mark from txt records">
+      <created>1640218392054</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1640218392054</updated>
+    </task>
+    <task id="LOCAL-00166" summary="changed version">
+      <created>1640218404450</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1640218404450</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -565,9 +568,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="structure" />
-    <MESSAGE value="fixed text bug" />
-    <MESSAGE value="structure + fixed text bug" />
     <MESSAGE value="fixed bug, where the extension triggers the cache instead of each extension having its own file" />
     <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
     <MESSAGE value="added more settings" />
@@ -590,7 +590,10 @@
     <MESSAGE value="fix warnings" />
     <MESSAGE value="fixed diverse bugs" />
     <MESSAGE value="fixed whoistask registrar display" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed whoistask registrar display" />
+    <MESSAGE value="fixed whois display link and whoisresult" />
+    <MESSAGE value="removed quotation mark from txt records" />
+    <MESSAGE value="changed version" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed version" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

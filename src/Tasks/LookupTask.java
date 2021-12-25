@@ -19,12 +19,12 @@ public class LookupTask extends Task<String> {
         try {
             inetHost = InetAddress.getByName(host);
 
-            updateValue(inetHost.getHostName());
             updateMessage(inetHost.getHostAddress());
+            return inetHost.getHostName();
         } catch (UnknownHostException e) {
             updateValue(host);
         }
-        System.out.println("Lookup of " + host + " took: " + (System.currentTimeMillis() - time) + " ms");
-        return String.valueOf(valueProperty());
+        System.out.println("Nameresolution of " + host + " took: " + (System.currentTimeMillis() - time) + " ms");
+        return host;
     }
 }

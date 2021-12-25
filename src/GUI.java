@@ -1,3 +1,4 @@
+import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
 import Model.DNS.Records.Record;
@@ -7,6 +8,7 @@ import Tasks.DnsTask;
 import Tasks.GetWhoisTask;
 import Tasks.LookupTask;
 import Utils.Domain;
+import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -22,9 +24,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -34,6 +38,8 @@ import java.util.List;
 import java.util.*;
 
 public class GUI implements Initializable {
+    @FXML
+    Label hostnameLbl;
     @FXML
     TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
     @FXML
@@ -56,6 +62,10 @@ public class GUI implements Initializable {
     ListView<String> listViewRecords;
     @FXML
     HBox WindowMenu;
+    @FXML
+    ImageView whoisLoading;
+    @FXML
+    ImageView loading_duck;
 
     // used for calaculating the offset to move the Window
     private double offsetX;
@@ -73,7 +83,7 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        rotateImage(whoisLoading);
         //init listview
         listViewRecordsModel = FXCollections.observableArrayList();
         listViewRecords.setCellFactory(e -> new RecordListCellFactory());
@@ -99,6 +109,16 @@ public class GUI implements Initializable {
         CacheCleanupTask cachClean = new CacheCleanupTask();
         cachClean.setDaemon(true);
         cachClean.start();
+
+    }
+
+    private void rotateImage(ImageView image) {
+        RotateTransition rotate = new RotateTransition(Duration.millis(1500), image);
+        rotate.setCycleCount(Animation.INDEFINITE);
+        rotate.setFromAngle(0);
+        rotate.setToAngle(360);
+        rotate.setInterpolator(Interpolator.LINEAR);
+        rotate.play();
 
     }
 
@@ -199,6 +219,15 @@ public class GUI implements Initializable {
 
         System.out.println("DNS Records copied!");
         // Add animtaion to Acknowledge Copy... maybe
+        ScaleTransition transition = new ScaleTransition(Duration.millis(150), copyBtn);
+        transition.setAutoReverse(true);
+        transition.setFromX(1);
+        transition.setFromY(1);
+        transition.setToX(1.3);
+        transition.setToY(1.3);
+        transition.setCycleCount(2);
+
+        transition.play();
     }
 
     @FXML
@@ -286,6 +315,7 @@ public class GUI implements Initializable {
             listViewRecordsModel.clear();
 
             DnsTask dnsLookup = new DnsTask(host, type);
+            loading_duck.visibleProperty().bind(dnsLookup.runningProperty());
             if (showRecordsTickBox.isSelected()) {
                 dnsLookup.showEmpty(true);
             }
@@ -307,10 +337,30 @@ public class GUI implements Initializable {
             return;
         }
         LookupTask lookup = new LookupTask(host);
+        lookup.setOnRunning(e -> {
+            ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(GUIController.class.getResourceAsStream("/icons/reload_64x64.png"))));
+            hostLoading.setFitHeight(20);
+            hostLoading.setPreserveRatio(true);
+            rotateImage(hostLoading);
+            hostnameLbl.setGraphicTextGap(10);
+            hostnameLbl.setGraphic(hostLoading);
+        });
+
+        lookup.setOnSucceeded(e -> {
+            hostnameLbl.setGraphic(hostTf);
+            hostnameLbl.setGraphicTextGap(0);
+            System.out.println("success");
+        });
+
+        lookup.setOnFailed(e -> {
+            System.out.println("failed");
+        });
         hostTf.textProperty().bind(lookup.valueProperty());
         ipTf.textProperty().bind(lookup.messageProperty());
         new Thread(lookup).start();
     }
+
+
 
     private void getWhois(String host) {
         if (host.equals("")) {
@@ -322,7 +372,7 @@ public class GUI implements Initializable {
         whoisHyperLink.textProperty().bind(whoisTask.messageProperty());
 
         BooleanProperty whoisEmpty = new SimpleBooleanProperty(false);
-
+        whoisLoading.visibleProperty().bind(whoisTask.runningProperty());
         whoisTask.setOnSucceeded(e -> {
             if (whoisTask.getValue().size() > 1) {
                 whoisInfo.addAll(whoisTask.getValue());

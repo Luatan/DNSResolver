@@ -25,7 +25,6 @@ public class DnsAdapter {
         if (!type.equals("NS")){
             setRecords(type);
         }
-        System.out.println(records);
     }
 
     private void setHost(String host) {

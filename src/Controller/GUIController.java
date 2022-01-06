@@ -1,6 +1,6 @@
 package Controller;
 
-import Utils.Config;
+import Model.Utils.Config;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Objects;
+
 public class GUIController extends Application {
 
     private static boolean darkMode;
@@ -16,6 +18,8 @@ public class GUIController extends Application {
     private static Scene scene;
     private static Stage stage;
     private final SettingsController SETTINGS = new SettingsController();
+    private double yOffset;
+    private double xOffset;
 
     public void work() {
         try {
@@ -31,10 +35,10 @@ public class GUIController extends Application {
         loadSettings();
 
         //FX
-        Parent root = FXMLLoader.load(getClass().getResource("/dnsGUI.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dnsGUI.fxml")));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
-        stage.getIcons().add(new Image(GUIController.class.getResourceAsStream("/icons/Icon.png")));
+        stage.getIcons().add(new Image(Objects.requireNonNull(GUIController.class.getResourceAsStream("/icons/Icon.png"))));
         stage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root);
 
@@ -46,6 +50,19 @@ public class GUIController extends Application {
             scene.getStylesheets().add("/styles/style_light.css");
         }
         stage.setScene(scene);
+
+
+        root.getChildrenUnmodifiable().get(0).setOnMousePressed(event -> {
+            xOffset = event.getX();
+            yOffset = event.getY();
+        });
+
+
+        root.getChildrenUnmodifiable().get(0).setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
         stage.show();
     }
 
@@ -80,7 +97,6 @@ public class GUIController extends Application {
     }
 
     public void setShowAllRecords() {
-//        SETTINGS.edit("ShowEmptyRecords", !showAllRecords);
         SETTINGS.config.setShowEmptyRecords(!showAllRecords);
     }
 
@@ -97,11 +113,5 @@ public class GUIController extends Application {
     public void minimize() {
         stage.setIconified(true);
     }
-
-    public void moveWindow(double x, double y) {
-        stage.setX(x);
-        stage.setY(y);
-    }
-
 
 }

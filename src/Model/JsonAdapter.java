@@ -1,6 +1,6 @@
 package Model;
 
-import Utils.FileStructure;
+import Model.Utils.FileStructure;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

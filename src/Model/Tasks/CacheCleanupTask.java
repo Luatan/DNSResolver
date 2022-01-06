@@ -1,6 +1,6 @@
-package Tasks;
+package Model.Tasks;
 
-import Utils.Config;
+import Model.Utils.Config;
 
 public class CacheCleanupTask extends Thread{
 

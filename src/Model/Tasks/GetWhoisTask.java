@@ -1,12 +1,12 @@
-package Tasks;
+package Model.Tasks;
 
 import Model.API.NIC;
 import Model.JsonAdapter;
 import Model.Whois;
-import Utils.Config;
-import Utils.Domain;
-import Utils.FileStructure;
-import Utils.WhoisCache;
+import Model.Utils.Config;
+import Model.Utils.Domain;
+import Model.Utils.FileStructure;
+import Model.Utils.WhoisCache;
 import com.google.gson.reflect.TypeToken;
 import javafx.concurrent.Task;
 
@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetWhoisTask extends Task<List<String>> {
-    private final StringBuilder LINKTEXT = new StringBuilder();
+    private final StringBuilder linkText = new StringBuilder();
     private String host;
     private List<String> res;
     private WhoisCache cache;
@@ -49,7 +49,7 @@ public class GetWhoisTask extends Task<List<String>> {
                 try {
                     res = cache.readCacheByLine();
 
-                    setLINKTEXT(" (cached)");
+                    setLinkText(" (cached)");
                     updateValue(res);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -116,21 +116,21 @@ public class GetWhoisTask extends Task<List<String>> {
     }
 
     private void setLINKTEXT() {
-        LINKTEXT.append(this.host);
+        linkText.append(this.host);
         String registrar = searchWhois("(?:registrar[:\\n]|registrar-name[:])[\\W\\r]+(?:Organization:)?(?:[\\W\\r]+)?(.+)");
         if (registrar.length() > 0) {
-            LINKTEXT.append(" - ").append(registrar);
+            linkText.append(" - ").append(registrar);
         }
-        updateMessage(LINKTEXT.toString());
+        updateMessage(linkText.toString());
     }
 
-    private void setLINKTEXT(String message) {
+    private void setLinkText(String message) {
         setLINKTEXT();
         if (message != null && !message.isEmpty()) {
-            LINKTEXT.append(message);
+            linkText.append(message);
         }
 
-        updateMessage(LINKTEXT.toString());
+        updateMessage(linkText.toString());
     }
 
     private String searchWhois(String regex) {

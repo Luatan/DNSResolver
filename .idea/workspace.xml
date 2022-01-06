@@ -9,14 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed version">
-      <change afterPath="$PROJECT_DIR$/resources/icons/loading_duck.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/icons/reload_64x64.png" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added missing srv Record">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/Ip_api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/FileStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,41 +209,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00118" summary="changed classes to use the new Records">
-      <created>1635551872958</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1635551872958</updated>
-    </task>
-    <task id="LOCAL-00119" summary="changes to consturctor">
-      <created>1635620681820</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1635620681820</updated>
-    </task>
-    <task id="LOCAL-00120" summary="added .gg extension">
-      <created>1635714294310</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1635714294311</updated>
-    </task>
-    <task id="LOCAL-00121" summary="removed errors">
-      <created>1635714323492</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1635714323492</updated>
-    </task>
-    <task id="LOCAL-00122" summary="improved api and whois calls">
-      <created>1635715870859</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1635715870859</updated>
     </task>
     <task id="LOCAL-00123" summary="improved api and whois calls">
       <created>1635715898404</created>
@@ -540,7 +518,42 @@
       <option name="project" value="LOCAL" />
       <updated>1640218404450</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="added loading icons">
+      <created>1640460631342</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1640460631342</updated>
+    </task>
+    <task id="LOCAL-00168" summary="changed ux design for dark mode">
+      <created>1640460660277</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1640460660277</updated>
+    </task>
+    <task id="LOCAL-00169" summary="added error handling for tasks">
+      <created>1640465092586</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1640465092587</updated>
+    </task>
+    <task id="LOCAL-00170" summary="added missing srv Record">
+      <created>1640465106060</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1640465106060</updated>
+    </task>
+    <task id="LOCAL-00171" summary="added missing srv Record">
+      <created>1640465193215</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1640465193215</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -568,10 +581,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed bug, where the extension triggers the cache instead of each extension having its own file" />
-    <MESSAGE value="fixed bug, where it would get an error if only 1 nameserver has an IP" />
-    <MESSAGE value="added more settings" />
-    <MESSAGE value="clean up" />
     <MESSAGE value="settings file has now a template" />
     <MESSAGE value="gson license" />
     <MESSAGE value="de host handling and linktext" />
@@ -593,7 +602,11 @@
     <MESSAGE value="fixed whois display link and whoisresult" />
     <MESSAGE value="removed quotation mark from txt records" />
     <MESSAGE value="changed version" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed version" />
+    <MESSAGE value="added loading icons" />
+    <MESSAGE value="changed ux design for dark mode" />
+    <MESSAGE value="added error handling for tasks" />
+    <MESSAGE value="added missing srv Record" />
+    <option name="LAST_COMMIT_MESSAGE" value="added missing srv Record" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

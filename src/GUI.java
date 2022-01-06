@@ -3,12 +3,15 @@ import Controller.HistoryController;
 import Model.API.Ip_api;
 import Model.DNS.Records.Record;
 import Model.RecordListCellFactory;
-import Tasks.CacheCleanupTask;
-import Tasks.DnsTask;
-import Tasks.GetWhoisTask;
-import Tasks.LookupTask;
-import Utils.Domain;
-import javafx.animation.*;
+import Model.Tasks.CacheCleanupTask;
+import Model.Tasks.DnsTask;
+import Model.Tasks.GetWhoisTask;
+import Model.Tasks.LookupTask;
+import Model.Utils.Domain;
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
@@ -26,7 +29,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
@@ -131,17 +133,6 @@ public class GUI implements Initializable {
     @FXML
     private void onMinimize() {
         Main.gui.minimize();
-    }
-
-    @FXML
-    private void getOffset(MouseEvent event) { //gets the current X and Y for the scene to be used as offset
-        offsetX = event.getSceneX();
-        offsetY = event.getSceneY();
-    }
-
-    @FXML
-    private void moveWindow(MouseEvent event) { // If Toolbar is dragged the scene gets moved
-        Main.gui.moveWindow(event.getScreenX() - offsetX, event.getScreenY() - offsetY);
     }
 
     @FXML

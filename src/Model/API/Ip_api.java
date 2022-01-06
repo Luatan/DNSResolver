@@ -1,8 +1,8 @@
 package Model.API;
 
 import Model.JsonAdapter;
-import Utils.Config;
-import Utils.FileStructure;
+import Model.Utils.Config;
+import Model.Utils.FileStructure;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

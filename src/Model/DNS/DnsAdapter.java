@@ -1,7 +1,7 @@
 package Model.DNS;
 
 import Model.DNS.Records.*;
-import Utils.Domain;
+import Model.Utils.Domain;
 
 import javax.naming.NameNotFoundException;
 import javax.naming.OperationNotSupportedException;

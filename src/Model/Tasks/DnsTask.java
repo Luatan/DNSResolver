@@ -1,4 +1,4 @@
-package Tasks;
+package Model.Tasks;
 
 import Model.DNS.DnsAdapter;
 import Model.DNS.Records.Record;

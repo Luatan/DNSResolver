@@ -2,8 +2,8 @@ package Controller;
 
 import Model.AppConfig;
 import Model.JsonAdapter;
-import Utils.Config;
-import Utils.FileStructure;
+import Model.Utils.Config;
+import Model.Utils.FileStructure;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.File;

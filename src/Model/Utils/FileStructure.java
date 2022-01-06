@@ -1,4 +1,4 @@
-package Utils;
+package Model.Utils;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;

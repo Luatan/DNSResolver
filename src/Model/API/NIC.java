@@ -9,7 +9,7 @@ import java.util.List;
 
 public class NIC extends API {
     private final String API_URL = "https://rdap.nic.ch/domain/";
-    private final String RESPONSE;
+    private final String response;
     private final List<String> event;
     private final List<String> resNSDomain;
     private final List<String> resNSIP;
@@ -22,13 +22,13 @@ public class NIC extends API {
         event = new ArrayList<>();
         resNSDomain = new ArrayList<>();
         resNSIP = new ArrayList<>();
-        RESPONSE = request(API_URL + domain);
+        response = request(API_URL + domain);
     }
 
     public List<String> getOutput() {
         //Get Whole Object which icludes all Arrays
-        if (RESPONSE != null && responseCode == 200) {
-            JSONObject jsonObj = new JSONObject(RESPONSE);
+        if (response != null && responseCode == 200) {
+            JSONObject jsonObj = new JSONObject(response);
 
             //get Domain name
             resDomain = jsonObj.getString("ldhName");

@@ -1,24 +1,24 @@
 package Model;
 
 public class AppConfig {
-    private boolean ShowEmptyRecords;
+    private boolean showEmptyRecords;
     private boolean darkmode;
     private final boolean cache;
     private final int cacheTime;
 
     public AppConfig(boolean showEmptyRecords, boolean darkmode, boolean cache, int cacheTime) {
-        ShowEmptyRecords = showEmptyRecords;
+        this.showEmptyRecords = showEmptyRecords;
         this.darkmode = darkmode;
         this.cache = cache;
         this.cacheTime = cacheTime;
     }
 
     public boolean isShowEmptyRecords() {
-        return ShowEmptyRecords;
+        return showEmptyRecords;
     }
 
     public void setShowEmptyRecords(boolean showEmptyRecords) {
-        ShowEmptyRecords = showEmptyRecords;
+        this.showEmptyRecords = showEmptyRecords;
     }
 
     public boolean isDarkmode() {
@@ -40,7 +40,7 @@ public class AppConfig {
     @Override
     public String toString() {
         return "AppConfig{" +
-                "ShowEmptyRecords=" + ShowEmptyRecords +
+                "ShowEmptyRecords=" + showEmptyRecords +
                 ", darkmode=" + darkmode +
                 ", cache=" + cache +
                 ", cacheTime=" + cacheTime +

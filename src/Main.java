@@ -1,5 +1,5 @@
 import Controller.GUIController;
-import Utils.Config;
+import Model.Utils.Config;
 
 public class Main {
     public static GUIController gui;

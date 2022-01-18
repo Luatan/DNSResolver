@@ -1,7 +1,5 @@
 package Model.Utils;
 
-import Model.JsonAdapter;
-
 import java.io.File;
 import java.util.*;
 

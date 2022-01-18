@@ -1,8 +1,8 @@
 package Model.Tasks;
 
 import Model.API.NIC;
-import Model.JsonAdapter;
-import Model.Whois;
+import Model.Utils.JsonAdapter;
+import Model.Utils.Whois;
 import Model.Utils.Config;
 import Model.Utils.Domain;
 import Model.Utils.FileStructure;

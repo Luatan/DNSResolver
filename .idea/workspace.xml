@@ -9,27 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added missing srv Record">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController">
+      <change afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisServerSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/Ip_api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/NIC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/JsonAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/LookupTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Domain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/FileStructure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Whois.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +134,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Model.*" />
+          <option name="PATTERN" value="Model.Utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -209,13 +195,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00123" summary="improved api and whois calls">
-      <created>1635715898404</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1635715898405</updated>
     </task>
     <task id="LOCAL-00124" summary="gui improvements and redesign to be more flexible">
       <created>1637109992816</created>
@@ -553,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640465193215</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController">
+      <created>1641490361556</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1641490361556</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -581,7 +567,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="settings file has now a template" />
     <MESSAGE value="gson license" />
     <MESSAGE value="de host handling and linktext" />
     <MESSAGE value="remove spaces before query" />
@@ -606,7 +591,8 @@
     <MESSAGE value="changed ux design for dark mode" />
     <MESSAGE value="added error handling for tasks" />
     <MESSAGE value="added missing srv Record" />
-    <option name="LAST_COMMIT_MESSAGE" value="added missing srv Record" />
+    <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
+    <option name="LAST_COMMIT_MESSAGE" value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

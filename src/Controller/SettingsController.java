@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.AppConfig;
-import Model.JsonAdapter;
+import Model.Utils.JsonAdapter;
 import Model.Utils.Config;
 import Model.Utils.FileStructure;
 import com.google.gson.JsonSyntaxException;

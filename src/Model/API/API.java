@@ -7,6 +7,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class API {
     public Headers responseHeaders;
@@ -17,7 +18,7 @@ public abstract class API {
 
         Request request = new Request.Builder().url(url).build();
         try (Response response = client.newCall(request).execute()) {
-            String res = response.body().string();
+            String res = Objects.requireNonNull(response.body()).string();
             responseHeaders = response.headers();
             responseCode = response.code();
             if (!res.equals("")) {

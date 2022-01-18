@@ -2,7 +2,7 @@ import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
 import Model.DNS.Records.Record;
-import Model.RecordListCellFactory;
+import Model.Utils.RecordListCellFactory;
 import Model.Tasks.CacheCleanupTask;
 import Model.Tasks.DnsTask;
 import Model.Tasks.GetWhoisTask;
@@ -68,10 +68,6 @@ public class GUI implements Initializable {
     ImageView whoisLoading;
     @FXML
     ImageView loading_duck;
-
-    // used for calaculating the offset to move the Window
-    private double offsetX;
-    private double offsetY;
 
     //History history = new History(); // init History cache
     private final HistoryController historyController = new HistoryController();

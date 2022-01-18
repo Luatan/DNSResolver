@@ -1,4 +1,4 @@
-package Model;
+package Model.Utils;
 
 import Model.DNS.DnsAdapter;
 import javafx.geometry.Insets;

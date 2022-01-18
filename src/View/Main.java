@@ -1,3 +1,5 @@
+package View;
+
 import Controller.GUIController;
 import Model.Utils.Config;
 
@@ -9,7 +11,7 @@ public class Main {
         Config.createHistoryConfig();
         Config.createSettingsConfig();
 
-        //launch GUI
+        //launch View.GUI
         gui = new GUIController();
         gui.work();
     }

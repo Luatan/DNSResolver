@@ -9,10 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="moved files to specific packages">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Caching/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Caching/Cache.java" afterDir="false" />
-    </list>
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="message when removing files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +109,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="View.Main" />
       <module name="DNSResolver" />
       <option name="PROGRAM_PARAMETERS" value="-Dsun.net.inetaddr.ttl=0" />
       <extension name="coverage">
@@ -191,13 +188,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00126" summary="changed structure and improved registrar detection">
-      <created>1637111359535</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1637111359535</updated>
     </task>
     <task id="LOCAL-00127" summary="modifications for gui and registrar calls">
       <created>1637145388246</created>
@@ -535,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642545336754</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="message when removing files">
+      <created>1642545787920</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1642545787920</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -563,7 +560,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove spaces before query" />
     <MESSAGE value="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon" />
     <MESSAGE value="renamed package to luatan" />
     <MESSAGE value="renamed variables and optimized the setnameserver method" />
@@ -588,7 +584,8 @@
     <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
     <MESSAGE value="moved files" />
     <MESSAGE value="moved files to specific packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved files to specific packages" />
+    <MESSAGE value="message when removing files" />
+    <option name="LAST_COMMIT_MESSAGE" value="message when removing files" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

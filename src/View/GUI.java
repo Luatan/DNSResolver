@@ -1,8 +1,9 @@
+package View;
+
 import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
 import Model.DNS.Records.Record;
-import Model.Utils.RecordListCellFactory;
 import Model.Tasks.CacheCleanupTask;
 import Model.Tasks.DnsTask;
 import Model.Tasks.GetWhoisTask;
@@ -282,7 +283,7 @@ public class GUI implements Initializable {
                 }
             }
         } else {
-            for (TextField tf:nsTf) {
+            for (TextField tf : nsTf) {
                 tf.clear();
             }
         }
@@ -354,7 +355,6 @@ public class GUI implements Initializable {
         ipTf.textProperty().bind(lookup.messageProperty());
         new Thread(lookup).start();
     }
-
 
 
     private void getWhois(String host) {

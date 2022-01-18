@@ -24,6 +24,8 @@ public abstract class Cache {
             try {
                 if (!Files.deleteIfExists(Paths.get(cacheFile.getAbsolutePath()))) {
                     System.err.println("Cache File" + cacheFile.getName() + "could not be deleted");
+                } else {
+                    System.out.println("removed: " + cacheFile.getName());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

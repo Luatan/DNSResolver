@@ -1,22 +1,20 @@
 package Model.Utils;
 
-import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Config {
     public static boolean CACHING = true;
-    public static int CACHE_TIME_TO_LIVE = 20;
-    public static final String CACHE_FILES = "cache/";
+    public static int WHOIS_DATA_CACHE_TTL = 120;
+    public static int WHOIS_EXT_CACHE_TTL = 5184000;
+    public static final String WHOIS_CACHE = "cache/whois/";
+    public static final String WHOIS_EXT_CACHE = "cache/ext/";
     public static final String WHOIS_CONF_FILE = "config/whois_servers.json";
     public static final String SETTINGS_CONF_FILE = "config/settings.json";
     public static final String HISTORY_LOG_FILE = "logs/history.json";
     public static final String IP_API_LOG_FILE = "logs/IP_API_req.json";
-
-    public static void createWhoisConfig() {
-        if (!FileStructure.fileExists(WHOIS_CONF_FILE)){
-            FileStructure.createFileFromPath("config/default_whois.json", WHOIS_CONF_FILE);
-        }
-    }
 
     public static void createHistoryConfig(){
         if (!FileStructure.fileExists(HISTORY_LOG_FILE)) {
@@ -29,21 +27,6 @@ public class Config {
     public static void createSettingsConfig() {
         if (!FileStructure.fileExists(SETTINGS_CONF_FILE)){
             FileStructure.createFileFromPath("config/default_settings.json", SETTINGS_CONF_FILE);
-        }
-    }
-
-    public static void cleanCacheFiles() {
-        File cacheDir = new File(Config.CACHE_FILES);
-        if (!cacheDir.exists()) {
-            return;
-        }
-        try {
-            for (String file:Objects.requireNonNull(cacheDir.list())) {
-                WhoisCache cache = new WhoisCache(file.substring(0, file.indexOf(".tmp")));
-                cache.isValid();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

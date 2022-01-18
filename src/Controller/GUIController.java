@@ -73,7 +73,8 @@ public class GUIController extends Application {
 
             // Set Config Variables
             Config.CACHING = SETTINGS.config.isCache();
-            Config.CACHE_TIME_TO_LIVE = SETTINGS.config.getCacheTime();
+            Config.WHOIS_DATA_CACHE_TTL = SETTINGS.config.getWhois_cache_seconds();
+            Config.WHOIS_EXT_CACHE_TTL = SETTINGS.config.getWhois_ext_cache_days();
         }
     }
 

@@ -9,13 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="moved files">
+      <change afterPath="$PROJECT_DIR$/src/Caching/Cache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Caching/WhoisExtensionCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisServer.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisServerSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/config/default_settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Caching/WhoisDataCache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +46,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fix/ConfigHandling" />
+        <entry key="$PROJECT_DIR$" value="Develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -134,7 +141,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Model.Utils.*" />
+          <option name="PATTERN" value="Caching.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -195,13 +202,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00124" summary="gui improvements and redesign to be more flexible">
-      <created>1637109992816</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1637109992816</updated>
     </task>
     <task id="LOCAL-00125" summary="changed structure">
       <created>1637111336329</created>
@@ -539,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641490361556</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="moved files">
+      <created>1642529232536</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1642529232537</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="gson license" />
     <MESSAGE value="de host handling and linktext" />
     <MESSAGE value="remove spaces before query" />
     <MESSAGE value="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon" />
@@ -592,7 +598,8 @@
     <MESSAGE value="added error handling for tasks" />
     <MESSAGE value="added missing srv Record" />
     <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
+    <MESSAGE value="moved files" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved files" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -605,6 +612,11 @@
         <PinnedItemInfo parentTag="GUI" memberName="originalRecords" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="whoisData" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

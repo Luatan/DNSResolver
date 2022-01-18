@@ -2,5 +2,6 @@
   "ShowEmptyRecords": false,
   "darkmode": false,
   "cache": true,
-  "cacheTime": 120
+  "whois_cache_seconds": 120,
+  "whois_ext_cache_days": 5184000
 }

@@ -8,7 +8,6 @@ public class Main {
         // init config files
         Config.createHistoryConfig();
         Config.createSettingsConfig();
-        Config.createWhoisConfig();
 
         //launch GUI
         gui = new GUIController();

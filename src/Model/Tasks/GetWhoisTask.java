@@ -1,19 +1,12 @@
 package Model.Tasks;
 
+import Caching.WhoisDataCache;
 import Model.API.NIC;
-import Model.Utils.JsonAdapter;
-import Model.Utils.Whois;
-import Model.Utils.Config;
-import Model.Utils.Domain;
-import Model.Utils.FileStructure;
-import Model.Utils.WhoisCache;
-import com.google.gson.reflect.TypeToken;
+import Model.Utils.*;
 import javafx.concurrent.Task;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +14,7 @@ public class GetWhoisTask extends Task<List<String>> {
     private final StringBuilder linkText = new StringBuilder();
     private String host;
     private List<String> res;
-    private WhoisCache cache;
+    private WhoisDataCache cache;
 
 
     public GetWhoisTask(String host) {
@@ -43,11 +36,11 @@ public class GetWhoisTask extends Task<List<String>> {
 
         // Check if this whois is cached
         if (Config.CACHING) {
-            cache = new WhoisCache(host);
+            cache = new WhoisDataCache(host);
 
             if (cache.isCached()) {
                 try {
-                    res = cache.readCacheByLine();
+                    res = cache.readLines();
 
                     setLinkText(" (cached)");
                     updateValue(res);
@@ -72,29 +65,19 @@ public class GetWhoisTask extends Task<List<String>> {
             return res;
         }
 
-        // Read config file
-        Map<String, String> whois_list;
-        try {
-            whois_list = JsonAdapter.HANDLER.fromJson(FileStructure.getReader(Config.WHOIS_CONF_FILE), new TypeToken<Map<String, String>>() {
-            }.getType());
-
-            if (whois_list.containsKey(ext)) {
-                try {
-                    updateValue(setDomainCheckResult(whois_list.get(ext)));
-                    if (Config.CACHING) {
-                        cache.writeCache(res);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        //get Server
+        WhoisServerSearch serverSearch = new WhoisServerSearch();
+        WhoisServer server = serverSearch.search(ext);
+        if (server == null) {
             return res;
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        //update the value
+        updateValue(setDomainCheckResult(server.getWhois()));
+        if (Config.CACHING) {
+            cache.writeCache(res);
         }
         return res;
     }
-
 
     private List<String> setDomainCheckResult(String whoisServer) {
         String host = this.host;
@@ -143,7 +126,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
         StringBuilder sb = new StringBuilder();
 
-        for (String line:res) {
+        for (String line : res) {
             sb.append(line).append("\n");
         }
 

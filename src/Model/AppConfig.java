@@ -4,13 +4,15 @@ public class AppConfig {
     private boolean showEmptyRecords;
     private boolean darkmode;
     private final boolean cache;
-    private final int cacheTime;
+    private final int whois_cache_seconds;
+    private final int whois_ext_cache_days;
 
-    public AppConfig(boolean showEmptyRecords, boolean darkmode, boolean cache, int cacheTime) {
+    public AppConfig(boolean showEmptyRecords, boolean darkmode, boolean cache, int cacheTime, int whois_ext_cache_days) {
         this.showEmptyRecords = showEmptyRecords;
         this.darkmode = darkmode;
         this.cache = cache;
-        this.cacheTime = cacheTime;
+        this.whois_cache_seconds = cacheTime;
+        this.whois_ext_cache_days = whois_ext_cache_days;
     }
 
     public boolean isShowEmptyRecords() {
@@ -33,8 +35,12 @@ public class AppConfig {
         return cache;
     }
 
-    public int getCacheTime() {
-        return cacheTime;
+    public int getWhois_cache_seconds() {
+        return whois_cache_seconds;
+    }
+
+    public int getWhois_ext_cache_days() {
+        return whois_ext_cache_days;
     }
 
     @Override
@@ -43,7 +49,7 @@ public class AppConfig {
                 "ShowEmptyRecords=" + showEmptyRecords +
                 ", darkmode=" + darkmode +
                 ", cache=" + cache +
-                ", cacheTime=" + cacheTime +
+                ", cacheTime=" + whois_cache_seconds +
                 '}';
     }
 }

@@ -1,5 +1,3 @@
-package View;
-
 import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
@@ -9,6 +7,7 @@ import Model.Tasks.DnsTask;
 import Model.Tasks.GetWhoisTask;
 import Model.Tasks.LookupTask;
 import Model.Utils.Domain;
+import View.RecordListCellFactory;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;

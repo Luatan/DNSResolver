@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-View.Main-Class: View.Main
+Main-Class: Main
 

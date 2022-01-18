@@ -1,4 +1,4 @@
-package Model.Utils;
+package Model.Whois;
 
 import org.apache.commons.net.whois.WhoisClient;
 

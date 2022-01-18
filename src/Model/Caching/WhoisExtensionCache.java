@@ -1,9 +1,9 @@
-package Caching;
+package Model.Caching;
 
 import Model.Utils.Config;
 import Model.Utils.FileStructure;
 import Model.Utils.JsonAdapter;
-import Model.Utils.WhoisServer;
+import Model.Whois.WhoisServer;
 
 import java.io.File;
 import java.io.IOException;

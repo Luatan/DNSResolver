@@ -10,19 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="moved files">
-      <change afterPath="$PROJECT_DIR$/src/Caching/Cache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Caching/WhoisExtensionCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/WhoisServerSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/config/default_settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/config/default_settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Caching/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Caching/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Caching/WhoisDataCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Caching/WhoisDataCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Caching/WhoisExtensionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Caching/WhoisExtensionCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Whois.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/WhoisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Caching/WhoisDataCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/WhoisServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois/WhoisServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/WhoisServerSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Whois/WhoisServerSearch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,4 +1,4 @@
-package Caching;
+package Model.Caching;
 
 import Model.Utils.Config;
 

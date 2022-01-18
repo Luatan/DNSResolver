@@ -1,6 +1,6 @@
-package Model.Utils;
+package Model.Whois;
 
-import Caching.WhoisExtensionCache;
+import Model.Caching.WhoisExtensionCache;
 
 import java.io.IOException;
 import java.util.*;

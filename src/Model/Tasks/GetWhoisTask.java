@@ -1,8 +1,11 @@
 package Model.Tasks;
 
-import Caching.WhoisDataCache;
+import Model.Caching.WhoisDataCache;
 import Model.API.NIC;
 import Model.Utils.*;
+import Model.Whois.Whois;
+import Model.Whois.WhoisServer;
+import Model.Whois.WhoisServerSearch;
 import javafx.concurrent.Task;
 
 import java.util.ArrayList;

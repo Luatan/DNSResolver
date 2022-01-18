@@ -1,7 +1,7 @@
 package Model.Tasks;
 
-import Caching.WhoisDataCache;
-import Caching.WhoisExtensionCache;
+import Model.Caching.WhoisDataCache;
+import Model.Caching.WhoisExtensionCache;
 import Model.Utils.Config;
 
 import java.io.File;

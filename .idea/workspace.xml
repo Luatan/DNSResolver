@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="moved files to view Package" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="moved files">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.png" beforeDir="false" afterPath="$PROJECT_DIR$/interface.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +51,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/View/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$USER_HOME$/.jdks/java8_fx_zulu/src.zip!/java/lang/String.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -88,11 +93,11 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config_default" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -188,13 +193,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00128" summary="changed regex">
-      <created>1637148297060</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1637148297060</updated>
     </task>
     <task id="LOCAL-00129" summary="Config Management">
       <created>1637179591918</created>
@@ -532,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642546446057</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="moved files">
+      <created>1642546635063</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1642546635063</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -581,11 +586,11 @@
     <MESSAGE value="added error handling for tasks" />
     <MESSAGE value="added missing srv Record" />
     <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
-    <MESSAGE value="moved files" />
     <MESSAGE value="moved files to specific packages" />
     <MESSAGE value="message when removing files" />
     <MESSAGE value="moved files to view Package" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved files to view Package" />
+    <MESSAGE value="moved files" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved files" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

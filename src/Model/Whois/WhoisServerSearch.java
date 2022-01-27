@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class WhoisServerSearch {
     private final WhoisExtensionCache cache = new WhoisExtensionCache();
@@ -46,10 +47,9 @@ public class WhoisServerSearch {
 
     private void createMap(String ext) {
         System.err.println("REQUEST TO whois.iana.org");
-        List<String> data = whois.getWhois(ext, "whois.iana.org");
-
+        List<String> data = whois.getWhois(ext, "whois.iana.org").stream().filter(d -> !d.isEmpty()).collect(Collectors.toList());
         Pattern pattern = Pattern.compile("(?<key>^[\\w-]+):\\s+(?<value>.*)");
-        for (String elem:data) {
+        for (String elem : data) {
             Matcher matcher = pattern.matcher(elem);
             if (matcher.find()) {
                 String key = matcher.group("key");
@@ -71,19 +71,24 @@ public class WhoisServerSearch {
             String phone;
             String email;
             if (i > 0) {
-                type = Contact.Type.valueOf(tempValues.get("contact").get(i-1).toUpperCase());
-                name = tempValues.get("name").get(i-1);
-                phone = tempValues.get("phone").get(i-1);
-                email = tempValues.get("e-mail").get(i-1);
-            } else  {
+                type = Contact.Type.valueOf(tempValues.get("contact").get(i - 1).toUpperCase());
+                name = tempValues.get("name").get(i - 1);
+                phone = tempValues.get("phone").get(i - 1);
+                email = tempValues.get("e-mail").get(i - 1);
+            } else {
                 name = "";
                 phone = "";
                 email = "";
                 type = Contact.Type.NONE;
             }
             List<String> addresses = new LinkedList<>();
-            for (int j = (((i+1)*3)) -3; j <= ((i+1)*3)-1 ; j++) {
-                addresses.add(tempValues.get("address").get(j));
+            for (int j = (((i + 1) * 3)) - 3; j <= ((i + 1) * 3) - 1; j++) {
+                try {
+                    addresses.add(tempValues.get("address").get(j));
+                } catch (IndexOutOfBoundsException e) {
+                    //shit happens
+                    e.printStackTrace();
+                }
             }
 
             Organisation org = new Organisation(tempValues.get("organisation").get(i), addresses);

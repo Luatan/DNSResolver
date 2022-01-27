@@ -21,9 +21,6 @@ public class Whois {
             e.printStackTrace();
         }
 
-        //remove paragraphs
-        whoisData = whoisData.replaceAll("\\n\\n", "\n");
-
         //remove comments
         whoisData = whoisData.replaceAll("([%#].*[\\S\\s])|(.*REDACTED.*[\\S\\s])|(For more info.[\\S\\s]*)", "").replaceAll("\r", "");
         //split by lines

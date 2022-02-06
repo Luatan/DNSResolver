@@ -1,20 +1,23 @@
 package Model.Tasks;
 
-import Model.Caching.WhoisDataCache;
 import Model.API.NIC;
-import Model.Utils.*;
+import Model.Caching.WhoisDataCache;
+import Model.Utils.Config;
+import Model.Utils.Domain;
 import Model.Whois.Whois;
 import Model.Whois.WhoisServer;
 import Model.Whois.WhoisServerSearch;
 import javafx.concurrent.Task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GetWhoisTask extends Task<List<String>> {
     private final StringBuilder linkText = new StringBuilder();
+    private List<String> regexPreambles = new ArrayList<>(Arrays.asList("registrar", "registrar-name", "organization"));
     private String host;
     private List<String> res;
     private WhoisDataCache cache;
@@ -45,7 +48,11 @@ public class GetWhoisTask extends Task<List<String>> {
                 try {
                     res = cache.readLines();
 
-                    setLinkText(" (cached)");
+                    //set cached sign
+                    setLINKTEXT();
+                    linkText.append(" (cached)");
+                    updateMessage(linkText.toString());
+
                     updateValue(res);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -103,25 +110,24 @@ public class GetWhoisTask extends Task<List<String>> {
 
     private void setLINKTEXT() {
         linkText.append(this.host);
-        String registrar = searchWhois("(?:registrar[:\\n]|registrar-name[:])[\\W\\r]+(?:Organization:)?(?:[\\W\\r]+)?(.+)");
+        String registrar = searchWhois(buildRegex());
         if (registrar.length() > 0) {
             linkText.append(" - ").append(registrar);
         }
         updateMessage(linkText.toString());
     }
 
-    private void setLinkText(String message) {
-        setLINKTEXT();
-        if (message != null && !message.isEmpty()) {
-            linkText.append(message);
-        }
-
-        updateMessage(linkText.toString());
+    private String buildRegex() {
+        // join all possible staring Strings to a preamble
+        String preamble = "(?:" + String.join("|", regexPreambles) + ")";
+        //handles spaces and stuff, also gets the result in the registrar group
+        String regexValue = "(?:[:\\n])(?:[:\\n\\W\\r]+)?(?<registrar>.+)";
+        return "^" + preamble + regexValue;
     }
 
     private String searchWhois(String regex) {
-        Pattern input = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Pattern de = Pattern.compile("(?:Status:)\\W(connect)", Pattern.CASE_INSENSITIVE);
+        Pattern input = Pattern.compile(regex, Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);
+        Pattern de = Pattern.compile("(?:Status:)\\W(connect)", Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);
 
         if (res.isEmpty()) {
             return "";
@@ -130,7 +136,7 @@ public class GetWhoisTask extends Task<List<String>> {
         StringBuilder sb = new StringBuilder();
 
         for (String line : res) {
-            sb.append(line).append("\n");
+            sb.append(line.trim()).append("\n");
         }
 
         Matcher matcher = input.matcher(sb.toString());
@@ -142,9 +148,7 @@ public class GetWhoisTask extends Task<List<String>> {
         if (matcher.find()) {
             return "Registred";
         }
-
-
-        return "Free";
+        return "";
     }
 
 }

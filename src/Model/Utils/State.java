@@ -1,5 +1,5 @@
 package Model.Utils;
 
 public enum State {
-    WHOIS, DNS, IP
+    WHOIS, DNS, IP, NONE
 }

@@ -362,7 +362,7 @@
             </image>
          </ImageView>
          <Region HBox.hgrow="SOMETIMES" />
-            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#closeList" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Back" visible="false">
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#defaultList" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Back" visible="false">
                 <font>
                     <Font name="Roboto Light" size="12.0" />
                 </font>

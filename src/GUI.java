@@ -13,7 +13,6 @@ import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -43,13 +42,16 @@ import java.util.*;
 
 public class GUI implements Initializable {
     //initialize Variables for Domain Check
-    private static ObservableList<String> listViewRecordsModel;
-    //History history = new History(); // init History cache
-    private final HistoryController historyController = new HistoryController();
-    private final SimpleObjectProperty<State> stateProperty = new SimpleObjectProperty<>(State.DNS);
-    //List of types to choose
-    private final ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
+    private final ObservableList<String> dnsRecordList = FXCollections.observableArrayList();
     private final ObservableList<String> whoisInfo = FXCollections.observableArrayList();
+
+    //State Property
+    private final SimpleObjectProperty<State> stateProperty = new SimpleObjectProperty<>(State.NONE);
+
+    // history
+    private final HistoryController historyController = new HistoryController();
+    //List of types to choose in Combobox
+    private final ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
     private final List<TextField> nsTf = new LinkedList<>();
     @FXML
     Label hostnameLbl;
@@ -85,9 +87,8 @@ public class GUI implements Initializable {
         rotateImage(whoisLoading);
 
         //init listview
-        listViewRecordsModel = FXCollections.observableArrayList();
         listViewRecords.setCellFactory(e -> new RecordListCellFactory());
-        listViewRecords.setItems(listViewRecordsModel);
+//        listViewRecords.setItems(dnsRecordList);
 
         //init NS TextFields
         nsTf.add(ns1Lbl);
@@ -107,9 +108,12 @@ public class GUI implements Initializable {
         BooleanBinding enableSearchbtn = queryTf.textProperty().isNotEmpty();
         startBtn.disableProperty().bind(enableSearchbtn.not());
 
-        //prevent empty copy
-        BooleanBinding enableCopybtn = Bindings.size(listViewRecords.itemsProperty().get()).greaterThan(0);
+        //prevent empty copy; only show if State is not NONE
+        BooleanBinding enableCopybtn = stateProperty.isNotEqualTo(State.NONE);
         copyBtn.visibleProperty().bind(enableCopybtn);
+
+        //make textfield not clickable when IP State is active
+        ipTf.mouseTransparentProperty().bind(stateProperty.isEqualTo(State.IP));
 
         //Start cache cleanup Task after startup
         CacheCleanupTask cachClean = new CacheCleanupTask();
@@ -124,7 +128,6 @@ public class GUI implements Initializable {
         rotate.setToAngle(360);
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.play();
-
     }
 
     @FXML
@@ -154,10 +157,14 @@ public class GUI implements Initializable {
         queryTf.setText(queryTf.getText().trim());
 
         //Clean up
-        closeList();
+        defaultList();
+        //unbind
         ipTf.textProperty().unbind();
         hostTf.textProperty().unbind();
-        listViewRecordsModel.clear();
+
+        //clear lists
+        listViewRecords.getItems().clear();
+        dnsRecordList.clear();
         whoisInfo.clear();
         nsTf.forEach(TextField::clear);
 
@@ -245,20 +252,18 @@ public class GUI implements Initializable {
 
     private void openList(List<String> list, State state) {
         //close the old list before opening a new one
-        closeList();
+//        closeList();
+        listViewRecords.getItems().removeAll();
         ObservableList<String> observableList = FXCollections.observableArrayList();
         observableList.addAll(list);
         listViewRecords.setItems(observableList);
-        backBtn.setVisible(true);
+        backBtn.setVisible(state != State.DNS);
         stateProperty.setValue(state);
     }
 
     @FXML
-    private void closeList() {
-        listViewRecords.getItems().removeAll();
-        listViewRecords.setItems(listViewRecordsModel);
-        backBtn.setVisible(false);
-        stateProperty.setValue(State.DNS);
+    private void defaultList() {
+        openList(dnsRecordList, State.DNS);
     }
 
     @FXML
@@ -304,7 +309,7 @@ public class GUI implements Initializable {
         ipTf.clear();
 
         if (!queryTf.getText().isEmpty()) {
-            listViewRecordsModel.clear();
+            dnsRecordList.clear();
 
             DnsTask dnsLookup = new DnsTask(host, type);
             loading_duck.visibleProperty().bind(dnsLookup.runningProperty().and(stateProperty.isEqualTo(State.DNS)));
@@ -312,12 +317,13 @@ public class GUI implements Initializable {
                 dnsLookup.showEmpty(true);
             }
             dnsLookup.setOnSucceeded(e -> {
-                listViewRecordsModel.addAll(dnsLookup.getValue());
+                dnsRecordList.addAll(dnsLookup.getValue());
                 try {
                     nameServerDisplay(dnsLookup.getNameservers());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                openList(dnsRecordList, State.DNS);
             });
 
             //error handling, if the task fails

@@ -9,15 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="bug fixes and added States">
-      <change afterPath="$PROJECT_DIR$/resources/icons/chevron.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed the ui and added input for DNS-Server">
       <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/icons/moon_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/icons/moon_light.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_dark.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,13 +190,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00132" summary="json management">
-      <created>1637531811930</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1637531811930</updated>
     </task>
     <task id="LOCAL-00133" summary="updated readme">
       <created>1637533335183</created>
@@ -541,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644112084365</updated>
     </task>
-    <option name="localTasksCounter" value="181" />
+    <task id="LOCAL-00181" summary="changed the ui and added input for DNS-Server">
+      <created>1644183179808</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1644183179808</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -569,7 +562,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed bug, where the programm cannot start because the file structure is not created properly" />
     <MESSAGE value="moved out of package again :(" />
     <MESSAGE value="renamed cellfactory" />
     <MESSAGE value="added new css File" />
@@ -594,7 +586,8 @@
     <MESSAGE value="update README and LICENSE" />
     <MESSAGE value="improvements" />
     <MESSAGE value="bug fixes and added States" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fixes and added States" />
+    <MESSAGE value="changed the ui and added input for DNS-Server" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed the ui and added input for DNS-Server" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

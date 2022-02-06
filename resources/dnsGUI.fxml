@@ -219,7 +219,7 @@
                     </TextField>
                 </graphic>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="-Infinity" text="IP-Adress:" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" minWidth="-Infinity" text="IP-Address:" textAlignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>

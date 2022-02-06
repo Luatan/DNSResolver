@@ -25,6 +25,7 @@
     -fx-text-fill: #393E41;
     -fx-text-fill: white;
     -fx-cursor: pointer;
+    -fx-background-color: #393E41;
 }
 
 #input {

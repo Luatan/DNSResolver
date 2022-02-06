@@ -12,17 +12,19 @@ import java.util.List;
 public class DnsTask extends Task<List<String>> {
     long startTime = System.currentTimeMillis();
     private final String host;
+    private final String dnsServer;
     private String type = "*";
     private List<String> result;
     private boolean showEmpty = false;
     private ObservableList<Record> nameservers;
 
-    public DnsTask(String host) {
+    public DnsTask(String host, String dnsServer) {
         this.host = host;
+        this.dnsServer = dnsServer;
     }
 
-    public DnsTask(String host, String type) {
-        this(host);
+    public DnsTask(String host, String type, String dnsServer) {
+        this(host, dnsServer);
         setType(type);
     }
 
@@ -46,7 +48,7 @@ public class DnsTask extends Task<List<String>> {
     @Override
     protected List<String> call() {
         result = new ArrayList<>();
-        DnsAdapter query = new DnsAdapter(host, type);
+        DnsAdapter query = new DnsAdapter(host, type, dnsServer);
 
         recordPutter(query.getRecords("MSG"), "MSG");
         if (type.equals("*")) {

@@ -9,10 +9,7 @@ import Model.Tasks.LookupTask;
 import Model.Utils.Domain;
 import Model.Utils.State;
 import View.RecordListCellFactory;
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
+import javafx.animation.*;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -81,14 +78,23 @@ public class GUI implements Initializable {
     ImageView whoisLoading;
     @FXML
     ImageView loading_duck;
+    @FXML
+    HBox tools;
+    @FXML
+    ImageView tools_chevron;
+    @FXML
+    TextField dnsServerTf;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         rotateImage(whoisLoading);
 
+
+        //install tooltip for tools chevron
+        Tooltip.install(tools_chevron, new Tooltip("click here for advanced settings"));
+
         //init listview
         listViewRecords.setCellFactory(e -> new RecordListCellFactory());
-//        listViewRecords.setItems(dnsRecordList);
 
         //init NS TextFields
         nsTf.add(ns1Lbl);
@@ -134,6 +140,25 @@ public class GUI implements Initializable {
     private void onClose() {
         historyController.write();
         Main.gui.exit();
+    }
+
+    @FXML
+    private void toggleTools() {
+        boolean isVisible = !tools.visibleProperty().get();
+
+        if (!isVisible) {
+            //clear tf if closed
+            dnsServerTf.clear();
+            //animation
+            KeyFrame close1 = new KeyFrame(Duration.millis(0), new KeyValue(tools.prefHeightProperty(), tools.getHeight()), new KeyValue(tools.visibleProperty(), false), new KeyValue(tools_chevron.rotateProperty(), 90));
+            KeyFrame close2 = new KeyFrame(Duration.millis(200), new KeyValue(tools.prefHeightProperty(), 0), new KeyValue(tools.visibleProperty(), false), new KeyValue(tools_chevron.rotateProperty(), 0));
+            new Timeline(close1, close2).play();
+        } else {
+            //animation
+            KeyFrame open1 = new KeyFrame(Duration.millis(0), new KeyValue(tools.prefHeightProperty(), 0));
+            KeyFrame open2 = new KeyFrame(Duration.millis(200), new KeyValue(tools.prefHeightProperty(), 34), new KeyValue(tools.visibleProperty(), true), new KeyValue(tools_chevron.rotateProperty(), 90));
+            new Timeline(open1, open2).play();
+        }
     }
 
     @FXML
@@ -311,7 +336,7 @@ public class GUI implements Initializable {
         if (!queryTf.getText().isEmpty()) {
             dnsRecordList.clear();
 
-            DnsTask dnsLookup = new DnsTask(host, type);
+            DnsTask dnsLookup = new DnsTask(host, type, dnsServerTf.getText());
             loading_duck.visibleProperty().bind(dnsLookup.runningProperty().and(stateProperty.isEqualTo(State.DNS)));
             if (showRecordsTickBox.isSelected()) {
                 dnsLookup.showEmpty(true);

@@ -3,9 +3,7 @@ package Model.DNS;
 import Model.DNS.Records.*;
 import Model.Utils.Domain;
 
-import javax.naming.NameNotFoundException;
-import javax.naming.OperationNotSupportedException;
-import javax.naming.ServiceUnavailableException;
+import javax.naming.*;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
@@ -14,17 +12,34 @@ import java.net.UnknownHostException;
 import java.util.*;
 
 public class DnsAdapter {
-    private String hostname;
-    private final List<Record> records;
     public static final String[] RECORD_TYPES = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
+    private final List<Record> records;
+    private InitialDirContext iDirC;
+    private String hostname;
 
-    public DnsAdapter(String domain, String type) {
+    public DnsAdapter(String domain, String type, String dnsServer) {
+        //set environment for nameresolution
+        Hashtable<String, String> dnsEnv = new Hashtable<>();
+        dnsEnv.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
+        dnsEnv.put("com.sun.jndi.dns.timeout.initial", "2000");
+        dnsEnv.put("com.sun.jndi.dns.timeout.retries", "1");
+
+        //set DNS Server which will be queried. leave empty, if it should select automatically
+        dnsEnv.put("java.naming.provider.url", "dns://" + dnsServer);
+
+        try {
+            iDirC = new InitialDirContext(dnsEnv);
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+
         records = new LinkedList<>();
         setHost(domain);
         setNameServer();
-        if (!type.equals("NS")){
+        if (!type.equals("NS")) {
             setRecords(type);
         }
+
     }
 
     private void setHost(String host) {
@@ -60,7 +75,7 @@ public class DnsAdapter {
 
         try {
             // get all the DNS records for hostname
-            Attributes attributes = new InitialDirContext().getAttributes("dns:/" + hostname, new String[]{type});
+            Attributes attributes = iDirC.getAttributes(hostname, new String[]{type});
             if (type.matches("[*]")) {
                 setAllRecords();
             } else {
@@ -81,7 +96,12 @@ public class DnsAdapter {
             addMessage("Service unavailable for " + hostname);
         } catch (OperationNotSupportedException e) {
             addMessage("could not resolve " + hostname);
+        } catch (CommunicationException e) {
+            addMessage(e.getMessage() + " - timeout");
+        } catch (ConfigurationException e) {
+            addMessage(e.getMessage());
         } catch (Exception e) {
+            addMessage("an Unknown Error occured");
             e.printStackTrace();
         }
     }
@@ -142,7 +162,7 @@ public class DnsAdapter {
 
     private void addMessage(String message) {
         for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getType().equals("MSG")){
+            if (records.get(i).getType().equals("MSG")) {
                 records.remove(i);
             }
         }

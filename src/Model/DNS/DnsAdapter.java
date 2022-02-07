@@ -20,12 +20,12 @@ public class DnsAdapter {
     public DnsAdapter(String domain, String type, String dnsServer) {
         //set environment for nameresolution
         Hashtable<String, String> dnsEnv = new Hashtable<>();
-        dnsEnv.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
+        dnsEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
         dnsEnv.put("com.sun.jndi.dns.timeout.initial", "2000");
         dnsEnv.put("com.sun.jndi.dns.timeout.retries", "1");
 
         //set DNS Server which will be queried. leave empty, if it should select automatically
-        dnsEnv.put("java.naming.provider.url", "dns://" + dnsServer);
+        dnsEnv.put(Context.PROVIDER_URL, "dns://" + dnsServer);
 
         try {
             iDirC = new InitialDirContext(dnsEnv);
@@ -39,7 +39,6 @@ public class DnsAdapter {
         if (!type.equals("NS")) {
             setRecords(type);
         }
-
     }
 
     private void setHost(String host) {

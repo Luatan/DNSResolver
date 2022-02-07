@@ -9,8 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed the ui and added input for DNS-Server">
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed typo">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,13 +193,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00133" summary="updated readme">
-      <created>1637533335183</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1637533335183</updated>
     </task>
     <task id="LOCAL-00134" summary="corrected comment error">
       <created>1637533348023</created>
@@ -534,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644183179808</updated>
     </task>
-    <option name="localTasksCounter" value="182" />
+    <task id="LOCAL-00182" summary="fixed typo">
+      <created>1644183538986</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1644183538986</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -562,7 +565,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved out of package again :(" />
     <MESSAGE value="renamed cellfactory" />
     <MESSAGE value="added new css File" />
     <MESSAGE value="fixed bug with marking the status of whois with colors" />
@@ -587,7 +589,8 @@
     <MESSAGE value="improvements" />
     <MESSAGE value="bug fixes and added States" />
     <MESSAGE value="changed the ui and added input for DNS-Server" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the ui and added input for DNS-Server" />
+    <MESSAGE value="fixed typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed typo" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

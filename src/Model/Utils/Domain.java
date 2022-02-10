@@ -1,6 +1,12 @@
 package Model.Utils;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,30 +22,56 @@ public class Domain {
         return v4.find() || v6.find();
     }
 
-
-    public static String getMainDomain(String host) {
-        String[] partDomain = host.replace(" ", "").split("[.]");
-        return partDomain[partDomain.length - 2] + "." + partDomain[partDomain.length - 1].toLowerCase();
-    }
-
     public static String getTimeFromSeconds(int seconds) {
         int days, hours, mins;
 
-        mins = (seconds - seconds%60)/60;
-        hours = (mins - mins%60)/60;
-        mins -= mins - mins%60;
-        days = (hours - hours%24)/24;
-        hours -= hours - hours%24;
+        mins = (seconds - seconds % 60) / 60;
+        hours = (mins - mins % 60) / 60;
+        mins -= mins - mins % 60;
+        days = (hours - hours % 24) / 24;
+        hours -= hours - hours % 24;
 
         return ((days > 0) ? days + " days" : "") + ((hours > 0) ? hours + " hours" : "") + ((hours > 0 && mins > 0) ? " " : "") + ((mins > 0) ? mins + " mins" : "");
     }
 
-    public static String getExtension(String hostname) {
-        String[] host = hostname.split("[.]");
-        return host[host.length - 1].toLowerCase();
+    public static String getMainDomain(String hostname) {
+        String[] host = hostname.trim().split("[.]");
+        String extension = getExtension(hostname);
+        return host[host.length - (extension.substring(1).split("[.]").length + 1)] + extension;
     }
 
-    public static String trimDomain(String domain){
+    public static String getExtension(String hostname) {
+        String[] host = hostname.trim().split("[.]");
+        if (host.length > 2) {
+            StringTokenizer tokenizer = new StringTokenizer(getCcTLD(), ",");
+            String ccTLD = "." + host[host.length - 2] + "." + host[host.length - 1];
+            while (tokenizer.hasMoreTokens()) {
+                String token = tokenizer.nextToken().trim();
+                if (ccTLD.equalsIgnoreCase(token)) {
+                    return token;
+                }
+            }
+        }
+        return "." + host[host.length - 1].toLowerCase();
+    }
+
+    public static String getCcTLD() {
+        StringBuilder tlds = new StringBuilder();
+        try (InputStreamReader streamReader =
+                     new InputStreamReader(Objects.requireNonNull(Domain.class.getClassLoader().getResourceAsStream("assets/ccTLD.txt")), StandardCharsets.UTF_8);
+             BufferedReader reader = new BufferedReader(streamReader)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                tlds.append(line).append(",");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return tlds.toString();
+    }
+
+    public static String trimDomain(String domain) {
         return java.net.IDN.toASCII(domain.toLowerCase().trim());
     }
 }

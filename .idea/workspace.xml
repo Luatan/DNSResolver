@@ -9,11 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed typo">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="added assets to gitignore&#10;Context vars for environement vars">
+      <change afterPath="$PROJECT_DIR$/resources/assets/ccTLD.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Domain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,11 +92,11 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\assets" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config_default" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -193,13 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00134" summary="corrected comment error">
-      <created>1637533348023</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1637533348023</updated>
     </task>
     <task id="LOCAL-00135" summary="fixed bug, where the whois is not displayed, if the event is deletion">
       <created>1637691014156</created>
@@ -537,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644183538986</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="added assets to gitignore&#10;Context vars for environement vars">
+      <created>1644270305585</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1644270305585</updated>
+    </task>
+    <option name="localTasksCounter" value="184" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -565,7 +564,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renamed cellfactory" />
     <MESSAGE value="added new css File" />
     <MESSAGE value="fixed bug with marking the status of whois with colors" />
     <MESSAGE value="private range bug found" />
@@ -590,7 +588,8 @@
     <MESSAGE value="bug fixes and added States" />
     <MESSAGE value="changed the ui and added input for DNS-Server" />
     <MESSAGE value="fixed typo" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed typo" />
+    <MESSAGE value="added assets to gitignore&#10;Context vars for environement vars" />
+    <option name="LAST_COMMIT_MESSAGE" value="added assets to gitignore&#10;Context vars for environement vars" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

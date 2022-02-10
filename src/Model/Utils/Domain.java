@@ -57,9 +57,7 @@ public class Domain {
 
     public static String getCcTLD() {
         StringBuilder tlds = new StringBuilder();
-        try (InputStreamReader streamReader =
-                     new InputStreamReader(Objects.requireNonNull(Domain.class.getClassLoader().getResourceAsStream("assets/ccTLD.txt")), StandardCharsets.UTF_8);
-             BufferedReader reader = new BufferedReader(streamReader)) {
+        try (InputStreamReader streamReader = new InputStreamReader(Objects.requireNonNull(Domain.class.getClassLoader().getResourceAsStream("assets/ccTLD.txt")), StandardCharsets.UTF_8); BufferedReader reader = new BufferedReader(streamReader)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 tlds.append(line).append(",");

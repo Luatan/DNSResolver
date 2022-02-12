@@ -14,6 +14,12 @@ public class WhoisServerSearch {
     private final Map<String, List<String>> tempValues = new LinkedHashMap<>();
 
     public WhoisServer search(String ext) {
+        //check if it is a ccTLD with multiple parts
+        String[] ext_parts = ext.split("[.]");
+        if (ext_parts.length > 1) {
+            ext = ext_parts[ext_parts.length-1];
+        }
+
         if (checkCache(ext)) {
             try {
                 return cache.load(ext);
@@ -24,7 +30,9 @@ public class WhoisServerSearch {
 
         //create dataset
         createMap(ext);
-        if (tempValues.isEmpty()) {
+
+        // dont return anything, if essential values are missing
+        if (tempValues.isEmpty() || !tempValues.containsKey("whois")) {
             return null;
         }
         // init and declare Server data

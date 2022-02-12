@@ -63,7 +63,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
         String ext = Domain.getExtension(host);
         // Handles CH and LI Method of getting the whois (whois server is not available)
-        if (ext.equals("ch") | ext.equals("li")) {
+        if (ext.equals(".ch") | ext.equals(".li")) {
             try {
                 updateValue(getWHOIS_NIC(host));
                 if (Config.CACHING) {
@@ -92,7 +92,7 @@ public class GetWhoisTask extends Task<List<String>> {
     private List<String> setDomainCheckResult(String whoisServer) {
         String host = this.host;
         // Handles DE Domains (special params for full info)
-        if (Domain.getExtension(this.host).equals("de")) {
+        if (Domain.getExtension(this.host).equals(".de")) {
             host = "-T dn " + this.host;
         }
 

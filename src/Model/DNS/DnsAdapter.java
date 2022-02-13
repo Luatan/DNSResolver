@@ -63,11 +63,6 @@ public class DnsAdapter {
     }
 
     private void setRecords(String type) {
-        if (type.matches("PTR")) {
-            createRecord(getPTRRecord(hostname), type);
-            return;
-        }
-
         if (hostname == null || hostname.equals("")) {
             return;
         }

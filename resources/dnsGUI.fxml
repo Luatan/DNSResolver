@@ -339,14 +339,6 @@
    <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
       <children>
          <ListView id="recordList" fx:id="listViewRecords" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="scrollTopBtn" cache="true" mnemonicParsing="false" opacity="0.6" style="-fx-cursor: hand;" text="Top" visible="false" StackPane.alignment="BOTTOM_RIGHT">
-                <font>
-                    <Font name="Roboto Light" size="13.0" />
-                </font>
-            <StackPane.margin>
-               <Insets bottom="10.0" right="20.0" />
-            </StackPane.margin>
-            </Button>
              <Button fx:id="copyBtn" mnemonicParsing="false" onAction="#copyRecords" opacity="0.6" style="-fx-cursor: hand;" text="Copy" StackPane.alignment="TOP_RIGHT">
                  <font>
                      <Font name="Roboto Light" size="12.0" />

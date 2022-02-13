@@ -1,6 +1,7 @@
 import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
+import Model.DNS.DnsAdapter;
 import Model.DNS.Records.Record;
 import Model.Tasks.CacheCleanupTask;
 import Model.Tasks.DnsTask;
@@ -41,54 +42,41 @@ public class GUI implements Initializable {
     //initialize Variables for Domain Check
     private final ObservableList<String> dnsRecordList = FXCollections.observableArrayList();
     private final ObservableList<String> whoisInfo = FXCollections.observableArrayList();
-
     //State Property
     private final SimpleObjectProperty<State> stateProperty = new SimpleObjectProperty<>(State.NONE);
-
     // history
     private final HistoryController historyController = new HistoryController();
     //List of types to choose in Combobox
-    private final ObservableList<String> types = FXCollections.observableArrayList("Any", "A", "AAAA", "CNAME", "MX", "NS", "TXT", "SRV", "SOA", "PTR");
+    private final ObservableList<String> types = FXCollections.observableArrayList("Any");
+    //list of the Nameserver TextFields
     private final List<TextField> nsTf = new LinkedList<>();
     @FXML
-    Label hostnameLbl;
+    private Label hostnameLbl, whoisLinkLbl;
     @FXML
-    TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
+    private TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
     @FXML
-    TextField queryTf, ipTf, hostTf;
+    private TextField queryTf, ipTf, hostTf, dnsServerTf;
     @FXML
-    Button copyBtn, startBtn, scrollTopBtn, backBtn;
+    private Button copyBtn, startBtn, backBtn;
     @FXML
-    ComboBox<String> typeComboBox;
+    private ComboBox<String> typeComboBox;
     @FXML
-    Hyperlink whoisHyperLink;
+    private Hyperlink whoisHyperLink;
     @FXML
-    Label whoisLinkLbl;
+    private CheckBox showRecordsTickBox;
     @FXML
-    CheckBox showRecordsTickBox;
+    private ImageView whoisLoading, loading_duck, tools_chevron;
     @FXML
-    ImageView moonImg;
+    private MenuButton historyBtn;
     @FXML
-    MenuButton historyBtn;
+    private ListView<String> listViewRecords;
     @FXML
-    ListView<String> listViewRecords;
-    @FXML
-    HBox WindowMenu;
-    @FXML
-    ImageView whoisLoading;
-    @FXML
-    ImageView loading_duck;
-    @FXML
-    HBox tools;
-    @FXML
-    ImageView tools_chevron;
-    @FXML
-    TextField dnsServerTf;
+    private HBox tools;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        types.addAll(DnsAdapter.RECORD_TYPES);
         rotateImage(whoisLoading);
-
 
         //install tooltip for tools chevron
         Tooltip.install(tools_chevron, new Tooltip("click here for advanced settings"));
@@ -301,7 +289,7 @@ public class GUI implements Initializable {
         }
     }
 
-    public void nameServerDisplay(List<Record> records) {
+    private void nameServerDisplay(List<Record> records) {
 
         //sort list
         records.sort(Comparator.comparing(Record::getValue));

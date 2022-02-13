@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class GetWhoisTask extends Task<List<String>> {
     private final StringBuilder linkText = new StringBuilder();
-    private List<String> regexPreambles = new ArrayList<>(Arrays.asList("registrar", "registrar-name", "organization"));
+    private final List<String> regexPreambles = new ArrayList<>(Arrays.asList("registrar", "registrar-name", "organization"));
     private String host;
     private List<String> res;
     private WhoisDataCache cache;

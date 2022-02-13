@@ -7,12 +7,12 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 
-import java.awt.Desktop;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RecordListCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
@@ -28,14 +28,13 @@ public class RecordListCellFactory extends ListCell<String> {
             tf.setText(item);
             tf.setEditable(false);
 
-
             //color status active to green
             if (tf.getText().matches("Status:.*")) {
-                if (tf.getText().contains("delete") || tf.getText().contains("inactive")){
+                if (tf.getText().contains("delete") || tf.getText().contains("inactive")) {
                     tf.getStyleClass().add("red");
-                } else if (tf.getText().contains("active")){
+                } else if (tf.getText().contains("active")) {
                     tf.getStyleClass().add("green");
-                } else if (tf.getText().contains("transfer")){
+                } else if (tf.getText().contains("transfer")) {
                     tf.getStyleClass().add("orange");
                 } else {
                     tf.getStylesheets().remove("green");
@@ -49,7 +48,7 @@ public class RecordListCellFactory extends ListCell<String> {
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             setGraphic(tf);
 
-            if (Arrays.stream(DnsAdapter.RECORD_TYPES).anyMatch(Predicate.isEqual(item.split(":")[0]))) {
+            if (Arrays.stream(DnsAdapter.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
                 setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
                 setText(item);
@@ -57,7 +56,7 @@ public class RecordListCellFactory extends ListCell<String> {
             }
 
             if (item.startsWith("http")) {
-                setPadding(new Insets(0,0,0,15));
+                setPadding(new Insets(0, 0, 0, 15));
                 setLink(item);
 
                 // Item

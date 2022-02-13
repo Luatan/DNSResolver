@@ -9,12 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed names of json properties and changed the generation of the default config file">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changed type combobox to use the Types of DnsAdapter.java&#10;combined Vars to make it more readable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_light.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/styles/style_light.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/PTR.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/RecordListCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecordListCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,13 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00135" summary="fixed bug, where the whois is not displayed, if the event is deletion">
-      <created>1637691014156</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1637691014157</updated>
     </task>
     <task id="LOCAL-00136" summary="changed text">
       <created>1637691029545</created>
@@ -538,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644270305585</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="changed type combobox to use the Types of DnsAdapter.java&#10;combined Vars to make it more readable">
+      <created>1644715771477</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1644715771477</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,7 +566,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added new css File" />
     <MESSAGE value="fixed bug with marking the status of whois with colors" />
     <MESSAGE value="private range bug found" />
     <MESSAGE value="fixed private range bug" />
@@ -591,7 +590,8 @@
     <MESSAGE value="changed the ui and added input for DNS-Server" />
     <MESSAGE value="fixed typo" />
     <MESSAGE value="added assets to gitignore&#10;Context vars for environement vars" />
-    <option name="LAST_COMMIT_MESSAGE" value="added assets to gitignore&#10;Context vars for environement vars" />
+    <MESSAGE value="changed type combobox to use the Types of DnsAdapter.java&#10;combined Vars to make it more readable" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed type combobox to use the Types of DnsAdapter.java&#10;combined Vars to make it more readable" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,5 +1,3 @@
-package View;
-
 import Model.DNS.DnsAdapter;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
@@ -12,6 +10,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RecordListCellFactory extends ListCell<String> {
@@ -55,9 +55,18 @@ public class RecordListCellFactory extends ListCell<String> {
                 setPadding(new Insets(5, 0, 10, 5));
             }
 
+            //check if it is an SPF Entry
+            Matcher matcher = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE).matcher(item);
+            if (matcher.find()) {
+                setLink(item, "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue() + "?opt_out=off");
+                // Item
+                setText("");
+                setGraphic(link);
+            }
+
+            //check if it is a link
             if (item.startsWith("http")) {
-                setPadding(new Insets(0, 0, 0, 15));
-                setLink(item);
+                setLink(item, item);
 
                 // Item
                 setText("");
@@ -71,11 +80,11 @@ public class RecordListCellFactory extends ListCell<String> {
         }
     }
 
-    private void setLink(String text) {
+    private void setLink(String text, String url) {
         link.setOnAction(e -> {
             if (Desktop.isDesktopSupported()) {
                 try {
-                    Desktop.getDesktop().browse(new URI(text));
+                    Desktop.getDesktop().browse(new URI(url));
                 } catch (IOException | URISyntaxException ex) {
                     ex.printStackTrace();
                 }

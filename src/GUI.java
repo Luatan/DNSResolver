@@ -9,12 +9,9 @@ import Model.Tasks.GetWhoisTask;
 import Model.Tasks.LookupTask;
 import Model.Utils.Domain;
 import Model.Utils.State;
-import View.RecordListCellFactory;
 import javafx.animation.*;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,6 +41,7 @@ public class GUI implements Initializable {
     private final ObservableList<String> whoisInfo = FXCollections.observableArrayList();
     //State Property
     private final SimpleObjectProperty<State> stateProperty = new SimpleObjectProperty<>(State.NONE);
+    private final static SimpleStringProperty domainProperty = new SimpleStringProperty("");
     // history
     private final HistoryController historyController = new HistoryController();
     //List of types to choose in Combobox
@@ -113,6 +111,10 @@ public class GUI implements Initializable {
         CacheCleanupTask cachClean = new CacheCleanupTask();
         cachClean.setDaemon(true);
         cachClean.start();
+    }
+
+    public static StringProperty getDomainProperty() {
+        return domainProperty;
     }
 
     private void rotateImage(ImageView image) {
@@ -202,7 +204,8 @@ public class GUI implements Initializable {
         } else {
             DNSOutput(queryTf.getText(), typeComboBox.getValue());
         }
-
+        //set Property
+        domainProperty.set(queryTf.getText());
         // Add the domain to history
         historyController.history.addDomain(queryTf.getText());
         updateHistoryDisplay(); //Update history list

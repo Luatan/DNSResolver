@@ -58,7 +58,7 @@ public class RecordListCellFactory extends ListCell<String> {
             //check if it is an SPF Entry
             Matcher matcher = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE).matcher(item);
             if (matcher.find()) {
-                setLink(item, "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue() + "?opt_out=off");
+                setLink(item, "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue());
                 // Item
                 setText("");
                 setGraphic(link);

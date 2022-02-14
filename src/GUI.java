@@ -10,6 +10,7 @@ import Model.Tasks.LookupTask;
 import Model.Utils.Domain;
 import Model.Utils.State;
 import javafx.animation.*;
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -76,9 +77,6 @@ public class GUI implements Initializable {
         types.addAll(DnsAdapter.RECORD_TYPES);
         rotateImage(whoisLoading);
 
-        //install tooltip for tools chevron
-        Tooltip.install(tools_chevron, new Tooltip("click here for advanced settings"));
-
         //init listview
         listViewRecords.setCellFactory(e -> new RecordListCellFactory());
 
@@ -90,11 +88,12 @@ public class GUI implements Initializable {
 
         //init Choicebox
         typeComboBox.setItems(types);
+        //select default Value
         typeComboBox.setValue("Any");
-        showRecordsTickBox.setSelected(Main.gui.isShowAllRecords());
 
-        // Update history at startup
-        updateHistoryDisplay();
+        // apply settings
+        showRecordsTickBox.setSelected(Main.gui.isShowAllRecords()); //load TickBox
+        updateHistoryDisplay(); //load history
 
         //prevent start button pressed without input
         BooleanBinding enableSearchbtn = queryTf.textProperty().isNotEmpty();
@@ -104,8 +103,11 @@ public class GUI implements Initializable {
         BooleanBinding enableCopybtn = stateProperty.isNotEqualTo(State.NONE);
         copyBtn.visibleProperty().bind(enableCopybtn);
 
-        //make textfield not clickable when IP State is active
-        ipTf.mouseTransparentProperty().bind(stateProperty.isEqualTo(State.IP));
+        // make IP TextField only clickable, when it isn't empty and the programm is not in the IP State
+        ipTf.mouseTransparentProperty().bind(stateProperty.isEqualTo(State.IP).or(ipTf.textProperty().isEmpty()));
+        // make host TextField only clickable, when it is a Subdomain
+        BooleanBinding hostIsSubdomain = Bindings.createBooleanBinding(() -> Domain.isSubdomain(hostTf.getText()), hostTf.textProperty());
+        hostTf.mouseTransparentProperty().bind(hostTf.textProperty().isEmpty().not().and(hostIsSubdomain).not());
 
         //Start cache cleanup Task after startup
         CacheCleanupTask cachClean = new CacheCleanupTask();
@@ -168,6 +170,10 @@ public class GUI implements Initializable {
 
     @FXML
     private void search() { //Handels the Start Button action
+        //Do nothing if empty
+        if (queryTf.getText().equals("")) {
+            return;
+        }
         //remove spaces before searching
         queryTf.setText(queryTf.getText().trim());
 
@@ -176,17 +182,16 @@ public class GUI implements Initializable {
         //unbind
         ipTf.textProperty().unbind();
         hostTf.textProperty().unbind();
+        whoisLinkLbl.visibleProperty().unbind();
 
         //clear lists
         listViewRecords.getItems().clear();
         dnsRecordList.clear();
         whoisInfo.clear();
         nsTf.forEach(TextField::clear);
-
-        //Do nothing if empty
-        if (queryTf.getText().equals("")) {
-            return;
-        }
+        hostTf.clear();
+        ipTf.clear();
+        whoisLinkLbl.setVisible(false);
 
         if (Domain.isIPAdress(queryTf.getText())) {
             //clean up old entries
@@ -236,7 +241,7 @@ public class GUI implements Initializable {
         clipboard.setContents(strSel, null);
 
         System.out.println("DNS Records copied!");
-        // Add animtaion to Acknowledge Copy... maybe
+        //copy Animation
         ScaleTransition transition = new ScaleTransition(Duration.millis(150), copyBtn);
         transition.setAutoReverse(true);
         transition.setFromX(1);

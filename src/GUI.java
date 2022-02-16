@@ -174,8 +174,8 @@ public class GUI implements Initializable {
         if (queryTf.getText().equals("")) {
             return;
         }
-        //remove spaces before searching
-        queryTf.setText(queryTf.getText().trim());
+        //remove spaces and protocol before searching
+        queryTf.setText(Domain.extractDomain(queryTf.getText().trim()));
 
         //Clean up
         defaultList();
@@ -209,8 +209,10 @@ public class GUI implements Initializable {
         } else {
             DNSOutput(queryTf.getText(), typeComboBox.getValue());
         }
-        //set Property
+
+        //set domain Property
         domainProperty.set(queryTf.getText());
+
         // Add the domain to history
         historyController.history.addDomain(queryTf.getText());
         updateHistoryDisplay(); //Update history list

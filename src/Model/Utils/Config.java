@@ -19,7 +19,7 @@ public class Config {
         if (!FileStructure.fileExists(HISTORY_LOG_FILE)) {
             Map<String, List<String>> domains = new LinkedHashMap<>();
             domains.put("domains", new ArrayList<>());
-            JsonAdapter.write(domains, Config.HISTORY_LOG_FILE);
+            JsonAdapter.write(domains, HISTORY_LOG_FILE);
         }
     }
 

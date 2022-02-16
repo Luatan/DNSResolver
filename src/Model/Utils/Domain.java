@@ -69,6 +69,14 @@ public class Domain {
         return tlds.toString();
     }
 
+    public static String extractDomain(String domain) {
+        Matcher matcher = Pattern.compile("^(?:h[tx]{2}ps?://)?(?:[^@/\\n]+@)?(?:www\\.)?(?<domain>[^:/\\n]+)").matcher(domain);
+        if (matcher.find()) {
+            return matcher.group("domain").replaceAll("[\\[\\]]", "");
+        }
+        return domain;
+    }
+
     public static String trimDomain(String domain) {
         return java.net.IDN.toASCII(domain.toLowerCase().trim());
     }

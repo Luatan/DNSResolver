@@ -7,8 +7,7 @@ import Model.Tasks.CacheCleanupTask;
 import Model.Tasks.DnsTask;
 import Model.Tasks.GetWhoisTask;
 import Model.Tasks.LookupTask;
-import Model.Utils.Domain;
-import Model.Utils.State;
+import Model.Utils.*;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -28,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -37,16 +37,16 @@ import java.util.List;
 import java.util.*;
 
 public class GUI implements Initializable {
+    private final static SimpleStringProperty domainProperty = new SimpleStringProperty("");
     //initialize Variables for Domain Check
     private final ObservableList<String> dnsRecordList = FXCollections.observableArrayList();
     private final ObservableList<String> whoisInfo = FXCollections.observableArrayList();
     //State Property
     private final SimpleObjectProperty<State> stateProperty = new SimpleObjectProperty<>(State.NONE);
-    private final static SimpleStringProperty domainProperty = new SimpleStringProperty("");
     // history
     private final HistoryController historyController = new HistoryController();
     //List of types to choose in Combobox
-    private final ObservableList<String> types = FXCollections.observableArrayList("Any");
+    private final ObservableList<Type> types = FXCollections.observableArrayList(SpecialType.ANY);
     //list of the Nameserver TextFields
     private final List<TextField> nsTf = new LinkedList<>();
     @FXML
@@ -58,7 +58,7 @@ public class GUI implements Initializable {
     @FXML
     private Button copyBtn, startBtn, backBtn;
     @FXML
-    private ComboBox<String> typeComboBox;
+    private ComboBox<Type> typeComboBox;
     @FXML
     private Hyperlink whoisHyperLink;
     @FXML
@@ -71,6 +71,10 @@ public class GUI implements Initializable {
     private ListView<String> listViewRecords;
     @FXML
     private HBox tools;
+
+    public static StringProperty getDomainProperty() {
+        return domainProperty;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,8 +92,23 @@ public class GUI implements Initializable {
 
         //init Choicebox
         typeComboBox.setItems(types);
+        typeComboBox.setConverter(new StringConverter<Type>() {
+            @Override
+            public String toString(Type type) {
+                if (type.equals(SpecialType.ANY)) {
+                    return type.toString().substring(0,1).toUpperCase()
+                            + type.toString().substring(1).toLowerCase();
+                }
+                return type.toString();
+            }
+
+            @Override
+            public Type fromString(String s) {
+                return null;
+            }
+        });
         //select default Value
-        typeComboBox.setValue("Any");
+        typeComboBox.setValue(SpecialType.ANY);
 
         // apply settings
         showRecordsTickBox.setSelected(Main.gui.isShowAllRecords()); //load TickBox
@@ -113,10 +132,6 @@ public class GUI implements Initializable {
         CacheCleanupTask cachClean = new CacheCleanupTask();
         cachClean.setDaemon(true);
         cachClean.start();
-    }
-
-    public static StringProperty getDomainProperty() {
-        return domainProperty;
     }
 
     private void rotateImage(ImageView image) {
@@ -321,7 +336,7 @@ public class GUI implements Initializable {
         }
     }
 
-    private void DNSOutput(String host, String type) {
+    private void DNSOutput(String host, Type type) {
         // create Thread to get Whois
         getWhois(host);
         // create Thread to resolve Host

@@ -1,40 +1,25 @@
 package Model.DNS.Records;
 
-import Model.Utils.RecordTypes;
+import Model.Utils.Type;
 
-public abstract class Record {
-    protected RecordTypes type;
+public class Record {
+    protected Type type;
     protected String value;
 
-    public static Record A = new Record(RecordTypes.A) {};
-    public static Record AAAA = new Record(RecordTypes.AAAA) {};
-    public static Record CNAME = new Record(RecordTypes.CNAME) {};
-    public static Record MSG = new Record(RecordTypes.MSG) {};
-    public static Record MX = new Record(RecordTypes.MX) {};
-    public static Record SOA = new Record(RecordTypes.SOA) {};
-    public static Record SRV = new Record(RecordTypes.SRV) {};
-    public static Record TXT = new Record(RecordTypes.TXT) {};
-    public static Record NS = new Record(RecordTypes.NS) {};
-
-    public static Record setRecord(Record type, String value) {
-        type.setValue(value);
-        return type;
+    public static Record setRecordValue(Record emptyRecord, String value) {
+        emptyRecord.setValue(value);
+        return emptyRecord;
     }
 
-    public Record(RecordTypes type, String value) {
-        setValue(value);
+    public Record(Type type) {
         setType(type);
     }
 
-    public Record(RecordTypes type) {
-        setType(type);
-    }
-
-    public void setType(RecordTypes type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public RecordTypes getType() {
+    public Type getType() {
         return type;
     }
 
@@ -43,11 +28,6 @@ public abstract class Record {
     }
 
     public String getValue() {
-        return value;
-    }
-
-    @Override
-    public String toString() {
         return value;
     }
 }

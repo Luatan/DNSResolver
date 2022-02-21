@@ -10,23 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changing json handling">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Simon.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_4_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_2_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_8_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_4_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20210307.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/RecordTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/SpecialTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Utils/DNSType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Utils/Type.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SRV.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/RecordTypes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/SpecialTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/SpecialType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RecordListCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecordListCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +43,7 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -51,7 +53,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Develop" />
+        <entry key="$PROJECT_DIR$" value="SocketServer" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,6 +68,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$USER_HOME$/.jdks/java8_fx_zulu/src.zip!/java/lang/String.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -575,7 +578,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

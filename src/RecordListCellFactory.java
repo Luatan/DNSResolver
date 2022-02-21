@@ -1,5 +1,5 @@
 import Model.DNS.DnsAdapter;
-import Model.Utils.SpecialTypes;
+import Model.Utils.SpecialType;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class RecordListCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
-    private SpecialTypes recordType = SpecialTypes.RECORD;
+    private SpecialType recordType = SpecialType.RECORD;
 
     @Override
     protected void updateItem(String item, boolean empty) {
@@ -98,18 +98,18 @@ public class RecordListCellFactory extends ListCell<String> {
         }
     }
 
-    private SpecialTypes detectType(String input) {
+    private SpecialType detectType(String input) {
         //check for SPF Records
         Pattern spfPattern = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE);
         if (spfPattern.matcher(input).find()) {
-            return SpecialTypes.SPF;
+            return SpecialType.SPF;
         }
 
         //check if it is a Link with the http(s) protocoll
         if (input.startsWith("http")) {
-            return SpecialTypes.HYPERLINK;
+            return SpecialType.HYPERLINK;
         }
-        return SpecialTypes.RECORD;
+        return SpecialType.RECORD;
     }
 
 }

@@ -2,7 +2,9 @@ package Model.DNS;
 
 import Model.DNS.Records.Record;
 import Model.Utils.Domain;
-import Model.Utils.RecordTypes;
+import Model.Utils.DNSType;
+import Model.Utils.SpecialType;
+import Model.Utils.Type;
 
 import javax.naming.*;
 import javax.naming.directory.Attribute;
@@ -13,13 +15,12 @@ import java.net.UnknownHostException;
 import java.util.*;
 
 public class DnsAdapter {
-    public static final RecordTypes[] RECORD_TYPES = {RecordTypes.A, RecordTypes.AAAA, RecordTypes.CNAME,
-            RecordTypes.MX, RecordTypes.SRV, RecordTypes.TXT, RecordTypes.SOA};
-    private final List<Record> records;
+    public static final DNSType[] RECORD_TYPES = DNSType.values();
+    private final List<Record> records = new LinkedList<>();
     private InitialDirContext iDirC;
     private String hostname;
 
-    public DnsAdapter(String domain, RecordTypes type, String dnsServer) {
+    public DnsAdapter(String domain, Type type, String dnsServer) {
         //set environment for nameresolution
         Hashtable<String, String> dnsEnv = new Hashtable<>();
         dnsEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
@@ -35,10 +36,9 @@ public class DnsAdapter {
             e.printStackTrace();
         }
 
-        records = new LinkedList<>();
         setHost(domain);
         setNameServer();
-        if (!type.equals(RecordTypes.NS)) {
+        if (!type.equals(SpecialType.NS)) {
             setRecords(type);
         }
     }
@@ -51,35 +51,34 @@ public class DnsAdapter {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
-            setRecords(RecordTypes.NS);
+            setRecords(SpecialType.NS);
             this.hostname = origHost;
         } else if (!Domain.isIPAdress(hostname)) {
-            setRecords(RecordTypes.NS);
+            setRecords(SpecialType.NS);
         }
     }
 
     private void setAllRecords() {
-        for (RecordTypes record : RECORD_TYPES) {
+        for (DNSType record : RECORD_TYPES) {
             setRecords(record);
         }
     }
 
-    private void setRecords(RecordTypes recordType) {
+    private void setRecords(Type type) {
         if (hostname == null || hostname.equals("")) {
             return;
         }
-
         try {
             // get all the DNS records for hostname
-            Attributes attributes = iDirC.getAttributes(hostname, new String[]{recordType.toString()});
-            if (recordType.equals(RecordTypes.ANY)) {
+            Attributes attributes = iDirC.getAttributes(hostname, new String[]{(type.equals(SpecialType.ANY)) ? "*" : type.toString()});
+            if (type.equals(SpecialType.ANY)) {
                 setAllRecords();
             } else {
                 try {
                     //Get Attribute
-                    Attribute attr = attributes.get(recordType.toString());
+                    Attribute attr = attributes.get(type.toString());
                     for (int i = 0; i < attr.size(); i++) {
-                        createRecord(attr.get(i).toString(), recordType);
+                        createRecord(attr.get(i).toString(), type);
                     }
 
                 } catch (Exception e) {
@@ -102,16 +101,16 @@ public class DnsAdapter {
         }
     }
 
-    private void createRecord(String record, RecordTypes type) {
-        if (type.equals(RecordTypes.TXT)) {
-            record = record.replaceAll("\"", "");
+    private void createRecord(String value, Type type) {
+        if (type.equals(DNSType.TXT)) {
+            value = value.replaceAll("\"", "");
         }
 
-        if (type.equals(RecordTypes.SOA)) {
+        if (type.equals(DNSType.SOA)) {
             int max;
             int padding = 2;
 
-            List<String> list = Arrays.asList(record.split(" "));
+            List<String> list = Arrays.asList(value.split(" "));
             max = Collections.max(list).length();
 
             String formatting = "%-" + (max + padding) + "." + (max + padding) + "s" + "%s";
@@ -124,21 +123,22 @@ public class DnsAdapter {
             list.set(6, String.format(formatting, list.get(6), "minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(6))) + ")"));
 
             for (String rec : list) {
-                records.add(Record.setRecord(Record.SOA, rec));
+                records.add(Record.setRecordValue(type.getRecord(), rec));
             }
         } else {
-            records.add(Record.setRecord(type, record));
+            Record recordToAdd = Record.setRecordValue(type.getRecord(), value);
+            records.add(recordToAdd);
         }
     }
 
     private void addMessage(String message) {
         for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getType().equals("MSG")) {
+            if (records.get(i).getType().equals(SpecialType.MSG)) {
                 records.remove(i);
             }
         }
         System.err.println("Error: " + message);
-        createRecord(message, Record.MSG);
+        createRecord(message, SpecialType.MSG);
     }
 
     private String getPTRRecord(String host) {
@@ -155,7 +155,7 @@ public class DnsAdapter {
         return null;
     }
 
-    public List<Record> getRecords(String type) {
+    public List<Record> getRecords(Type type) {
         List<Record> list = new ArrayList<>();
         for (Record record : records) {
             if (record.getType().equals(type)) {

@@ -10,25 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changing json handling">
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/DNSType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/A.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/AAAA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/CNAME.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MSG.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/MX.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/NS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SOA.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/SRV.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/TXT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/RecordTypes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/SpecialTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/SpecialType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RecordListCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecordListCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,11 +176,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -209,13 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
-    </task>
-    <task id="LOCAL-00138" summary="structure">
-      <created>1638304287603</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1638304287603</updated>
     </task>
     <task id="LOCAL-00139" summary="fixed text bug">
       <created>1638304297340</created>
@@ -553,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644877642430</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="fixed Errors and deleted unused Classes">
+      <created>1645458677391</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1645458677391</updated>
+    </task>
+    <option name="localTasksCounter" value="188" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -581,7 +564,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fixed private range bug" />
     <MESSAGE value="fix warnings" />
     <MESSAGE value="fixed diverse bugs" />
     <MESSAGE value="fixed whoistask registrar display" />
@@ -606,7 +588,8 @@
     <MESSAGE value="changed type combobox to use the Types of DnsAdapter.java&#10;combined Vars to make it more readable" />
     <MESSAGE value="added hyperlink for spv entries" />
     <MESSAGE value="changed link for spf entries&#10;changed search function to return if text is empty to stop activating over return key&#10;added checks for host and IP Textfield to not be clickable when empty or in other cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed link for spf entries&#10;changed search function to return if text is empty to stop activating over return key&#10;added checks for host and IP Textfield to not be clickable when empty or in other cases" />
+    <MESSAGE value="fixed Errors and deleted unused Classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed Errors and deleted unused Classes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

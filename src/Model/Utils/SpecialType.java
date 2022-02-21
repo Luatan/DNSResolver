@@ -1,6 +1,6 @@
 package Model.Utils;
 
-import Model.DNS.Records.Record;
+import Model.DNS.Record;
 
 public enum SpecialType implements Type {
     HYPERLINK, SPF, RECORD, ANY, MSG, NS;

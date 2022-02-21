@@ -1,4 +1,4 @@
-import Model.DNS.DnsAdapter;
+import Controller.DNSController;
 import Model.Utils.SpecialType;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class RecordListCellFactory extends ListCell<String> {
+public class RecordCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
     private SpecialType recordType = SpecialType.RECORD;
 
@@ -53,7 +53,7 @@ public class RecordListCellFactory extends ListCell<String> {
                 }
             }
 
-            if (Arrays.stream(DnsAdapter.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
+            if (Arrays.stream(DNSController.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
                 setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
                 setText(item);

@@ -1,8 +1,8 @@
 import Controller.GUIController;
 import Controller.HistoryController;
 import Model.API.Ip_api;
-import Model.DNS.DnsAdapter;
-import Model.DNS.Records.Record;
+import Controller.DNSController;
+import Model.DNS.Record;
 import Model.Tasks.CacheCleanupTask;
 import Model.Tasks.DnsTask;
 import Model.Tasks.GetWhoisTask;
@@ -78,11 +78,11 @@ public class GUI implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        types.addAll(DnsAdapter.RECORD_TYPES);
+        types.addAll(DNSController.RECORD_TYPES);
         rotateImage(whoisLoading);
 
         //init listview
-        listViewRecords.setCellFactory(e -> new RecordListCellFactory());
+        listViewRecords.setCellFactory(e -> new RecordCellFactory());
 
         //init NS TextFields
         nsTf.add(ns1Lbl);
@@ -229,14 +229,14 @@ public class GUI implements Initializable {
         domainProperty.set(queryTf.getText());
 
         // Add the domain to history
-        historyController.history.addDomain(queryTf.getText());
+        historyController.history.add(queryTf.getText());
         updateHistoryDisplay(); //Update history list
     }
 
     private void updateHistoryDisplay() {
         historyBtn.getItems().clear();
-        for (int i = historyController.history.getDomains().size() - 1; i >= 0; i--) {
-            MenuItem item = new MenuItem(historyController.history.getDomains().get(i));
+        for (int i = historyController.history.size() - 1; i >= 0; i--) {
+            MenuItem item = new MenuItem(historyController.history.get(i));
             historyBtn.getItems().add(item);
 
             EventHandler<ActionEvent> event1 = e -> queryTf.setText(((MenuItem) e.getSource()).getText());

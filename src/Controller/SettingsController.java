@@ -13,10 +13,6 @@ import java.io.Reader;
 public class SettingsController extends JsonAdapter {
     public AppConfig config;
 
-    SettingsController() {
-        super(AppConfig.class);
-    }
-
     public void write() {
         write(config, Config.SETTINGS_CONF_FILE);
     }
@@ -24,7 +20,7 @@ public class SettingsController extends JsonAdapter {
     protected void load() {
         try {
             Reader reader = FileStructure.getReader(Config.SETTINGS_CONF_FILE);
-            config = (AppConfig) HANDLER.fromJson(reader, type);
+            config = HANDLER.fromJson(reader, AppConfig.class);
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

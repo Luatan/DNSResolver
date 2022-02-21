@@ -47,7 +47,7 @@ public abstract class API {
             case 429:
                 return "429 - Too Many Requests";
             default:
-                return "Invalid Statuscode";
+                return responseCode + "";
         }
     }
 

@@ -1,6 +1,6 @@
 package Model.Utils;
 
-import Model.DNS.Records.Record;
+import Model.DNS.Record;
 
 public interface Type {
 

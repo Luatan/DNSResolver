@@ -1,4 +1,4 @@
-package Model.DNS.Records;
+package Model.DNS;
 
 import Model.Utils.Type;
 

@@ -1,8 +1,8 @@
-package Model.DNS;
+package Controller;
 
-import Model.DNS.Records.Record;
-import Model.Utils.Domain;
+import Model.DNS.Record;
 import Model.Utils.DNSType;
+import Model.Utils.Domain;
 import Model.Utils.SpecialType;
 import Model.Utils.Type;
 
@@ -10,17 +10,17 @@ import javax.naming.*;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.*;
 
-public class DnsAdapter {
+public class DNSController {
     public static final DNSType[] RECORD_TYPES = DNSType.values();
     private final List<Record> records = new LinkedList<>();
     private InitialDirContext iDirC;
     private String hostname;
 
-    public DnsAdapter(String domain, Type type, String dnsServer) {
+    public DNSController(String domain, Type type, String dnsServer) {
+        this.hostname = Domain.trimDomain(domain);
+
         //set environment for nameresolution
         Hashtable<String, String> dnsEnv = new Hashtable<>();
         dnsEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
@@ -30,21 +30,17 @@ public class DnsAdapter {
         //set DNS Server which will be queried. leave empty, if it should select automatically
         dnsEnv.put(Context.PROVIDER_URL, "dns://" + dnsServer);
 
+        // Init Context
         try {
             iDirC = new InitialDirContext(dnsEnv);
         } catch (NamingException e) {
             e.printStackTrace();
         }
 
-        setHost(domain);
         setNameServer();
         if (!type.equals(SpecialType.NS)) {
             setRecords(type);
         }
-    }
-
-    private void setHost(String host) {
-        this.hostname = Domain.trimDomain(host);
     }
 
     private void setNameServer() {
@@ -139,20 +135,6 @@ public class DnsAdapter {
         }
         System.err.println("Error: " + message);
         createRecord(message, SpecialType.MSG);
-    }
-
-    private String getPTRRecord(String host) {
-        try {
-            InetAddress inetHost = InetAddress.getByName(host);
-            if (Domain.isIPAdress(inetHost.getCanonicalHostName())) {
-                return "No PTR Record found!";
-            } else {
-                return inetHost.getCanonicalHostName();
-            }
-        } catch (UnknownHostException e) {
-            System.out.println("No PTR Record found");
-        }
-        return null;
     }
 
     public List<Record> getRecords(Type type) {

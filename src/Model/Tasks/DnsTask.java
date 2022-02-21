@@ -1,7 +1,7 @@
 package Model.Tasks;
 
-import Model.DNS.DnsAdapter;
-import Model.DNS.Records.Record;
+import Controller.DNSController;
+import Model.DNS.Record;
 import Model.Utils.DNSType;
 import Model.Utils.SpecialType;
 import Model.Utils.Type;
@@ -42,10 +42,10 @@ public class DnsTask extends Task<List<String>> {
     @Override
     protected List<String> call() {
         result = new ArrayList<>();
-        DnsAdapter query = new DnsAdapter(host, type, dnsServer);
+        DNSController query = new DNSController(host, type, dnsServer);
         recordPutter(query.getRecords(SpecialType.MSG), SpecialType.MSG);
         if (type.equals(SpecialType.ANY)) {
-            for (DNSType request : DnsAdapter.RECORD_TYPES) {
+            for (DNSType request : DNSController.RECORD_TYPES) {
                 recordPutter(query.getRecords(request), request);
             }
         } else {

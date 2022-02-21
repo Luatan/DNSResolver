@@ -1,7 +1,8 @@
 package Model.DNS;
 
-import Model.DNS.Records.*;
+import Model.DNS.Records.Record;
 import Model.Utils.Domain;
+import Model.Utils.RecordTypes;
 
 import javax.naming.*;
 import javax.naming.directory.Attribute;
@@ -12,12 +13,13 @@ import java.net.UnknownHostException;
 import java.util.*;
 
 public class DnsAdapter {
-    public static final String[] RECORD_TYPES = {"A", "AAAA", "CNAME", "MX", "SRV", "TXT", "SOA"};
+    public static final RecordTypes[] RECORD_TYPES = {RecordTypes.A, RecordTypes.AAAA, RecordTypes.CNAME,
+            RecordTypes.MX, RecordTypes.SRV, RecordTypes.TXT, RecordTypes.SOA};
     private final List<Record> records;
     private InitialDirContext iDirC;
     private String hostname;
 
-    public DnsAdapter(String domain, String type, String dnsServer) {
+    public DnsAdapter(String domain, RecordTypes type, String dnsServer) {
         //set environment for nameresolution
         Hashtable<String, String> dnsEnv = new Hashtable<>();
         dnsEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.dns.DnsContextFactory");
@@ -36,7 +38,7 @@ public class DnsAdapter {
         records = new LinkedList<>();
         setHost(domain);
         setNameServer();
-        if (!type.equals("NS")) {
+        if (!type.equals(RecordTypes.NS)) {
             setRecords(type);
         }
     }
@@ -49,35 +51,35 @@ public class DnsAdapter {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
-            setRecords("NS");
+            setRecords(RecordTypes.NS);
             this.hostname = origHost;
         } else if (!Domain.isIPAdress(hostname)) {
-            setRecords("NS");
+            setRecords(RecordTypes.NS);
         }
     }
 
     private void setAllRecords() {
-        for (String record : RECORD_TYPES) {
+        for (RecordTypes record : RECORD_TYPES) {
             setRecords(record);
         }
     }
 
-    private void setRecords(String type) {
+    private void setRecords(RecordTypes recordType) {
         if (hostname == null || hostname.equals("")) {
             return;
         }
 
         try {
             // get all the DNS records for hostname
-            Attributes attributes = iDirC.getAttributes(hostname, new String[]{type});
-            if (type.matches("[*]")) {
+            Attributes attributes = iDirC.getAttributes(hostname, new String[]{recordType.toString()});
+            if (recordType.equals(RecordTypes.ANY)) {
                 setAllRecords();
             } else {
                 try {
                     //Get Attribute
-                    Attribute attr = attributes.get(type);
+                    Attribute attr = attributes.get(recordType.toString());
                     for (int i = 0; i < attr.size(); i++) {
-                        createRecord(attr.get(i).toString(), type);
+                        createRecord(attr.get(i).toString(), recordType);
                     }
 
                 } catch (Exception e) {
@@ -100,57 +102,32 @@ public class DnsAdapter {
         }
     }
 
-    private void createRecord(String record, String type) {
-        switch (type) {
-            case "MSG":
-                records.add(new MSG(record));
-                break;
-            case "A":
-                records.add(new A(record));
-                break;
-            case "AAAA":
-                records.add(new AAAA(record));
-                break;
-            case "MX":
-                records.add(new MX(record));
-                break;
-            case "CNAME":
-                records.add(new CNAME(record));
-                break;
-            case "TXT":
-                record = record.replaceAll("\"", "");
-                records.add(new TXT(record));
-                break;
-            case "NS":
-                records.add(new NS(record));
-                break;
-            case "SRV":
-                records.add(new SRV(record));
-                break;
-            case "SOA":
-                int max;
-                int padding = 2;
+    private void createRecord(String record, RecordTypes type) {
+        if (type.equals(RecordTypes.TXT)) {
+            record = record.replaceAll("\"", "");
+        }
 
-                List<String> list = Arrays.asList(record.split(" "));
-                max = Collections.max(list).length();
+        if (type.equals(RecordTypes.SOA)) {
+            int max;
+            int padding = 2;
 
-                String formatting = "%-" + (max + padding) + "." + (max + padding) + "s" + "%s";
+            List<String> list = Arrays.asList(record.split(" "));
+            max = Collections.max(list).length();
 
-                list.set(1, list.get(1).replaceFirst("[.]", "@"));
-                list.set(2, String.format(formatting, list.get(2), "serialnumber"));
-                list.set(3, String.format(formatting, list.get(3), "refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(3))) + ")"));
-                list.set(4, String.format(formatting, list.get(4), "retry (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(4))) + ")"));
-                list.set(5, String.format(formatting, list.get(5), "expire (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(5))) + ")"));
-                list.set(6, String.format(formatting, list.get(6), "minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(6))) + ")"));
+            String formatting = "%-" + (max + padding) + "." + (max + padding) + "s" + "%s";
 
-                for (String rec : list) {
-                    records.add(new SOA(rec));
-                }
+            list.set(1, list.get(1).replaceFirst("[.]", "@"));
+            list.set(2, String.format(formatting, list.get(2), "serialnumber"));
+            list.set(3, String.format(formatting, list.get(3), "refresh (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(3))) + ")"));
+            list.set(4, String.format(formatting, list.get(4), "retry (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(4))) + ")"));
+            list.set(5, String.format(formatting, list.get(5), "expire (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(5))) + ")"));
+            list.set(6, String.format(formatting, list.get(6), "minimum (" + Domain.getTimeFromSeconds(Integer.parseInt(list.get(6))) + ")"));
 
-                break;
-            default:
-                System.err.println("No Record met case!");
-                break;
+            for (String rec : list) {
+                records.add(Record.setRecord(Record.SOA, rec));
+            }
+        } else {
+            records.add(Record.setRecord(type, record));
         }
     }
 
@@ -161,7 +138,7 @@ public class DnsAdapter {
             }
         }
         System.err.println("Error: " + message);
-        createRecord(message, "MSG");
+        createRecord(message, Record.MSG);
     }
 
     private String getPTRRecord(String host) {

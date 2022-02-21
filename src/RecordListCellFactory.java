@@ -1,4 +1,5 @@
 import Model.DNS.DnsAdapter;
+import Model.Utils.SpecialTypes;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
@@ -10,12 +11,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RecordListCellFactory extends ListCell<String> {
     private final Hyperlink link = new Hyperlink();
+    private SpecialTypes recordType = SpecialTypes.RECORD;
 
     @Override
     protected void updateItem(String item, boolean empty) {
@@ -27,6 +28,15 @@ public class RecordListCellFactory extends ListCell<String> {
             //init Textfield
             tf.setText(item);
             tf.setEditable(false);
+
+            //set Item
+            setText(item);
+            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            setGraphic(tf);
+
+            //check for special types
+            recordType = detectType(item);
+            setType();
 
             //color status active to green
             if (tf.getText().matches("Status:.*")) {
@@ -43,11 +53,6 @@ public class RecordListCellFactory extends ListCell<String> {
                 }
             }
 
-            //set Item
-            setText(item);
-            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-            setGraphic(tf);
-
             if (Arrays.stream(DnsAdapter.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
                 setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
@@ -55,24 +60,6 @@ public class RecordListCellFactory extends ListCell<String> {
                 setPadding(new Insets(5, 0, 10, 5));
             }
 
-            //check if it is an SPF Entry
-            Matcher matcher = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE).matcher(item);
-            if (matcher.find()) {
-                setLink(item, "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue());
-                // Item
-                setText("");
-                setGraphic(link);
-            }
-
-            //check if it is a link
-            if (item.startsWith("http")) {
-                setLink(item, item);
-
-                // Item
-                setText("");
-                setGraphic(link);
-
-            }
         } else {
             setText("");
             setContentDisplay(ContentDisplay.TEXT_ONLY);
@@ -91,6 +78,38 @@ public class RecordListCellFactory extends ListCell<String> {
             }
         });
         link.setText(text);
+    }
+
+    private void setType() {
+        switch (recordType) {
+            case HYPERLINK:
+                setLink(getText(), getText());
+
+                // Item
+                setText("");
+                setGraphic(link);
+                break;
+            case SPF:
+                setLink(getText(), "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue());
+                // Item
+                setText("");
+                setGraphic(link);
+                break;
+        }
+    }
+
+    private SpecialTypes detectType(String input) {
+        //check for SPF Records
+        Pattern spfPattern = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE);
+        if (spfPattern.matcher(input).find()) {
+            return SpecialTypes.SPF;
+        }
+
+        //check if it is a Link with the http(s) protocoll
+        if (input.startsWith("http")) {
+            return SpecialTypes.HYPERLINK;
+        }
+        return SpecialTypes.RECORD;
     }
 
 }

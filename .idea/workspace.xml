@@ -9,23 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="update dependencies">
-      <change afterPath="$PROJECT_DIR$/src/Model/Utils/HistoryList.java" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="cleanup">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/API/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/DnsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DNSController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Records/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/DNS/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/HistoryFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/DNSType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/DNSType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/JsonAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/SpecialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/SpecialType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Utils/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RecordListCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecordCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,8 +83,8 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/icons/Icon.ico" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.31149426" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -142,19 +128,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="DNSResolver" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="DNSResolver" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -4,7 +4,6 @@
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="Main" />
-        <option name="convertCss2Bin" value="true" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">
@@ -13,24 +12,24 @@
           </JavaFxApplicationIcons>
         </option>
         <option name="nativeBundle" value="all" />
-        <option name="title" value="DNSRsolver" />
+        <option name="title" value="DNSResolver" />
         <option name="vendor" value="Simon Schmid" />
-        <option name="version" value="1.2.1" />
+        <option name="version" value="1.0" />
       </options>
     </properties>
     <root id="root">
       <element id="archive" name="DNSResolver.jar">
         <element id="module-output" name="DNSResolver" />
         <element id="directory" name="bin">
-          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:4.9.0" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.9.0" />
+          <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:4.9.3" />
           <element id="library" level="project" name="Maven: com.squareup.okio:okio:2.8.0" />
-          <element id="library" level="project" name="Maven: commons-io:commons-io:2.8.0" />
-          <element id="library" level="project" name="Maven: commons-net:commons-net:3.7.2" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.11.0" />
+          <element id="library" level="project" name="Maven: commons-net:commons-net:3.8.0" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.0" />
           <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.4.10" />
           <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
           <element id="library" level="project" name="Maven: org.json:json:20210307" />
-          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
         </element>
       </element>
     </root>

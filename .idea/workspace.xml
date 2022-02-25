@@ -10,9 +10,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="build artifact">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Diagrams/DNS_Resolver.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/DNSResolver.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/Diagrams/DNS_Resolver.drawio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/ccTLD.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/ccTLD.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/Icon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/Icon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/Icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/Icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/chevron.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/chevron.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/close_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/close_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/loading_duck.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/loading_duck.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/minimize_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/minimize_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/moon_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/moon_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/icons/reload_64x64.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icons/reload_64x64.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/Icon.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/licenses/Icon.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/OKHttp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/licenses/OKHttp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/apache_commons-net-io.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/licenses/apache_commons-net-io.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/gson.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/licenses/gson.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/licenses/org.json.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/licenses/org.json.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_common.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style_common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style_dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/styles/style_light.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style_light.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/DNSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/Ip_api.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/NIC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Caching/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Caching/WhoisDataCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/WhoisDataCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Caching/WhoisExtensionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/WhoisExtensionCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/DNS/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/CacheCleanupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/CacheCleanupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/DNSType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/DNSType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Domain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Domain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/FileStructure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/FileStructure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/HistoryList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/HistoryList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/JsonAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/JsonAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/SpecialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/SpecialType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Utils/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois/WhoisServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Whois/WhoisServerSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RecordCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/RecordCellFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +106,6 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/GUI.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar://$USER_HOME$/.jdks/java8_fx_zulu/src.zip!/java/lang/String.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -81,15 +135,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/icons/Icon.ico" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14941406" />
-    <property name="project.structure.side.proportion" value="0.31149426" />
+    <property name="project.structure.side.proportion" value="0.4452871" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -100,11 +155,11 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\assets" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\icons" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\config" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src\main" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src\main\java" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\Launcher\resources" />
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\Launcher" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -117,11 +172,19 @@
       <recent name="" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn exec:exec@deploy app" />
+      <command value="mvn exec:exec@installer" />
+      <command value="mvn exec:exec@deploy-app" />
+      <command value="mvnclean" />
+      <command value="mvn clean" />
+      <command value="mvn package" />
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="ch.luatan.DNSResolver.Main" />
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
@@ -182,7 +245,6 @@
         <item itemvalue="Application.Main" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -194,6 +256,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1611967922599</updated>
+      <workItem from="1645819219818" duration="21000" />
+      <workItem from="1645819259508" duration="2000" />
     </task>
     <task id="LOCAL-00142" summary="fixed bug, where it would get an error if only 1 nameserver has an IP">
       <created>1638304430834</created>
@@ -540,6 +604,9 @@
     </task>
     <option name="localTasksCounter" value="191" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

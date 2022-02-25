@@ -1,5 +1,6 @@
-package ch.luatan.DNSResolver.Controller;
+package ch.luatan.DNSResolver;
 
+import ch.luatan.DNSResolver.Controller.SettingsController;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,13 +12,13 @@ import javafx.stage.StageStyle;
 
 import java.util.Objects;
 
-public class GUIController extends Application {
+public class DNSResolver extends Application {
 
     private static boolean darkMode;
     private static boolean showAllRecords;
     private static Scene scene;
     private static Stage stage;
-    private final SettingsController SETTINGS = new SettingsController();
+    private static final SettingsController SETTINGS = new SettingsController();
     private double yOffset;
     private double xOffset;
 
@@ -38,7 +39,7 @@ public class GUIController extends Application {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/dnsGUI.fxml")));
         stage = primaryStage;
         stage.setTitle("DNS Resolver");
-        stage.getIcons().add(new Image(Objects.requireNonNull(GUIController.class.getResourceAsStream("/icons/Icon.png"))));
+        stage.getIcons().add(new Image(Objects.requireNonNull(DNSResolver.class.getResourceAsStream("/icons/Icon.png"))));
         stage.initStyle(StageStyle.UNDECORATED);
         scene = new Scene(root);
 
@@ -78,7 +79,7 @@ public class GUIController extends Application {
         }
     }
 
-    public void changeTheme() {
+    public static void changeTheme() {
         darkMode = !darkMode;
         if (darkMode) {
             scene.getStylesheets().add("/styles/style_dark.css");
@@ -97,21 +98,21 @@ public class GUIController extends Application {
         stage.show();
     }
 
-    public void setShowAllRecords() {
+    public static void setShowAllRecords() {
         SETTINGS.config.setShowEmptyRecords(!showAllRecords);
     }
 
-    public boolean isShowAllRecords() {
+    public static boolean isShowAllRecords() {
         return showAllRecords;
     }
 
-    public void exit() {
+    public static void exit() {
         stage.close();
         SETTINGS.write();
         System.exit(0);
     }
 
-    public void minimize() {
+    public static void minimize() {
         stage.setIconified(true);
     }
 

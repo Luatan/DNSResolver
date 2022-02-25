@@ -1,7 +1,6 @@
 package ch.luatan.DNSResolver;
 
 import ch.luatan.DNSResolver.Controller.DNSController;
-import ch.luatan.DNSResolver.Controller.GUIController;
 import ch.luatan.DNSResolver.Controller.HistoryController;
 import ch.luatan.DNSResolver.Model.API.Ip_api;
 import ch.luatan.DNSResolver.Model.DNS.Record;
@@ -113,7 +112,7 @@ public class GUI implements Initializable {
         typeComboBox.setValue(SpecialType.ANY);
 
         // apply settings
-        showRecordsTickBox.setSelected(Main.gui.isShowAllRecords()); //load TickBox
+        showRecordsTickBox.setSelected(DNSResolver.isShowAllRecords()); //load TickBox
         updateHistoryDisplay(); //load history
 
         //prevent start button pressed without input
@@ -148,7 +147,7 @@ public class GUI implements Initializable {
     @FXML
     private void onClose() {
         historyController.write();
-        Main.gui.exit();
+        DNSResolver.exit();
     }
 
     @FXML
@@ -172,17 +171,17 @@ public class GUI implements Initializable {
 
     @FXML
     private void onMinimize() {
-        Main.gui.minimize();
+        DNSResolver.minimize();
     }
 
     @FXML
     private void changeEmptyRecordsSetting() {
-        Main.gui.setShowAllRecords();
+        DNSResolver.setShowAllRecords();
     }
 
     @FXML
     private void changeTheme() {
-        Main.gui.changeTheme();
+        DNSResolver.changeTheme();
     }
 
     @FXML
@@ -382,7 +381,7 @@ public class GUI implements Initializable {
         }
         LookupTask lookup = new LookupTask(host);
         lookup.setOnRunning(e -> {
-            ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(GUIController.class.getResourceAsStream("/icons/reload_64x64.png"))));
+            ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(DNSResolver.class.getResourceAsStream("/icons/reload_64x64.png"))));
             hostLoading.setFitHeight(20);
             hostLoading.setPreserveRatio(true);
             rotateImage(hostLoading);

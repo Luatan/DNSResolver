@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fxLauncher init">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Main.java" beforeDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="removed Main Class">
+      <change afterPath="$PROJECT_DIR$/package/windows/DNSResolver-setup-icon.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/Icon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/package/windows/DNSResolver.ico" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +101,11 @@
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\package\windows" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src\main" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src\main\java" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\src" />
       <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\Launcher\resources" />
-      <recent name="D:\Users\simon\Desktop\Programmieren\DNSResolver\resources\Launcher" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -122,9 +123,10 @@
       <command value="mvn exec:exec@deploy app" />
       <command value="mvn exec:exec@deploy-app" />
       <command value="mvnclean" />
-      <command value="mvn exec:exec@installer" />
       <command value="mvn clean" />
       <command value="mvn package" />
+      <command value="mvn exec:exec@installer" />
+      <command value="mvn clear" />
     </option>
   </component>
   <component name="RunManager" selected="Application.DNSResolver">
@@ -195,9 +197,9 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.DNSResolver" />
       <item itemvalue="TestNG.DNSRequestsTest" />
       <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
-      <item itemvalue="Application.DNSResolver" />
     </list>
     <recent_temporary>
       <list>
@@ -218,13 +220,6 @@
       <updated>1611967922599</updated>
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
-    </task>
-    <task id="LOCAL-00143" summary="added more settings">
-      <created>1638310113317</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1638310113317</updated>
     </task>
     <task id="LOCAL-00144" summary="clean up">
       <created>1638313688804</created>
@@ -562,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645829291581</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="removed Main Class">
+      <created>1645829573608</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1645829573608</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +595,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="removed quotation mark from txt records" />
     <MESSAGE value="changed version" />
     <MESSAGE value="added loading icons" />
     <MESSAGE value="changed ux design for dark mode" />
@@ -618,7 +619,8 @@
     <MESSAGE value="intellij settings" />
     <MESSAGE value="update dependencies" />
     <MESSAGE value="fxLauncher init" />
-    <option name="LAST_COMMIT_MESSAGE" value="fxLauncher init" />
+    <MESSAGE value="removed Main Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed Main Class" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

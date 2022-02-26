@@ -70,7 +70,7 @@ public class Domain {
     }
 
     public static String extractDomain(String domain) {
-        Matcher matcher = Pattern.compile("^(?:h[tx]{2}ps?://)?(?:[^@/\\n]+@)?(?:www\\.)?(?<domain>[^:/\\n]+)").matcher(domain);
+        Matcher matcher = Pattern.compile("^(?:h[tx]{2}ps?://)?(?:[^@/\\n]+@)?\\.?(?<domain>[^:/\\n]+)").matcher(domain);
         if (matcher.find()) {
             return matcher.group("domain").replaceAll("[\\[\\]]", "");
         }

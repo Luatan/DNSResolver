@@ -1,7 +1,7 @@
-package ch.luatan.DNSResolver;
+package ch.luatan.DNSResolver.Model.Utils;
 
 import ch.luatan.DNSResolver.Controller.DNSController;
-import ch.luatan.DNSResolver.Model.Utils.SpecialType;
+import ch.luatan.DNSResolver.Controller.GUIController;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
@@ -92,7 +92,7 @@ public class RecordCellFactory extends ListCell<String> {
                 setGraphic(link);
                 break;
             case SPF:
-                setLink(getText(), "https://www.spf-record.com/spf-lookup/" + GUI.getDomainProperty().getValue());
+                setLink(getText(), "https://www.spf-record.com/spf-lookup/" + GUIController.getDomainProperty().getValue());
                 // Item
                 setText("");
                 setGraphic(link);

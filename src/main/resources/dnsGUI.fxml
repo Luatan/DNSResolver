@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" prefHeight="622.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.luatan.DNSResolver.GUI">
+<VBox id="VBox" prefHeight="622.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.luatan.DNSResolver.Controller.GUIController">
    <HBox id="windowBar" fx:id="WindowMenu" spacing="2.0">
       <children>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

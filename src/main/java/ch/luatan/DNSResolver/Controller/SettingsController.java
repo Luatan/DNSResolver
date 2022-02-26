@@ -1,6 +1,6 @@
 package ch.luatan.DNSResolver.Controller;
 
-import ch.luatan.DNSResolver.Model.AppConfig;
+import ch.luatan.DNSResolver.Model.Utils.AppConfig;
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.FileStructure;

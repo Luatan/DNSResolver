@@ -9,11 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="removed Main Class">
-      <change afterPath="$PROJECT_DIR$/package/windows/DNSResolver-setup-icon.bmp" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="update success">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icons/Icon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/package/windows/DNSResolver.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/RecordCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/RecordCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Diagrams/DNS_Resolver.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Diagrams/DNS_Resolver.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +137,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.luatan.DNSResolver.*" />
+          <option name="PATTERN" value="ch.luatan.DNSResolver.Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

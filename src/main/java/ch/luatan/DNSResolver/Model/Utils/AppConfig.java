@@ -1,4 +1,4 @@
-package ch.luatan.DNSResolver.Model;
+package ch.luatan.DNSResolver.Model.Utils;
 
 public class AppConfig {
     private boolean showEmptyRecords;

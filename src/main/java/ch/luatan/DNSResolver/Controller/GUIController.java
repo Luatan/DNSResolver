@@ -1,14 +1,17 @@
-package ch.luatan.DNSResolver;
+package ch.luatan.DNSResolver.Controller;
 
-import ch.luatan.DNSResolver.Controller.DNSController;
-import ch.luatan.DNSResolver.Controller.HistoryController;
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.API.Ip_api;
 import ch.luatan.DNSResolver.Model.DNS.Record;
 import ch.luatan.DNSResolver.Model.Tasks.CacheCleanupTask;
 import ch.luatan.DNSResolver.Model.Tasks.DnsTask;
 import ch.luatan.DNSResolver.Model.Tasks.GetWhoisTask;
 import ch.luatan.DNSResolver.Model.Tasks.LookupTask;
-import ch.luatan.DNSResolver.Model.Utils.*;
+import ch.luatan.DNSResolver.Model.Utils.Domain;
+import ch.luatan.DNSResolver.Model.Utils.SpecialType;
+import ch.luatan.DNSResolver.Model.Utils.State;
+import ch.luatan.DNSResolver.Model.Utils.Type;
+import ch.luatan.DNSResolver.Model.Utils.RecordCellFactory;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -37,7 +40,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.*;
 
-public class GUI implements Initializable {
+public class GUIController implements Initializable {
     private final static SimpleStringProperty domainProperty = new SimpleStringProperty("");
     //initialize Variables for Domain Check
     private final ObservableList<String> dnsRecordList = FXCollections.observableArrayList();

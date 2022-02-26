@@ -213,7 +213,7 @@
                             <executable>scp</executable>
                             <arguments>
                                 <argument>-r</argument>
-                                <argument>target/app/.</argument>
+                                <argument>${app.dir}/.</argument>
                             </arguments>
                         </configuration>
                     </execution>

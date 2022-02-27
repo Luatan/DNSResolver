@@ -34,9 +34,7 @@ public class HistoryController extends JsonAdapter {
             ArrayList<String> temp = (ArrayList<String>) HANDLER.fromJson(reader, HashMap.class).get("domains");
             history = new HistoryList<>();
             history.addAll(temp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException jsonE) {
+        } catch (IOException | JsonSyntaxException e) {
             reset();
         }
         if (history == null) {

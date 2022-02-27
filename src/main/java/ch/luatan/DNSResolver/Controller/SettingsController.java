@@ -22,9 +22,7 @@ public class SettingsController extends JsonAdapter {
             Reader reader = FileStructure.getReader(Config.SETTINGS_CONF_FILE);
             config = HANDLER.fromJson(reader, AppConfig.class);
             reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException jsonE) {
+        } catch (IOException | JsonSyntaxException e) {
             reset();
         }
         if (config == null) {

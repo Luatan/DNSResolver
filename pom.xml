@@ -43,7 +43,7 @@
     </dependencies>
 
     <properties>
-        <app.mode>beta</app.mode>
+        <app.mode>live</app.mode>
         <!-- Installer Filename without suffix -->
         <app.filename>${project.name}</app.filename>
 
@@ -60,10 +60,10 @@
         <app.version>1.0</app.version>
 
         <!-- Base URL where you will host the application artifacts -->
-        <app.url>https://resolver.luatan.com/update/${app.mode}</app.url>
+        <app.url>https://update.dnsresolver.ch/v1/${app.mode}</app.url>
 
         <!-- Optional scp target for application artifacts hosted at the above url -->
-        <app.deploy.target>pi@192.168.0.111:/var/www/resolver.luatan.com/public_html/update/${app.mode}</app.deploy.target>
+        <app.deploy.target>pi@192.168.0.111:/var/www/update.dnsresolver.ch/public_html/v1/${app.mode}</app.deploy.target>
 
         <!-- The app and launcher will be assembled in this folder -->
         <app.dir>${project.build.directory}/DNSResolver</app.dir>
@@ -153,24 +153,24 @@
                         </configuration>
                     </execution>
                     <!-- Optional step to include custom UI, see https://github.com/edvin/fxlauncher-custom-ui -->
-                    <!--<execution>-->
-                    <!--<id>embed-custom-ui-in-launcher</id>-->
-                    <!--<phase>package</phase>-->
-                    <!--<goals>-->
-                    <!--<goal>exec</goal>-->
-                    <!--</goals>-->
-                    <!--<configuration>-->
-                    <!--<executable>jar</executable>-->
-                    <!--<workingDirectory>${app.dir}</workingDirectory>-->
-                    <!--<arguments>-->
-                    <!--<argument>uf</argument>-->
-                    <!--<argument>fxlauncher.jar</argument>-->
-                    <!--<argument>-C</argument>-->
-                    <!--<argument>${project.basedir}/../fxlauncher-custom-ui/target/classes</argument>-->
-                    <!--<argument>.</argument>-->
-                    <!--</arguments>-->
-                    <!--</configuration>-->
-                    <!--</execution>-->
+                    <execution>
+                    <id>embed-custom-ui-in-launcher</id>
+                    <phase>package</phase>
+                    <goals>
+                    <goal>exec</goal>
+                    </goals>
+                    <configuration>
+                    <executable>jar</executable>
+                    <workingDirectory>${app.dir}</workingDirectory>
+                    <arguments>
+                    <argument>uf</argument>
+                    <argument>fxlauncher.jar</argument>
+                    <argument>-C</argument>
+                    <argument>${project.basedir}/../DNSResolver_launcher_ui/target/classes</argument>
+                    <argument>.</argument>
+                    </arguments>
+                    </configuration>
+                    </execution>
                     <!-- Create native installer. Feel free to add more arguments as needed.
                      https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javapackager.html
                      -->

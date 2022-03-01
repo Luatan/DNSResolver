@@ -22,14 +22,6 @@ public class DNSResolver extends Application {
     private double yOffset;
     private double xOffset;
 
-    public void work() {
-        try {
-            launch();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Settings init

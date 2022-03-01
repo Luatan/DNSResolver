@@ -9,8 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="interface screenshot update">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="exception handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,14 +122,14 @@
       <command value="mvn exec:exec@deploy app" />
       <command value="mvnclean" />
       <command value="mvn clear" />
-      <command value="mvn package" />
       <command value="mvn clean &amp;&amp; package" />
-      <command value="mvn clean" />
       <command value="mvn clean &amp;&amp; mvn package" />
       <command value="mvn clean package exec:exec@deploy-app" />
-      <command value="mvn exec:exec@installer" />
-      <command value="mvn clean package" />
+      <command value="mvn clean" />
+      <command value="mvn package" />
       <command value="mvn exec:exec@deploy-app" />
+      <command value="mvn clean package" />
+      <command value="mvn exec:exec@installer" />
     </option>
   </component>
   <component name="RunManager" selected="Application.DNSResolver">
@@ -221,13 +223,7 @@
       <updated>1611967922599</updated>
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
-    </task>
-    <task id="LOCAL-00148" summary="remove spaces before query">
-      <created>1638976743443</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1638976743443</updated>
+      <workItem from="1646051177446" duration="14000" />
     </task>
     <task id="LOCAL-00149" summary="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon">
       <created>1639873887653</created>
@@ -565,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645924672254</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="exception handling">
+      <created>1645955266536</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1645955266537</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +599,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added missing srv Record" />
     <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
     <MESSAGE value="moved files to specific packages" />
     <MESSAGE value="message when removing files" />
@@ -621,7 +623,8 @@
     <MESSAGE value="added mode config" />
     <MESSAGE value="bug fix: www.domain gets replaced by regex" />
     <MESSAGE value="interface screenshot update" />
-    <option name="LAST_COMMIT_MESSAGE" value="interface screenshot update" />
+    <MESSAGE value="exception handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="exception handling" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

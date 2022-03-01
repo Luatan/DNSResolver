@@ -122,7 +122,7 @@ public class NIC extends API {
             for (int i = 0; i < resNSDomain.size(); i++) {
                 if (resNSDomain.get(i) != null) {
                     if (i < resNSIP.size()) {
-                        res.add("NS" + (i + 1) + ": " + resNSDomain.get(i) + "\t" + "IP: " + resNSIP.get(i));
+                        res.add("NS" + (i + 1) + ": " + resNSDomain.get(i) + "      " + "IP: " + resNSIP.get(i));
                     } else {
                         res.add("NS" + (i + 1) + ": " + resNSDomain.get(i));
                     }

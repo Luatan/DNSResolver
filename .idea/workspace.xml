@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="add spaces before ip so it is not togheter">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/HyperlinkSymbol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/link_external.png" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changes to spf links&#10;All displayed links get now a button to open them directly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/RecordCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/RecordCellFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/SpecialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/SpecialType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style_dark.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,13 +227,6 @@
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
       <workItem from="1646051177446" duration="14000" />
-    </task>
-    <task id="LOCAL-00149" summary="dns are now getting pulled in a seperate thread. also moved all files to package ch.simon">
-      <created>1639873887653</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1639873887653</updated>
     </task>
     <task id="LOCAL-00150" summary="renamed package to luatan">
       <created>1639873968721</created>
@@ -574,7 +564,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645955266537</updated>
     </task>
-    <option name="localTasksCounter" value="198" />
+    <task id="LOCAL-00198" summary="changes to spf links&#10;All displayed links get now a button to open them directly">
+      <created>1650777604133</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1650777604133</updated>
+    </task>
+    <option name="localTasksCounter" value="199" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +602,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="renaming variables and moving files for a better filestructure&#10;&#10;moved the moving functions for the window to the GUIController" />
     <MESSAGE value="moved files to specific packages" />
     <MESSAGE value="message when removing files" />
     <MESSAGE value="moved files to view Package" />
@@ -630,7 +626,8 @@
     <MESSAGE value="bug fix: www.domain gets replaced by regex" />
     <MESSAGE value="interface screenshot update" />
     <MESSAGE value="exception handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="exception handling" />
+    <MESSAGE value="changes to spf links&#10;All displayed links get now a button to open them directly" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes to spf links&#10;All displayed links get now a button to open them directly" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

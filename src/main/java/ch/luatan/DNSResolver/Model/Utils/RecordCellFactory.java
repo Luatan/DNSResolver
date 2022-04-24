@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RecordCellFactory extends ListCell<String> {
-    private final Hyperlink link = new Hyperlink();
-    private SpecialType recordType = SpecialType.RECORD;
+    private Type recordType = SpecialType.RECORD;
 
     @Override
     protected void updateItem(String item, boolean empty) {
@@ -36,9 +36,8 @@ public class RecordCellFactory extends ListCell<String> {
             setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             setGraphic(tf);
 
-            //check for special types
-            recordType = detectType(item);
-            setType();
+            //check and handle Specialtypes like SPF records or hyperlinks
+            handleSpecialTypes(item);
 
             //color status active to green
             if (tf.getText().matches("Status:.*")) {
@@ -55,6 +54,7 @@ public class RecordCellFactory extends ListCell<String> {
                 }
             }
 
+            //add Types to the output field, which cannot be selected with the mouse
             if (Arrays.stream(DNSController.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
                 setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
@@ -63,13 +63,43 @@ public class RecordCellFactory extends ListCell<String> {
             }
 
         } else {
+            // empty Item
             setText("");
             setContentDisplay(ContentDisplay.TEXT_ONLY);
             setGraphic(null);
         }
     }
 
-    private void setLink(String text, String url) {
+    private void handleSpecialTypes(String input) {
+        //check for SPF Records
+        Matcher spfPattern = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE).matcher(input);
+        if (spfPattern.find()) {
+            recordType = SpecialType.SPF;
+            // Build URL
+            String url = "https://www.spf-record.com/spf-lookup/" + GUIController.getDomainProperty().getValue();
+            setGraphic(new HyperlinkSymbol(url, input));
+        }
+
+        //check if a URL is in a text
+        Matcher linkPattern = Pattern.compile(".+(http.*)", Pattern.CASE_INSENSITIVE).matcher(input);
+        if (linkPattern.find()) {
+            recordType = SpecialType.HYPERLINKSYMBOL;
+            setText("");
+            // create Symbol with link to click and display the original text from the input
+            setGraphic(new HyperlinkSymbol(linkPattern.group(1), input));
+        }
+
+        //check if the item Starts with http to make it to a clickable link
+        if (input.startsWith("http")) {
+            recordType = SpecialType.HYPERLINK;
+            setText("");
+            setGraphic(getLink(input, input));
+        }
+    }
+
+    private Hyperlink getLink(String text, String url) {
+        Hyperlink link = new Hyperlink();
+        // make the URL clickable
         link.setOnAction(e -> {
             if (Desktop.isDesktopSupported()) {
                 try {
@@ -80,38 +110,7 @@ public class RecordCellFactory extends ListCell<String> {
             }
         });
         link.setText(text);
-    }
-
-    private void setType() {
-        switch (recordType) {
-            case HYPERLINK:
-                setLink(getText(), getText());
-
-                // Item
-                setText("");
-                setGraphic(link);
-                break;
-            case SPF:
-                setLink(getText(), "https://www.spf-record.com/spf-lookup/" + GUIController.getDomainProperty().getValue());
-                // Item
-                setText("");
-                setGraphic(link);
-                break;
-        }
-    }
-
-    private SpecialType detectType(String input) {
-        //check for SPF Records
-        Pattern spfPattern = Pattern.compile("^v=spf.*", Pattern.CASE_INSENSITIVE);
-        if (spfPattern.matcher(input).find()) {
-            return SpecialType.SPF;
-        }
-
-        //check if it is a Link with the http(s) protocoll
-        if (input.startsWith("http")) {
-            return SpecialType.HYPERLINK;
-        }
-        return SpecialType.RECORD;
+        return link;
     }
 
 }

@@ -43,7 +43,7 @@
     </dependencies>
 
     <properties>
-        <app.mode>beta</app.mode>
+        <app.mode>live</app.mode>
         <!-- Installer Filename without suffix -->
         <app.filename>${project.name}</app.filename>
 

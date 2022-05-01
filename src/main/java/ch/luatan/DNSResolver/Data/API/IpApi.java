@@ -1,4 +1,4 @@
-package ch.luatan.DNSResolver.Model.API;
+package ch.luatan.DNSResolver.Data.API;
 
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Utils.Config;
@@ -18,25 +18,24 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Ip_api extends API {
+public class IpApi extends API {
     private final String URL = "http://ip-api.com/json/";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private Map<String, Long> log;
     private String api_output;
-    //private String fields = "53769";
 
-    public Ip_api(String ip_addr) {
+    public IpApi() {
         log = new LinkedHashMap<>();
         readTracker();
+    }
+
+    public List<String> query(String query) {
         if (isAllowed()) {
-            api_output = super.request(buildURL(ip_addr));
+            api_output = super.request(buildURL(query));
             writeTracker(responseHeaders);
         } else if (api_output.equals("")) {
             api_output = message("The Service is currently not available.");
         }
-    }
-
-    public List<String> getOutput() {
         Map<String, String> output = JsonAdapter.HANDLER.fromJson(api_output, new TypeToken<Map<String, String>>() {
         }.getType());
 

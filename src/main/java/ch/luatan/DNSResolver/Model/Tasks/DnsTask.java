@@ -1,10 +1,11 @@
 package ch.luatan.DNSResolver.Model.Tasks;
 
-import ch.luatan.DNSResolver.Controller.DNSController;
+import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Data.Resolver.Resolvable;
 import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.Utils.DNSType;
-import ch.luatan.DNSResolver.Model.Utils.SpecialType;
-import ch.luatan.DNSResolver.Model.Utils.Type;
+import ch.luatan.DNSResolver.Model.DNS.DNSType;
+import ch.luatan.DNSResolver.Model.DNS.SpecialType;
+import ch.luatan.DNSResolver.Model.DNS.Type;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -42,10 +43,11 @@ public class DnsTask extends Task<List<String>> {
     @Override
     protected List<String> call() {
         result = new ArrayList<>();
-        DNSController query = new DNSController(host, type, dnsServer);
+        Resolvable query = new DefaultResolver();
+        query.resolve(host, type, dnsServer);
         recordPutter(query.getRecords(SpecialType.MSG), SpecialType.MSG);
         if (type.equals(SpecialType.ANY)) {
-            for (DNSType request : DNSController.RECORD_TYPES) {
+            for (DNSType request : Resolvable.RECORD_TYPES) {
                 recordPutter(query.getRecords(request), request);
             }
         } else {

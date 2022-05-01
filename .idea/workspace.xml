@@ -9,9 +9,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changes to spf links&#10;All displayed links get now a button to open them directly">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="change to live release">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/Resolvable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/style_dark.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/style_dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/DNSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DefaultResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/API.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/Ip_api.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/IpApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/API/NIC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/Nic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/WhoisExtensionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/WhoisExtensionCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/DNSType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/DNSType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/HyperlinkSymbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/HyperlinkSymbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/RecordCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/RecordCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/SpecialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/SpecialType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Whois/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Diagrams/DNS_Resolver.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Diagrams/DNS_Resolver.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +45,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -140,7 +160,7 @@
       <module name="DNSResolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.luatan.DNSResolver.Controller.*" />
+          <option name="PATTERN" value="ch.luatan.DNSResolver.Data.Resolver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

@@ -1,7 +1,5 @@
 package ch.luatan.DNSResolver.Model.DNS;
 
-import ch.luatan.DNSResolver.Model.Utils.Type;
-
 public class Record {
     protected Type type;
     protected String value;

@@ -1,10 +1,10 @@
-package ch.luatan.DNSResolver.Controller;
+package ch.luatan.DNSResolver.Data.Resolver;
 
 import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.Utils.DNSType;
+import ch.luatan.DNSResolver.Model.DNS.DNSType;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Model.Utils.SpecialType;
-import ch.luatan.DNSResolver.Model.Utils.Type;
+import ch.luatan.DNSResolver.Model.DNS.SpecialType;
+import ch.luatan.DNSResolver.Model.DNS.Type;
 
 import javax.naming.*;
 import javax.naming.directory.Attribute;
@@ -12,13 +12,12 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.util.*;
 
-public class DNSController {
-    public static final DNSType[] RECORD_TYPES = DNSType.values();
+public class DefaultResolver implements Resolvable {
     private final List<Record> records = new LinkedList<>();
     private InitialDirContext iDirC;
     private String hostname;
 
-    public DNSController(String domain, Type type, String dnsServer) {
+    public void resolve(String domain, Type type, String dnsServer) {
         this.hostname = Domain.trimDomain(domain);
 
         //set environment for nameresolution

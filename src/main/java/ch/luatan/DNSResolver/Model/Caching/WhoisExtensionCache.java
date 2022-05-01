@@ -15,7 +15,7 @@ public class WhoisExtensionCache extends Cache {
     }
 
     public void write(WhoisServer server) {
-        FileStructure.createFile(JsonAdapter.HANDLER.toJson(server), getFileObject(server.getDomain()).getPath());
+        FileStructure.createFile(JsonAdapter.HANDLER.toJson(server), getFileObject(server.getDomainExt()).getPath());
     }
 
     public boolean isCached(String ext) {

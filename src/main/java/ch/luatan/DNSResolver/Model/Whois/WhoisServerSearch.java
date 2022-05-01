@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Model.Whois;
 
+import ch.luatan.DNSResolver.Data.Whois.Whois;
 import ch.luatan.DNSResolver.Model.Caching.WhoisExtensionCache;
 
 import java.io.IOException;
@@ -10,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class WhoisServerSearch {
     private final WhoisExtensionCache cache = new WhoisExtensionCache();
-    private final Whois whois = new Whois();
     private final Map<String, List<String>> tempValues = new LinkedHashMap<>();
 
     public WhoisServer search(String ext) {
@@ -55,7 +55,7 @@ public class WhoisServerSearch {
 
     private void createMap(String ext) {
         System.err.println("REQUEST TO whois.iana.org");
-        List<String> data = whois.getWhois(ext, "whois.iana.org").stream().filter(d -> !d.isEmpty()).collect(Collectors.toList());
+        List<String> data = Whois.getWhois(ext, "whois.iana.org").stream().filter(d -> !d.isEmpty()).collect(Collectors.toList());
         Pattern pattern = Pattern.compile("(?<key>^[\\w-]+):\\s+(?<value>.*)");
         for (String elem : data) {
             Matcher matcher = pattern.matcher(elem);

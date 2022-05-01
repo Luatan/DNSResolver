@@ -1,17 +1,16 @@
-package ch.luatan.DNSResolver.Controller;
+package ch.luatan.DNSResolver.Gui;
 
-import ch.luatan.DNSResolver.DNSResolver;
-import ch.luatan.DNSResolver.Model.API.Ip_api;
+import ch.luatan.DNSResolver.Controller.HistoryController;
+import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Data.API.IpApi;
 import ch.luatan.DNSResolver.Model.DNS.Record;
+import ch.luatan.DNSResolver.Model.DNS.SpecialType;
+import ch.luatan.DNSResolver.Model.DNS.Type;
 import ch.luatan.DNSResolver.Model.Tasks.CacheCleanupTask;
 import ch.luatan.DNSResolver.Model.Tasks.DnsTask;
 import ch.luatan.DNSResolver.Model.Tasks.GetWhoisTask;
 import ch.luatan.DNSResolver.Model.Tasks.LookupTask;
-import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Model.Utils.SpecialType;
-import ch.luatan.DNSResolver.Model.Utils.State;
-import ch.luatan.DNSResolver.Model.Utils.Type;
-import ch.luatan.DNSResolver.Model.Utils.RecordCellFactory;
+import ch.luatan.DNSResolver.Model.Utils.*;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -82,7 +81,7 @@ public class GUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        types.addAll(DNSController.RECORD_TYPES);
+        types.addAll(DefaultResolver.RECORD_TYPES);
         rotateImage(whoisLoading);
 
         //init listview
@@ -100,7 +99,7 @@ public class GUIController implements Initializable {
             @Override
             public String toString(Type type) {
                 if (type.equals(SpecialType.ANY)) {
-                    return type.toString().substring(0,1).toUpperCase()
+                    return type.toString().substring(0, 1).toUpperCase()
                             + type.toString().substring(1).toLowerCase();
                 }
                 return type.toString();
@@ -115,7 +114,7 @@ public class GUIController implements Initializable {
         typeComboBox.setValue(SpecialType.ANY);
 
         // apply settings
-        showRecordsTickBox.setSelected(DNSResolver.isShowAllRecords()); //load TickBox
+        showRecordsTickBox.setSelected(ch.luatan.DNSResolver.DNSResolver.isShowAllRecords()); //load TickBox
         updateHistoryDisplay(); //load history
 
         //prevent start button pressed without input
@@ -150,7 +149,7 @@ public class GUIController implements Initializable {
     @FXML
     private void onClose() {
         historyController.write();
-        DNSResolver.exit();
+        ch.luatan.DNSResolver.DNSResolver.exit();
     }
 
     @FXML
@@ -174,17 +173,17 @@ public class GUIController implements Initializable {
 
     @FXML
     private void onMinimize() {
-        DNSResolver.minimize();
+        ch.luatan.DNSResolver.DNSResolver.minimize();
     }
 
     @FXML
     private void changeEmptyRecordsSetting() {
-        DNSResolver.setShowAllRecords();
+        ch.luatan.DNSResolver.DNSResolver.setShowAllRecords();
     }
 
     @FXML
     private void changeTheme() {
-        DNSResolver.changeTheme();
+        ch.luatan.DNSResolver.DNSResolver.changeTheme();
     }
 
     @FXML
@@ -288,8 +287,8 @@ public class GUIController implements Initializable {
         if (ipTf.getText().isEmpty()) {
             return;
         }
-        Ip_api info = new Ip_api(ipTf.getText());
-        openList(info.getOutput(), State.IP);
+        IpApi info = new IpApi();
+        openList(info.query(ipTf.getText()), State.IP);
     }
 
     private void openList(List<String> list, State state) {
@@ -384,7 +383,7 @@ public class GUIController implements Initializable {
         }
         LookupTask lookup = new LookupTask(host);
         lookup.setOnRunning(e -> {
-            ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(DNSResolver.class.getResourceAsStream("/icons/reload_64x64.png"))));
+            ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(ch.luatan.DNSResolver.DNSResolver.class.getResourceAsStream("/icons/reload_64x64.png"))));
             hostLoading.setFitHeight(20);
             hostLoading.setPreserveRatio(true);
             rotateImage(hostLoading);

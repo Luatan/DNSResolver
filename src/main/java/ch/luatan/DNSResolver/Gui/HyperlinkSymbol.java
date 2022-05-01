@@ -1,4 +1,4 @@
-package ch.luatan.DNSResolver.Model.Utils;
+package ch.luatan.DNSResolver.Gui;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

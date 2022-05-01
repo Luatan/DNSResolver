@@ -1,4 +1,4 @@
-package ch.luatan.DNSResolver.Model.API;
+package ch.luatan.DNSResolver.Data.API;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,9 +7,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NIC extends API {
+public class Nic extends API {
     private final String API_URL = "https://rdap.nic.ch/domain/";
-    private final String response;
+    private String response;
     private final List<String> event;
     private final List<String> resNSDomain;
     private final List<String> resNSIP;
@@ -18,14 +18,15 @@ public class NIC extends API {
     private String resRegistrar;
     private String resStatus;
 
-    public NIC(String domain) {
+    public Nic() {
         event = new ArrayList<>();
         resNSDomain = new ArrayList<>();
         resNSIP = new ArrayList<>();
-        response = request(API_URL + domain);
+
     }
 
-    public List<String> getOutput() {
+    public List<String> query(String query) {
+        response = request(API_URL + query);
         //Get Whole Object which icludes all Arrays
         if (response != null && responseCode == 200) {
             JSONObject jsonObj = new JSONObject(response);

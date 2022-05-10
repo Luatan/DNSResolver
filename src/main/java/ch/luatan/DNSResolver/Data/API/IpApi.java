@@ -2,7 +2,7 @@ package ch.luatan.DNSResolver.Data.API;
 
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Utils.Config;
-import ch.luatan.DNSResolver.Model.Utils.FileStructure;
+import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -91,12 +91,12 @@ public class IpApi extends API {
     }
 
     private void readTracker() {
-        if (!FileStructure.fileExists(Config.IP_API_LOG_FILE)) {
+        if (!FileHelper.fileExists(Config.IP_API_LOG_FILE)) {
             System.err.println("File: " + Config.IP_API_LOG_FILE + " does not exist!");
             return;
         }
         try {
-            Reader reader = FileStructure.getReader(Config.IP_API_LOG_FILE);
+            Reader reader = FileHelper.getReader(Config.IP_API_LOG_FILE);
             log = gson.fromJson(reader, new TypeToken<Map<String, Long>>() {
             }.getType());
         } catch (IOException e) {
@@ -105,7 +105,7 @@ public class IpApi extends API {
     }
 
     private boolean isAllowed() {
-        if (FileStructure.fileExists(Config.IP_API_LOG_FILE)) {
+        if (FileHelper.fileExists(Config.IP_API_LOG_FILE)) {
             long rl = log.get("rl");
 
             // Calculate Time since last request

@@ -11,7 +11,7 @@ public abstract class JsonAdapter {
     }
 
     public static void write(Object json, String destinationFile) {
-        FileStructure.createFile(HANDLER.toJson(json), destinationFile);
+        FileHelper.createFile(HANDLER.toJson(json), destinationFile);
     }
 
     public abstract void write();

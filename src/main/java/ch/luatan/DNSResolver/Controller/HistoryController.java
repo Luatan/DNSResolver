@@ -1,7 +1,7 @@
 package ch.luatan.DNSResolver.Controller;
 
 import ch.luatan.DNSResolver.Model.Utils.Config;
-import ch.luatan.DNSResolver.Model.Utils.FileStructure;
+import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 import ch.luatan.DNSResolver.Model.Utils.HistoryList;
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import com.google.gson.JsonSyntaxException;
@@ -30,7 +30,7 @@ public class HistoryController extends JsonAdapter {
 
     @Override
     protected void load() {
-        try (Reader reader = FileStructure.getReader(Config.HISTORY_LOG_FILE)){
+        try (Reader reader = FileHelper.getReader(Config.HISTORY_LOG_FILE)){
             ArrayList<String> temp = (ArrayList<String>) HANDLER.fromJson(reader, HashMap.class).get("domains");
             history = new HistoryList<>();
             history.addAll(temp);

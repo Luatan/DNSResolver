@@ -48,7 +48,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
             if (cache.isCached()) {
                 try {
-                    res = cache.readLines();
+                    res = cache.load();
 
                     //set cached sign
                     setLinkRegistrar();
@@ -84,7 +84,7 @@ public class GetWhoisTask extends Task<List<String>> {
         setLinkRegistrar();
 
         if (Config.CACHING) {
-            cache.writeCache(res);
+            cache.write(res);
         }
         return res;
     }

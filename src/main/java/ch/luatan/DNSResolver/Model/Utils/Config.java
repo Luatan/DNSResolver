@@ -16,7 +16,7 @@ public class Config {
     public static final String IP_API_LOG_FILE = "logs/IP_API_req.json";
 
     public static void createHistoryConfig(){
-        if (!FileStructure.fileExists(HISTORY_LOG_FILE)) {
+        if (!FileHelper.fileExists(HISTORY_LOG_FILE)) {
             Map<String, List<String>> domains = new LinkedHashMap<>();
             domains.put("domains", new ArrayList<>());
             JsonAdapter.write(domains, HISTORY_LOG_FILE);
@@ -24,7 +24,7 @@ public class Config {
     }
 
     public static void createSettingsConfig() {
-        if (!FileStructure.fileExists(SETTINGS_CONF_FILE)){
+        if (!FileHelper.fileExists(SETTINGS_CONF_FILE)){
             Map<String,Object> settings = new LinkedHashMap<>();
             settings.put("ShowEmptyRecords", Boolean.FALSE);
             settings.put("darkmode", Boolean.FALSE);

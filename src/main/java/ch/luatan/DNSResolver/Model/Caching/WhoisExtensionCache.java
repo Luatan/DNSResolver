@@ -1,7 +1,7 @@
 package ch.luatan.DNSResolver.Model.Caching;
 
 import ch.luatan.DNSResolver.Model.Utils.Config;
-import ch.luatan.DNSResolver.Model.Utils.FileStructure;
+import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Whois.WhoisServer;
 
@@ -15,7 +15,7 @@ public class WhoisExtensionCache extends Cache {
     }
 
     public void write(WhoisServer server) {
-        FileStructure.createFile(JsonAdapter.HANDLER.toJson(server), getFileObject(server.getDomainExt()).getPath());
+        FileHelper.createFile(JsonAdapter.HANDLER.toJson(server), getFileObject(server.getDomainExt()).getPath());
     }
 
     public boolean isCached(String ext) {
@@ -29,7 +29,7 @@ public class WhoisExtensionCache extends Cache {
 
     public WhoisServer load(String ext) throws IOException {
         if (isCached(ext)) {
-            return JsonAdapter.HANDLER.fromJson(FileStructure.readFile(getFileObject(ext).getPath()), WhoisServer.class);
+            return JsonAdapter.HANDLER.fromJson(FileHelper.readFile(getFileObject(ext).getPath()), WhoisServer.class);
         }
         throw new IOException();
     }

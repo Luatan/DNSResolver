@@ -10,7 +10,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FileStructure {
+public class FileHelper {
 
     public static final String DIR_HOME = System.getProperty("user.dir") + "/";
 
@@ -34,14 +34,14 @@ public class FileStructure {
     }
 
     public static boolean createFileFromPath(String ressourcePath, String destPath) {
-        if (FileStructure.fileExists(destPath)) {
+        if (FileHelper.fileExists(destPath)) {
             return true;
         }
 
         // try to get Stream
-        try (InputStream is = FileStructure.class.getClassLoader().getResourceAsStream(ressourcePath)) {
+        try (InputStream is = FileHelper.class.getClassLoader().getResourceAsStream(ressourcePath)) {
             // create parent dirs
-            File file = new File(FileStructure.DIR_HOME + destPath);
+            File file = new File(FileHelper.DIR_HOME + destPath);
             file.getParentFile().mkdirs();
             // convert input stream to file
             FileUtils.copyInputStreamToFile(is, file);
@@ -53,7 +53,7 @@ public class FileStructure {
     }
 
     public static boolean createFile(String fileContent, String destPath) {
-        String path = FileStructure.DIR_HOME + destPath;
+        String path = FileHelper.DIR_HOME + destPath;
 
         try {
             // create Parent dirs

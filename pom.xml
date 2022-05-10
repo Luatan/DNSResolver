@@ -72,7 +72,7 @@
         <app.installerdir>${project.build.directory}/installer</app.installerdir>
 
         <!-- Should the client downgrade if the server version is older than the local version? -->
-        <app.acceptDowngrade>false</app.acceptDowngrade>
+        <app.acceptDowngrade>true</app.acceptDowngrade>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javafx.version>1</javafx.version>

@@ -192,8 +192,7 @@ public class GUIController implements Initializable {
         if (queryTf.getText().equals("")) {
             return;
         }
-        //remove spaces and protocol before searching
-        queryTf.setText(Domain.extractDomain(queryTf.getText().trim()));
+
 
         //Clean up
         defaultList();
@@ -225,6 +224,8 @@ public class GUIController implements Initializable {
             resolveHost(queryTf.getText());
 
         } else {
+            //remove spaces and protocol before searching
+            queryTf.setText(Domain.extractDomain(queryTf.getText().trim()));
             DNSOutput(queryTf.getText(), typeComboBox.getValue());
         }
 

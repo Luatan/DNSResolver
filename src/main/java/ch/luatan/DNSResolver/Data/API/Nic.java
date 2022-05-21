@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Data.API;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -87,7 +88,7 @@ public class Nic extends API {
                     }
                 }
             } else {
-                System.out.println("No NS");
+                DNSResolver.LOGGER.debug("No NS");
             }
             return convertResultNic();
         } else {

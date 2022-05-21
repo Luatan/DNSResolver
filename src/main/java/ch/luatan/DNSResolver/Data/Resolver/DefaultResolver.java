@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Data.Resolver;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.DNS.*;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
 
@@ -74,7 +75,7 @@ public class DefaultResolver implements Resolvable {
                     }
 
                 } catch (Exception e) {
-                    //System.err.println("No Records for " + type + " in " + hostname + " found!");
+                    //DNSResolver.LOGGER.error("No Records for " + type + " in " + hostname + " found!");
                 }
             }
         } catch (NameNotFoundException e) {
@@ -129,7 +130,7 @@ public class DefaultResolver implements Resolvable {
                 records.remove(i);
             }
         }
-        System.err.println("Error: " + message);
+        DNSResolver.LOGGER.error(message);
         createRecord(message, SpecialType.MSG);
     }
 

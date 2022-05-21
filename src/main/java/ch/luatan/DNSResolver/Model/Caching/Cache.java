@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Model.Caching;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 
 import java.io.File;
@@ -23,9 +24,9 @@ public abstract class Cache {
         if ((System.currentTimeMillis() - cacheTime) > ttl) {
             try {
                 if (!Files.deleteIfExists(Paths.get(cacheFile.getAbsolutePath()))) {
-                    System.err.println("Cache File" + cacheFile.getName() + "could not be deleted");
+                    DNSResolver.LOGGER.error("Cache File" + cacheFile.getName() + "could not be deleted");
                 } else {
-                    System.out.println("removed: " + cacheFile.getName());
+                    DNSResolver.LOGGER.debug("removed: " + cacheFile.getName());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

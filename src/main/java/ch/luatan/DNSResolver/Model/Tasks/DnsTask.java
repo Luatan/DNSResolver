@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Model.Tasks;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Data.Resolver.DNSJavaResolver;
 import ch.luatan.DNSResolver.Data.Resolver.Resolvable;
 import ch.luatan.DNSResolver.Model.DNS.*;
@@ -57,7 +58,7 @@ public class DnsTask extends Task<List<String>> {
         nameservers.addAll(query.getRecords(AdditionalTypes.NS));
 
         //Calculate Time for a request
-        System.out.println("DNS Queries took: " + (System.currentTimeMillis() - startTime) + " ms");
+        DNSResolver.LOGGER.debug("DNS Queries took: " + (System.currentTimeMillis() - startTime) + " ms");
         return result;
     }
 

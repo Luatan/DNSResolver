@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Data.API;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.FileHelper;
@@ -92,7 +93,7 @@ public class IpApi extends API {
 
     private void readTracker() {
         if (!FileHelper.fileExists(Config.IP_API_LOG_FILE)) {
-            System.err.println("File: " + Config.IP_API_LOG_FILE + " does not exist!");
+            DNSResolver.LOGGER.error("File: " + Config.IP_API_LOG_FILE + " does not exist!");
             return;
         }
         try {

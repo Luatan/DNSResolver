@@ -9,22 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="changes in pom">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DNSJavaResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/AdditionalTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/check-solid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/exclamation-solid.png" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="implemented dnsjava Framework resolver">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/HistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Controller/SettingsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/IpApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/IpApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/Nic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/API/Nic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DefaultResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DefaultResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/Resolvable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/Resolvable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/SpecialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/DNS/SpecialType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Caching/Cache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/LookupTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/LookupTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +99,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.14941406" />
     <property name="project.structure.side.proportion" value="0.4452871" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -246,13 +246,6 @@
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
       <workItem from="1646051177446" duration="14000" />
-    </task>
-    <task id="LOCAL-00154" summary="moved out of package again :(">
-      <created>1639919354553</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1639919354553</updated>
     </task>
     <task id="LOCAL-00155" summary="renamed cellfactory">
       <created>1639922275604</created>
@@ -590,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652204923860</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="implemented dnsjava Framework resolver">
+      <created>1653151079814</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1653151079814</updated>
+    </task>
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +621,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved files" />
     <MESSAGE value="update README and LICENSE" />
     <MESSAGE value="improvements" />
     <MESSAGE value="bug fixes and added States" />
@@ -646,7 +645,8 @@
     <MESSAGE value="refactoring" />
     <MESSAGE value="fix bug where ipv6 addresses were not parsed right" />
     <MESSAGE value="changes in pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes in pom" />
+    <MESSAGE value="implemented dnsjava Framework resolver" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented dnsjava Framework resolver" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Model.Tasks;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import javafx.concurrent.Task;
 
 import java.net.InetAddress;
@@ -24,7 +25,7 @@ public class LookupTask extends Task<String> {
         } catch (UnknownHostException e) {
             updateValue(host);
         }
-        System.out.println("Nameresolution of " + host + " took: " + (System.currentTimeMillis() - time) + " ms");
+        DNSResolver.LOGGER.debug("Nameresolution of " + host + " took: " + (System.currentTimeMillis() - time) + " ms");
         return host;
     }
 }

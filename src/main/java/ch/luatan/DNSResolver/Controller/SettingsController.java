@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Controller;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.Utils.AppConfig;
 import ch.luatan.DNSResolver.Model.Utils.JsonAdapter;
 import ch.luatan.DNSResolver.Model.Utils.Config;
@@ -31,10 +32,10 @@ public class SettingsController extends JsonAdapter {
     }
 
     protected void reset() {
-        System.err.println("Settings File error.... reseting File...");
+        DNSResolver.LOGGER.error("Settings File error.... reseting File...");
         File file = new File(Config.SETTINGS_CONF_FILE);
         if (file.delete()) {
-            System.err.println(Config.SETTINGS_CONF_FILE + " was deleted!");
+            DNSResolver.LOGGER.error(Config.SETTINGS_CONF_FILE + " was deleted!");
         }
 
         Config.createSettingsConfig();

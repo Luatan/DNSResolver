@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Controller;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 import ch.luatan.DNSResolver.Model.Utils.HistoryList;
@@ -44,10 +45,10 @@ public class HistoryController extends JsonAdapter {
 
     @Override
     protected void reset() {
-        System.err.println("History Logfile error.... reseting File");
+        DNSResolver.LOGGER.error("History Logfile error.... reseting File");
         File file = new File(Config.HISTORY_LOG_FILE);
         if (file.delete()) {
-            System.err.println(Config.HISTORY_LOG_FILE + " was deleted!");
+            DNSResolver.LOGGER.error(Config.HISTORY_LOG_FILE + " was deleted!");
         }
 
         Config.createHistoryConfig();

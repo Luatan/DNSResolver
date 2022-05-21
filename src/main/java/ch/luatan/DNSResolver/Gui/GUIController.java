@@ -1,6 +1,7 @@
 package ch.luatan.DNSResolver.Gui;
 
 import ch.luatan.DNSResolver.Controller.HistoryController;
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Data.API.IpApi;
 import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
 import ch.luatan.DNSResolver.Model.DNS.AdditionalTypes;
@@ -264,7 +265,7 @@ public class GUIController implements Initializable {
         StringSelection strSel = new StringSelection(sb.toString());
         clipboard.setContents(strSel, null);
 
-        System.out.println("DNS Records copied!");
+        DNSResolver.LOGGER.debug("DNS Records copied!");
         //copy Animation
         ScaleTransition transition = new ScaleTransition(Duration.millis(150), copyBtn);
         transition.setAutoReverse(true);
@@ -280,7 +281,7 @@ public class GUIController implements Initializable {
     @FXML
     private void whois() {
         if (whoisInfo.isEmpty()) {
-            System.err.println("No Whois found!!");
+            DNSResolver.LOGGER.error("No Whois found!!");
             return;
         }
         openList(whoisInfo, State.WHOIS);

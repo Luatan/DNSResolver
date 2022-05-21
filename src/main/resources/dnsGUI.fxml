@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="VBox" prefHeight="622.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.luatan.DNSResolver.Gui.GUIController">
+<VBox id="VBox" prefHeight="622.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.luatan.DNSResolver.Gui.GUIController">
    <HBox id="windowBar" fx:id="WindowMenu" spacing="2.0">
       <children>
          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -388,6 +388,15 @@
                <Image url="@icons/reload_64x64.png" />
             </image>
          </ImageView>
+         <Label fx:id="dnssec" contentDisplay="RIGHT" text="DNSSEC" visible="false">
+            <graphic>
+               <ImageView fx:id="dnssecIcon" fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@icons/circle-exclamation-solid.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Label>
          <Region HBox.hgrow="SOMETIMES" />
             <Button fx:id="backBtn" mnemonicParsing="false" onAction="#defaultList" prefHeight="29.0" prefWidth="83.0" style="-fx-cursor: hand;" text="Back" visible="false">
                 <font>

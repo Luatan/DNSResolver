@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -21,6 +23,7 @@ public class DNSResolver extends Application {
     private static final SettingsController SETTINGS = new SettingsController();
     private double yOffset;
     private double xOffset;
+    public static final Logger LOGGER = LoggerFactory.getLogger(DNSResolver.class);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -60,6 +63,7 @@ public class DNSResolver extends Application {
     }
 
     private void loadSettings() {
+        LOGGER.info("Loading settings from JSON");
         if (SETTINGS.config != null) {
             darkMode = SETTINGS.config.isDarkmode();
             showAllRecords = SETTINGS.config.isShowEmptyRecords();

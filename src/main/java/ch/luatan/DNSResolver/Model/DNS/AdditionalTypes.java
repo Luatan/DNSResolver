@@ -1,7 +1,7 @@
 package ch.luatan.DNSResolver.Model.DNS;
 
-public enum SpecialType implements Type {
-    HYPERLINK, HYPERLINKSYMBOL,SPF, RECORD, ANY, MSG;
+public enum AdditionalTypes implements Type{
+    NS, CAA, DS, DNSKEY,TSIG, TLSA ;
 
     @Override
     public Record getRecord() {

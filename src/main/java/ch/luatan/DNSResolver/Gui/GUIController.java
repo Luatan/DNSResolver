@@ -1,8 +1,9 @@
 package ch.luatan.DNSResolver.Gui;
 
 import ch.luatan.DNSResolver.Controller.HistoryController;
-import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
 import ch.luatan.DNSResolver.Data.API.IpApi;
+import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Model.DNS.AdditionalTypes;
 import ch.luatan.DNSResolver.Model.DNS.Record;
 import ch.luatan.DNSResolver.Model.DNS.SpecialType;
 import ch.luatan.DNSResolver.Model.DNS.Type;
@@ -10,7 +11,7 @@ import ch.luatan.DNSResolver.Model.Tasks.CacheCleanupTask;
 import ch.luatan.DNSResolver.Model.Tasks.DnsTask;
 import ch.luatan.DNSResolver.Model.Tasks.GetWhoisTask;
 import ch.luatan.DNSResolver.Model.Tasks.LookupTask;
-import ch.luatan.DNSResolver.Model.Utils.*;
+import ch.luatan.DNSResolver.Model.Utils.Domain;
 import javafx.animation.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
@@ -29,6 +30,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 
@@ -53,7 +55,7 @@ public class GUIController implements Initializable {
     //list of the Nameserver TextFields
     private final List<TextField> nsTf = new LinkedList<>();
     @FXML
-    private Label hostnameLbl, whoisLinkLbl;
+    private Label hostnameLbl, whoisLinkLbl, dnssec;
     @FXML
     private TextField ns1Lbl, ns2Lbl, ns3Lbl, ns4Lbl;
     @FXML
@@ -67,7 +69,7 @@ public class GUIController implements Initializable {
     @FXML
     private CheckBox showRecordsTickBox;
     @FXML
-    private ImageView whoisLoading, loading_duck, tools_chevron;
+    private ImageView whoisLoading, loading_duck, tools_chevron, dnssecIcon;
     @FXML
     private MenuButton historyBtn;
     @FXML
@@ -82,6 +84,7 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         types.addAll(DefaultResolver.RECORD_TYPES);
+        types.addAll(AdditionalTypes.values());
         rotateImage(whoisLoading);
 
         //init listview
@@ -360,6 +363,19 @@ public class GUIController implements Initializable {
             }
             dnsLookup.setOnSucceeded(e -> {
                 dnsRecordList.addAll(dnsLookup.getValue());
+
+                String secureZone = dnsLookup.seucreZone();
+                Tooltip tooltip = new Tooltip(secureZone);
+                tooltip.setFont(Font.font("Roboto Light", 12));
+                Tooltip.install(dnssec, tooltip);
+
+                if (secureZone.equals("Verified")) {
+                    dnssec.setVisible(true);
+                    dnssecIcon.setImage(new Image("/icons/check-solid.png"));
+                } else {
+                    dnssec.setVisible(true);
+                    dnssecIcon.setImage(new Image("/icons/exclamation-solid.png"));
+                }
                 try {
                     nameServerDisplay(dnsLookup.getNameservers());
                 } catch (Exception ex) {
@@ -384,6 +400,7 @@ public class GUIController implements Initializable {
         }
         LookupTask lookup = new LookupTask(host);
         lookup.setOnRunning(e -> {
+            dnssec.setVisible(false);
             ImageView hostLoading = new ImageView(new Image(Objects.requireNonNull(ch.luatan.DNSResolver.DNSResolver.class.getResourceAsStream("/icons/reload_64x64.png"))));
             hostLoading.setFitHeight(20);
             hostLoading.setPreserveRatio(true);

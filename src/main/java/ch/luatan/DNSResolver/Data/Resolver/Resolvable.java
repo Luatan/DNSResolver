@@ -12,4 +12,6 @@ public interface Resolvable {
     void resolve(String domain, Type type, String dnsServer);
 
     List<Record> getRecords(Type type);
+
+    String validateDNSSEC();
 }

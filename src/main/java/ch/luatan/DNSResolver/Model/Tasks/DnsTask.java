@@ -1,11 +1,8 @@
 package ch.luatan.DNSResolver.Model.Tasks;
 
-import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Data.Resolver.DNSJavaResolver;
 import ch.luatan.DNSResolver.Data.Resolver.Resolvable;
-import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.DNS.DNSType;
-import ch.luatan.DNSResolver.Model.DNS.SpecialType;
-import ch.luatan.DNSResolver.Model.DNS.Type;
+import ch.luatan.DNSResolver.Model.DNS.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -14,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DnsTask extends Task<List<String>> {
+    private final Resolvable query;
     private final String host;
     private final String dnsServer;
     long startTime = System.currentTimeMillis();
@@ -25,6 +23,8 @@ public class DnsTask extends Task<List<String>> {
     public DnsTask(String host, String dnsServer) {
         this.host = host;
         this.dnsServer = dnsServer;
+        query = new DNSJavaResolver();
+        result = new ArrayList<>();
     }
 
     public DnsTask(String host, Type type, String dnsServer) {
@@ -42,8 +42,6 @@ public class DnsTask extends Task<List<String>> {
 
     @Override
     protected List<String> call() {
-        result = new ArrayList<>();
-        Resolvable query = new DefaultResolver();
         query.resolve(host, type, dnsServer);
         recordPutter(query.getRecords(SpecialType.MSG), SpecialType.MSG);
         if (type.equals(SpecialType.ANY)) {
@@ -56,7 +54,7 @@ public class DnsTask extends Task<List<String>> {
 
         //set Nameservers to list
         nameservers = FXCollections.observableArrayList();
-        nameservers.addAll(query.getRecords(SpecialType.NS));
+        nameservers.addAll(query.getRecords(AdditionalTypes.NS));
 
         //Calculate Time for a request
         System.out.println("DNS Queries took: " + (System.currentTimeMillis() - startTime) + " ms");
@@ -75,5 +73,9 @@ public class DnsTask extends Task<List<String>> {
             result.add(type + ": ");
             result.add("No Records found");
         }
+    }
+
+    public String seucreZone() {
+        return query.validateDNSSEC();
     }
 }

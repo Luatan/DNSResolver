@@ -1,10 +1,7 @@
 package ch.luatan.DNSResolver.Data.Resolver;
 
-import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.DNS.DNSType;
+import ch.luatan.DNSResolver.Model.DNS.*;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Model.DNS.SpecialType;
-import ch.luatan.DNSResolver.Model.DNS.Type;
 
 import javax.naming.*;
 import javax.naming.directory.Attribute;
@@ -37,7 +34,7 @@ public class DefaultResolver implements Resolvable {
         }
 
         setNameServer();
-        if (!type.equals(SpecialType.NS)) {
+        if (!type.equals(AdditionalTypes.NS)) {
             setRecords(type);
         }
     }
@@ -46,10 +43,10 @@ public class DefaultResolver implements Resolvable {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
-            setRecords(SpecialType.NS);
+            setRecords(AdditionalTypes.NS);
             this.hostname = origHost;
         } else if (!Domain.isIPAdress(hostname)) {
-            setRecords(SpecialType.NS);
+            setRecords(AdditionalTypes.NS);
         }
     }
 
@@ -144,5 +141,10 @@ public class DefaultResolver implements Resolvable {
             }
         }
         return list;
+    }
+
+    @Override
+    public String validateDNSSEC() {
+        return "Not implemented!";
     }
 }

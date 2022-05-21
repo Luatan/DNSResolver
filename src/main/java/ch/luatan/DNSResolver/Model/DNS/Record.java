@@ -28,4 +28,12 @@ public class Record {
     public String getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "type=" + type +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

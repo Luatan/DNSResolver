@@ -57,6 +57,10 @@ public class DnsTask extends Task<List<String>> {
         nameservers = FXCollections.observableArrayList();
         nameservers.addAll(query.getRecords(AdditionalTypes.NS));
 
+        if (result.isEmpty()) {
+            result.add("No Records found");
+        }
+
         //Calculate Time for a request
         DNSResolver.LOGGER.debug("DNS Queries took: " + (System.currentTimeMillis() - startTime) + " ms");
         return result;

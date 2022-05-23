@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="configured Logging">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/licenses/dnsjava.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/system.properties" afterDir="false" />
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="errorhandling for DNSJavaResolver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DNSJavaResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DNSJavaResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,13 +232,6 @@
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
       <workItem from="1646051177446" duration="14000" />
-    </task>
-    <task id="LOCAL-00156" summary="added new css File">
-      <created>1639922297171</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1639922297171</updated>
     </task>
     <task id="LOCAL-00157" summary="fixed bug with marking the status of whois with colors">
       <created>1639922334842</created>
@@ -580,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653152943278</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="errorhandling for DNSJavaResolver">
+      <created>1653293594748</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1653293594748</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +607,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="improvements" />
     <MESSAGE value="bug fixes and added States" />
     <MESSAGE value="changed the ui and added input for DNS-Server" />
     <MESSAGE value="fixed typo" />
@@ -636,7 +631,8 @@
     <MESSAGE value="changes in pom" />
     <MESSAGE value="implemented dnsjava Framework resolver" />
     <MESSAGE value="configured Logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="configured Logging" />
+    <MESSAGE value="errorhandling for DNSJavaResolver" />
+    <option name="LAST_COMMIT_MESSAGE" value="errorhandling for DNSJavaResolver" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

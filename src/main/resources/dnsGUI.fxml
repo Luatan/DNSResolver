@@ -392,7 +392,7 @@
             <graphic>
                <ImageView fx:id="dnssecIcon" fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                     <Image url="@icons/circle-exclamation-solid.png" />
+                     <Image url="@icons/exclamation-solid.png" />
                   </image>
                </ImageView>
             </graphic>

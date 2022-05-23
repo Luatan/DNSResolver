@@ -11,7 +11,9 @@ import org.xbill.DNS.dnssec.ValidatingResolver;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -20,9 +22,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DNSJavaResolver implements Resolvable {
-
-    private Message answer;
     static String ROOT = ". IN DS 20326 8 2 E06D44B80B8F1D39A95C0B0D7C65D08458E880409BBC683457104237C7F8EC8D";
+    private final List<String> errors = new LinkedList<>();
+    private Message answer;
+
     @Override
     public void resolve(String domain, ch.luatan.DNSResolver.Model.DNS.Type type, String dnsServer) {
         SimpleResolver sr;
@@ -32,20 +35,37 @@ public class DNSJavaResolver implements Resolvable {
             } else {
                 sr = new SimpleResolver("8.8.8.8");
             }
+            sr.setTimeout(Duration.ofSeconds(5));
             org.xbill.DNS.Record rc = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain + (!domain.endsWith(".") ? "." : "")), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
 
             //run validating resolver for dnssec
             ValidatingResolver vr = new ValidatingResolver(sr);
             vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
             answer = vr.send(Message.newQuery(rc));
+        } catch (UnknownHostException e) {
+            errors.add("Unknown Host: " + dnsServer);
         } catch (IOException e) {
-            e.printStackTrace();
+            errors.add(e.getMessage());
+        }
+
+        if (answer == null) {
+            errors.add("Could not retrieve answer from dns server");
+        } else if (!Rcode.string(answer.getHeader().getRcode()).equals("NOERROR")) {
+            errors.add(answer.getHeader().toString());
         }
     }
 
     @Override
     public List<Record> getRecords(Type type) {
         List<Record> records = new LinkedList<>();
+        if (errors.size() > 0 && type.equals(SpecialType.MSG)) {
+            addErrors(records);
+        }
+
+        if (answer == null) {
+            return records;
+        }
+
         for (org.xbill.DNS.Record rec : answer.getSection(Section.ANSWER)) {
             Matcher match = Pattern.compile("IN\\s(?<type>[A-Z]{0,15})\\W(?<value>.*)").matcher(rec.toString());
             if (rec.getType() == org.xbill.DNS.Type.value(type.toString()) && match.find()) {
@@ -75,30 +95,27 @@ public class DNSJavaResolver implements Resolvable {
                 }
             }
         }
-        if (!Rcode.string(answer.getHeader().getRcode()).equals("NOERROR") && type.equals(SpecialType.MSG)) {
-            addMessage(records, answer.getHeader().toString());
-        }
         return records;
     }
 
     @Override
     public String validateDNSSEC() {
+        if (answer == null) {
+            return "";
+        }
         for (RRset set : answer.getSectionRRsets(Section.ADDITIONAL)) {
-            if (set.getName().equals(Name.root) && set.getType() == org.xbill.DNS.Type.TXT
-                    && set.getDClass() == ValidatingResolver.VALIDATION_REASON_QCLASS) {
+            if (set.getName().equals(Name.root) && set.getType() == org.xbill.DNS.Type.TXT && set.getDClass() == ValidatingResolver.VALIDATION_REASON_QCLASS) {
                 return ((TXTRecord) set.first()).getStrings().get(0);
             }
         }
         return "Verified";
     }
 
-    private void addMessage(List<Record> records, String message) {
-        for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).getType().equals(SpecialType.MSG)) {
-                records.remove(i);
-            }
-        }
-        DNSResolver.LOGGER.error(message);
-        records.add(Record.setRecordValue(SpecialType.MSG.getRecord(), message));
+    private void addErrors(List<Record> records) {
+        errors.forEach(error -> {
+            DNSResolver.LOGGER.error(error);
+            records.add(Record.setRecordValue(SpecialType.MSG.getRecord(), error));
+
+        });
     }
 }

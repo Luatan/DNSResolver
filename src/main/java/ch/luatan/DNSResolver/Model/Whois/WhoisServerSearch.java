@@ -55,7 +55,7 @@ public class WhoisServerSearch {
     }
 
     private void createMap(String ext) {
-        DNSResolver.LOGGER.debug("REQUEST TO whois.iana.org");
+        DNSResolver.LOGGER.debug("request whoisserver data from whois.iana.org");
         List<String> data = Whois.getWhois(ext, "whois.iana.org").stream().filter(d -> !d.isEmpty()).collect(Collectors.toList());
         Pattern pattern = Pattern.compile("(?<key>^[\\w-]+):\\s+(?<value>.*)");
         for (String elem : data) {

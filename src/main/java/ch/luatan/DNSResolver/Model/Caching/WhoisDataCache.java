@@ -1,5 +1,6 @@
 package ch.luatan.DNSResolver.Model.Caching;
 
+import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 
@@ -35,6 +36,7 @@ public class WhoisDataCache extends Cache{
     }
 
     public List<String> load() {
+        DNSResolver.LOGGER.debug("Load File " + cacheFile.getAbsolutePath());
         return Arrays.asList(Objects.requireNonNull(FileHelper.readFile(cacheFile.getPath())).split(","));
     }
 

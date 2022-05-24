@@ -389,8 +389,11 @@ public class GUIController implements Initializable {
             dnsLookup.setOnFailed(e -> {
                 Throwable error = dnsLookup.getException();
                 error.printStackTrace();
+                DNSResolver.LOGGER.error(error.getMessage());
             });
-            new Thread(dnsLookup).start();
+            Thread dnslookupThread = new Thread(dnsLookup);
+            dnslookupThread.setName("DNS");
+            dnslookupThread.start();
         }
 
     }
@@ -423,7 +426,9 @@ public class GUIController implements Initializable {
 
         hostTf.textProperty().bind(lookup.valueProperty());
         ipTf.textProperty().bind(lookup.messageProperty());
-        new Thread(lookup).start();
+        Thread iplookup = new Thread(lookup);
+        iplookup.setName("IP_Resolver");
+        iplookup.start();
     }
 
 
@@ -451,13 +456,16 @@ public class GUIController implements Initializable {
         whoisTask.setOnFailed(e -> {
             Throwable error = whoisTask.getException();
             error.printStackTrace();
+            DNSResolver.LOGGER.error(error.getMessage());
         });
 
         whoisHyperLink.disableProperty().bind(whoisEmpty.not());
 
         BooleanBinding gotWhois = whoisHyperLink.textProperty().isNotEmpty();
         whoisLinkLbl.visibleProperty().bind(gotWhois);
-        new Thread(whoisTask).start();
+        Thread whoisThread = new Thread(whoisTask);
+        whoisThread.setName("WHOIS");
+        whoisThread.start();
     }
 }
 

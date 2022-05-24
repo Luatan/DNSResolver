@@ -16,7 +16,7 @@ public class DefaultResolver implements Resolvable {
     private String hostname;
 
     public void resolve(String domain, Type type, String dnsServer) {
-        this.hostname = Domain.trimDomain(domain);
+        this.hostname = domain;
 
         //set environment for nameresolution
         Hashtable<String, String> dnsEnv = new Hashtable<>();

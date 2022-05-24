@@ -4,6 +4,7 @@ import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Data.Resolver.DNSJavaResolver;
 import ch.luatan.DNSResolver.Data.Resolver.Resolvable;
 import ch.luatan.DNSResolver.Model.DNS.*;
+import ch.luatan.DNSResolver.Model.Utils.Domain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -15,14 +16,14 @@ public class DnsTask extends Task<List<String>> {
     private final Resolvable query;
     private final String host;
     private final String dnsServer;
+    private final List<String> result;
     long startTime = System.currentTimeMillis();
     private Type type = SpecialType.ANY;
-    private List<String> result;
     private boolean showEmpty = false;
     private ObservableList<Record> nameservers;
 
     public DnsTask(String host, String dnsServer) {
-        this.host = host;
+        this.host = Domain.trimDomain(host);;
         this.dnsServer = dnsServer;
         query = new DNSJavaResolver();
         result = new ArrayList<>();

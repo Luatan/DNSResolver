@@ -1,10 +1,12 @@
 package ch.luatan.DNSResolver.Model.Tasks;
 
-import ch.luatan.DNSResolver.Model.API.NIC;
+
+import ch.luatan.DNSResolver.Data.API.API;
+import ch.luatan.DNSResolver.Data.API.Nic;
 import ch.luatan.DNSResolver.Model.Caching.WhoisDataCache;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Model.Whois.Whois;
+import ch.luatan.DNSResolver.Data.Whois.Whois;
 import ch.luatan.DNSResolver.Model.Whois.WhoisServer;
 import ch.luatan.DNSResolver.Model.Whois.WhoisServerSearch;
 import javafx.concurrent.Task;
@@ -46,10 +48,10 @@ public class GetWhoisTask extends Task<List<String>> {
 
             if (cache.isCached()) {
                 try {
-                    res = cache.readLines();
+                    res = cache.load();
 
                     //set cached sign
-                    setLINKTEXT();
+                    setLinkRegistrar();
                     linkText.append(" (cached)");
                     updateMessage(linkText.toString());
 
@@ -62,53 +64,32 @@ public class GetWhoisTask extends Task<List<String>> {
         }
 
         String ext = Domain.getExtension(host);
-        // Handles CH and LI Method of getting the whois (whois server is not available)
+        //choose between implementations of the Whois API depending on domain extension
+        API api;
         if (ext.equals(".ch") | ext.equals(".li")) {
-            try {
-                updateValue(getWHOIS_NIC(host));
-                if (Config.CACHING) {
-                    cache.writeCache(res);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            api = new Nic();
+        } else {
+            //get Whoisserver from IANNA
+            WhoisServerSearch serverSearch = new WhoisServerSearch();
+            WhoisServer server = serverSearch.search(ext);
+            if (server == null) {
+                return res;
             }
-            return res;
-        }
+            api = new Whois(server.getWhois());
 
-        //get Server
-        WhoisServerSearch serverSearch = new WhoisServerSearch();
-        WhoisServer server = serverSearch.search(ext);
-        if (server == null) {
-            return res;
         }
-        //update the value
-        updateValue(setDomainCheckResult(server.getWhois()));
+        res = api.query(host);
+
+        // displays the registrar of the domain in the link
+        setLinkRegistrar();
+
         if (Config.CACHING) {
-            cache.writeCache(res);
+            cache.write(res);
         }
         return res;
     }
 
-    private List<String> setDomainCheckResult(String whoisServer) {
-        String host = this.host;
-        // Handles DE Domains (special params for full info)
-        if (Domain.getExtension(this.host).equals(".de")) {
-            host = "-T dn " + this.host;
-        }
-
-        res = new Whois().getWhois(host, whoisServer);
-        setLINKTEXT();
-
-        return res;
-    }
-
-    private List<String> getWHOIS_NIC(String domain) {
-        res = new NIC(domain).getOutput();
-        setLINKTEXT();
-        return res;
-    }
-
-    private void setLINKTEXT() {
+    private void setLinkRegistrar() {
         linkText.append(this.host);
         String registrar = searchWhois(buildRegex());
         if (registrar.length() > 0) {

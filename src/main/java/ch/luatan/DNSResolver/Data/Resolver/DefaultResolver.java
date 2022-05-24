@@ -1,10 +1,8 @@
-package ch.luatan.DNSResolver.Controller;
+package ch.luatan.DNSResolver.Data.Resolver;
 
-import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.Utils.DNSType;
+import ch.luatan.DNSResolver.DNSResolver;
+import ch.luatan.DNSResolver.Model.DNS.*;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Model.Utils.SpecialType;
-import ch.luatan.DNSResolver.Model.Utils.Type;
 
 import javax.naming.*;
 import javax.naming.directory.Attribute;
@@ -12,13 +10,12 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.InitialDirContext;
 import java.util.*;
 
-public class DNSController {
-    public static final DNSType[] RECORD_TYPES = DNSType.values();
+public class DefaultResolver implements Resolvable {
     private final List<Record> records = new LinkedList<>();
     private InitialDirContext iDirC;
     private String hostname;
 
-    public DNSController(String domain, Type type, String dnsServer) {
+    public void resolve(String domain, Type type, String dnsServer) {
         this.hostname = Domain.trimDomain(domain);
 
         //set environment for nameresolution
@@ -38,7 +35,7 @@ public class DNSController {
         }
 
         setNameServer();
-        if (!type.equals(SpecialType.NS)) {
+        if (!type.equals(AdditionalTypes.NS)) {
             setRecords(type);
         }
     }
@@ -47,10 +44,10 @@ public class DNSController {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
             this.hostname = Domain.getMainDomain(hostname);
-            setRecords(SpecialType.NS);
+            setRecords(AdditionalTypes.NS);
             this.hostname = origHost;
         } else if (!Domain.isIPAdress(hostname)) {
-            setRecords(SpecialType.NS);
+            setRecords(AdditionalTypes.NS);
         }
     }
 
@@ -78,7 +75,7 @@ public class DNSController {
                     }
 
                 } catch (Exception e) {
-                    //System.err.println("No Records for " + type + " in " + hostname + " found!");
+                    //DNSResolver.LOGGER.error("No Records for " + type + " in " + hostname + " found!");
                 }
             }
         } catch (NameNotFoundException e) {
@@ -133,7 +130,7 @@ public class DNSController {
                 records.remove(i);
             }
         }
-        System.err.println("Error: " + message);
+        DNSResolver.LOGGER.error(message);
         createRecord(message, SpecialType.MSG);
     }
 
@@ -145,5 +142,10 @@ public class DNSController {
             }
         }
         return list;
+    }
+
+    @Override
+    public String validateDNSSEC() {
+        return "Not implemented!";
     }
 }

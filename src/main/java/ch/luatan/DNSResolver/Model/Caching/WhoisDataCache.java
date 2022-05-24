@@ -1,7 +1,7 @@
 package ch.luatan.DNSResolver.Model.Caching;
 
 import ch.luatan.DNSResolver.Model.Utils.Config;
-import ch.luatan.DNSResolver.Model.Utils.FileStructure;
+import ch.luatan.DNSResolver.Model.Utils.FileHelper;
 
 import java.io.File;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class WhoisDataCache extends Cache{
         selectFile(); // search cache folder for existing files
     }
 
-    public void writeCache(List<String> content) {
+    public void write(List<String> content) {
         if (content.size() < 1) {
             return;
         }
@@ -31,15 +31,11 @@ public class WhoisDataCache extends Cache{
             list.append(element.trim()).append(",");
         }
 
-        FileStructure.createFile(list.toString(), cacheFile.getPath());
+        FileHelper.createFile(list.toString(), cacheFile.getPath());
     }
 
-    public String readCache() {
-        return FileStructure.readFile(cacheFile.getPath());
-    }
-
-    public List<String> readLines() {
-        return Arrays.asList(readCache().split(","));
+    public List<String> load() {
+        return Arrays.asList(Objects.requireNonNull(FileHelper.readFile(cacheFile.getPath())).split(","));
     }
 
     public boolean isCached() {

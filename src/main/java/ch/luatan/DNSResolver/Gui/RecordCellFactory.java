@@ -1,7 +1,8 @@
-package ch.luatan.DNSResolver.Model.Utils;
+package ch.luatan.DNSResolver.Gui;
 
-import ch.luatan.DNSResolver.Controller.DNSController;
-import ch.luatan.DNSResolver.Controller.GUIController;
+import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Model.DNS.SpecialType;
+import ch.luatan.DNSResolver.Model.DNS.Type;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
@@ -55,7 +56,7 @@ public class RecordCellFactory extends ListCell<String> {
             }
 
             //add Types to the output field, which cannot be selected with the mouse
-            if (Arrays.stream(DNSController.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
+            if (Arrays.stream(DefaultResolver.RECORD_TYPES).map(record -> record + ":").collect(Collectors.toList()).contains(item.trim())) {
                 setGraphic(null);
                 setContentDisplay(ContentDisplay.TEXT_ONLY);
                 setText(item);

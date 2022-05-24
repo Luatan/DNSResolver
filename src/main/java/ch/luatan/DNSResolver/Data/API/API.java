@@ -1,4 +1,4 @@
-package ch.luatan.DNSResolver.Model.API;
+package ch.luatan.DNSResolver.Data.API;
 
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
@@ -51,5 +51,5 @@ public abstract class API {
         }
     }
 
-    protected abstract List<String> getOutput();
+    public abstract List<String> query(String query);
 }

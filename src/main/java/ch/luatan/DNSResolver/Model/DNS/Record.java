@@ -1,7 +1,5 @@
 package ch.luatan.DNSResolver.Model.DNS;
 
-import ch.luatan.DNSResolver.Model.Utils.Type;
-
 public class Record {
     protected Type type;
     protected String value;
@@ -29,5 +27,13 @@ public class Record {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "type=" + type +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

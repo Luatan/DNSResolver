@@ -1,6 +1,4 @@
-package ch.luatan.DNSResolver.Model.Utils;
-
-import ch.luatan.DNSResolver.Model.DNS.Record;
+package ch.luatan.DNSResolver.Model.DNS;
 
 public enum DNSType implements Type {
     A, AAAA, CNAME, MX, SRV, TXT, SOA;

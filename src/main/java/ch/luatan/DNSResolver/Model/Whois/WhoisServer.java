@@ -3,7 +3,7 @@ package ch.luatan.DNSResolver.Model.Whois;
 import java.util.List;
 
 public class WhoisServer {
-    private final String domain;
+    private final String domainExt;
     private final String whois;
     private List<Contact> contacts;
     private String status;
@@ -12,13 +12,13 @@ public class WhoisServer {
     private String changed;
     private String source;
 
-    WhoisServer(String domain_ext, String whois) {
-        this.domain = domain_ext;
-        this.whois = whois;
+    WhoisServer(String domain_ext, String whoisServer) {
+        this.domainExt = domain_ext;
+        this.whois = whoisServer;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getDomainExt() {
+        return domainExt;
     }
 
     public List<Contact> getContacts() {
@@ -101,12 +101,6 @@ class Contact {
     private final String email;
     private final Type type;
 
-    public enum Type {
-        ADMINISTRATIVE,
-        TECHNICAL,
-        NONE
-    }
-
     Contact(String name, Organisation org, String phone, String email, Type type) {
         this.name = name;
         this.org = org;
@@ -133,6 +127,12 @@ class Contact {
 
     public Type getType() {
         return type;
+    }
+
+    public enum Type {
+        ADMINISTRATIVE,
+        TECHNICAL,
+        NONE
     }
 
 }

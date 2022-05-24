@@ -389,6 +389,7 @@ public class GUIController implements Initializable {
             dnsLookup.setOnFailed(e -> {
                 Throwable error = dnsLookup.getException();
                 error.printStackTrace();
+                DNSResolver.LOGGER.error(error.getMessage());
             });
             new Thread(dnsLookup).start();
         }
@@ -451,6 +452,7 @@ public class GUIController implements Initializable {
         whoisTask.setOnFailed(e -> {
             Throwable error = whoisTask.getException();
             error.printStackTrace();
+            DNSResolver.LOGGER.error(error.getMessage());
         });
 
         whoisHyperLink.disableProperty().bind(whoisEmpty.not());

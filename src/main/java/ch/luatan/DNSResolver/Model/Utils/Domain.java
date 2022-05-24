@@ -52,6 +52,11 @@ public class Domain {
                 }
             }
         }
+
+        if (host.length == 1) {
+            return hostname.toLowerCase();
+        }
+
         return "." + host[host.length - 1].toLowerCase();
     }
 

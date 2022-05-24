@@ -132,6 +132,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.DNSResolver">
+    <configuration name="DNSJavaResolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ch.luatan.DNSResolver.Data.Resolver.DNSJavaResolver" />
+      <module name="DNSResolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.luatan.DNSResolver.Data.Resolver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DNSResolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ch.luatan.DNSResolver.DNSResolver" />
       <module name="DNSResolver" />
@@ -200,15 +213,16 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.DNSResolver" />
+      <item itemvalue="Application.DNSJavaResolver" />
       <item itemvalue="TestNG.DNSRequestsTest" />
       <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DNSResolver" />
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DNSJavaResolver" />
         <item itemvalue="Application.DNSResolver" />
       </list>
     </recent_temporary>
@@ -224,13 +238,6 @@
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
       <workItem from="1646051177446" duration="14000" />
-    </task>
-    <task id="LOCAL-00150" summary="renamed package to luatan">
-      <created>1639873968721</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1639873968721</updated>
     </task>
     <task id="LOCAL-00151" summary="renamed variables and optimized the setnameserver method">
       <created>1639877382813</created>
@@ -568,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650777604133</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="log messages and thread names">
+      <created>1653413383328</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1653413383328</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +613,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved files to specific packages" />
     <MESSAGE value="message when removing files" />
     <MESSAGE value="moved files to view Package" />
     <MESSAGE value="moved files" />
@@ -624,7 +637,8 @@
     <MESSAGE value="interface screenshot update" />
     <MESSAGE value="exception handling" />
     <MESSAGE value="changes to spf links&#10;All displayed links get now a button to open them directly" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to spf links&#10;All displayed links get now a button to open them directly" />
+    <MESSAGE value="log messages and thread names" />
+    <option name="LAST_COMMIT_MESSAGE" value="log messages and thread names" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

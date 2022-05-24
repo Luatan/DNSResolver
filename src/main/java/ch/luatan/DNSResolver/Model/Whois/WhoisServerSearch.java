@@ -3,6 +3,7 @@ package ch.luatan.DNSResolver.Model.Whois;
 import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Data.Whois.Whois;
 import ch.luatan.DNSResolver.Model.Caching.WhoisExtensionCache;
+import ch.luatan.DNSResolver.Model.Utils.Config;
 
 import java.io.IOException;
 import java.util.*;
@@ -46,7 +47,9 @@ public class WhoisServerSearch {
         server.setSource(tempValues.get("source").get(0));
         server.setRemarks(tempValues.get("remarks").get(0));
 
-        cache.write(server);
+        if (Config.CACHING) {
+            cache.write(server);
+        }
         return server;
     }
 

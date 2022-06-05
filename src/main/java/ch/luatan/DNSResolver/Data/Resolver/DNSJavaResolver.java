@@ -1,10 +1,9 @@
 package ch.luatan.DNSResolver.Data.Resolver;
 
 import ch.luatan.DNSResolver.DNSResolver;
-import ch.luatan.DNSResolver.Model.DNS.DNSType;
 import ch.luatan.DNSResolver.Model.DNS.Record;
-import ch.luatan.DNSResolver.Model.DNS.SpecialType;
 import ch.luatan.DNSResolver.Model.DNS.Type;
+import ch.luatan.DNSResolver.Model.DNS.*;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
 import org.xbill.DNS.*;
 import org.xbill.DNS.dnssec.ValidatingResolver;
@@ -14,10 +13,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,21 +23,24 @@ public class DNSJavaResolver implements Resolvable {
     private Message answer;
 
     @Override
-    public void resolve(String domain, ch.luatan.DNSResolver.Model.DNS.Type type, String dnsServer) {
-        SimpleResolver sr;
+    public void resolve(String domain, Type type, String dnsServer) {
+        domain = domain + (!domain.endsWith(".") ? "." : "");
         try {
-            if (!dnsServer.isEmpty()) {
-                sr = new SimpleResolver(dnsServer);
-            } else {
-                sr = new SimpleResolver("8.8.8.8");
-            }
-            sr.setTimeout(Duration.ofSeconds(5));
-            org.xbill.DNS.Record rc = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain + (!domain.endsWith(".") ? "." : "")), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
-
+            org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
             //run validating resolver for dnssec
-            ValidatingResolver vr = new ValidatingResolver(sr);
+            ValidatingResolver vr = new ValidatingResolver(getSimpleResolver(dnsServer));
             vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
-            answer = vr.send(Message.newQuery(rc));
+
+            // query the DNS-Zone
+            answer = vr.send(Message.newQuery(query));
+
+            // Hanlde RFC8482
+            if (!anyQueryAllowed()) {
+                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked due to RFC8482");
+                DNSResolver.LOGGER.info("Trying to resolve all Types manually");
+                resolveInMultipleRequests(vr, domain);
+            }
+
         } catch (UnknownHostException e) {
             errors.add("Unknown Host: " + dnsServer);
         } catch (IOException e) {
@@ -117,5 +116,42 @@ public class DNSJavaResolver implements Resolvable {
             records.add(Record.setRecordValue(SpecialType.MSG.getRecord(), error));
 
         });
+    }
+
+    private boolean anyQueryAllowed() {
+        for (org.xbill.DNS.Record rec : answer.getSection(Section.ANSWER)) {
+            if (rec instanceof HINFORecord && ((HINFORecord) rec).getCPU().equals("RFC8482")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void resolveInMultipleRequests(Resolver resolver, String domain) {
+        List<Type> typeList = new LinkedList<>(EnumSet.allOf(DNSType.class));
+        typeList.add(AdditionalTypes.NS);
+        typeList.forEach(value -> {
+            org.xbill.DNS.Record rec = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(value.toString()), DClass.IN);
+            try {
+                Message subanswer = resolver.send(Message.newQuery(rec));
+                for (org.xbill.DNS.Record subrec : subanswer.getSection(Section.ANSWER)) {
+                    answer.addRecord(subrec, Section.ANSWER);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private Resolver getSimpleResolver(String dnsServer) throws UnknownHostException {
+        SimpleResolver sr;
+        if (!dnsServer.isEmpty()) {
+            sr = new SimpleResolver(dnsServer);
+        } else {
+            sr = new SimpleResolver("8.8.8.8");
+        }
+        sr.setTimeout(Duration.ofSeconds(5));
+
+        return sr;
     }
 }

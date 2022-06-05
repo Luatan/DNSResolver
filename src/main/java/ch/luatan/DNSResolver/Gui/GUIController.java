@@ -3,7 +3,7 @@ package ch.luatan.DNSResolver.Gui;
 import ch.luatan.DNSResolver.Controller.HistoryController;
 import ch.luatan.DNSResolver.DNSResolver;
 import ch.luatan.DNSResolver.Data.API.IpApi;
-import ch.luatan.DNSResolver.Data.Resolver.DefaultResolver;
+import ch.luatan.DNSResolver.Data.Resolver.Resolvable;
 import ch.luatan.DNSResolver.Model.DNS.AdditionalTypes;
 import ch.luatan.DNSResolver.Model.DNS.Record;
 import ch.luatan.DNSResolver.Model.DNS.SpecialType;
@@ -84,7 +84,7 @@ public class GUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        types.addAll(DefaultResolver.RECORD_TYPES);
+        types.addAll(Resolvable.RECORD_TYPES);
         types.addAll(AdditionalTypes.values());
         rotateImage(whoisLoading);
 

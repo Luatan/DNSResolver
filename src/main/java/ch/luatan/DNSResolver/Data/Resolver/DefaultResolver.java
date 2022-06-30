@@ -148,4 +148,9 @@ public class DefaultResolver implements Resolvable {
     public String validateDNSSEC() {
         return "Not implemented!";
     }
+
+    @Override
+    public void ignoreDNSSEC() {
+
+    }
 }

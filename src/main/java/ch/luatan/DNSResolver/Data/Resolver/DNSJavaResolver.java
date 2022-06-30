@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 public class DNSJavaResolver implements Resolvable {
     static String ROOT = ". IN DS 20326 8 2 E06D44B80B8F1D39A95C0B0D7C65D08458E880409BBC683457104237C7F8EC8D";
+    private boolean useDnssec = true;
     private final List<String> errors = new LinkedList<>();
     private Message answer;
 
@@ -32,7 +33,11 @@ public class DNSJavaResolver implements Resolvable {
             vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
 
             // query the DNS-Zone
-            answer = vr.send(Message.newQuery(query));
+            Message message = Message.newQuery(query);
+            if (!useDnssec) {
+                message.getHeader().setFlag(Flags.CD);
+            }
+            answer = vr.send(message);
 
             // Hanlde RFC8482
             if (!anyQueryAllowed()) {
@@ -43,7 +48,9 @@ public class DNSJavaResolver implements Resolvable {
 
         } catch (UnknownHostException e) {
             errors.add("Unknown Host: " + dnsServer);
+            e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
             errors.add(e.getMessage());
         }
 
@@ -102,12 +109,22 @@ public class DNSJavaResolver implements Resolvable {
         if (answer == null) {
             return "";
         }
+
+        if (!useDnssec) {
+            return "Validation Disabled";
+        }
+
         for (RRset set : answer.getSectionRRsets(Section.ADDITIONAL)) {
             if (set.getName().equals(Name.root) && set.getType() == org.xbill.DNS.Type.TXT && set.getDClass() == ValidatingResolver.VALIDATION_REASON_QCLASS) {
                 return ((TXTRecord) set.first()).getStrings().get(0);
             }
         }
         return "Verified";
+    }
+
+    @Override
+    public void ignoreDNSSEC() {
+        useDnssec = false;
     }
 
     private void addErrors(List<Record> records) {

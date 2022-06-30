@@ -28,6 +28,7 @@ public class Config {
             Map<String,Object> settings = new LinkedHashMap<>();
             settings.put("ShowEmptyRecords", Boolean.FALSE);
             settings.put("darkmode", Boolean.FALSE);
+            settings.put("dnssec_validation", Boolean.TRUE);
             settings.put("cache", CACHING);
             settings.put("whois_cache_ttl", WHOIS_DATA_CACHE_TTL);
             settings.put("whois_ext_cache_ttl", WHOIS_EXT_CACHE_TTL);

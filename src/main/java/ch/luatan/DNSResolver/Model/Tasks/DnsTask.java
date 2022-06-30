@@ -26,6 +26,9 @@ public class DnsTask extends Task<List<String>> {
         this.host = Domain.trimDomain(host);;
         this.dnsServer = dnsServer;
         query = new DNSJavaResolver();
+        if (DNSResolver.isIgnoreDNSSEC()) {
+            query.ignoreDNSSEC();
+        }
         result = new ArrayList<>();
     }
 

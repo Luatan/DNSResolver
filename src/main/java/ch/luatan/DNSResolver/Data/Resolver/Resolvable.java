@@ -14,4 +14,6 @@ public interface Resolvable {
     List<Record> getRecords(Type type);
 
     String validateDNSSEC();
+
+    void ignoreDNSSEC();
 }

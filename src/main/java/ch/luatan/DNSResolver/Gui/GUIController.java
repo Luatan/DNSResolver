@@ -68,7 +68,7 @@ public class GUIController implements Initializable {
     @FXML
     private Hyperlink whoisHyperLink;
     @FXML
-    private CheckBox showRecordsTickBox;
+    private CheckBox showRecordsTickBox, useDnssecTick;
     @FXML
     private ImageView whoisLoading, loading_duck, tools_chevron, dnssecIcon;
     @FXML
@@ -103,8 +103,7 @@ public class GUIController implements Initializable {
             @Override
             public String toString(Type type) {
                 if (type.equals(SpecialType.ANY)) {
-                    return type.toString().substring(0, 1).toUpperCase()
-                            + type.toString().substring(1).toLowerCase();
+                    return type.toString().substring(0, 1).toUpperCase() + type.toString().substring(1).toLowerCase();
                 }
                 return type.toString();
             }
@@ -118,7 +117,8 @@ public class GUIController implements Initializable {
         typeComboBox.setValue(SpecialType.ANY);
 
         // apply settings
-        showRecordsTickBox.setSelected(ch.luatan.DNSResolver.DNSResolver.isShowAllRecords()); //load TickBox
+        showRecordsTickBox.setSelected(DNSResolver.isShowAllRecords()); //load TickBox
+        useDnssecTick.setSelected(DNSResolver.isIgnoreDNSSEC());
         updateHistoryDisplay(); //load history
 
         //prevent start button pressed without input
@@ -153,7 +153,7 @@ public class GUIController implements Initializable {
     @FXML
     private void onClose() {
         historyController.write();
-        ch.luatan.DNSResolver.DNSResolver.exit();
+        DNSResolver.exit();
     }
 
     @FXML
@@ -177,12 +177,17 @@ public class GUIController implements Initializable {
 
     @FXML
     private void onMinimize() {
-        ch.luatan.DNSResolver.DNSResolver.minimize();
+        DNSResolver.minimize();
     }
 
     @FXML
     private void changeEmptyRecordsSetting() {
-        ch.luatan.DNSResolver.DNSResolver.setShowAllRecords();
+        DNSResolver.setShowAllRecords();
+    }
+
+    @FXML
+    private void changeDNSSECSettings() {
+        DNSResolver.setIsIgnoreDNSSEC();
     }
 
     @FXML

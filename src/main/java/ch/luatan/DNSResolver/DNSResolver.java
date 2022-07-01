@@ -45,6 +45,15 @@ public class DNSResolver extends Application {
         stage.show();
     }
 
+    public static boolean isIgnoreDNSSEC() {
+        return SETTINGS.config.isIgnoreDNSSEC();
+    }
+
+    public static void setIsIgnoreDNSSEC() {
+        boolean enabled = SETTINGS.config.isIgnoreDNSSEC();
+        SETTINGS.config.setIgnoreDNSSEC(!enabled);
+    }
+
     public static void setShowAllRecords() {
         SETTINGS.config.setShowEmptyRecords(!showAllRecords);
     }

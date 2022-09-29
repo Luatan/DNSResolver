@@ -26,10 +26,13 @@ public class DNSJavaResolver implements Resolvable {
     @Override
     public void resolve(String domain, Type type, String dnsServer) {
         domain = domain + (!domain.endsWith(".") ? "." : "");
+        ValidatingResolver vr = null;
         try {
             org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
             //run validating resolver for dnssec
-            ValidatingResolver vr = new ValidatingResolver(getSimpleResolver(dnsServer));
+            vr = new ValidatingResolver(getSimpleResolver(dnsServer));
+            //Hot Fix timout
+            vr.setTimeout(Duration.ofSeconds(2));
             vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
 
             // query the DNS-Zone
@@ -41,7 +44,7 @@ public class DNSJavaResolver implements Resolvable {
 
             // Hanlde RFC8482
             if (!anyQueryAllowed()) {
-                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked due to RFC8482");
+                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked");
                 DNSResolver.LOGGER.info("Trying to resolve all Types manually");
                 resolveInMultipleRequests(vr, domain);
             }
@@ -50,8 +53,13 @@ public class DNSJavaResolver implements Resolvable {
             errors.add("Unknown Host: " + dnsServer);
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-            errors.add(e.getMessage());
+            if (dnsServer.isEmpty()) {
+                // Hot Fix Timeout
+                resolveInMultipleRequests(vr, domain);
+            } else {
+                e.printStackTrace();
+                errors.add(e.getMessage());
+            }
         }
 
         if (answer == null) {
@@ -146,6 +154,9 @@ public class DNSJavaResolver implements Resolvable {
 
     private void resolveInMultipleRequests(Resolver resolver, String domain) {
         List<Type> typeList = new LinkedList<>(EnumSet.allOf(DNSType.class));
+        if (answer == null) {
+            answer = new Message();
+        }
         typeList.add(AdditionalTypes.NS);
         typeList.forEach(value -> {
             org.xbill.DNS.Record rec = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(value.toString()), DClass.IN);

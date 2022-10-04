@@ -18,9 +18,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DNSJavaResolver implements Resolvable {
-    static String ROOT = ". IN DS 20326 8 2 E06D44B80B8F1D39A95C0B0D7C65D08458E880409BBC683457104237C7F8EC8D";
-    private boolean useDnssec = true;
+    private final static String ROOT = ". IN DS 20326 8 2 E06D44B80B8F1D39A95C0B0D7C65D08458E880409BBC683457104237C7F8EC8D";
     private final List<String> errors = new LinkedList<>();
+    private boolean useDnssec = true;
     private Message answer;
 
     @Override
@@ -29,22 +29,17 @@ public class DNSJavaResolver implements Resolvable {
         ValidatingResolver vr = null;
         try {
             org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
-            //run validating resolver for dnssec
-            vr = new ValidatingResolver(getSimpleResolver(dnsServer));
-            //Hot Fix timout
-            vr.setTimeout(Duration.ofSeconds(2));
+            vr = new ValidatingResolver(getSimpleResolver(dnsServer, Duration.ofSeconds(2)));
             vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
 
-            // query the DNS-Zone
             Message message = Message.newQuery(query);
             if (!useDnssec) {
                 message.getHeader().setFlag(Flags.CD);
             }
             answer = vr.send(message);
 
-            // Hanlde RFC8482
-            if (!anyQueryAllowed()) {
-                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked");
+            if (!checkRFC8482()) {
+                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked due to RFC84482");
                 DNSResolver.LOGGER.info("Trying to resolve all Types manually");
                 resolveInMultipleRequests(vr, domain);
             }
@@ -131,8 +126,8 @@ public class DNSJavaResolver implements Resolvable {
     }
 
     @Override
-    public void ignoreDNSSEC() {
-        useDnssec = false;
+    public void useDNSSEC(boolean value) {
+        useDnssec = value;
     }
 
     private void addErrors(List<Record> records) {
@@ -143,7 +138,19 @@ public class DNSJavaResolver implements Resolvable {
         });
     }
 
-    private boolean anyQueryAllowed() {
+    private Resolver getSimpleResolver(String dnsServer, Duration duration) throws UnknownHostException {
+        SimpleResolver sr;
+        if (!dnsServer.isEmpty()) {
+            sr = new SimpleResolver(dnsServer);
+        } else {
+            sr = new SimpleResolver("8.8.8.8");
+        }
+        sr.setTimeout(duration);
+
+        return sr;
+    }
+
+    private boolean checkRFC8482() {
         for (org.xbill.DNS.Record rec : answer.getSection(Section.ANSWER)) {
             if (rec instanceof HINFORecord && ((HINFORecord) rec).getCPU().equals("RFC8482")) {
                 return false;
@@ -169,17 +176,5 @@ public class DNSJavaResolver implements Resolvable {
                 e.printStackTrace();
             }
         });
-    }
-
-    private Resolver getSimpleResolver(String dnsServer) throws UnknownHostException {
-        SimpleResolver sr;
-        if (!dnsServer.isEmpty()) {
-            sr = new SimpleResolver(dnsServer);
-        } else {
-            sr = new SimpleResolver("8.8.8.8");
-        }
-        sr.setTimeout(Duration.ofSeconds(5));
-
-        return sr;
     }
 }

@@ -40,6 +40,25 @@ public class DefaultResolver implements Resolvable {
         }
     }
 
+    public List<Record> getRecords(Type type) {
+        List<Record> list = new ArrayList<>();
+        for (Record record : records) {
+            if (record.getType().equals(type)) {
+                list.add(record);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public String validateDNSSEC() {
+        return "Not implemented!";
+    }
+
+    @Override
+    public void useDNSSEC(boolean value) {
+    }
+
     private void setNameServer() {
         if (Domain.isSubdomain(hostname)) {
             String origHost = hostname;
@@ -132,25 +151,5 @@ public class DefaultResolver implements Resolvable {
         }
         DNSResolver.LOGGER.error(message);
         createRecord(message, SpecialType.MSG);
-    }
-
-    public List<Record> getRecords(Type type) {
-        List<Record> list = new ArrayList<>();
-        for (Record record : records) {
-            if (record.getType().equals(type)) {
-                list.add(record);
-            }
-        }
-        return list;
-    }
-
-    @Override
-    public String validateDNSSEC() {
-        return "Not implemented!";
-    }
-
-    @Override
-    public void ignoreDNSSEC() {
-
     }
 }

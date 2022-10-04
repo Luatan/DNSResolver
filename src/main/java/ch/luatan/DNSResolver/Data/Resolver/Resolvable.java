@@ -15,5 +15,5 @@ public interface Resolvable {
 
     String validateDNSSEC();
 
-    void ignoreDNSSEC();
+    void useDNSSEC(boolean value);
 }

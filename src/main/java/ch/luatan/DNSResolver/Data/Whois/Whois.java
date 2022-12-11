@@ -38,7 +38,6 @@ public class Whois extends API {
             DNSResolver.LOGGER.error(e.getMessage());
         }
 
-        //remove comments
         whoisData = whoisData.replaceAll("([%#].*[\\S\\s])|(.*REDACTED.*[\\S\\s])|(For more info.[\\S\\s]*)", "").replaceAll("\r", "");
         //split by lines
         String[] tokens = whoisData.split("\\n");

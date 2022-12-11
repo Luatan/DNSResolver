@@ -9,17 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="fixed &quot;no Records&quot;, if RFC8482 is in HINFO">
+    <list default="true" id="2a9fb8c9-ecff-4a84-adee-1d934f735e72" name="Default Changelist" comment="small changes to resolvers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/DNSResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DNSJavaResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DNSJavaResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DefaultResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/DefaultResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/Resolvable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Resolver/Resolvable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Gui/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/DnsTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Utils/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dnsGUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DNSResolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DNSResolver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Whois/Whois.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Data/Whois/Whois.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/GetWhoisTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Tasks/GetWhoisTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/luatan/DNSResolver/Model/Whois/WhoisServerSearch.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +216,7 @@
         <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
         <item itemvalue="TestNG.DNSRequestsTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.DNSResolver" />
+        <item itemvalue="TestNG.DNSRequestsTest.isSubdomainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -235,27 +231,6 @@
       <workItem from="1645819219818" duration="21000" />
       <workItem from="1645819259508" duration="2000" />
       <workItem from="1646051177446" duration="14000" />
-    </task>
-    <task id="LOCAL-00150" summary="renamed package to luatan">
-      <created>1639873968721</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1639873968721</updated>
-    </task>
-    <task id="LOCAL-00151" summary="renamed variables and optimized the setnameserver method">
-      <created>1639877382813</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1639877382813</updated>
-    </task>
-    <task id="LOCAL-00152" summary="changed from arraylist to linked list">
-      <created>1639877406997</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1639877406997</updated>
     </task>
     <task id="LOCAL-00153" summary="fixed bug, where the programm cannot start because the file structure is not created properly">
       <created>1639919328172</created>
@@ -579,7 +554,28 @@
       <option name="project" value="LOCAL" />
       <updated>1650777604133</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="disable dnssec when query with other nameservers">
+      <created>1660895487646</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1660895487646</updated>
+    </task>
+    <task id="LOCAL-00200" summary="hot fix">
+      <created>1664434861734</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1664434861734</updated>
+    </task>
+    <task id="LOCAL-00201" summary="small changes to resolvers">
+      <created>1664917496663</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1664917496663</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,9 +606,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="moved files to specific packages" />
-    <MESSAGE value="message when removing files" />
-    <MESSAGE value="moved files to view Package" />
     <MESSAGE value="moved files" />
     <MESSAGE value="update README and LICENSE" />
     <MESSAGE value="improvements" />
@@ -635,7 +628,10 @@
     <MESSAGE value="interface screenshot update" />
     <MESSAGE value="exception handling" />
     <MESSAGE value="changes to spf links&#10;All displayed links get now a button to open them directly" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to spf links&#10;All displayed links get now a button to open them directly" />
+    <MESSAGE value="disable dnssec when query with other nameservers" />
+    <MESSAGE value="hot fix" />
+    <MESSAGE value="small changes to resolvers" />
+    <option name="LAST_COMMIT_MESSAGE" value="small changes to resolvers" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

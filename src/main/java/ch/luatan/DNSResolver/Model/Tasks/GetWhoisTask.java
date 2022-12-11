@@ -3,10 +3,10 @@ package ch.luatan.DNSResolver.Model.Tasks;
 
 import ch.luatan.DNSResolver.Data.API.API;
 import ch.luatan.DNSResolver.Data.API.Nic;
+import ch.luatan.DNSResolver.Data.Whois.Whois;
 import ch.luatan.DNSResolver.Model.Caching.WhoisDataCache;
 import ch.luatan.DNSResolver.Model.Utils.Config;
 import ch.luatan.DNSResolver.Model.Utils.Domain;
-import ch.luatan.DNSResolver.Data.Whois.Whois;
 import ch.luatan.DNSResolver.Model.Whois.WhoisServer;
 import ch.luatan.DNSResolver.Model.Whois.WhoisServerSearch;
 import javafx.concurrent.Task;
@@ -19,11 +19,10 @@ import java.util.regex.Pattern;
 
 public class GetWhoisTask extends Task<List<String>> {
     private final StringBuilder linkText = new StringBuilder();
-    private final List<String> regexPreambles = new ArrayList<>(Arrays.asList("registrar", "registrar-name", "organization"));
+    private final List<String> regexPreambles = new ArrayList<>(Arrays.asList("registrar", "registrar-name"));
     private String host;
     private List<String> res;
     private WhoisDataCache cache;
-
 
     public GetWhoisTask(String host) {
         this.host = Domain.trimDomain(host);
@@ -32,25 +31,17 @@ public class GetWhoisTask extends Task<List<String>> {
     @Override
     protected List<String> call() {
         res = new ArrayList<>();
-        // Don't run if host is not set
         if (host == null) {
             return res;
         }
-
-        // Checks if the domain is the maindomain
         if (Domain.isSubdomain(host)) {
             host = Domain.getMainDomain(host);
         }
-
-        // Check if this whois is cached
         if (Config.CACHING) {
             cache = new WhoisDataCache(host);
-
             if (cache.isCached()) {
                 try {
                     res = cache.load();
-
-                    //set cached sign
                     setLinkRegistrar();
                     linkText.append(" (cached)");
                     updateMessage(linkText.toString());
@@ -62,14 +53,11 @@ public class GetWhoisTask extends Task<List<String>> {
                 return res;
             }
         }
-
         String ext = Domain.getExtension(host);
-        //choose between implementations of the Whois API depending on domain extension
         API api;
         if (ext.equals(".ch") | ext.equals(".li")) {
             api = new Nic();
         } else {
-            //get Whoisserver from IANNA
             WhoisServerSearch serverSearch = new WhoisServerSearch();
             WhoisServer server = serverSearch.search(ext);
             if (server == null) {
@@ -79,10 +67,7 @@ public class GetWhoisTask extends Task<List<String>> {
 
         }
         res = api.query(host);
-
-        // displays the registrar of the domain in the link
         setLinkRegistrar();
-
         if (Config.CACHING) {
             cache.write(res);
         }
@@ -98,14 +83,6 @@ public class GetWhoisTask extends Task<List<String>> {
         updateMessage(linkText.toString());
     }
 
-    private String buildRegex() {
-        // join all possible staring Strings to a preamble
-        String preamble = "(?:" + String.join("|", regexPreambles) + ")";
-        //handles spaces and stuff, also gets the result in the registrar group
-        String regexValue = "(?:[:\\n])(?:[:\\n\\W\\r]+)?(?<registrar>.+)";
-        return "^" + preamble + regexValue;
-    }
-
     private String searchWhois(String regex) {
         Pattern input = Pattern.compile(regex, Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);
         Pattern de = Pattern.compile("(?:Status:)\\W(connect)", Pattern.CASE_INSENSITIVE + Pattern.MULTILINE);
@@ -113,18 +90,15 @@ public class GetWhoisTask extends Task<List<String>> {
         if (res.isEmpty()) {
             return "";
         }
-
         StringBuilder sb = new StringBuilder();
-
         for (String line : res) {
             sb.append(line.trim()).append("\n");
         }
-
         Matcher matcher = input.matcher(sb.toString());
         if (matcher.find()) {
+
             return matcher.group(1).trim();
         }
-
         matcher = de.matcher(sb.toString());
         if (matcher.find()) {
             return "Registred";
@@ -132,4 +106,9 @@ public class GetWhoisTask extends Task<List<String>> {
         return "";
     }
 
+    private String buildRegex() {
+        String preamble = "(?:" + String.join("|", regexPreambles) + ")";
+        String regexBody = "(?:\\n\\W?organization)?:\\W?(?<registrar>.+)";
+        return "^" + preamble + regexBody;
+    }
 }

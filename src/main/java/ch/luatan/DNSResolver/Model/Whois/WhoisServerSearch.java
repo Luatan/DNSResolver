@@ -16,7 +16,6 @@ public class WhoisServerSearch {
     private final Map<String, List<String>> tempValues = new LinkedHashMap<>();
 
     public WhoisServer search(String ext) {
-        //check if it is a ccTLD with multiple parts
         String[] ext_parts = ext.split("[.]");
         if (ext_parts.length > 1) {
             ext = ext_parts[ext_parts.length-1];
@@ -29,17 +28,12 @@ public class WhoisServerSearch {
                 e.printStackTrace();
             }
         }
-
-        //create dataset
         createMap(ext);
-
-        // dont return anything, if essential values are missing
         if (tempValues.isEmpty() || !tempValues.containsKey("whois")) {
             return null;
         }
-        // init and declare Server data
         WhoisServer server = new WhoisServer(tempValues.get("domain").get(0), tempValues.get("whois").get(0));
-
+        System.out.println(server.getWhois());
         server.setContacts(createContacts());
         server.setCreated(tempValues.get("created").get(0));
         server.setChanged(tempValues.get("changed").get(0));
@@ -98,7 +92,6 @@ public class WhoisServerSearch {
                 try {
                     addresses.add(tempValues.get("address").get(j));
                 } catch (IndexOutOfBoundsException e) {
-                    //shit happens
                     e.printStackTrace();
                 }
             }

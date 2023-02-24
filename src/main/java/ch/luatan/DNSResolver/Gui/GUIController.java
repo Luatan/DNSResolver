@@ -362,7 +362,7 @@ public class GUIController implements Initializable {
         if (!queryTf.getText().isEmpty()) {
             dnsRecordList.clear();
 
-            DnsTask dnsLookup = new DnsTask(host, type, dnsServerTf.getText());
+            DnsTask dnsLookup = new DnsTask(host, type, dnsServerTf.getText().trim());
             loading_duck.visibleProperty().bind(dnsLookup.runningProperty().and(stateProperty.isEqualTo(State.DNS)));
             if (showRecordsTickBox.isSelected()) {
                 dnsLookup.showEmpty(true);

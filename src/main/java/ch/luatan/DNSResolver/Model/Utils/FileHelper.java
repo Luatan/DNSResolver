@@ -2,12 +2,8 @@ package ch.luatan.DNSResolver.Model.Utils;
 
 import ch.luatan.DNSResolver.DNSResolver;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.output.FileWriterWithEncoding;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -62,7 +58,7 @@ public class FileHelper {
             // create Parent dirs
             File file = new File(path);
             file.getParentFile().mkdirs();
-            FileWriterWithEncoding fileWriter = new FileWriterWithEncoding(path, "utf-8");
+            FileWriter fileWriter = new FileWriter(path);
             fileWriter.write(fileContent);
             fileWriter.close();
         } catch (IOException e) {

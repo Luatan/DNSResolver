@@ -18,7 +18,7 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>no.tornado</groupId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20210307</version>
+            <version>20230227</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -72,7 +72,7 @@
         <!-- Base URL where you will host the application artifacts -->
         <app.url>https://update.dnsresolver.ch/v1/${app.mode}</app.url>
         <!-- Optional scp target for application artifacts hosted at the above url -->
-        <app.deploy.target>simon@192.168.0.220:/var/www/update.dnsresolver.ch/public_html/v1/${app.mode}</app.deploy.target>
+        <app.deploy.target>simon@192.168.0.220:/mnt/data/apache2/update.dnsresolver.ch/data/v1/${app.mode}</app.deploy.target>
         <!-- The app and launcher will be assembled in this folder -->
         <app.dir>${project.build.directory}/DNSResolver</app.dir>
         <!-- Native installers will be built in this folder -->
@@ -221,6 +221,7 @@
                         <configuration>
                             <executable>scp</executable>
                             <arguments>
+                                <argument>-P 41848</argument>
                                 <argument>-r</argument>
                                 <argument>${app.dir}/*</argument>
                                 <argument>${app.deploy.target}</argument>

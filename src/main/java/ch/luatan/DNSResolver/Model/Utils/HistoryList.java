@@ -14,7 +14,7 @@ public class HistoryList<E> extends ArrayList<E> {
         }
 
         if (this.size() > 9) {
-            super.remove(super.stream().findFirst().get());
+            super.remove(0);
         }
         return super.add(domain);
     }

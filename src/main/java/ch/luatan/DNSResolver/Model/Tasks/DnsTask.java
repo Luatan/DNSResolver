@@ -27,7 +27,7 @@ public class DnsTask extends Task<List<String>> {
         this.dnsServer = dnsServer;
         query = new DNSJavaResolver();
         if (DNSResolver.isIgnoreDNSSEC() || !dnsServer.isEmpty()) {
-            query.useDNSSEC(true);
+            query.useDNSSEC(false);
         }
         result = new ArrayList<>();
     }

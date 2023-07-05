@@ -26,35 +26,21 @@ public class DNSJavaResolver implements Resolvable {
     @Override
     public void resolve(String domain, Type type, String dnsServer) {
         domain = domain + (!domain.endsWith(".") ? "." : "");
-        ValidatingResolver vr = null;
         try {
-            org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
-            vr = new ValidatingResolver(getSimpleResolver(dnsServer, Duration.ofSeconds(2)));
-            vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.US_ASCII)));
+            ValidatingResolver vr = new ValidatingResolver(getSimpleResolver(dnsServer, Duration.ofSeconds(3)));
+            vr.loadTrustAnchors(new ByteArrayInputStream(ROOT.getBytes(StandardCharsets.UTF_8)));
 
-            Message message = Message.newQuery(query);
-            if (!useDnssec) {
-                message.getHeader().setFlag(Flags.CD);
-            }
-            answer = vr.send(message);
-
-            if (!checkRFC8482()) {
-                DNSResolver.LOGGER.info("ANY Request for " + domain + " was blocked due to RFC84482");
-                DNSResolver.LOGGER.info("Trying to resolve all Types manually");
-                resolveInMultipleRequests(vr, domain);
+            if (type.equals(SpecialType.valueOf("ANY"))) {
+                requestDNSRecords(vr, domain);
+            } else {
+                requestDNSRecords(vr, domain, type);
             }
 
         } catch (UnknownHostException e) {
             errors.add("Unknown Host: " + dnsServer);
-            e.printStackTrace();
         } catch (IOException e) {
-            if (dnsServer.isEmpty()) {
-                // Hot Fix Timeout
-                resolveInMultipleRequests(vr, domain);
-            } else {
-                e.printStackTrace();
-                errors.add(e.getMessage());
-            }
+            e.printStackTrace();
+            errors.add(e.getMessage());
         }
 
         if (answer == null) {
@@ -62,6 +48,39 @@ public class DNSJavaResolver implements Resolvable {
         } else if (!Rcode.string(answer.getHeader().getRcode()).equals("NOERROR")) {
             errors.add(answer.getHeader().toString());
         }
+    }
+
+    private void requestDNSRecords(Resolver resolver, String domain, Type type) throws IOException {
+        org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(type.toString()), DClass.IN);
+        Message message = Message.newQuery(query);
+        if (!useDnssec) {
+            message.getHeader().setFlag(Flags.CD);
+        }
+        answer = resolver.send(message);
+    }
+
+    private void requestDNSRecords(Resolver resolver, String domain) {
+        List<Type> typeList = new LinkedList<>(EnumSet.allOf(DNSType.class));
+        if (answer == null) {
+            answer = new Message();
+        }
+        typeList.add(AdditionalTypes.NS);
+        typeList.forEach(value -> {
+            org.xbill.DNS.Record query = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(value.toString()), DClass.IN);
+            try {
+                Message message = Message.newQuery(query);
+                if (!useDnssec) {
+                    message.getHeader().setFlag(Flags.CD);
+                }
+                message = resolver.send(message);
+                for (org.xbill.DNS.Record record : message.getSection(Section.ANSWER)) {
+                    answer.addRecord(record, Section.ANSWER);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                errors.add(e.getMessage());
+            }
+        });
     }
 
     @Override
@@ -143,38 +162,10 @@ public class DNSJavaResolver implements Resolvable {
         if (!dnsServer.isEmpty()) {
             sr = new SimpleResolver(dnsServer);
         } else {
-            sr = new SimpleResolver("8.8.8.8");
+            sr = new SimpleResolver();
         }
         sr.setTimeout(duration);
 
         return sr;
-    }
-
-    private boolean checkRFC8482() {
-        for (org.xbill.DNS.Record rec : answer.getSection(Section.ANSWER)) {
-            if (rec instanceof HINFORecord && ((HINFORecord) rec).getCPU().equals("RFC8482")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private void resolveInMultipleRequests(Resolver resolver, String domain) {
-        List<Type> typeList = new LinkedList<>(EnumSet.allOf(DNSType.class));
-        if (answer == null) {
-            answer = new Message();
-        }
-        typeList.add(AdditionalTypes.NS);
-        typeList.forEach(value -> {
-            org.xbill.DNS.Record rec = org.xbill.DNS.Record.newRecord(Name.fromConstantString(domain), org.xbill.DNS.Type.value(value.toString()), DClass.IN);
-            try {
-                Message subanswer = resolver.send(Message.newQuery(rec));
-                for (org.xbill.DNS.Record subrec : subanswer.getSection(Section.ANSWER)) {
-                    answer.addRecord(subrec, Section.ANSWER);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 }

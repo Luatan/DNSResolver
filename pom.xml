@@ -58,7 +58,7 @@
     </dependencies>
 
     <properties>
-        <app.mode>beta</app.mode>
+        <app.mode>live</app.mode>
         <!-- Installer Filename without suffix -->
         <app.filename>${project.name}</app.filename>
         <!-- The JavaFX Application class name -->
@@ -68,7 +68,7 @@
         <!-- The Application vendor used by javapackager -->
         <app.vendor>Simon Schmid</app.vendor>
         <!-- The Application version used by javapackager -->
-        <app.version>1.0</app.version>
+        <app.version>1.1</app.version>
         <!-- Base URL where you will host the application artifacts -->
         <app.url>https://update.dnsresolver.ch/v1/${app.mode}</app.url>
         <!-- Optional scp target for application artifacts hosted at the above url -->

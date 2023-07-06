@@ -162,7 +162,7 @@ public class DNSJavaResolver implements Resolvable {
         if (!dnsServer.isEmpty()) {
             sr = new SimpleResolver(dnsServer);
         } else {
-            sr = new SimpleResolver();
+            sr = new SimpleResolver("8.8.8.8");
         }
         sr.setTimeout(duration);
 
